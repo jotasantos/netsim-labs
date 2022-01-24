@@ -1,0 +1,346 @@
+Vagrant.configure("2") do |config|
+  config.vm.define "sfp01" do |sfp01|
+    sfp01.vm.provider :libvirt do |domain|
+      domain.management_network_mac = "08-4F-A9-00-00-01"
+    end
+    sfp01.vm.box = "CumulusCommunity/cumulus-vx"
+    sfp01.vm.synced_folder ".", "/vagrant", id: "vagrant-root", disabled: true
+
+    sfp01.vm.provider :libvirt do |domain|
+      domain.cpus = 2
+      domain.memory = 768
+    end
+    sfp01.vm.network :private_network,
+                  :libvirt__tunnel_type => "udp",
+                  :libvirt__tunnel_local_ip => "127.1.1.1",
+                  :libvirt__tunnel_local_port => "10001",
+                  :libvirt__tunnel_ip => "127.1.5.4",
+                  :libvirt__tunnel_port => "10004",
+                  :libvirt__iface_name => "vgif_sfp01_1",
+                  auto_config: false
+    sfp01.vm.network :private_network,
+                  :libvirt__tunnel_type => "udp",
+                  :libvirt__tunnel_local_ip => "127.1.1.2",
+                  :libvirt__tunnel_local_port => "10002",
+                  :libvirt__tunnel_ip => "127.1.2.2",
+                  :libvirt__tunnel_port => "10002",
+                  :libvirt__iface_name => "vgif_sfp01_2",
+                  auto_config: false
+    sfp01.vm.network :private_network,
+                  :libvirt__tunnel_type => "udp",
+                  :libvirt__tunnel_local_ip => "127.1.1.3",
+                  :libvirt__tunnel_local_port => "10003",
+                  :libvirt__tunnel_ip => "127.1.9.1",
+                  :libvirt__tunnel_port => "10001",
+                  :libvirt__iface_name => "vgif_sfp01_3",
+                  auto_config: false
+  end
+  config.vm.define "sfp51" do |sfp51|
+    sfp51.vm.provider :libvirt do |domain|
+      domain.management_network_mac = "08-4F-A9-00-00-02"
+    end
+    sfp51.vm.box = "CumulusCommunity/cumulus-vx"
+    sfp51.vm.synced_folder ".", "/vagrant", id: "vagrant-root", disabled: true
+
+    sfp51.vm.provider :libvirt do |domain|
+      domain.cpus = 2
+      domain.memory = 768
+    end
+    sfp51.vm.network :private_network,
+                  :libvirt__tunnel_type => "udp",
+                  :libvirt__tunnel_local_ip => "127.1.2.1",
+                  :libvirt__tunnel_local_port => "10001",
+                  :libvirt__tunnel_ip => "127.1.6.4",
+                  :libvirt__tunnel_port => "10004",
+                  :libvirt__iface_name => "vgif_sfp51_1",
+                  auto_config: false
+    sfp51.vm.network :private_network,
+                  :libvirt__tunnel_type => "udp",
+                  :libvirt__tunnel_local_ip => "127.1.2.2",
+                  :libvirt__tunnel_local_port => "10002",
+                  :libvirt__tunnel_ip => "127.1.1.2",
+                  :libvirt__tunnel_port => "10002",
+                  :libvirt__iface_name => "vgif_sfp51_2",
+                  auto_config: false
+    sfp51.vm.network :private_network,
+                  :libvirt__tunnel_type => "udp",
+                  :libvirt__tunnel_local_ip => "127.1.2.3",
+                  :libvirt__tunnel_local_port => "10003",
+                  :libvirt__tunnel_ip => "127.1.9.2",
+                  :libvirt__tunnel_port => "10002",
+                  :libvirt__iface_name => "vgif_sfp51_3",
+                  auto_config: false
+  end
+  config.vm.define "sfc01" do |sfc01|
+    sfc01.vm.provider :libvirt do |domain|
+      domain.management_network_mac = "08-4F-A9-00-00-03"
+    end
+    sfc01.vm.box = "CumulusCommunity/cumulus-vx"
+    sfc01.vm.synced_folder ".", "/vagrant", id: "vagrant-root", disabled: true
+
+    sfc01.vm.provider :libvirt do |domain|
+      domain.cpus = 2
+      domain.memory = 768
+    end
+    sfc01.vm.network :private_network,
+                  :libvirt__tunnel_type => "udp",
+                  :libvirt__tunnel_local_ip => "127.1.3.1",
+                  :libvirt__tunnel_local_port => "10001",
+                  :libvirt__tunnel_ip => "127.1.5.1",
+                  :libvirt__tunnel_port => "10001",
+                  :libvirt__iface_name => "vgif_sfc01_1",
+                  auto_config: false
+    sfc01.vm.network :private_network,
+                  :libvirt__tunnel_type => "udp",
+                  :libvirt__tunnel_local_ip => "127.1.3.2",
+                  :libvirt__tunnel_local_port => "10002",
+                  :libvirt__tunnel_ip => "127.1.4.2",
+                  :libvirt__tunnel_port => "10002",
+                  :libvirt__iface_name => "vgif_sfc01_2",
+                  auto_config: false
+    sfc01.vm.network :private_network,
+                  :libvirt__tunnel_type => "udp",
+                  :libvirt__tunnel_local_ip => "127.1.3.3",
+                  :libvirt__tunnel_local_port => "10003",
+                  :libvirt__tunnel_ip => "127.1.10.1",
+                  :libvirt__tunnel_port => "10001",
+                  :libvirt__iface_name => "vgif_sfc01_3",
+                  auto_config: false
+  end
+  config.vm.define "sfc51" do |sfc51|
+    sfc51.vm.provider :libvirt do |domain|
+      domain.management_network_mac = "08-4F-A9-00-00-04"
+    end
+    sfc51.vm.box = "CumulusCommunity/cumulus-vx"
+    sfc51.vm.synced_folder ".", "/vagrant", id: "vagrant-root", disabled: true
+
+    sfc51.vm.provider :libvirt do |domain|
+      domain.cpus = 2
+      domain.memory = 768
+    end
+    sfc51.vm.network :private_network,
+                  :libvirt__tunnel_type => "udp",
+                  :libvirt__tunnel_local_ip => "127.1.4.1",
+                  :libvirt__tunnel_local_port => "10001",
+                  :libvirt__tunnel_ip => "127.1.6.2",
+                  :libvirt__tunnel_port => "10002",
+                  :libvirt__iface_name => "vgif_sfc51_1",
+                  auto_config: false
+    sfc51.vm.network :private_network,
+                  :libvirt__tunnel_type => "udp",
+                  :libvirt__tunnel_local_ip => "127.1.4.2",
+                  :libvirt__tunnel_local_port => "10002",
+                  :libvirt__tunnel_ip => "127.1.3.2",
+                  :libvirt__tunnel_port => "10002",
+                  :libvirt__iface_name => "vgif_sfc51_2",
+                  auto_config: false
+    sfc51.vm.network :private_network,
+                  :libvirt__tunnel_type => "udp",
+                  :libvirt__tunnel_local_ip => "127.1.4.3",
+                  :libvirt__tunnel_local_port => "10003",
+                  :libvirt__tunnel_ip => "127.1.10.2",
+                  :libvirt__tunnel_port => "10002",
+                  :libvirt__iface_name => "vgif_sfc51_3",
+                  auto_config: false
+  end
+  config.vm.define "dis01" do |dis01|
+    dis01.vm.provider :libvirt do |domain|
+      domain.management_network_mac = "08-4F-A9-00-00-05"
+    end
+    dis01.vm.box = "CumulusCommunity/cumulus-vx"
+    dis01.vm.synced_folder ".", "/vagrant", id: "vagrant-root", disabled: true
+
+    dis01.vm.provider :libvirt do |domain|
+      domain.cpus = 2
+      domain.memory = 768
+    end
+    dis01.vm.network :private_network,
+                  :libvirt__tunnel_type => "udp",
+                  :libvirt__tunnel_local_ip => "127.1.5.1",
+                  :libvirt__tunnel_local_port => "10001",
+                  :libvirt__tunnel_ip => "127.1.3.1",
+                  :libvirt__tunnel_port => "10001",
+                  :libvirt__iface_name => "vgif_dis01_1",
+                  auto_config: false
+    dis01.vm.network :private_network,
+                  :libvirt__tunnel_type => "udp",
+                  :libvirt__tunnel_local_ip => "127.1.5.2",
+                  :libvirt__tunnel_local_port => "10002",
+                  :libvirt__tunnel_ip => "127.1.6.1",
+                  :libvirt__tunnel_port => "10001",
+                  :libvirt__iface_name => "vgif_dis01_2",
+                  auto_config: false
+    dis01.vm.network :private_network,
+                  :libvirt__tunnel_type => "udp",
+                  :libvirt__tunnel_local_ip => "127.1.5.3",
+                  :libvirt__tunnel_local_port => "10003",
+                  :libvirt__tunnel_ip => "127.1.7.1",
+                  :libvirt__tunnel_port => "10001",
+                  :libvirt__iface_name => "vgif_dis01_3",
+                  auto_config: false
+    dis01.vm.network :private_network,
+                  :libvirt__tunnel_type => "udp",
+                  :libvirt__tunnel_local_ip => "127.1.5.4",
+                  :libvirt__tunnel_local_port => "10004",
+                  :libvirt__tunnel_ip => "127.1.1.1",
+                  :libvirt__tunnel_port => "10001",
+                  :libvirt__iface_name => "vgif_dis01_4",
+                  auto_config: false
+  end
+  config.vm.define "dis51" do |dis51|
+    dis51.vm.provider :libvirt do |domain|
+      domain.management_network_mac = "08-4F-A9-00-00-06"
+    end
+    dis51.vm.box = "CumulusCommunity/cumulus-vx"
+    dis51.vm.synced_folder ".", "/vagrant", id: "vagrant-root", disabled: true
+
+    dis51.vm.provider :libvirt do |domain|
+      domain.cpus = 2
+      domain.memory = 768
+    end
+    dis51.vm.network :private_network,
+                  :libvirt__tunnel_type => "udp",
+                  :libvirt__tunnel_local_ip => "127.1.6.1",
+                  :libvirt__tunnel_local_port => "10001",
+                  :libvirt__tunnel_ip => "127.1.5.2",
+                  :libvirt__tunnel_port => "10002",
+                  :libvirt__iface_name => "vgif_dis51_1",
+                  auto_config: false
+    dis51.vm.network :private_network,
+                  :libvirt__tunnel_type => "udp",
+                  :libvirt__tunnel_local_ip => "127.1.6.2",
+                  :libvirt__tunnel_local_port => "10002",
+                  :libvirt__tunnel_ip => "127.1.4.1",
+                  :libvirt__tunnel_port => "10001",
+                  :libvirt__iface_name => "vgif_dis51_2",
+                  auto_config: false
+    dis51.vm.network :private_network,
+                  :libvirt__tunnel_type => "udp",
+                  :libvirt__tunnel_local_ip => "127.1.6.3",
+                  :libvirt__tunnel_local_port => "10003",
+                  :libvirt__tunnel_ip => "127.1.7.2",
+                  :libvirt__tunnel_port => "10002",
+                  :libvirt__iface_name => "vgif_dis51_3",
+                  auto_config: false
+    dis51.vm.network :private_network,
+                  :libvirt__tunnel_type => "udp",
+                  :libvirt__tunnel_local_ip => "127.1.6.4",
+                  :libvirt__tunnel_local_port => "10004",
+                  :libvirt__tunnel_ip => "127.1.2.1",
+                  :libvirt__tunnel_port => "10001",
+                  :libvirt__iface_name => "vgif_dis51_4",
+                  auto_config: false
+  end
+  config.vm.define "edz" do |edz|
+    edz.vm.provider :libvirt do |domain|
+      domain.management_network_mac = "08-4F-A9-00-00-07"
+    end
+    edz.vm.box = "CumulusCommunity/cumulus-vx"
+    edz.vm.synced_folder ".", "/vagrant", id: "vagrant-root", disabled: true
+
+    edz.vm.provider :libvirt do |domain|
+      domain.cpus = 2
+      domain.memory = 768
+    end
+    edz.vm.network :private_network,
+                  :libvirt__tunnel_type => "udp",
+                  :libvirt__tunnel_local_ip => "127.1.7.1",
+                  :libvirt__tunnel_local_port => "10001",
+                  :libvirt__tunnel_ip => "127.1.5.3",
+                  :libvirt__tunnel_port => "10003",
+                  :libvirt__iface_name => "vgif_edz_1",
+                  auto_config: false
+    edz.vm.network :private_network,
+                  :libvirt__tunnel_type => "udp",
+                  :libvirt__tunnel_local_ip => "127.1.7.2",
+                  :libvirt__tunnel_local_port => "10002",
+                  :libvirt__tunnel_ip => "127.1.6.3",
+                  :libvirt__tunnel_port => "10003",
+                  :libvirt__iface_name => "vgif_edz_2",
+                  auto_config: false
+    edz.vm.network :private_network,
+                  :libvirt__tunnel_type => "udp",
+                  :libvirt__tunnel_local_ip => "127.1.7.3",
+                  :libvirt__tunnel_local_port => "10003",
+                  :libvirt__tunnel_ip => "127.1.8.1",
+                  :libvirt__tunnel_port => "10001",
+                  :libvirt__iface_name => "vgif_edz_3",
+                  auto_config: false
+  end
+  config.vm.define "ser01" do |ser01|
+    ser01.vm.provider :libvirt do |domain|
+      domain.management_network_mac = "08-4F-A9-00-00-08"
+    end
+    ser01.vm.box = "CumulusCommunity/cumulus-vx"
+    ser01.vm.synced_folder ".", "/vagrant", id: "vagrant-root", disabled: true
+
+    ser01.vm.provider :libvirt do |domain|
+      domain.cpus = 2
+      domain.memory = 768
+    end
+    ser01.vm.network :private_network,
+                  :libvirt__tunnel_type => "udp",
+                  :libvirt__tunnel_local_ip => "127.1.8.1",
+                  :libvirt__tunnel_local_port => "10001",
+                  :libvirt__tunnel_ip => "127.1.7.3",
+                  :libvirt__tunnel_port => "10003",
+                  :libvirt__iface_name => "vgif_ser01_1",
+                  auto_config: false
+  end
+  config.vm.define "ser02" do |ser02|
+    ser02.vm.provider :libvirt do |domain|
+      domain.management_network_mac = "08-4F-A9-00-00-09"
+    end
+    ser02.vm.box = "CumulusCommunity/cumulus-vx"
+    ser02.vm.synced_folder ".", "/vagrant", id: "vagrant-root", disabled: true
+
+    ser02.vm.provider :libvirt do |domain|
+      domain.cpus = 2
+      domain.memory = 768
+    end
+    ser02.vm.network :private_network,
+                  :libvirt__tunnel_type => "udp",
+                  :libvirt__tunnel_local_ip => "127.1.9.1",
+                  :libvirt__tunnel_local_port => "10001",
+                  :libvirt__tunnel_ip => "127.1.1.3",
+                  :libvirt__tunnel_port => "10003",
+                  :libvirt__iface_name => "vgif_ser02_1",
+                  auto_config: false
+    ser02.vm.network :private_network,
+                  :libvirt__tunnel_type => "udp",
+                  :libvirt__tunnel_local_ip => "127.1.9.2",
+                  :libvirt__tunnel_local_port => "10002",
+                  :libvirt__tunnel_ip => "127.1.2.3",
+                  :libvirt__tunnel_port => "10003",
+                  :libvirt__iface_name => "vgif_ser02_2",
+                  auto_config: false
+  end
+  config.vm.define "ser03" do |ser03|
+    ser03.vm.provider :libvirt do |domain|
+      domain.management_network_mac = "08-4F-A9-00-00-0A"
+    end
+    ser03.vm.box = "CumulusCommunity/cumulus-vx"
+    ser03.vm.synced_folder ".", "/vagrant", id: "vagrant-root", disabled: true
+
+    ser03.vm.provider :libvirt do |domain|
+      domain.cpus = 2
+      domain.memory = 768
+    end
+    ser03.vm.network :private_network,
+                  :libvirt__tunnel_type => "udp",
+                  :libvirt__tunnel_local_ip => "127.1.10.1",
+                  :libvirt__tunnel_local_port => "10001",
+                  :libvirt__tunnel_ip => "127.1.3.3",
+                  :libvirt__tunnel_port => "10003",
+                  :libvirt__iface_name => "vgif_ser03_1",
+                  auto_config: false
+    ser03.vm.network :private_network,
+                  :libvirt__tunnel_type => "udp",
+                  :libvirt__tunnel_local_ip => "127.1.10.2",
+                  :libvirt__tunnel_local_port => "10002",
+                  :libvirt__tunnel_ip => "127.1.4.3",
+                  :libvirt__tunnel_port => "10003",
+                  :libvirt__iface_name => "vgif_ser03_2",
+                  auto_config: false
+  end
+end

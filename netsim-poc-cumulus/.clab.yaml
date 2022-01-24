@@ -1,0 +1,79 @@
+name: netsim-poc-cumulus
+
+topology:
+  nodes:
+    sfp01:
+      kind: cvx
+      image: networkop/cx:4.3.0
+    sfp51:
+      kind: cvx
+      image: networkop/cx:4.3.0
+    sfc01:
+      kind: cvx
+      image: networkop/cx:4.3.0
+    sfc51:
+      kind: cvx
+      image: networkop/cx:4.3.0
+    dis01:
+      kind: cvx
+      image: networkop/cx:4.3.0
+    dis51:
+      kind: cvx
+      image: networkop/cx:4.3.0
+    edz:
+      kind: cvx
+      image: networkop/cx:4.3.0
+    ser01:
+      kind: cvx
+      image: networkop/cx:4.3.0
+    ser02:
+      kind: cvx
+      image: networkop/cx:4.3.0
+    ser03:
+      kind: cvx
+      image: networkop/cx:4.3.0
+
+  links:
+  - endpoints:
+    - "sfc01:swp1"
+    - "dis01:swp1"
+  - endpoints:
+    - "dis01:swp2"
+    - "dis51:swp1"
+  - endpoints:
+    - "dis01:swp3"
+    - "edz:swp1"
+  - endpoints:
+    - "sfp01:swp1"
+    - "dis01:swp4"
+  - endpoints:
+    - "sfc51:swp1"
+    - "dis51:swp2"
+  - endpoints:
+    - "dis51:swp3"
+    - "edz:swp2"
+  - endpoints:
+    - "sfp51:swp1"
+    - "dis51:swp4"
+  - endpoints:
+    - "sfp01:swp2"
+    - "sfp51:swp2"
+  - endpoints:
+    - "sfp01:swp3"
+    - "ser02:swp1"
+  - endpoints:
+    - "sfp51:swp3"
+    - "ser02:swp2"
+  - endpoints:
+    - "sfc01:swp2"
+    - "sfc51:swp2"
+  - endpoints:
+    - "sfc01:swp3"
+    - "ser03:swp1"
+  - endpoints:
+    - "sfc51:swp3"
+    - "ser03:swp2"
+  - endpoints:
+    - "edz:swp3"
+    - "ser01:swp1"
+

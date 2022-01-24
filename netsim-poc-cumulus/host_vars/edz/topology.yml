@@ -1,0 +1,49 @@
+# Ansible inventory created from ['topology.yml', 'package:topology-defaults.yml']
+#
+---
+box: CumulusCommunity/cumulus-vx
+links:
+- ifindex: 1
+  ifname: swp1
+  ipv4: 10.1.0.10/30
+  linkindex: 3
+  name: edz -> dis01
+  neighbors:
+    dis01:
+      ifname: swp3
+      ipv4: 10.1.0.9/30
+  remote_id: 5
+  remote_ifindex: 3
+  type: p2p
+- ifindex: 2
+  ifname: swp2
+  ipv4: 10.1.0.22/30
+  linkindex: 6
+  name: edz -> dis51
+  neighbors:
+    dis51:
+      ifname: swp3
+      ipv4: 10.1.0.21/30
+  remote_id: 6
+  remote_ifindex: 3
+  type: p2p
+- ifindex: 3
+  ifname: swp3
+  ipv4: 10.1.0.53/30
+  linkindex: 14
+  name: edz -> ser01
+  neighbors:
+    ser01:
+      ifname: swp1
+      ipv4: 10.1.0.54/30
+  remote_id: 8
+  remote_ifindex: 1
+  type: p2p
+loopback:
+  ipv4: 10.0.0.7/32
+mgmt:
+  ifname: eth0
+  ipv4: 192.168.121.107
+  mac: 08-4F-A9-00-00-07
+module:
+- ospf

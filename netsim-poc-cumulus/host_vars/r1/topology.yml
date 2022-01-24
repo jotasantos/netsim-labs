@@ -1,0 +1,32 @@
+# Ansible inventory created from ['topology.yml', 'package:topology-defaults.yml']
+#
+---
+box: CumulusCommunity/cumulus-vx
+links:
+- bridge: netsim-poc-cumulus_1
+  ifindex: 1
+  ifname: swp1
+  ipv4: 172.16.0.1/24
+  linkindex: 1
+  neighbors: {}
+  type: stub
+- ifindex: 2
+  ifname: swp2
+  ipv4: 10.1.0.1/30
+  linkindex: 3
+  name: r1 -> r2
+  neighbors:
+    r2:
+      ifname: swp2
+      ipv4: 10.1.0.2/30
+  remote_id: 2
+  remote_ifindex: 2
+  type: p2p
+loopback:
+  ipv4: 10.0.0.1/32
+mgmt:
+  ifname: eth0
+  ipv4: 192.168.121.101
+  mac: 08-4F-A9-00-00-01
+module:
+- ospf

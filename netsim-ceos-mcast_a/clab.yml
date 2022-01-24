@@ -1,0 +1,78 @@
+name: netsim-ceos-mcast_a-
+
+topology:
+  nodes:
+    sfp01:
+      kind: ceos
+      image: ceos:4.26.4M
+    sfp51:
+      kind: ceos
+      image: ceos:4.26.4M
+    sfc01:
+      kind: ceos
+      image: ceos:4.26.4M
+    sfc51:
+      kind: ceos
+      image: ceos:4.26.4M
+    dis01:
+      kind: ceos
+      image: ceos:4.26.4M
+    dis51:
+      kind: ceos
+      image: ceos:4.26.4M
+    edz:
+      kind: ceos
+      image: ceos:4.26.4M
+    ser01:
+      kind: ceos
+      image: ceos:4.26.4M
+    ser02:
+      kind: ceos
+      image: ceos:4.26.4M
+    ser03:
+      kind: ceos
+      image: ceos:4.26.4M
+
+  links:
+  - endpoints:
+    - "sfc01:eth1"
+    - "dis01:eth1"
+  - endpoints:
+    - "dis01:eth2"
+    - "dis51:eth1"
+  - endpoints:
+    - "dis01:eth3"
+    - "edz:eth1"
+  - endpoints:
+    - "sfp01:eth1"
+    - "dis01:eth4"
+  - endpoints:
+    - "sfc51:eth1"
+    - "dis51:eth2"
+  - endpoints:
+    - "dis51:eth3"
+    - "edz:eth2"
+  - endpoints:
+    - "sfp51:eth1"
+    - "dis51:eth4"
+  - endpoints:
+    - "sfp01:eth2"
+    - "sfp51:eth2"
+  - endpoints:
+    - "sfp01:eth3"
+    - "ser02:eth1"
+  - endpoints:
+    - "sfp51:eth3"
+    - "ser02:eth2"
+  - endpoints:
+    - "sfc01:eth2"
+    - "sfc51:eth2"
+  - endpoints:
+    - "sfc01:eth3"
+    - "ser03:eth1"
+  - endpoints:
+    - "sfc51:eth3"
+    - "ser03:eth2"
+  - endpoints:
+    - "edz:eth3"
+    - "ser01:eth1"

@@ -1,0 +1,18 @@
+---
+- hosts: cumulus
+  become: yes
+  gather_facts: False
+  tasks:
+    - name: Restore frr.conf
+      copy: src=config/{{inventory_hostname}}/frr.conf dest=/etc/frr/frr.conf
+    - name: Restore Interface Configuration
+      copy: src=config//{{inventory_hostname}}/interfaces dest=/etc/network/
+    - name: Restore FRR daemons file
+      copy: src=daemons dest=/etc/frr/daemons
+
+    - name: reload switchd
+      service: name=switchd state=restarted
+    - name: reload networking
+      command: /sbin/ifreload -a
+    - name: restart frr
+      service: name=frr state=restarted
