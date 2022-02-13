@@ -1,0 +1,36 @@
+---
+provider: libvirt
+defaults:
+  device: eos
+
+nodes:
+- name: sfp01
+  #  module: [ ospf ]
+- name: sfp51
+  #  module: [ ospf ]
+- name: sfc01
+  #  module: [ ospf ]
+- name: sfc51
+  #  module: [ ospf ]
+- name: dis01
+  #  module: [ ospf ]
+- name: dis51
+  #  module: [ ospf ]
+- name: edz
+  #  module: [ ospf ]
+- name: ser01
+- name: ser02
+
+links:
+- dis01-sfc01
+- dis01-dis51
+- dis01-edz
+- dis01-sfp01
+- dis51-sfc51
+- dis51-edz
+- dis51-sfp51
+- sfp01-sfp51
+- sfp01-ser02
+- sfp51-ser02
+- sfc01-sfc51
+- edz-ser01

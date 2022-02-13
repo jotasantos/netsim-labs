@@ -1,0 +1,752 @@
+2022-02-13 13:01:47.134692   658 ConnectionManager    0 agent Name is "OpenConfig" connection type: domainSocketConnection connection name: tbl://sysdb/-24
+Processed an invalid mount profile. Component smpte not found in /ar/Sysdb
+ /lib/libSysdbPassiveEntityMgr.so(_ZN5Sysdb22PassiveEntityManagerSm11handleCloseERKN3Tac6StringE+0x2d0) [0xeabc7270]
+ /lib/libSysdbPassiveEntityMgr.so(_ZN5Sysdb22PassiveEntityManagerSm20doNestedPassiveMountERKNS_5MountE+0x26bc) [0xeabe0d6c]
+ /lib/libSysdbPassiveEntityMgr.so(_ZN5Sysdb22PassiveEntityManagerSm18handleMountProfileERKN3Tac3PtrIKNS_17PassiveMountGroupEEE+0x170) [0xeabe4820]
+ /lib/libSysdbPassiveEntityMgr.so(_ZN5Sysdb22PassiveEntityManagerSm16doInitiateMountsEv+0x1b70) [0xeabe7710]
+ /lib/libtac.so.0(_ZNK3Tac12NotifieeList5visitENS_11AttributeIdE+0x1e1) [0xf74ee291]
+ /lib/libtac.so.0(_ZN3Tac10NboAttrLog7Demuxer17handleFlowOutQRemERKNS_3PtrINS0_7FlowOutEEE+0xe5) [0xf75e4cf5]
+ /lib/libtac.so.0(+0x19fd83) [0xf75e4d83]
+ /lib/libtac.so.0(_ZN3Tac10NboAttrLog7Demuxer14runHeadFlowOutEb+0xda) [0xf75e8a0a]
+ /lib/libtac.so.0(_ZN3Tac10NboAttrLog7Demuxer18handleFlowOutRoundEv+0x2db) [0xf75ee7cb]
+ /lib/libtac.so.0(_ZN3Tac17ActivityManagerSm12doRunManagerEv+0x1228) [0xf75b3958]
+ /lib/libtac.so.0(_ZN3Tac6System5doRunEv+0x20) [0xf7592740]
+ /lib/libAgentBase.so.0(_ZN9AgentBase14AgentContainer11doRunAgentsEv+0x123) [0xf637bae3]
+ /lib/libAgentBase.so.0(+0x8bbae) [0xf637cbae]
+ /lib/libtac.so.0(_ZNK3Tac7TacAttr20genericIfAttributeOpERNS_18GenericIfRawResultERKNS_12GenericIfRawENS_9GenericIf11AttributeOpEPvS8_+0x92) [0xf7574272]
+ /lib/libtac.so.0(_ZNK3Tac7TacAttr13genericIfCallERNS_18GenericIfRawResultERKNS_12GenericIfRawERKN5boost9container12small_vectorIS3_Lj8ENS7_13new_allocatorIS3_EEEE+0x98) [0xf7574b08]
+ /lib/libtac.so.0(_ZNK3Tac7TacAttr13genericIfCallERKNS_3PtrINS_9GenericIfEEERKN5boost9container12small_vectorINS1_IKS2_EELj8ENS7_13new_allocatorISA_EEEE+0x22a) [0xf757920a]
+ /usr/lib/python2.7/site-packages/_Tac.so(+0x18fd4) [0xf79a2fd4]
+ /lib/libpython2.7.so.1.0(PyObject_Call+0x4e) [0xf7d4bdce]
+ /lib/libpython2.7.so.1.0(PyEval_EvalFrameEx+0x493a) [0xf7dec8ea]
+ /lib/libpython2.7.so.1.0(PyEval_EvalCodeEx+0x6a7) [0xf7df1187]
+ /lib/libpython2.7.so.1.0(PyEval_EvalFrameEx+0x6809) [0xf7dee7b9]
+ /lib/libpython2.7.so.1.0(PyEval_EvalCodeEx+0x6a7) [0xf7df1187]
+ /lib/libpython2.7.so.1.0(PyEval_EvalFrameEx+0x6809) [0xf7dee7b9]
+ /lib/libpython2.7.so.1.0(PyEval_EvalCodeEx+0x6a7) [0xf7df1187]
+ /lib/libpython2.7.so.1.0(PyEval_EvalCode+0x22) [0xf7df13f2]
+ /lib/libpython2.7.so.1.0(+0xeb619) [0xf7e0a619]
+ /lib/libpython2.7.so.1.0(PyRun_FileExFlags+0x5e) [0xf7e0c15e]
+ /lib/libpython2.7.so.1.0(PyRun_SimpleFileExFlags+0xde) [0xf7e0c28e]
+ /lib/libpython2.7.so.1.0(Py_Main+0x5eb) [0xf7e1f04b]
+ arista-python(main+0x27) [0x80484e7]
+ /lib/libc.so.6(__libc_start_main+0xe3) [0xf7b09003]
+ arista-python() [0x8048512]
+
+2022-02-13 13:01:47.141853   658 Log                  0 %FWK-3-SOCKET_CLOSE_LOCAL: Closing connection to OpenConfig (pid:9604) at tbl://sysdb/-24 (Processed an invalid mount profile. Component smpte not found in /ar/Sysdb)
+Readable bytes in output buffer = 5547
+Iov buffer length = 5547
+freeBufferBytes = 92757
+payload misaligned diff=0
+Top 1 entities inside output buffer
+Eid Count FullName
+1 88 /mount/tbl%3A%2F%2Fsysdb%2F-24-in
+Connection from (658) to OpenConfig (pid:9604) at tbl://sysdb/-24 closed locally (Processed an invalid mount profile. Component smpte not found in /ar/Sysdb)
+ countOfStreamAdapters=168 countOfMessagesDeserialized=24 countOfMessagesWithUnknownAid=1 countOfBytesDeserializedHeaderSize=128 countOfBytesDeserializedPayloadSize=162 countOfBytesTraversedInHandleReadable=47 flowOutMountRequests=30 inputMount::mountsInProgress=0 outputMount::mountsInProgress=30
+ countOfMessagesAborted=0 countOfMessagesCommitted=1452 countOfMessagesMissingEidPrefix=1177 countOfMessagesMissingAidPrefix=788 countOfMessagesCreatedFlowOut=168 txBytes=50035 alOutWrittenBytes=55582 countOfPayloadBytesCommitted=46330 countOfBytesMostRecentlySent=8253 countOfCallsSendMsg=9 countOfCallsSendMsgAcrossMultipleBufferBlocks=0 lastCallSendMsgAcrossMultipleBufferBlocks=0 countOfReturnsSendMsgError=0 lastReturnSendMsgError=0 countOfReturnsSendMsgPartialMessage=0 lastReturnSendMsgPartialMessage=0 countOfCallsRecvMsg=2 countOfReturnsRecvMsgError=0 lastReturnRecvMsgError=0 lastReturnRecvMsgPartialMessage=0 countOfBytesMostRecentlyReceived=47
+maxClockNotifTime=0 avgClockNotifTime=0.000002 maxIOWaitTime=3 avgIOWaitTime=0.118327 maxTimeBetweenActivityLoops=3 avgTimeBetweenActivityLoops=0 prevActivityLoopsExecTime=3869 maxFdsPerCycle=49 avgFdsPerCycle=6.083519 maxRemoteMountStat()->peerName=Bfd (pid:949) maxRemoteMountStat()->time=5.276354 maxRemoteMountStat()->mountName=/ar/Sysdb/cell/1/agent/config/Bfd avgRemoteMountTime=0.000314 mountRemoteCompleteCount=12070 mountRemoteRequestCount=15610 maxMountStat()->peerName= maxMountStat()->time=0.000000 maxMountStat()->mountName avgMountTime=0.000000 mountCompleteCount=0 mountRequestCount=0 maxFlowOutCount=3541 totalFlowOutCount=53278 currentFlowOutCount=3541 mountFlowOutOnNonSchedConnCount=0 avgFlowOutRunTime=0 maxFlowOutRunTime=0 avgCombinedFlowOutRunTime=0.000000 maxCombinedFlowOutRunTime=1.008447 activityMgrLoopCounter=48679 tacElEntityRefCount=228
+2022-02-13 13:01:48.118563   658 ConnectionManager    0 agent Name is "OpenConfig" connection type: domainSocketConnection connection name: tbl://sysdb/-24
+Processed an invalid mount profile. Component smpte not found in /ar/Sysdb
+ /lib/libSysdbPassiveEntityMgr.so(_ZN5Sysdb22PassiveEntityManagerSm11handleCloseERKN3Tac6StringE+0x2d0) [0xeabc7270]
+ /lib/libSysdbPassiveEntityMgr.so(_ZN5Sysdb22PassiveEntityManagerSm20doNestedPassiveMountERKNS_5MountE+0x26bc) [0xeabe0d6c]
+ /lib/libSysdbPassiveEntityMgr.so(_ZN5Sysdb22PassiveEntityManagerSm18handleMountProfileERKN3Tac3PtrIKNS_17PassiveMountGroupEEE+0x170) [0xeabe4820]
+ /lib/libSysdbPassiveEntityMgr.so(_ZN5Sysdb22PassiveEntityManagerSm16doInitiateMountsEv+0x1b70) [0xeabe7710]
+ /lib/libtac.so.0(_ZNK3Tac12NotifieeList5visitENS_11AttributeIdE+0x1e1) [0xf74ee291]
+ /lib/libtac.so.0(_ZN3Tac10NboAttrLog7Demuxer17handleFlowOutQRemERKNS_3PtrINS0_7FlowOutEEE+0xe5) [0xf75e4cf5]
+ /lib/libtac.so.0(+0x19fd83) [0xf75e4d83]
+ /lib/libtac.so.0(_ZN3Tac10NboAttrLog7Demuxer14runHeadFlowOutEb+0xda) [0xf75e8a0a]
+ /lib/libtac.so.0(_ZN3Tac10NboAttrLog7Demuxer18handleFlowOutRoundEv+0x2db) [0xf75ee7cb]
+ /lib/libtac.so.0(_ZN3Tac17ActivityManagerSm12doRunManagerEv+0x1228) [0xf75b3958]
+ /lib/libtac.so.0(_ZN3Tac6System5doRunEv+0x20) [0xf7592740]
+ /lib/libAgentBase.so.0(_ZN9AgentBase14AgentContainer11doRunAgentsEv+0x123) [0xf637bae3]
+ /lib/libAgentBase.so.0(+0x8bbae) [0xf637cbae]
+ /lib/libtac.so.0(_ZNK3Tac7TacAttr20genericIfAttributeOpERNS_18GenericIfRawResultERKNS_12GenericIfRawENS_9GenericIf11AttributeOpEPvS8_+0x92) [0xf7574272]
+ /lib/libtac.so.0(_ZNK3Tac7TacAttr13genericIfCallERNS_18GenericIfRawResultERKNS_12GenericIfRawERKN5boost9container12small_vectorIS3_Lj8ENS7_13new_allocatorIS3_EEEE+0x98) [0xf7574b08]
+ /lib/libtac.so.0(_ZNK3Tac7TacAttr13genericIfCallERKNS_3PtrINS_9GenericIfEEERKN5boost9container12small_vectorINS1_IKS2_EELj8ENS7_13new_allocatorISA_EEEE+0x22a) [0xf757920a]
+ /usr/lib/python2.7/site-packages/_Tac.so(+0x18fd4) [0xf79a2fd4]
+ /lib/libpython2.7.so.1.0(PyObject_Call+0x4e) [0xf7d4bdce]
+ /lib/libpython2.7.so.1.0(PyEval_EvalFrameEx+0x493a) [0xf7dec8ea]
+ /lib/libpython2.7.so.1.0(PyEval_EvalCodeEx+0x6a7) [0xf7df1187]
+ /lib/libpython2.7.so.1.0(PyEval_EvalFrameEx+0x6809) [0xf7dee7b9]
+ /lib/libpython2.7.so.1.0(PyEval_EvalCodeEx+0x6a7) [0xf7df1187]
+ /lib/libpython2.7.so.1.0(PyEval_EvalFrameEx+0x6809) [0xf7dee7b9]
+ /lib/libpython2.7.so.1.0(PyEval_EvalCodeEx+0x6a7) [0xf7df1187]
+ /lib/libpython2.7.so.1.0(PyEval_EvalCode+0x22) [0xf7df13f2]
+ /lib/libpython2.7.so.1.0(+0xeb619) [0xf7e0a619]
+ /lib/libpython2.7.so.1.0(PyRun_FileExFlags+0x5e) [0xf7e0c15e]
+ /lib/libpython2.7.so.1.0(PyRun_SimpleFileExFlags+0xde) [0xf7e0c28e]
+ /lib/libpython2.7.so.1.0(Py_Main+0x5eb) [0xf7e1f04b]
+ arista-python(main+0x27) [0x80484e7]
+ /lib/libc.so.6(__libc_start_main+0xe3) [0xf7b09003]
+ arista-python() [0x8048512]
+
+2022-02-13 13:01:48.124872   658 Log                  0 %FWK-3-SOCKET_CLOSE_LOCAL: Closing connection to OpenConfig (pid:9621) at tbl://sysdb/-24 (Processed an invalid mount profile. Component smpte not found in /ar/Sysdb)
+Readable bytes in output buffer = 5547
+Iov buffer length = 5547
+freeBufferBytes = 92757
+payload misaligned diff=0
+Top 1 entities inside output buffer
+Eid Count FullName
+1 88 /mount/tbl%3A%2F%2Fsysdb%2F-24-in
+Connection from (658) to OpenConfig (pid:9621) at tbl://sysdb/-24 closed locally (Processed an invalid mount profile. Component smpte not found in /ar/Sysdb)
+ countOfStreamAdapters=168 countOfMessagesDeserialized=24 countOfMessagesWithUnknownAid=1 countOfBytesDeserializedHeaderSize=128 countOfBytesDeserializedPayloadSize=162 countOfBytesTraversedInHandleReadable=47 flowOutMountRequests=30 inputMount::mountsInProgress=0 outputMount::mountsInProgress=30
+ countOfMessagesAborted=0 countOfMessagesCommitted=1452 countOfMessagesMissingEidPrefix=1177 countOfMessagesMissingAidPrefix=788 countOfMessagesCreatedFlowOut=168 txBytes=50035 alOutWrittenBytes=55582 countOfPayloadBytesCommitted=46330 countOfBytesMostRecentlySent=8253 countOfCallsSendMsg=9 countOfCallsSendMsgAcrossMultipleBufferBlocks=0 lastCallSendMsgAcrossMultipleBufferBlocks=0 countOfReturnsSendMsgError=0 lastReturnSendMsgError=0 countOfReturnsSendMsgPartialMessage=0 lastReturnSendMsgPartialMessage=0 countOfCallsRecvMsg=2 countOfReturnsRecvMsgError=0 lastReturnRecvMsgError=0 lastReturnRecvMsgPartialMessage=0 countOfBytesMostRecentlyReceived=47
+maxClockNotifTime=0 avgClockNotifTime=0.000005 maxIOWaitTime=3 avgIOWaitTime=0.102661 maxTimeBetweenActivityLoops=3 avgTimeBetweenActivityLoops=0 prevActivityLoopsExecTime=3870 maxFdsPerCycle=49 avgFdsPerCycle=4.750962 maxRemoteMountStat()->peerName=Bfd (pid:949) maxRemoteMountStat()->time=5.276354 maxRemoteMountStat()->mountName=/ar/Sysdb/cell/1/agent/config/Bfd avgRemoteMountTime=0.000307 mountRemoteCompleteCount=12102 mountRemoteRequestCount=15672 maxMountStat()->peerName= maxMountStat()->time=0.000000 maxMountStat()->mountName avgMountTime=0.000000 mountCompleteCount=0 mountRequestCount=0 maxFlowOutCount=3571 totalFlowOutCount=53446 currentFlowOutCount=3571 mountFlowOutOnNonSchedConnCount=0 avgFlowOutRunTime=0 maxFlowOutRunTime=0 avgCombinedFlowOutRunTime=0.000102 maxCombinedFlowOutRunTime=1.008447 activityMgrLoopCounter=48694 tacElEntityRefCount=228
+2022-02-13 13:01:49.167463   658 ConnectionManager    0 agent Name is "OpenConfig" connection type: domainSocketConnection connection name: tbl://sysdb/-24
+Processed an invalid mount profile. Component smpte not found in /ar/Sysdb
+ /lib/libSysdbPassiveEntityMgr.so(_ZN5Sysdb22PassiveEntityManagerSm11handleCloseERKN3Tac6StringE+0x2d0) [0xeabc7270]
+ /lib/libSysdbPassiveEntityMgr.so(_ZN5Sysdb22PassiveEntityManagerSm20doNestedPassiveMountERKNS_5MountE+0x26bc) [0xeabe0d6c]
+ /lib/libSysdbPassiveEntityMgr.so(_ZN5Sysdb22PassiveEntityManagerSm18handleMountProfileERKN3Tac3PtrIKNS_17PassiveMountGroupEEE+0x170) [0xeabe4820]
+ /lib/libSysdbPassiveEntityMgr.so(_ZN5Sysdb22PassiveEntityManagerSm16doInitiateMountsEv+0x1b70) [0xeabe7710]
+ /lib/libtac.so.0(_ZNK3Tac12NotifieeList5visitENS_11AttributeIdE+0x1e1) [0xf74ee291]
+ /lib/libtac.so.0(_ZN3Tac10NboAttrLog7Demuxer17handleFlowOutQRemERKNS_3PtrINS0_7FlowOutEEE+0xe5) [0xf75e4cf5]
+ /lib/libtac.so.0(+0x19fd83) [0xf75e4d83]
+ /lib/libtac.so.0(_ZN3Tac10NboAttrLog7Demuxer14runHeadFlowOutEb+0xda) [0xf75e8a0a]
+ /lib/libtac.so.0(_ZN3Tac10NboAttrLog7Demuxer18handleFlowOutRoundEv+0x2db) [0xf75ee7cb]
+ /lib/libtac.so.0(_ZN3Tac17ActivityManagerSm12doRunManagerEv+0x1228) [0xf75b3958]
+ /lib/libtac.so.0(_ZN3Tac6System5doRunEv+0x20) [0xf7592740]
+ /lib/libAgentBase.so.0(_ZN9AgentBase14AgentContainer11doRunAgentsEv+0x123) [0xf637bae3]
+ /lib/libAgentBase.so.0(+0x8bbae) [0xf637cbae]
+ /lib/libtac.so.0(_ZNK3Tac7TacAttr20genericIfAttributeOpERNS_18GenericIfRawResultERKNS_12GenericIfRawENS_9GenericIf11AttributeOpEPvS8_+0x92) [0xf7574272]
+ /lib/libtac.so.0(_ZNK3Tac7TacAttr13genericIfCallERNS_18GenericIfRawResultERKNS_12GenericIfRawERKN5boost9container12small_vectorIS3_Lj8ENS7_13new_allocatorIS3_EEEE+0x98) [0xf7574b08]
+ /lib/libtac.so.0(_ZNK3Tac7TacAttr13genericIfCallERKNS_3PtrINS_9GenericIfEEERKN5boost9container12small_vectorINS1_IKS2_EELj8ENS7_13new_allocatorISA_EEEE+0x22a) [0xf757920a]
+ /usr/lib/python2.7/site-packages/_Tac.so(+0x18fd4) [0xf79a2fd4]
+ /lib/libpython2.7.so.1.0(PyObject_Call+0x4e) [0xf7d4bdce]
+ /lib/libpython2.7.so.1.0(PyEval_EvalFrameEx+0x493a) [0xf7dec8ea]
+ /lib/libpython2.7.so.1.0(PyEval_EvalCodeEx+0x6a7) [0xf7df1187]
+ /lib/libpython2.7.so.1.0(PyEval_EvalFrameEx+0x6809) [0xf7dee7b9]
+ /lib/libpython2.7.so.1.0(PyEval_EvalCodeEx+0x6a7) [0xf7df1187]
+ /lib/libpython2.7.so.1.0(PyEval_EvalFrameEx+0x6809) [0xf7dee7b9]
+ /lib/libpython2.7.so.1.0(PyEval_EvalCodeEx+0x6a7) [0xf7df1187]
+ /lib/libpython2.7.so.1.0(PyEval_EvalCode+0x22) [0xf7df13f2]
+ /lib/libpython2.7.so.1.0(+0xeb619) [0xf7e0a619]
+ /lib/libpython2.7.so.1.0(PyRun_FileExFlags+0x5e) [0xf7e0c15e]
+ /lib/libpython2.7.so.1.0(PyRun_SimpleFileExFlags+0xde) [0xf7e0c28e]
+ /lib/libpython2.7.so.1.0(Py_Main+0x5eb) [0xf7e1f04b]
+ arista-python(main+0x27) [0x80484e7]
+ /lib/libc.so.6(__libc_start_main+0xe3) [0xf7b09003]
+ arista-python() [0x8048512]
+
+2022-02-13 13:01:49.173629   658 Log                  0 %FWK-3-SOCKET_CLOSE_LOCAL: Closing connection to OpenConfig (pid:9640) at tbl://sysdb/-24 (Processed an invalid mount profile. Component smpte not found in /ar/Sysdb)
+Readable bytes in output buffer = 5547
+Iov buffer length = 5547
+freeBufferBytes = 92757
+payload misaligned diff=0
+Top 1 entities inside output buffer
+Eid Count FullName
+1 88 /mount/tbl%3A%2F%2Fsysdb%2F-24-in
+Connection from (658) to OpenConfig (pid:9640) at tbl://sysdb/-24 closed locally (Processed an invalid mount profile. Component smpte not found in /ar/Sysdb)
+ countOfStreamAdapters=168 countOfMessagesDeserialized=24 countOfMessagesWithUnknownAid=1 countOfBytesDeserializedHeaderSize=128 countOfBytesDeserializedPayloadSize=162 countOfBytesTraversedInHandleReadable=47 flowOutMountRequests=30 inputMount::mountsInProgress=0 outputMount::mountsInProgress=30
+ countOfMessagesAborted=0 countOfMessagesCommitted=1452 countOfMessagesMissingEidPrefix=1177 countOfMessagesMissingAidPrefix=788 countOfMessagesCreatedFlowOut=168 txBytes=50035 alOutWrittenBytes=55582 countOfPayloadBytesCommitted=46330 countOfBytesMostRecentlySent=8253 countOfCallsSendMsg=9 countOfCallsSendMsgAcrossMultipleBufferBlocks=0 lastCallSendMsgAcrossMultipleBufferBlocks=0 countOfReturnsSendMsgError=0 lastReturnSendMsgError=0 countOfReturnsSendMsgPartialMessage=0 lastReturnSendMsgPartialMessage=0 countOfCallsRecvMsg=2 countOfReturnsRecvMsgError=0 lastReturnRecvMsgError=0 lastReturnRecvMsgPartialMessage=0 countOfBytesMostRecentlyReceived=47
+maxClockNotifTime=0 avgClockNotifTime=0.000006 maxIOWaitTime=3 avgIOWaitTime=0.092045 maxTimeBetweenActivityLoops=3 avgTimeBetweenActivityLoops=0 prevActivityLoopsExecTime=3871 maxFdsPerCycle=49 avgFdsPerCycle=3.763788 maxRemoteMountStat()->peerName=Bfd (pid:949) maxRemoteMountStat()->time=5.276354 maxRemoteMountStat()->mountName=/ar/Sysdb/cell/1/agent/config/Bfd avgRemoteMountTime=0.000275 mountRemoteCompleteCount=12134 mountRemoteRequestCount=15734 maxMountStat()->peerName= maxMountStat()->time=0.000000 maxMountStat()->mountName avgMountTime=0.000000 mountCompleteCount=0 mountRequestCount=0 maxFlowOutCount=3601 totalFlowOutCount=53614 currentFlowOutCount=3601 mountFlowOutOnNonSchedConnCount=0 avgFlowOutRunTime=0 maxFlowOutRunTime=0 avgCombinedFlowOutRunTime=0.000166 maxCombinedFlowOutRunTime=1.008447 activityMgrLoopCounter=48709 tacElEntityRefCount=228
+2022-02-13 13:01:50.223301   658 ConnectionManager    0 agent Name is "OpenConfig" connection type: domainSocketConnection connection name: tbl://sysdb/-24
+Processed an invalid mount profile. Component smpte not found in /ar/Sysdb
+ /lib/libSysdbPassiveEntityMgr.so(_ZN5Sysdb22PassiveEntityManagerSm11handleCloseERKN3Tac6StringE+0x2d0) [0xeabc7270]
+ /lib/libSysdbPassiveEntityMgr.so(_ZN5Sysdb22PassiveEntityManagerSm20doNestedPassiveMountERKNS_5MountE+0x26bc) [0xeabe0d6c]
+ /lib/libSysdbPassiveEntityMgr.so(_ZN5Sysdb22PassiveEntityManagerSm18handleMountProfileERKN3Tac3PtrIKNS_17PassiveMountGroupEEE+0x170) [0xeabe4820]
+ /lib/libSysdbPassiveEntityMgr.so(_ZN5Sysdb22PassiveEntityManagerSm16doInitiateMountsEv+0x1b70) [0xeabe7710]
+ /lib/libtac.so.0(_ZNK3Tac12NotifieeList5visitENS_11AttributeIdE+0x1e1) [0xf74ee291]
+ /lib/libtac.so.0(_ZN3Tac10NboAttrLog7Demuxer17handleFlowOutQRemERKNS_3PtrINS0_7FlowOutEEE+0xe5) [0xf75e4cf5]
+ /lib/libtac.so.0(+0x19fd83) [0xf75e4d83]
+ /lib/libtac.so.0(_ZN3Tac10NboAttrLog7Demuxer14runHeadFlowOutEb+0xda) [0xf75e8a0a]
+ /lib/libtac.so.0(_ZN3Tac10NboAttrLog7Demuxer18handleFlowOutRoundEv+0x2db) [0xf75ee7cb]
+ /lib/libtac.so.0(_ZN3Tac17ActivityManagerSm12doRunManagerEv+0x1228) [0xf75b3958]
+ /lib/libtac.so.0(_ZN3Tac6System5doRunEv+0x20) [0xf7592740]
+ /lib/libAgentBase.so.0(_ZN9AgentBase14AgentContainer11doRunAgentsEv+0x123) [0xf637bae3]
+ /lib/libAgentBase.so.0(+0x8bbae) [0xf637cbae]
+ /lib/libtac.so.0(_ZNK3Tac7TacAttr20genericIfAttributeOpERNS_18GenericIfRawResultERKNS_12GenericIfRawENS_9GenericIf11AttributeOpEPvS8_+0x92) [0xf7574272]
+ /lib/libtac.so.0(_ZNK3Tac7TacAttr13genericIfCallERNS_18GenericIfRawResultERKNS_12GenericIfRawERKN5boost9container12small_vectorIS3_Lj8ENS7_13new_allocatorIS3_EEEE+0x98) [0xf7574b08]
+ /lib/libtac.so.0(_ZNK3Tac7TacAttr13genericIfCallERKNS_3PtrINS_9GenericIfEEERKN5boost9container12small_vectorINS1_IKS2_EELj8ENS7_13new_allocatorISA_EEEE+0x22a) [0xf757920a]
+ /usr/lib/python2.7/site-packages/_Tac.so(+0x18fd4) [0xf79a2fd4]
+ /lib/libpython2.7.so.1.0(PyObject_Call+0x4e) [0xf7d4bdce]
+ /lib/libpython2.7.so.1.0(PyEval_EvalFrameEx+0x493a) [0xf7dec8ea]
+ /lib/libpython2.7.so.1.0(PyEval_EvalCodeEx+0x6a7) [0xf7df1187]
+ /lib/libpython2.7.so.1.0(PyEval_EvalFrameEx+0x6809) [0xf7dee7b9]
+ /lib/libpython2.7.so.1.0(PyEval_EvalCodeEx+0x6a7) [0xf7df1187]
+ /lib/libpython2.7.so.1.0(PyEval_EvalFrameEx+0x6809) [0xf7dee7b9]
+ /lib/libpython2.7.so.1.0(PyEval_EvalCodeEx+0x6a7) [0xf7df1187]
+ /lib/libpython2.7.so.1.0(PyEval_EvalCode+0x22) [0xf7df13f2]
+ /lib/libpython2.7.so.1.0(+0xeb619) [0xf7e0a619]
+ /lib/libpython2.7.so.1.0(PyRun_FileExFlags+0x5e) [0xf7e0c15e]
+ /lib/libpython2.7.so.1.0(PyRun_SimpleFileExFlags+0xde) [0xf7e0c28e]
+ /lib/libpython2.7.so.1.0(Py_Main+0x5eb) [0xf7e1f04b]
+ arista-python(main+0x27) [0x80484e7]
+ /lib/libc.so.6(__libc_start_main+0xe3) [0xf7b09003]
+ arista-python() [0x8048512]
+
+2022-02-13 13:01:50.232703   658 Log                  0 %FWK-3-SOCKET_CLOSE_LOCAL: Closing connection to OpenConfig (pid:9658) at tbl://sysdb/-24 (Processed an invalid mount profile. Component smpte not found in /ar/Sysdb)
+Readable bytes in output buffer = 5547
+Iov buffer length = 5547
+freeBufferBytes = 92757
+payload misaligned diff=0
+Top 1 entities inside output buffer
+Eid Count FullName
+1 88 /mount/tbl%3A%2F%2Fsysdb%2F-24-in
+Connection from (658) to OpenConfig (pid:9658) at tbl://sysdb/-24 closed locally (Processed an invalid mount profile. Component smpte not found in /ar/Sysdb)
+ countOfStreamAdapters=168 countOfMessagesDeserialized=24 countOfMessagesWithUnknownAid=1 countOfBytesDeserializedHeaderSize=128 countOfBytesDeserializedPayloadSize=162 countOfBytesTraversedInHandleReadable=47 flowOutMountRequests=30 inputMount::mountsInProgress=0 outputMount::mountsInProgress=30
+ countOfMessagesAborted=0 countOfMessagesCommitted=1452 countOfMessagesMissingEidPrefix=1177 countOfMessagesMissingAidPrefix=788 countOfMessagesCreatedFlowOut=168 txBytes=50035 alOutWrittenBytes=55582 countOfPayloadBytesCommitted=46330 countOfBytesMostRecentlySent=8253 countOfCallsSendMsg=9 countOfCallsSendMsgAcrossMultipleBufferBlocks=0 lastCallSendMsgAcrossMultipleBufferBlocks=0 countOfReturnsSendMsgError=0 lastReturnSendMsgError=0 countOfReturnsSendMsgPartialMessage=0 lastReturnSendMsgPartialMessage=0 countOfCallsRecvMsg=2 countOfReturnsRecvMsgError=0 lastReturnRecvMsgError=0 lastReturnRecvMsgPartialMessage=0 countOfBytesMostRecentlyReceived=47
+maxClockNotifTime=0 avgClockNotifTime=0.000007 maxIOWaitTime=3 avgIOWaitTime=0.075062 maxTimeBetweenActivityLoops=3 avgTimeBetweenActivityLoops=0 prevActivityLoopsExecTime=3872 maxFdsPerCycle=49 avgFdsPerCycle=4.067651 maxRemoteMountStat()->peerName=Bfd (pid:949) maxRemoteMountStat()->time=5.276354 maxRemoteMountStat()->mountName=/ar/Sysdb/cell/1/agent/config/Bfd avgRemoteMountTime=0.000329 mountRemoteCompleteCount=12166 mountRemoteRequestCount=15796 maxMountStat()->peerName= maxMountStat()->time=0.000000 maxMountStat()->mountName avgMountTime=0.000000 mountCompleteCount=0 mountRequestCount=0 maxFlowOutCount=3631 totalFlowOutCount=53782 currentFlowOutCount=3631 mountFlowOutOnNonSchedConnCount=0 avgFlowOutRunTime=0 maxFlowOutRunTime=0 avgCombinedFlowOutRunTime=0.000181 maxCombinedFlowOutRunTime=1.008447 activityMgrLoopCounter=48731 tacElEntityRefCount=228
+2022-02-13 13:03:51.865142   658 ConnectionManager    0 agent Name is "OpenConfig" connection type: domainSocketConnection connection name: tbl://sysdb/-24
+Processed an invalid mount profile. Component smpte not found in /ar/Sysdb
+ /lib/libSysdbPassiveEntityMgr.so(_ZN5Sysdb22PassiveEntityManagerSm11handleCloseERKN3Tac6StringE+0x2d0) [0xeabc7270]
+ /lib/libSysdbPassiveEntityMgr.so(_ZN5Sysdb22PassiveEntityManagerSm20doNestedPassiveMountERKNS_5MountE+0x26bc) [0xeabe0d6c]
+ /lib/libSysdbPassiveEntityMgr.so(_ZN5Sysdb22PassiveEntityManagerSm18handleMountProfileERKN3Tac3PtrIKNS_17PassiveMountGroupEEE+0x170) [0xeabe4820]
+ /lib/libSysdbPassiveEntityMgr.so(_ZN5Sysdb22PassiveEntityManagerSm16doInitiateMountsEv+0x1b70) [0xeabe7710]
+ /lib/libtac.so.0(_ZNK3Tac12NotifieeList5visitENS_11AttributeIdE+0x1e1) [0xf74ee291]
+ /lib/libtac.so.0(_ZN3Tac10NboAttrLog7Demuxer17handleFlowOutQRemERKNS_3PtrINS0_7FlowOutEEE+0xe5) [0xf75e4cf5]
+ /lib/libtac.so.0(+0x19fd83) [0xf75e4d83]
+ /lib/libtac.so.0(_ZN3Tac10NboAttrLog7Demuxer14runHeadFlowOutEb+0xda) [0xf75e8a0a]
+ /lib/libtac.so.0(_ZN3Tac10NboAttrLog7Demuxer18handleFlowOutRoundEv+0x2db) [0xf75ee7cb]
+ /lib/libtac.so.0(_ZN3Tac17ActivityManagerSm12doRunManagerEv+0x1228) [0xf75b3958]
+ /lib/libtac.so.0(_ZN3Tac6System5doRunEv+0x20) [0xf7592740]
+ /lib/libAgentBase.so.0(_ZN9AgentBase14AgentContainer11doRunAgentsEv+0x123) [0xf637bae3]
+ /lib/libAgentBase.so.0(+0x8bbae) [0xf637cbae]
+ /lib/libtac.so.0(_ZNK3Tac7TacAttr20genericIfAttributeOpERNS_18GenericIfRawResultERKNS_12GenericIfRawENS_9GenericIf11AttributeOpEPvS8_+0x92) [0xf7574272]
+ /lib/libtac.so.0(_ZNK3Tac7TacAttr13genericIfCallERNS_18GenericIfRawResultERKNS_12GenericIfRawERKN5boost9container12small_vectorIS3_Lj8ENS7_13new_allocatorIS3_EEEE+0x98) [0xf7574b08]
+ /lib/libtac.so.0(_ZNK3Tac7TacAttr13genericIfCallERKNS_3PtrINS_9GenericIfEEERKN5boost9container12small_vectorINS1_IKS2_EELj8ENS7_13new_allocatorISA_EEEE+0x22a) [0xf757920a]
+ /usr/lib/python2.7/site-packages/_Tac.so(+0x18fd4) [0xf79a2fd4]
+ /lib/libpython2.7.so.1.0(PyObject_Call+0x4e) [0xf7d4bdce]
+ /lib/libpython2.7.so.1.0(PyEval_EvalFrameEx+0x493a) [0xf7dec8ea]
+ /lib/libpython2.7.so.1.0(PyEval_EvalCodeEx+0x6a7) [0xf7df1187]
+ /lib/libpython2.7.so.1.0(PyEval_EvalFrameEx+0x6809) [0xf7dee7b9]
+ /lib/libpython2.7.so.1.0(PyEval_EvalCodeEx+0x6a7) [0xf7df1187]
+ /lib/libpython2.7.so.1.0(PyEval_EvalFrameEx+0x6809) [0xf7dee7b9]
+ /lib/libpython2.7.so.1.0(PyEval_EvalCodeEx+0x6a7) [0xf7df1187]
+ /lib/libpython2.7.so.1.0(PyEval_EvalCode+0x22) [0xf7df13f2]
+ /lib/libpython2.7.so.1.0(+0xeb619) [0xf7e0a619]
+ /lib/libpython2.7.so.1.0(PyRun_FileExFlags+0x5e) [0xf7e0c15e]
+ /lib/libpython2.7.so.1.0(PyRun_SimpleFileExFlags+0xde) [0xf7e0c28e]
+ /lib/libpython2.7.so.1.0(Py_Main+0x5eb) [0xf7e1f04b]
+ arista-python(main+0x27) [0x80484e7]
+ /lib/libc.so.6(__libc_start_main+0xe3) [0xf7b09003]
+ arista-python() [0x8048512]
+
+2022-02-13 13:03:51.870839   658 Log                  0 %FWK-3-SOCKET_CLOSE_LOCAL: Closing connection to OpenConfig (pid:9906) at tbl://sysdb/-24 (Processed an invalid mount profile. Component smpte not found in /ar/Sysdb)
+Readable bytes in output buffer = 5547
+Iov buffer length = 5547
+freeBufferBytes = 92757
+payload misaligned diff=0
+Top 1 entities inside output buffer
+Eid Count FullName
+1 88 /mount/tbl%3A%2F%2Fsysdb%2F-24-in
+Connection from (658) to OpenConfig (pid:9906) at tbl://sysdb/-24 closed locally (Processed an invalid mount profile. Component smpte not found in /ar/Sysdb)
+ countOfStreamAdapters=168 countOfMessagesDeserialized=24 countOfMessagesWithUnknownAid=1 countOfBytesDeserializedHeaderSize=128 countOfBytesDeserializedPayloadSize=162 countOfBytesTraversedInHandleReadable=47 flowOutMountRequests=30 inputMount::mountsInProgress=0 outputMount::mountsInProgress=30
+ countOfMessagesAborted=0 countOfMessagesCommitted=1452 countOfMessagesMissingEidPrefix=1177 countOfMessagesMissingAidPrefix=788 countOfMessagesCreatedFlowOut=168 txBytes=50035 alOutWrittenBytes=55582 countOfPayloadBytesCommitted=46330 countOfBytesMostRecentlySent=8253 countOfCallsSendMsg=9 countOfCallsSendMsgAcrossMultipleBufferBlocks=0 lastCallSendMsgAcrossMultipleBufferBlocks=0 countOfReturnsSendMsgError=0 lastReturnSendMsgError=0 countOfReturnsSendMsgPartialMessage=0 lastReturnSendMsgPartialMessage=0 countOfCallsRecvMsg=2 countOfReturnsRecvMsgError=0 lastReturnRecvMsgError=0 lastReturnRecvMsgPartialMessage=0 countOfBytesMostRecentlyReceived=47
+maxClockNotifTime=0 avgClockNotifTime=0.000000 maxIOWaitTime=3 avgIOWaitTime=0.177791 maxTimeBetweenActivityLoops=3 avgTimeBetweenActivityLoops=0 prevActivityLoopsExecTime=3994 maxFdsPerCycle=49 avgFdsPerCycle=5.783971 maxRemoteMountStat()->peerName=Bfd (pid:949) maxRemoteMountStat()->time=5.276354 maxRemoteMountStat()->mountName=/ar/Sysdb/cell/1/agent/config/Bfd avgRemoteMountTime=0.000272 mountRemoteCompleteCount=12198 mountRemoteRequestCount=15858 maxMountStat()->peerName= maxMountStat()->time=0.000000 maxMountStat()->mountName avgMountTime=0.000000 mountCompleteCount=0 mountRequestCount=0 maxFlowOutCount=3661 totalFlowOutCount=53968 currentFlowOutCount=3661 mountFlowOutOnNonSchedConnCount=0 avgFlowOutRunTime=0 maxFlowOutRunTime=0 avgCombinedFlowOutRunTime=0.000000 maxCombinedFlowOutRunTime=1.008447 activityMgrLoopCounter=49643 tacElEntityRefCount=228
+2022-02-13 13:03:52.847197   658 ConnectionManager    0 agent Name is "OpenConfig" connection type: domainSocketConnection connection name: tbl://sysdb/-24
+Processed an invalid mount profile. Component smpte not found in /ar/Sysdb
+ /lib/libSysdbPassiveEntityMgr.so(_ZN5Sysdb22PassiveEntityManagerSm11handleCloseERKN3Tac6StringE+0x2d0) [0xeabc7270]
+ /lib/libSysdbPassiveEntityMgr.so(_ZN5Sysdb22PassiveEntityManagerSm20doNestedPassiveMountERKNS_5MountE+0x26bc) [0xeabe0d6c]
+ /lib/libSysdbPassiveEntityMgr.so(_ZN5Sysdb22PassiveEntityManagerSm18handleMountProfileERKN3Tac3PtrIKNS_17PassiveMountGroupEEE+0x170) [0xeabe4820]
+ /lib/libSysdbPassiveEntityMgr.so(_ZN5Sysdb22PassiveEntityManagerSm16doInitiateMountsEv+0x1b70) [0xeabe7710]
+ /lib/libtac.so.0(_ZNK3Tac12NotifieeList5visitENS_11AttributeIdE+0x1e1) [0xf74ee291]
+ /lib/libtac.so.0(_ZN3Tac10NboAttrLog7Demuxer17handleFlowOutQRemERKNS_3PtrINS0_7FlowOutEEE+0xe5) [0xf75e4cf5]
+ /lib/libtac.so.0(+0x19fd83) [0xf75e4d83]
+ /lib/libtac.so.0(_ZN3Tac10NboAttrLog7Demuxer14runHeadFlowOutEb+0xda) [0xf75e8a0a]
+ /lib/libtac.so.0(_ZN3Tac10NboAttrLog7Demuxer18handleFlowOutRoundEv+0x2db) [0xf75ee7cb]
+ /lib/libtac.so.0(_ZN3Tac17ActivityManagerSm12doRunManagerEv+0x1228) [0xf75b3958]
+ /lib/libtac.so.0(_ZN3Tac6System5doRunEv+0x20) [0xf7592740]
+ /lib/libAgentBase.so.0(_ZN9AgentBase14AgentContainer11doRunAgentsEv+0x123) [0xf637bae3]
+ /lib/libAgentBase.so.0(+0x8bbae) [0xf637cbae]
+ /lib/libtac.so.0(_ZNK3Tac7TacAttr20genericIfAttributeOpERNS_18GenericIfRawResultERKNS_12GenericIfRawENS_9GenericIf11AttributeOpEPvS8_+0x92) [0xf7574272]
+ /lib/libtac.so.0(_ZNK3Tac7TacAttr13genericIfCallERNS_18GenericIfRawResultERKNS_12GenericIfRawERKN5boost9container12small_vectorIS3_Lj8ENS7_13new_allocatorIS3_EEEE+0x98) [0xf7574b08]
+ /lib/libtac.so.0(_ZNK3Tac7TacAttr13genericIfCallERKNS_3PtrINS_9GenericIfEEERKN5boost9container12small_vectorINS1_IKS2_EELj8ENS7_13new_allocatorISA_EEEE+0x22a) [0xf757920a]
+ /usr/lib/python2.7/site-packages/_Tac.so(+0x18fd4) [0xf79a2fd4]
+ /lib/libpython2.7.so.1.0(PyObject_Call+0x4e) [0xf7d4bdce]
+ /lib/libpython2.7.so.1.0(PyEval_EvalFrameEx+0x493a) [0xf7dec8ea]
+ /lib/libpython2.7.so.1.0(PyEval_EvalCodeEx+0x6a7) [0xf7df1187]
+ /lib/libpython2.7.so.1.0(PyEval_EvalFrameEx+0x6809) [0xf7dee7b9]
+ /lib/libpython2.7.so.1.0(PyEval_EvalCodeEx+0x6a7) [0xf7df1187]
+ /lib/libpython2.7.so.1.0(PyEval_EvalFrameEx+0x6809) [0xf7dee7b9]
+ /lib/libpython2.7.so.1.0(PyEval_EvalCodeEx+0x6a7) [0xf7df1187]
+ /lib/libpython2.7.so.1.0(PyEval_EvalCode+0x22) [0xf7df13f2]
+ /lib/libpython2.7.so.1.0(+0xeb619) [0xf7e0a619]
+ /lib/libpython2.7.so.1.0(PyRun_FileExFlags+0x5e) [0xf7e0c15e]
+ /lib/libpython2.7.so.1.0(PyRun_SimpleFileExFlags+0xde) [0xf7e0c28e]
+ /lib/libpython2.7.so.1.0(Py_Main+0x5eb) [0xf7e1f04b]
+ arista-python(main+0x27) [0x80484e7]
+ /lib/libc.so.6(__libc_start_main+0xe3) [0xf7b09003]
+ arista-python() [0x8048512]
+
+2022-02-13 13:03:52.854792   658 Log                  0 %FWK-3-SOCKET_CLOSE_LOCAL: Closing connection to OpenConfig (pid:9925) at tbl://sysdb/-24 (Processed an invalid mount profile. Component smpte not found in /ar/Sysdb)
+Readable bytes in output buffer = 5547
+Iov buffer length = 5547
+freeBufferBytes = 92757
+payload misaligned diff=0
+Top 1 entities inside output buffer
+Eid Count FullName
+1 88 /mount/tbl%3A%2F%2Fsysdb%2F-24-in
+Connection from (658) to OpenConfig (pid:9925) at tbl://sysdb/-24 closed locally (Processed an invalid mount profile. Component smpte not found in /ar/Sysdb)
+ countOfStreamAdapters=168 countOfMessagesDeserialized=24 countOfMessagesWithUnknownAid=1 countOfBytesDeserializedHeaderSize=128 countOfBytesDeserializedPayloadSize=162 countOfBytesTraversedInHandleReadable=47 flowOutMountRequests=30 inputMount::mountsInProgress=0 outputMount::mountsInProgress=30
+ countOfMessagesAborted=0 countOfMessagesCommitted=1452 countOfMessagesMissingEidPrefix=1177 countOfMessagesMissingAidPrefix=788 countOfMessagesCreatedFlowOut=168 txBytes=50035 alOutWrittenBytes=55582 countOfPayloadBytesCommitted=46330 countOfBytesMostRecentlySent=8253 countOfCallsSendMsg=9 countOfCallsSendMsgAcrossMultipleBufferBlocks=0 lastCallSendMsgAcrossMultipleBufferBlocks=0 countOfReturnsSendMsgError=0 lastReturnSendMsgError=0 countOfReturnsSendMsgPartialMessage=0 lastReturnSendMsgPartialMessage=0 countOfCallsRecvMsg=2 countOfReturnsRecvMsgError=0 lastReturnRecvMsgError=0 lastReturnRecvMsgPartialMessage=0 countOfBytesMostRecentlyReceived=47
+maxClockNotifTime=0 avgClockNotifTime=0.000003 maxIOWaitTime=3 avgIOWaitTime=0.110256 maxTimeBetweenActivityLoops=3 avgTimeBetweenActivityLoops=0 prevActivityLoopsExecTime=3995 maxFdsPerCycle=49 avgFdsPerCycle=4.766565 maxRemoteMountStat()->peerName=Bfd (pid:949) maxRemoteMountStat()->time=5.276354 maxRemoteMountStat()->mountName=/ar/Sysdb/cell/1/agent/config/Bfd avgRemoteMountTime=0.000301 mountRemoteCompleteCount=12230 mountRemoteRequestCount=15920 maxMountStat()->peerName= maxMountStat()->time=0.000000 maxMountStat()->mountName avgMountTime=0.000000 mountCompleteCount=0 mountRequestCount=0 maxFlowOutCount=3691 totalFlowOutCount=54136 currentFlowOutCount=3691 mountFlowOutOnNonSchedConnCount=0 avgFlowOutRunTime=0 maxFlowOutRunTime=0 avgCombinedFlowOutRunTime=0.000063 maxCombinedFlowOutRunTime=1.008447 activityMgrLoopCounter=49673 tacElEntityRefCount=228
+2022-02-13 13:03:53.870963   658 ConnectionManager    0 agent Name is "OpenConfig" connection type: domainSocketConnection connection name: tbl://sysdb/-24
+Processed an invalid mount profile. Component smpte not found in /ar/Sysdb
+ /lib/libSysdbPassiveEntityMgr.so(_ZN5Sysdb22PassiveEntityManagerSm11handleCloseERKN3Tac6StringE+0x2d0) [0xeabc7270]
+ /lib/libSysdbPassiveEntityMgr.so(_ZN5Sysdb22PassiveEntityManagerSm20doNestedPassiveMountERKNS_5MountE+0x26bc) [0xeabe0d6c]
+ /lib/libSysdbPassiveEntityMgr.so(_ZN5Sysdb22PassiveEntityManagerSm18handleMountProfileERKN3Tac3PtrIKNS_17PassiveMountGroupEEE+0x170) [0xeabe4820]
+ /lib/libSysdbPassiveEntityMgr.so(_ZN5Sysdb22PassiveEntityManagerSm16doInitiateMountsEv+0x1b70) [0xeabe7710]
+ /lib/libtac.so.0(_ZNK3Tac12NotifieeList5visitENS_11AttributeIdE+0x1e1) [0xf74ee291]
+ /lib/libtac.so.0(_ZN3Tac10NboAttrLog7Demuxer17handleFlowOutQRemERKNS_3PtrINS0_7FlowOutEEE+0xe5) [0xf75e4cf5]
+ /lib/libtac.so.0(+0x19fd83) [0xf75e4d83]
+ /lib/libtac.so.0(_ZN3Tac10NboAttrLog7Demuxer14runHeadFlowOutEb+0xda) [0xf75e8a0a]
+ /lib/libtac.so.0(_ZN3Tac10NboAttrLog7Demuxer18handleFlowOutRoundEv+0x2db) [0xf75ee7cb]
+ /lib/libtac.so.0(_ZN3Tac17ActivityManagerSm12doRunManagerEv+0x1228) [0xf75b3958]
+ /lib/libtac.so.0(_ZN3Tac6System5doRunEv+0x20) [0xf7592740]
+ /lib/libAgentBase.so.0(_ZN9AgentBase14AgentContainer11doRunAgentsEv+0x123) [0xf637bae3]
+ /lib/libAgentBase.so.0(+0x8bbae) [0xf637cbae]
+ /lib/libtac.so.0(_ZNK3Tac7TacAttr20genericIfAttributeOpERNS_18GenericIfRawResultERKNS_12GenericIfRawENS_9GenericIf11AttributeOpEPvS8_+0x92) [0xf7574272]
+ /lib/libtac.so.0(_ZNK3Tac7TacAttr13genericIfCallERNS_18GenericIfRawResultERKNS_12GenericIfRawERKN5boost9container12small_vectorIS3_Lj8ENS7_13new_allocatorIS3_EEEE+0x98) [0xf7574b08]
+ /lib/libtac.so.0(_ZNK3Tac7TacAttr13genericIfCallERKNS_3PtrINS_9GenericIfEEERKN5boost9container12small_vectorINS1_IKS2_EELj8ENS7_13new_allocatorISA_EEEE+0x22a) [0xf757920a]
+ /usr/lib/python2.7/site-packages/_Tac.so(+0x18fd4) [0xf79a2fd4]
+ /lib/libpython2.7.so.1.0(PyObject_Call+0x4e) [0xf7d4bdce]
+ /lib/libpython2.7.so.1.0(PyEval_EvalFrameEx+0x493a) [0xf7dec8ea]
+ /lib/libpython2.7.so.1.0(PyEval_EvalCodeEx+0x6a7) [0xf7df1187]
+ /lib/libpython2.7.so.1.0(PyEval_EvalFrameEx+0x6809) [0xf7dee7b9]
+ /lib/libpython2.7.so.1.0(PyEval_EvalCodeEx+0x6a7) [0xf7df1187]
+ /lib/libpython2.7.so.1.0(PyEval_EvalFrameEx+0x6809) [0xf7dee7b9]
+ /lib/libpython2.7.so.1.0(PyEval_EvalCodeEx+0x6a7) [0xf7df1187]
+ /lib/libpython2.7.so.1.0(PyEval_EvalCode+0x22) [0xf7df13f2]
+ /lib/libpython2.7.so.1.0(+0xeb619) [0xf7e0a619]
+ /lib/libpython2.7.so.1.0(PyRun_FileExFlags+0x5e) [0xf7e0c15e]
+ /lib/libpython2.7.so.1.0(PyRun_SimpleFileExFlags+0xde) [0xf7e0c28e]
+ /lib/libpython2.7.so.1.0(Py_Main+0x5eb) [0xf7e1f04b]
+ arista-python(main+0x27) [0x80484e7]
+ /lib/libc.so.6(__libc_start_main+0xe3) [0xf7b09003]
+ arista-python() [0x8048512]
+
+2022-02-13 13:03:53.885576   658 Log                  0 %FWK-3-SOCKET_CLOSE_LOCAL: Closing connection to OpenConfig (pid:9944) at tbl://sysdb/-24 (Processed an invalid mount profile. Component smpte not found in /ar/Sysdb)
+Readable bytes in output buffer = 5547
+Iov buffer length = 5547
+freeBufferBytes = 92757
+payload misaligned diff=0
+Top 1 entities inside output buffer
+Eid Count FullName
+1 88 /mount/tbl%3A%2F%2Fsysdb%2F-24-in
+Connection from (658) to OpenConfig (pid:9944) at tbl://sysdb/-24 closed locally (Processed an invalid mount profile. Component smpte not found in /ar/Sysdb)
+ countOfStreamAdapters=168 countOfMessagesDeserialized=24 countOfMessagesWithUnknownAid=1 countOfBytesDeserializedHeaderSize=128 countOfBytesDeserializedPayloadSize=162 countOfBytesTraversedInHandleReadable=47 flowOutMountRequests=30 inputMount::mountsInProgress=0 outputMount::mountsInProgress=30
+ countOfMessagesAborted=0 countOfMessagesCommitted=1452 countOfMessagesMissingEidPrefix=1177 countOfMessagesMissingAidPrefix=788 countOfMessagesCreatedFlowOut=168 txBytes=50035 alOutWrittenBytes=55582 countOfPayloadBytesCommitted=46330 countOfBytesMostRecentlySent=8253 countOfCallsSendMsg=9 countOfCallsSendMsgAcrossMultipleBufferBlocks=0 lastCallSendMsgAcrossMultipleBufferBlocks=0 countOfReturnsSendMsgError=0 lastReturnSendMsgError=0 countOfReturnsSendMsgPartialMessage=0 lastReturnSendMsgPartialMessage=0 countOfCallsRecvMsg=2 countOfReturnsRecvMsgError=0 lastReturnRecvMsgError=0 lastReturnRecvMsgPartialMessage=0 countOfBytesMostRecentlyReceived=47
+maxClockNotifTime=0 avgClockNotifTime=0.000004 maxIOWaitTime=3 avgIOWaitTime=0.088859 maxTimeBetweenActivityLoops=3 avgTimeBetweenActivityLoops=0 prevActivityLoopsExecTime=3996 maxFdsPerCycle=49 avgFdsPerCycle=3.511231 maxRemoteMountStat()->peerName=Bfd (pid:949) maxRemoteMountStat()->time=5.276354 maxRemoteMountStat()->mountName=/ar/Sysdb/cell/1/agent/config/Bfd avgRemoteMountTime=0.000273 mountRemoteCompleteCount=12262 mountRemoteRequestCount=15982 maxMountStat()->peerName= maxMountStat()->time=0.000000 maxMountStat()->mountName avgMountTime=0.000000 mountCompleteCount=0 mountRequestCount=0 maxFlowOutCount=3721 totalFlowOutCount=54304 currentFlowOutCount=3721 mountFlowOutOnNonSchedConnCount=0 avgFlowOutRunTime=0 maxFlowOutRunTime=0 avgCombinedFlowOutRunTime=0.000141 maxCombinedFlowOutRunTime=1.008447 activityMgrLoopCounter=49693 tacElEntityRefCount=228
+2022-02-13 13:03:54.918149   658 ConnectionManager    0 agent Name is "OpenConfig" connection type: domainSocketConnection connection name: tbl://sysdb/-24
+Processed an invalid mount profile. Component smpte not found in /ar/Sysdb
+ /lib/libSysdbPassiveEntityMgr.so(_ZN5Sysdb22PassiveEntityManagerSm11handleCloseERKN3Tac6StringE+0x2d0) [0xeabc7270]
+ /lib/libSysdbPassiveEntityMgr.so(_ZN5Sysdb22PassiveEntityManagerSm20doNestedPassiveMountERKNS_5MountE+0x26bc) [0xeabe0d6c]
+ /lib/libSysdbPassiveEntityMgr.so(_ZN5Sysdb22PassiveEntityManagerSm18handleMountProfileERKN3Tac3PtrIKNS_17PassiveMountGroupEEE+0x170) [0xeabe4820]
+ /lib/libSysdbPassiveEntityMgr.so(_ZN5Sysdb22PassiveEntityManagerSm16doInitiateMountsEv+0x1b70) [0xeabe7710]
+ /lib/libtac.so.0(_ZNK3Tac12NotifieeList5visitENS_11AttributeIdE+0x1e1) [0xf74ee291]
+ /lib/libtac.so.0(_ZN3Tac10NboAttrLog7Demuxer17handleFlowOutQRemERKNS_3PtrINS0_7FlowOutEEE+0xe5) [0xf75e4cf5]
+ /lib/libtac.so.0(+0x19fd83) [0xf75e4d83]
+ /lib/libtac.so.0(_ZN3Tac10NboAttrLog7Demuxer14runHeadFlowOutEb+0xda) [0xf75e8a0a]
+ /lib/libtac.so.0(_ZN3Tac10NboAttrLog7Demuxer18handleFlowOutRoundEv+0x2db) [0xf75ee7cb]
+ /lib/libtac.so.0(_ZN3Tac17ActivityManagerSm12doRunManagerEv+0x1228) [0xf75b3958]
+ /lib/libtac.so.0(_ZN3Tac6System5doRunEv+0x20) [0xf7592740]
+ /lib/libAgentBase.so.0(_ZN9AgentBase14AgentContainer11doRunAgentsEv+0x123) [0xf637bae3]
+ /lib/libAgentBase.so.0(+0x8bbae) [0xf637cbae]
+ /lib/libtac.so.0(_ZNK3Tac7TacAttr20genericIfAttributeOpERNS_18GenericIfRawResultERKNS_12GenericIfRawENS_9GenericIf11AttributeOpEPvS8_+0x92) [0xf7574272]
+ /lib/libtac.so.0(_ZNK3Tac7TacAttr13genericIfCallERNS_18GenericIfRawResultERKNS_12GenericIfRawERKN5boost9container12small_vectorIS3_Lj8ENS7_13new_allocatorIS3_EEEE+0x98) [0xf7574b08]
+ /lib/libtac.so.0(_ZNK3Tac7TacAttr13genericIfCallERKNS_3PtrINS_9GenericIfEEERKN5boost9container12small_vectorINS1_IKS2_EELj8ENS7_13new_allocatorISA_EEEE+0x22a) [0xf757920a]
+ /usr/lib/python2.7/site-packages/_Tac.so(+0x18fd4) [0xf79a2fd4]
+ /lib/libpython2.7.so.1.0(PyObject_Call+0x4e) [0xf7d4bdce]
+ /lib/libpython2.7.so.1.0(PyEval_EvalFrameEx+0x493a) [0xf7dec8ea]
+ /lib/libpython2.7.so.1.0(PyEval_EvalCodeEx+0x6a7) [0xf7df1187]
+ /lib/libpython2.7.so.1.0(PyEval_EvalFrameEx+0x6809) [0xf7dee7b9]
+ /lib/libpython2.7.so.1.0(PyEval_EvalCodeEx+0x6a7) [0xf7df1187]
+ /lib/libpython2.7.so.1.0(PyEval_EvalFrameEx+0x6809) [0xf7dee7b9]
+ /lib/libpython2.7.so.1.0(PyEval_EvalCodeEx+0x6a7) [0xf7df1187]
+ /lib/libpython2.7.so.1.0(PyEval_EvalCode+0x22) [0xf7df13f2]
+ /lib/libpython2.7.so.1.0(+0xeb619) [0xf7e0a619]
+ /lib/libpython2.7.so.1.0(PyRun_FileExFlags+0x5e) [0xf7e0c15e]
+ /lib/libpython2.7.so.1.0(PyRun_SimpleFileExFlags+0xde) [0xf7e0c28e]
+ /lib/libpython2.7.so.1.0(Py_Main+0x5eb) [0xf7e1f04b]
+ arista-python(main+0x27) [0x80484e7]
+ /lib/libc.so.6(__libc_start_main+0xe3) [0xf7b09003]
+ arista-python() [0x8048512]
+
+2022-02-13 13:03:54.925159   658 Log                  0 %FWK-3-SOCKET_CLOSE_LOCAL: Closing connection to OpenConfig (pid:9962) at tbl://sysdb/-24 (Processed an invalid mount profile. Component smpte not found in /ar/Sysdb)
+Readable bytes in output buffer = 5547
+Iov buffer length = 5547
+freeBufferBytes = 92757
+payload misaligned diff=0
+Top 1 entities inside output buffer
+Eid Count FullName
+1 88 /mount/tbl%3A%2F%2Fsysdb%2F-24-in
+Connection from (658) to OpenConfig (pid:9962) at tbl://sysdb/-24 closed locally (Processed an invalid mount profile. Component smpte not found in /ar/Sysdb)
+ countOfStreamAdapters=168 countOfMessagesDeserialized=24 countOfMessagesWithUnknownAid=1 countOfBytesDeserializedHeaderSize=128 countOfBytesDeserializedPayloadSize=162 countOfBytesTraversedInHandleReadable=47 flowOutMountRequests=30 inputMount::mountsInProgress=0 outputMount::mountsInProgress=30
+ countOfMessagesAborted=0 countOfMessagesCommitted=1452 countOfMessagesMissingEidPrefix=1177 countOfMessagesMissingAidPrefix=788 countOfMessagesCreatedFlowOut=168 txBytes=50035 alOutWrittenBytes=55582 countOfPayloadBytesCommitted=46330 countOfBytesMostRecentlySent=8253 countOfCallsSendMsg=9 countOfCallsSendMsgAcrossMultipleBufferBlocks=0 lastCallSendMsgAcrossMultipleBufferBlocks=0 countOfReturnsSendMsgError=0 lastReturnSendMsgError=0 countOfReturnsSendMsgPartialMessage=0 lastReturnSendMsgPartialMessage=0 countOfCallsRecvMsg=2 countOfReturnsRecvMsgError=0 lastReturnRecvMsgError=0 lastReturnRecvMsgPartialMessage=0 countOfBytesMostRecentlyReceived=47
+maxClockNotifTime=0 avgClockNotifTime=0.000008 maxIOWaitTime=3 avgIOWaitTime=0.077812 maxTimeBetweenActivityLoops=3 avgTimeBetweenActivityLoops=0 prevActivityLoopsExecTime=3997 maxFdsPerCycle=49 avgFdsPerCycle=2.737913 maxRemoteMountStat()->peerName=Bfd (pid:949) maxRemoteMountStat()->time=5.276354 maxRemoteMountStat()->mountName=/ar/Sysdb/cell/1/agent/config/Bfd avgRemoteMountTime=0.000260 mountRemoteCompleteCount=12294 mountRemoteRequestCount=16044 maxMountStat()->peerName= maxMountStat()->time=0.000000 maxMountStat()->mountName avgMountTime=0.000000 mountCompleteCount=0 mountRequestCount=0 maxFlowOutCount=3751 totalFlowOutCount=54472 currentFlowOutCount=3751 mountFlowOutOnNonSchedConnCount=0 avgFlowOutRunTime=0 maxFlowOutRunTime=0 avgCombinedFlowOutRunTime=0.000299 maxCombinedFlowOutRunTime=1.008447 activityMgrLoopCounter=49711 tacElEntityRefCount=228
+2022-02-13 13:05:56.882651   658 ConnectionManager    0 agent Name is "OpenConfig" connection type: domainSocketConnection connection name: tbl://sysdb/-24
+Processed an invalid mount profile. Component smpte not found in /ar/Sysdb
+ /lib/libSysdbPassiveEntityMgr.so(_ZN5Sysdb22PassiveEntityManagerSm11handleCloseERKN3Tac6StringE+0x2d0) [0xeabc7270]
+ /lib/libSysdbPassiveEntityMgr.so(_ZN5Sysdb22PassiveEntityManagerSm20doNestedPassiveMountERKNS_5MountE+0x26bc) [0xeabe0d6c]
+ /lib/libSysdbPassiveEntityMgr.so(_ZN5Sysdb22PassiveEntityManagerSm18handleMountProfileERKN3Tac3PtrIKNS_17PassiveMountGroupEEE+0x170) [0xeabe4820]
+ /lib/libSysdbPassiveEntityMgr.so(_ZN5Sysdb22PassiveEntityManagerSm16doInitiateMountsEv+0x1b70) [0xeabe7710]
+ /lib/libtac.so.0(_ZNK3Tac12NotifieeList5visitENS_11AttributeIdE+0x1e1) [0xf74ee291]
+ /lib/libtac.so.0(_ZN3Tac10NboAttrLog7Demuxer17handleFlowOutQRemERKNS_3PtrINS0_7FlowOutEEE+0xe5) [0xf75e4cf5]
+ /lib/libtac.so.0(+0x19fd83) [0xf75e4d83]
+ /lib/libtac.so.0(_ZN3Tac10NboAttrLog7Demuxer14runHeadFlowOutEb+0xda) [0xf75e8a0a]
+ /lib/libtac.so.0(_ZN3Tac10NboAttrLog7Demuxer18handleFlowOutRoundEv+0x2db) [0xf75ee7cb]
+ /lib/libtac.so.0(_ZN3Tac17ActivityManagerSm12doRunManagerEv+0x1228) [0xf75b3958]
+ /lib/libtac.so.0(_ZN3Tac6System5doRunEv+0x20) [0xf7592740]
+ /lib/libAgentBase.so.0(_ZN9AgentBase14AgentContainer11doRunAgentsEv+0x123) [0xf637bae3]
+ /lib/libAgentBase.so.0(+0x8bbae) [0xf637cbae]
+ /lib/libtac.so.0(_ZNK3Tac7TacAttr20genericIfAttributeOpERNS_18GenericIfRawResultERKNS_12GenericIfRawENS_9GenericIf11AttributeOpEPvS8_+0x92) [0xf7574272]
+ /lib/libtac.so.0(_ZNK3Tac7TacAttr13genericIfCallERNS_18GenericIfRawResultERKNS_12GenericIfRawERKN5boost9container12small_vectorIS3_Lj8ENS7_13new_allocatorIS3_EEEE+0x98) [0xf7574b08]
+ /lib/libtac.so.0(_ZNK3Tac7TacAttr13genericIfCallERKNS_3PtrINS_9GenericIfEEERKN5boost9container12small_vectorINS1_IKS2_EELj8ENS7_13new_allocatorISA_EEEE+0x22a) [0xf757920a]
+ /usr/lib/python2.7/site-packages/_Tac.so(+0x18fd4) [0xf79a2fd4]
+ /lib/libpython2.7.so.1.0(PyObject_Call+0x4e) [0xf7d4bdce]
+ /lib/libpython2.7.so.1.0(PyEval_EvalFrameEx+0x493a) [0xf7dec8ea]
+ /lib/libpython2.7.so.1.0(PyEval_EvalCodeEx+0x6a7) [0xf7df1187]
+ /lib/libpython2.7.so.1.0(PyEval_EvalFrameEx+0x6809) [0xf7dee7b9]
+ /lib/libpython2.7.so.1.0(PyEval_EvalCodeEx+0x6a7) [0xf7df1187]
+ /lib/libpython2.7.so.1.0(PyEval_EvalFrameEx+0x6809) [0xf7dee7b9]
+ /lib/libpython2.7.so.1.0(PyEval_EvalCodeEx+0x6a7) [0xf7df1187]
+ /lib/libpython2.7.so.1.0(PyEval_EvalCode+0x22) [0xf7df13f2]
+ /lib/libpython2.7.so.1.0(+0xeb619) [0xf7e0a619]
+ /lib/libpython2.7.so.1.0(PyRun_FileExFlags+0x5e) [0xf7e0c15e]
+ /lib/libpython2.7.so.1.0(PyRun_SimpleFileExFlags+0xde) [0xf7e0c28e]
+ /lib/libpython2.7.so.1.0(Py_Main+0x5eb) [0xf7e1f04b]
+ arista-python(main+0x27) [0x80484e7]
+ /lib/libc.so.6(__libc_start_main+0xe3) [0xf7b09003]
+ arista-python() [0x8048512]
+
+2022-02-13 13:05:56.890615   658 Log                  0 %FWK-3-SOCKET_CLOSE_LOCAL: Closing connection to OpenConfig (pid:10148) at tbl://sysdb/-24 (Processed an invalid mount profile. Component smpte not found in /ar/Sysdb)
+Readable bytes in output buffer = 5547
+Iov buffer length = 5547
+freeBufferBytes = 92757
+payload misaligned diff=0
+Top 1 entities inside output buffer
+Eid Count FullName
+1 88 /mount/tbl%3A%2F%2Fsysdb%2F-24-in
+Connection from (658) to OpenConfig (pid:10148) at tbl://sysdb/-24 closed locally (Processed an invalid mount profile. Component smpte not found in /ar/Sysdb)
+ countOfStreamAdapters=168 countOfMessagesDeserialized=24 countOfMessagesWithUnknownAid=1 countOfBytesDeserializedHeaderSize=128 countOfBytesDeserializedPayloadSize=165 countOfBytesTraversedInHandleReadable=48 flowOutMountRequests=30 inputMount::mountsInProgress=0 outputMount::mountsInProgress=30
+ countOfMessagesAborted=0 countOfMessagesCommitted=1452 countOfMessagesMissingEidPrefix=1177 countOfMessagesMissingAidPrefix=788 countOfMessagesCreatedFlowOut=168 txBytes=50035 alOutWrittenBytes=55582 countOfPayloadBytesCommitted=46330 countOfBytesMostRecentlySent=8253 countOfCallsSendMsg=9 countOfCallsSendMsgAcrossMultipleBufferBlocks=0 lastCallSendMsgAcrossMultipleBufferBlocks=0 countOfReturnsSendMsgError=0 lastReturnSendMsgError=0 countOfReturnsSendMsgPartialMessage=0 lastReturnSendMsgPartialMessage=0 countOfCallsRecvMsg=2 countOfReturnsRecvMsgError=0 lastReturnRecvMsgError=0 lastReturnRecvMsgPartialMessage=0 countOfBytesMostRecentlyReceived=48
+maxClockNotifTime=0 avgClockNotifTime=0.000001 maxIOWaitTime=3 avgIOWaitTime=0.113095 maxTimeBetweenActivityLoops=3 avgTimeBetweenActivityLoops=0 prevActivityLoopsExecTime=4119 maxFdsPerCycle=49 avgFdsPerCycle=4.529248 maxRemoteMountStat()->peerName=Bfd (pid:949) maxRemoteMountStat()->time=5.276354 maxRemoteMountStat()->mountName=/ar/Sysdb/cell/1/agent/config/Bfd avgRemoteMountTime=0.000300 mountRemoteCompleteCount=12326 mountRemoteRequestCount=16106 maxMountStat()->peerName= maxMountStat()->time=0.000000 maxMountStat()->mountName avgMountTime=0.000000 mountCompleteCount=0 mountRequestCount=0 maxFlowOutCount=3781 totalFlowOutCount=54642 currentFlowOutCount=3781 mountFlowOutOnNonSchedConnCount=0 avgFlowOutRunTime=0 maxFlowOutRunTime=0 avgCombinedFlowOutRunTime=0.000000 maxCombinedFlowOutRunTime=1.008447 activityMgrLoopCounter=51725 tacElEntityRefCount=228
+2022-02-13 13:05:57.916089   658 ConnectionManager    0 agent Name is "OpenConfig" connection type: domainSocketConnection connection name: tbl://sysdb/-24
+Processed an invalid mount profile. Component smpte not found in /ar/Sysdb
+ /lib/libSysdbPassiveEntityMgr.so(_ZN5Sysdb22PassiveEntityManagerSm11handleCloseERKN3Tac6StringE+0x2d0) [0xeabc7270]
+ /lib/libSysdbPassiveEntityMgr.so(_ZN5Sysdb22PassiveEntityManagerSm20doNestedPassiveMountERKNS_5MountE+0x26bc) [0xeabe0d6c]
+ /lib/libSysdbPassiveEntityMgr.so(_ZN5Sysdb22PassiveEntityManagerSm18handleMountProfileERKN3Tac3PtrIKNS_17PassiveMountGroupEEE+0x170) [0xeabe4820]
+ /lib/libSysdbPassiveEntityMgr.so(_ZN5Sysdb22PassiveEntityManagerSm16doInitiateMountsEv+0x1b70) [0xeabe7710]
+ /lib/libtac.so.0(_ZNK3Tac12NotifieeList5visitENS_11AttributeIdE+0x1e1) [0xf74ee291]
+ /lib/libtac.so.0(_ZN3Tac10NboAttrLog7Demuxer17handleFlowOutQRemERKNS_3PtrINS0_7FlowOutEEE+0xe5) [0xf75e4cf5]
+ /lib/libtac.so.0(+0x19fd83) [0xf75e4d83]
+ /lib/libtac.so.0(_ZN3Tac10NboAttrLog7Demuxer14runHeadFlowOutEb+0xda) [0xf75e8a0a]
+ /lib/libtac.so.0(_ZN3Tac10NboAttrLog7Demuxer18handleFlowOutRoundEv+0x2db) [0xf75ee7cb]
+ /lib/libtac.so.0(_ZN3Tac17ActivityManagerSm12doRunManagerEv+0x1228) [0xf75b3958]
+ /lib/libtac.so.0(_ZN3Tac6System5doRunEv+0x20) [0xf7592740]
+ /lib/libAgentBase.so.0(_ZN9AgentBase14AgentContainer11doRunAgentsEv+0x123) [0xf637bae3]
+ /lib/libAgentBase.so.0(+0x8bbae) [0xf637cbae]
+ /lib/libtac.so.0(_ZNK3Tac7TacAttr20genericIfAttributeOpERNS_18GenericIfRawResultERKNS_12GenericIfRawENS_9GenericIf11AttributeOpEPvS8_+0x92) [0xf7574272]
+ /lib/libtac.so.0(_ZNK3Tac7TacAttr13genericIfCallERNS_18GenericIfRawResultERKNS_12GenericIfRawERKN5boost9container12small_vectorIS3_Lj8ENS7_13new_allocatorIS3_EEEE+0x98) [0xf7574b08]
+ /lib/libtac.so.0(_ZNK3Tac7TacAttr13genericIfCallERKNS_3PtrINS_9GenericIfEEERKN5boost9container12small_vectorINS1_IKS2_EELj8ENS7_13new_allocatorISA_EEEE+0x22a) [0xf757920a]
+ /usr/lib/python2.7/site-packages/_Tac.so(+0x18fd4) [0xf79a2fd4]
+ /lib/libpython2.7.so.1.0(PyObject_Call+0x4e) [0xf7d4bdce]
+ /lib/libpython2.7.so.1.0(PyEval_EvalFrameEx+0x493a) [0xf7dec8ea]
+ /lib/libpython2.7.so.1.0(PyEval_EvalCodeEx+0x6a7) [0xf7df1187]
+ /lib/libpython2.7.so.1.0(PyEval_EvalFrameEx+0x6809) [0xf7dee7b9]
+ /lib/libpython2.7.so.1.0(PyEval_EvalCodeEx+0x6a7) [0xf7df1187]
+ /lib/libpython2.7.so.1.0(PyEval_EvalFrameEx+0x6809) [0xf7dee7b9]
+ /lib/libpython2.7.so.1.0(PyEval_EvalCodeEx+0x6a7) [0xf7df1187]
+ /lib/libpython2.7.so.1.0(PyEval_EvalCode+0x22) [0xf7df13f2]
+ /lib/libpython2.7.so.1.0(+0xeb619) [0xf7e0a619]
+ /lib/libpython2.7.so.1.0(PyRun_FileExFlags+0x5e) [0xf7e0c15e]
+ /lib/libpython2.7.so.1.0(PyRun_SimpleFileExFlags+0xde) [0xf7e0c28e]
+ /lib/libpython2.7.so.1.0(Py_Main+0x5eb) [0xf7e1f04b]
+ arista-python(main+0x27) [0x80484e7]
+ /lib/libc.so.6(__libc_start_main+0xe3) [0xf7b09003]
+ arista-python() [0x8048512]
+
+2022-02-13 13:05:57.925121   658 Log                  0 %FWK-3-SOCKET_CLOSE_LOCAL: Closing connection to OpenConfig (pid:10166) at tbl://sysdb/-24 (Processed an invalid mount profile. Component smpte not found in /ar/Sysdb)
+Readable bytes in output buffer = 5547
+Iov buffer length = 5547
+freeBufferBytes = 92757
+payload misaligned diff=0
+Top 1 entities inside output buffer
+Eid Count FullName
+1 88 /mount/tbl%3A%2F%2Fsysdb%2F-24-in
+Connection from (658) to OpenConfig (pid:10166) at tbl://sysdb/-24 closed locally (Processed an invalid mount profile. Component smpte not found in /ar/Sysdb)
+ countOfStreamAdapters=168 countOfMessagesDeserialized=24 countOfMessagesWithUnknownAid=1 countOfBytesDeserializedHeaderSize=128 countOfBytesDeserializedPayloadSize=165 countOfBytesTraversedInHandleReadable=48 flowOutMountRequests=30 inputMount::mountsInProgress=0 outputMount::mountsInProgress=30
+ countOfMessagesAborted=0 countOfMessagesCommitted=1452 countOfMessagesMissingEidPrefix=1177 countOfMessagesMissingAidPrefix=788 countOfMessagesCreatedFlowOut=168 txBytes=50035 alOutWrittenBytes=55582 countOfPayloadBytesCommitted=46330 countOfBytesMostRecentlySent=8253 countOfCallsSendMsg=9 countOfCallsSendMsgAcrossMultipleBufferBlocks=0 lastCallSendMsgAcrossMultipleBufferBlocks=0 countOfReturnsSendMsgError=0 lastReturnSendMsgError=0 countOfReturnsSendMsgPartialMessage=0 lastReturnSendMsgPartialMessage=0 countOfCallsRecvMsg=2 countOfReturnsRecvMsgError=0 lastReturnRecvMsgError=0 lastReturnRecvMsgPartialMessage=0 countOfBytesMostRecentlyReceived=48
+maxClockNotifTime=0 avgClockNotifTime=0.000003 maxIOWaitTime=3 avgIOWaitTime=0.099526 maxTimeBetweenActivityLoops=3 avgTimeBetweenActivityLoops=0 prevActivityLoopsExecTime=4120 maxFdsPerCycle=49 avgFdsPerCycle=3.599541 maxRemoteMountStat()->peerName=Bfd (pid:949) maxRemoteMountStat()->time=5.276354 maxRemoteMountStat()->mountName=/ar/Sysdb/cell/1/agent/config/Bfd avgRemoteMountTime=0.000343 mountRemoteCompleteCount=12358 mountRemoteRequestCount=16168 maxMountStat()->peerName= maxMountStat()->time=0.000000 maxMountStat()->mountName avgMountTime=0.000000 mountCompleteCount=0 mountRequestCount=0 maxFlowOutCount=3811 totalFlowOutCount=54810 currentFlowOutCount=3811 mountFlowOutOnNonSchedConnCount=0 avgFlowOutRunTime=0 maxFlowOutRunTime=0 avgCombinedFlowOutRunTime=0.000123 maxCombinedFlowOutRunTime=1.008447 activityMgrLoopCounter=51740 tacElEntityRefCount=228
+2022-02-13 13:05:58.988487   658 ConnectionManager    0 agent Name is "OpenConfig" connection type: domainSocketConnection connection name: tbl://sysdb/-24
+Processed an invalid mount profile. Component smpte not found in /ar/Sysdb
+ /lib/libSysdbPassiveEntityMgr.so(_ZN5Sysdb22PassiveEntityManagerSm11handleCloseERKN3Tac6StringE+0x2d0) [0xeabc7270]
+ /lib/libSysdbPassiveEntityMgr.so(_ZN5Sysdb22PassiveEntityManagerSm20doNestedPassiveMountERKNS_5MountE+0x26bc) [0xeabe0d6c]
+ /lib/libSysdbPassiveEntityMgr.so(_ZN5Sysdb22PassiveEntityManagerSm18handleMountProfileERKN3Tac3PtrIKNS_17PassiveMountGroupEEE+0x170) [0xeabe4820]
+ /lib/libSysdbPassiveEntityMgr.so(_ZN5Sysdb22PassiveEntityManagerSm16doInitiateMountsEv+0x1b70) [0xeabe7710]
+ /lib/libtac.so.0(_ZNK3Tac12NotifieeList5visitENS_11AttributeIdE+0x1e1) [0xf74ee291]
+ /lib/libtac.so.0(_ZN3Tac10NboAttrLog7Demuxer17handleFlowOutQRemERKNS_3PtrINS0_7FlowOutEEE+0xe5) [0xf75e4cf5]
+ /lib/libtac.so.0(+0x19fd83) [0xf75e4d83]
+ /lib/libtac.so.0(_ZN3Tac10NboAttrLog7Demuxer14runHeadFlowOutEb+0xda) [0xf75e8a0a]
+ /lib/libtac.so.0(_ZN3Tac10NboAttrLog7Demuxer18handleFlowOutRoundEv+0x2db) [0xf75ee7cb]
+ /lib/libtac.so.0(_ZN3Tac17ActivityManagerSm12doRunManagerEv+0x1228) [0xf75b3958]
+ /lib/libtac.so.0(_ZN3Tac6System5doRunEv+0x20) [0xf7592740]
+ /lib/libAgentBase.so.0(_ZN9AgentBase14AgentContainer11doRunAgentsEv+0x123) [0xf637bae3]
+ /lib/libAgentBase.so.0(+0x8bbae) [0xf637cbae]
+ /lib/libtac.so.0(_ZNK3Tac7TacAttr20genericIfAttributeOpERNS_18GenericIfRawResultERKNS_12GenericIfRawENS_9GenericIf11AttributeOpEPvS8_+0x92) [0xf7574272]
+ /lib/libtac.so.0(_ZNK3Tac7TacAttr13genericIfCallERNS_18GenericIfRawResultERKNS_12GenericIfRawERKN5boost9container12small_vectorIS3_Lj8ENS7_13new_allocatorIS3_EEEE+0x98) [0xf7574b08]
+ /lib/libtac.so.0(_ZNK3Tac7TacAttr13genericIfCallERKNS_3PtrINS_9GenericIfEEERKN5boost9container12small_vectorINS1_IKS2_EELj8ENS7_13new_allocatorISA_EEEE+0x22a) [0xf757920a]
+ /usr/lib/python2.7/site-packages/_Tac.so(+0x18fd4) [0xf79a2fd4]
+ /lib/libpython2.7.so.1.0(PyObject_Call+0x4e) [0xf7d4bdce]
+ /lib/libpython2.7.so.1.0(PyEval_EvalFrameEx+0x493a) [0xf7dec8ea]
+ /lib/libpython2.7.so.1.0(PyEval_EvalCodeEx+0x6a7) [0xf7df1187]
+ /lib/libpython2.7.so.1.0(PyEval_EvalFrameEx+0x6809) [0xf7dee7b9]
+ /lib/libpython2.7.so.1.0(PyEval_EvalCodeEx+0x6a7) [0xf7df1187]
+ /lib/libpython2.7.so.1.0(PyEval_EvalFrameEx+0x6809) [0xf7dee7b9]
+ /lib/libpython2.7.so.1.0(PyEval_EvalCodeEx+0x6a7) [0xf7df1187]
+ /lib/libpython2.7.so.1.0(PyEval_EvalCode+0x22) [0xf7df13f2]
+ /lib/libpython2.7.so.1.0(+0xeb619) [0xf7e0a619]
+ /lib/libpython2.7.so.1.0(PyRun_FileExFlags+0x5e) [0xf7e0c15e]
+ /lib/libpython2.7.so.1.0(PyRun_SimpleFileExFlags+0xde) [0xf7e0c28e]
+ /lib/libpython2.7.so.1.0(Py_Main+0x5eb) [0xf7e1f04b]
+ arista-python(main+0x27) [0x80484e7]
+ /lib/libc.so.6(__libc_start_main+0xe3) [0xf7b09003]
+ arista-python() [0x8048512]
+
+2022-02-13 13:05:58.994523   658 Log                  0 %FWK-3-SOCKET_CLOSE_LOCAL: Closing connection to OpenConfig (pid:10185) at tbl://sysdb/-24 (Processed an invalid mount profile. Component smpte not found in /ar/Sysdb)
+Readable bytes in output buffer = 5547
+Iov buffer length = 5547
+freeBufferBytes = 92757
+payload misaligned diff=0
+Top 1 entities inside output buffer
+Eid Count FullName
+1 88 /mount/tbl%3A%2F%2Fsysdb%2F-24-in
+Connection from (658) to OpenConfig (pid:10185) at tbl://sysdb/-24 closed locally (Processed an invalid mount profile. Component smpte not found in /ar/Sysdb)
+ countOfStreamAdapters=168 countOfMessagesDeserialized=24 countOfMessagesWithUnknownAid=1 countOfBytesDeserializedHeaderSize=128 countOfBytesDeserializedPayloadSize=165 countOfBytesTraversedInHandleReadable=48 flowOutMountRequests=30 inputMount::mountsInProgress=0 outputMount::mountsInProgress=30
+ countOfMessagesAborted=0 countOfMessagesCommitted=1452 countOfMessagesMissingEidPrefix=1177 countOfMessagesMissingAidPrefix=788 countOfMessagesCreatedFlowOut=168 txBytes=50035 alOutWrittenBytes=55582 countOfPayloadBytesCommitted=46330 countOfBytesMostRecentlySent=8253 countOfCallsSendMsg=9 countOfCallsSendMsgAcrossMultipleBufferBlocks=0 lastCallSendMsgAcrossMultipleBufferBlocks=0 countOfReturnsSendMsgError=0 lastReturnSendMsgError=0 countOfReturnsSendMsgPartialMessage=0 lastReturnSendMsgPartialMessage=0 countOfCallsRecvMsg=2 countOfReturnsRecvMsgError=0 lastReturnRecvMsgError=0 lastReturnRecvMsgPartialMessage=0 countOfBytesMostRecentlyReceived=48
+maxClockNotifTime=0 avgClockNotifTime=0.000005 maxIOWaitTime=3 avgIOWaitTime=0.068432 maxTimeBetweenActivityLoops=3 avgTimeBetweenActivityLoops=0 prevActivityLoopsExecTime=4121 maxFdsPerCycle=49 avgFdsPerCycle=3.493955 maxRemoteMountStat()->peerName=Bfd (pid:949) maxRemoteMountStat()->time=5.276354 maxRemoteMountStat()->mountName=/ar/Sysdb/cell/1/agent/config/Bfd avgRemoteMountTime=0.000279 mountRemoteCompleteCount=12390 mountRemoteRequestCount=16230 maxMountStat()->peerName= maxMountStat()->time=0.000000 maxMountStat()->mountName avgMountTime=0.000000 mountCompleteCount=0 mountRequestCount=0 maxFlowOutCount=3841 totalFlowOutCount=54978 currentFlowOutCount=3841 mountFlowOutOnNonSchedConnCount=0 avgFlowOutRunTime=0 maxFlowOutRunTime=0 avgCombinedFlowOutRunTime=0.000165 maxCombinedFlowOutRunTime=1.008447 activityMgrLoopCounter=51770 tacElEntityRefCount=228
+2022-02-13 13:05:59.932662   658 ConnectionManager    0 agent Name is "OpenConfig" connection type: domainSocketConnection connection name: tbl://sysdb/-24
+Processed an invalid mount profile. Component smpte not found in /ar/Sysdb
+ /lib/libSysdbPassiveEntityMgr.so(_ZN5Sysdb22PassiveEntityManagerSm11handleCloseERKN3Tac6StringE+0x2d0) [0xeabc7270]
+ /lib/libSysdbPassiveEntityMgr.so(_ZN5Sysdb22PassiveEntityManagerSm20doNestedPassiveMountERKNS_5MountE+0x26bc) [0xeabe0d6c]
+ /lib/libSysdbPassiveEntityMgr.so(_ZN5Sysdb22PassiveEntityManagerSm18handleMountProfileERKN3Tac3PtrIKNS_17PassiveMountGroupEEE+0x170) [0xeabe4820]
+ /lib/libSysdbPassiveEntityMgr.so(_ZN5Sysdb22PassiveEntityManagerSm16doInitiateMountsEv+0x1b70) [0xeabe7710]
+ /lib/libtac.so.0(_ZNK3Tac12NotifieeList5visitENS_11AttributeIdE+0x1e1) [0xf74ee291]
+ /lib/libtac.so.0(_ZN3Tac10NboAttrLog7Demuxer17handleFlowOutQRemERKNS_3PtrINS0_7FlowOutEEE+0xe5) [0xf75e4cf5]
+ /lib/libtac.so.0(+0x19fd83) [0xf75e4d83]
+ /lib/libtac.so.0(_ZN3Tac10NboAttrLog7Demuxer14runHeadFlowOutEb+0xda) [0xf75e8a0a]
+ /lib/libtac.so.0(_ZN3Tac10NboAttrLog7Demuxer18handleFlowOutRoundEv+0x2db) [0xf75ee7cb]
+ /lib/libtac.so.0(_ZN3Tac17ActivityManagerSm12doRunManagerEv+0x1228) [0xf75b3958]
+ /lib/libtac.so.0(_ZN3Tac6System5doRunEv+0x20) [0xf7592740]
+ /lib/libAgentBase.so.0(_ZN9AgentBase14AgentContainer11doRunAgentsEv+0x123) [0xf637bae3]
+ /lib/libAgentBase.so.0(+0x8bbae) [0xf637cbae]
+ /lib/libtac.so.0(_ZNK3Tac7TacAttr20genericIfAttributeOpERNS_18GenericIfRawResultERKNS_12GenericIfRawENS_9GenericIf11AttributeOpEPvS8_+0x92) [0xf7574272]
+ /lib/libtac.so.0(_ZNK3Tac7TacAttr13genericIfCallERNS_18GenericIfRawResultERKNS_12GenericIfRawERKN5boost9container12small_vectorIS3_Lj8ENS7_13new_allocatorIS3_EEEE+0x98) [0xf7574b08]
+ /lib/libtac.so.0(_ZNK3Tac7TacAttr13genericIfCallERKNS_3PtrINS_9GenericIfEEERKN5boost9container12small_vectorINS1_IKS2_EELj8ENS7_13new_allocatorISA_EEEE+0x22a) [0xf757920a]
+ /usr/lib/python2.7/site-packages/_Tac.so(+0x18fd4) [0xf79a2fd4]
+ /lib/libpython2.7.so.1.0(PyObject_Call+0x4e) [0xf7d4bdce]
+ /lib/libpython2.7.so.1.0(PyEval_EvalFrameEx+0x493a) [0xf7dec8ea]
+ /lib/libpython2.7.so.1.0(PyEval_EvalCodeEx+0x6a7) [0xf7df1187]
+ /lib/libpython2.7.so.1.0(PyEval_EvalFrameEx+0x6809) [0xf7dee7b9]
+ /lib/libpython2.7.so.1.0(PyEval_EvalCodeEx+0x6a7) [0xf7df1187]
+ /lib/libpython2.7.so.1.0(PyEval_EvalFrameEx+0x6809) [0xf7dee7b9]
+ /lib/libpython2.7.so.1.0(PyEval_EvalCodeEx+0x6a7) [0xf7df1187]
+ /lib/libpython2.7.so.1.0(PyEval_EvalCode+0x22) [0xf7df13f2]
+ /lib/libpython2.7.so.1.0(+0xeb619) [0xf7e0a619]
+ /lib/libpython2.7.so.1.0(PyRun_FileExFlags+0x5e) [0xf7e0c15e]
+ /lib/libpython2.7.so.1.0(PyRun_SimpleFileExFlags+0xde) [0xf7e0c28e]
+ /lib/libpython2.7.so.1.0(Py_Main+0x5eb) [0xf7e1f04b]
+ arista-python(main+0x27) [0x80484e7]
+ /lib/libc.so.6(__libc_start_main+0xe3) [0xf7b09003]
+ arista-python() [0x8048512]
+
+2022-02-13 13:05:59.940334   658 Log                  0 %FWK-3-SOCKET_CLOSE_LOCAL: Closing connection to OpenConfig (pid:10205) at tbl://sysdb/-24 (Processed an invalid mount profile. Component smpte not found in /ar/Sysdb)
+Readable bytes in output buffer = 5547
+Iov buffer length = 5547
+freeBufferBytes = 92757
+payload misaligned diff=0
+Top 1 entities inside output buffer
+Eid Count FullName
+1 88 /mount/tbl%3A%2F%2Fsysdb%2F-24-in
+Connection from (658) to OpenConfig (pid:10205) at tbl://sysdb/-24 closed locally (Processed an invalid mount profile. Component smpte not found in /ar/Sysdb)
+ countOfStreamAdapters=168 countOfMessagesDeserialized=24 countOfMessagesWithUnknownAid=1 countOfBytesDeserializedHeaderSize=128 countOfBytesDeserializedPayloadSize=165 countOfBytesTraversedInHandleReadable=48 flowOutMountRequests=30 inputMount::mountsInProgress=0 outputMount::mountsInProgress=30
+ countOfMessagesAborted=0 countOfMessagesCommitted=1452 countOfMessagesMissingEidPrefix=1177 countOfMessagesMissingAidPrefix=788 countOfMessagesCreatedFlowOut=168 txBytes=50035 alOutWrittenBytes=55582 countOfPayloadBytesCommitted=46330 countOfBytesMostRecentlySent=8253 countOfCallsSendMsg=9 countOfCallsSendMsgAcrossMultipleBufferBlocks=0 lastCallSendMsgAcrossMultipleBufferBlocks=0 countOfReturnsSendMsgError=0 lastReturnSendMsgError=0 countOfReturnsSendMsgPartialMessage=0 lastReturnSendMsgPartialMessage=0 countOfCallsRecvMsg=2 countOfReturnsRecvMsgError=0 lastReturnRecvMsgError=0 lastReturnRecvMsgPartialMessage=0 countOfBytesMostRecentlyReceived=48
+maxClockNotifTime=0 avgClockNotifTime=0.000007 maxIOWaitTime=3 avgIOWaitTime=0.065154 maxTimeBetweenActivityLoops=3 avgTimeBetweenActivityLoops=0 prevActivityLoopsExecTime=4122 maxFdsPerCycle=49 avgFdsPerCycle=2.832584 maxRemoteMountStat()->peerName=Bfd (pid:949) maxRemoteMountStat()->time=5.276354 maxRemoteMountStat()->mountName=/ar/Sysdb/cell/1/agent/config/Bfd avgRemoteMountTime=0.000302 mountRemoteCompleteCount=12422 mountRemoteRequestCount=16292 maxMountStat()->peerName= maxMountStat()->time=0.000000 maxMountStat()->mountName avgMountTime=0.000000 mountCompleteCount=0 mountRequestCount=0 maxFlowOutCount=3871 totalFlowOutCount=55146 currentFlowOutCount=3871 mountFlowOutOnNonSchedConnCount=0 avgFlowOutRunTime=0 maxFlowOutRunTime=0 avgCombinedFlowOutRunTime=0.000209 maxCombinedFlowOutRunTime=1.008447 activityMgrLoopCounter=51785 tacElEntityRefCount=228
+2022-02-13 13:08:02.257507   658 ConnectionManager    0 agent Name is "OpenConfig" connection type: domainSocketConnection connection name: tbl://sysdb/-24
+Processed an invalid mount profile. Component smpte not found in /ar/Sysdb
+ /lib/libSysdbPassiveEntityMgr.so(_ZN5Sysdb22PassiveEntityManagerSm11handleCloseERKN3Tac6StringE+0x2d0) [0xeabc7270]
+ /lib/libSysdbPassiveEntityMgr.so(_ZN5Sysdb22PassiveEntityManagerSm20doNestedPassiveMountERKNS_5MountE+0x26bc) [0xeabe0d6c]
+ /lib/libSysdbPassiveEntityMgr.so(_ZN5Sysdb22PassiveEntityManagerSm18handleMountProfileERKN3Tac3PtrIKNS_17PassiveMountGroupEEE+0x170) [0xeabe4820]
+ /lib/libSysdbPassiveEntityMgr.so(_ZN5Sysdb22PassiveEntityManagerSm16doInitiateMountsEv+0x1b70) [0xeabe7710]
+ /lib/libtac.so.0(_ZNK3Tac12NotifieeList5visitENS_11AttributeIdE+0x1e1) [0xf74ee291]
+ /lib/libtac.so.0(_ZN3Tac10NboAttrLog7Demuxer17handleFlowOutQRemERKNS_3PtrINS0_7FlowOutEEE+0xe5) [0xf75e4cf5]
+ /lib/libtac.so.0(+0x19fd83) [0xf75e4d83]
+ /lib/libtac.so.0(_ZN3Tac10NboAttrLog7Demuxer14runHeadFlowOutEb+0xda) [0xf75e8a0a]
+ /lib/libtac.so.0(_ZN3Tac10NboAttrLog7Demuxer18handleFlowOutRoundEv+0x2db) [0xf75ee7cb]
+ /lib/libtac.so.0(_ZN3Tac17ActivityManagerSm12doRunManagerEv+0x1228) [0xf75b3958]
+ /lib/libtac.so.0(_ZN3Tac6System5doRunEv+0x20) [0xf7592740]
+ /lib/libAgentBase.so.0(_ZN9AgentBase14AgentContainer11doRunAgentsEv+0x123) [0xf637bae3]
+ /lib/libAgentBase.so.0(+0x8bbae) [0xf637cbae]
+ /lib/libtac.so.0(_ZNK3Tac7TacAttr20genericIfAttributeOpERNS_18GenericIfRawResultERKNS_12GenericIfRawENS_9GenericIf11AttributeOpEPvS8_+0x92) [0xf7574272]
+ /lib/libtac.so.0(_ZNK3Tac7TacAttr13genericIfCallERNS_18GenericIfRawResultERKNS_12GenericIfRawERKN5boost9container12small_vectorIS3_Lj8ENS7_13new_allocatorIS3_EEEE+0x98) [0xf7574b08]
+ /lib/libtac.so.0(_ZNK3Tac7TacAttr13genericIfCallERKNS_3PtrINS_9GenericIfEEERKN5boost9container12small_vectorINS1_IKS2_EELj8ENS7_13new_allocatorISA_EEEE+0x22a) [0xf757920a]
+ /usr/lib/python2.7/site-packages/_Tac.so(+0x18fd4) [0xf79a2fd4]
+ /lib/libpython2.7.so.1.0(PyObject_Call+0x4e) [0xf7d4bdce]
+ /lib/libpython2.7.so.1.0(PyEval_EvalFrameEx+0x493a) [0xf7dec8ea]
+ /lib/libpython2.7.so.1.0(PyEval_EvalCodeEx+0x6a7) [0xf7df1187]
+ /lib/libpython2.7.so.1.0(PyEval_EvalFrameEx+0x6809) [0xf7dee7b9]
+ /lib/libpython2.7.so.1.0(PyEval_EvalCodeEx+0x6a7) [0xf7df1187]
+ /lib/libpython2.7.so.1.0(PyEval_EvalFrameEx+0x6809) [0xf7dee7b9]
+ /lib/libpython2.7.so.1.0(PyEval_EvalCodeEx+0x6a7) [0xf7df1187]
+ /lib/libpython2.7.so.1.0(PyEval_EvalCode+0x22) [0xf7df13f2]
+ /lib/libpython2.7.so.1.0(+0xeb619) [0xf7e0a619]
+ /lib/libpython2.7.so.1.0(PyRun_FileExFlags+0x5e) [0xf7e0c15e]
+ /lib/libpython2.7.so.1.0(PyRun_SimpleFileExFlags+0xde) [0xf7e0c28e]
+ /lib/libpython2.7.so.1.0(Py_Main+0x5eb) [0xf7e1f04b]
+ arista-python(main+0x27) [0x80484e7]
+ /lib/libc.so.6(__libc_start_main+0xe3) [0xf7b09003]
+ arista-python() [0x8048512]
+
+2022-02-13 13:08:02.267276   658 Log                  0 %FWK-3-SOCKET_CLOSE_LOCAL: Closing connection to OpenConfig (pid:10387) at tbl://sysdb/-24 (Processed an invalid mount profile. Component smpte not found in /ar/Sysdb)
+Readable bytes in output buffer = 5547
+Iov buffer length = 5547
+freeBufferBytes = 92757
+payload misaligned diff=0
+Top 1 entities inside output buffer
+Eid Count FullName
+1 88 /mount/tbl%3A%2F%2Fsysdb%2F-24-in
+Connection from (658) to OpenConfig (pid:10387) at tbl://sysdb/-24 closed locally (Processed an invalid mount profile. Component smpte not found in /ar/Sysdb)
+ countOfStreamAdapters=168 countOfMessagesDeserialized=24 countOfMessagesWithUnknownAid=1 countOfBytesDeserializedHeaderSize=128 countOfBytesDeserializedPayloadSize=165 countOfBytesTraversedInHandleReadable=477 flowOutMountRequests=30 inputMount::mountsInProgress=0 outputMount::mountsInProgress=30
+ countOfMessagesAborted=0 countOfMessagesCommitted=1452 countOfMessagesMissingEidPrefix=1177 countOfMessagesMissingAidPrefix=788 countOfMessagesCreatedFlowOut=168 txBytes=50035 alOutWrittenBytes=55582 countOfPayloadBytesCommitted=46330 countOfBytesMostRecentlySent=8253 countOfCallsSendMsg=8 countOfCallsSendMsgAcrossMultipleBufferBlocks=0 lastCallSendMsgAcrossMultipleBufferBlocks=0 countOfReturnsSendMsgError=0 lastReturnSendMsgError=0 countOfReturnsSendMsgPartialMessage=0 lastReturnSendMsgPartialMessage=0 countOfCallsRecvMsg=1 countOfReturnsRecvMsgError=0 lastReturnRecvMsgError=0 lastReturnRecvMsgPartialMessage=0 countOfBytesMostRecentlyReceived=477
+maxClockNotifTime=0 avgClockNotifTime=0.000000 maxIOWaitTime=3 avgIOWaitTime=0.058207 maxTimeBetweenActivityLoops=3 avgTimeBetweenActivityLoops=0 prevActivityLoopsExecTime=4244 maxFdsPerCycle=49 avgFdsPerCycle=2.755905 maxRemoteMountStat()->peerName=Bfd (pid:949) maxRemoteMountStat()->time=5.276354 maxRemoteMountStat()->mountName=/ar/Sysdb/cell/1/agent/config/Bfd avgRemoteMountTime=0.000331 mountRemoteCompleteCount=12454 mountRemoteRequestCount=16354 maxMountStat()->peerName= maxMountStat()->time=0.000000 maxMountStat()->mountName avgMountTime=0.000000 mountCompleteCount=0 mountRequestCount=0 maxFlowOutCount=3901 totalFlowOutCount=55314 currentFlowOutCount=3901 mountFlowOutOnNonSchedConnCount=0 avgFlowOutRunTime=0 maxFlowOutRunTime=0 avgCombinedFlowOutRunTime=0.000000 maxCombinedFlowOutRunTime=1.008447 activityMgrLoopCounter=52606 tacElEntityRefCount=228
+2022-02-13 13:08:03.720918   658 ConnectionManager    0 agent Name is "OpenConfig" connection type: domainSocketConnection connection name: tbl://sysdb/-24
+Processed an invalid mount profile. Component smpte not found in /ar/Sysdb
+ /lib/libSysdbPassiveEntityMgr.so(_ZN5Sysdb22PassiveEntityManagerSm11handleCloseERKN3Tac6StringE+0x2d0) [0xeabc7270]
+ /lib/libSysdbPassiveEntityMgr.so(_ZN5Sysdb22PassiveEntityManagerSm20doNestedPassiveMountERKNS_5MountE+0x26bc) [0xeabe0d6c]
+ /lib/libSysdbPassiveEntityMgr.so(_ZN5Sysdb22PassiveEntityManagerSm18handleMountProfileERKN3Tac3PtrIKNS_17PassiveMountGroupEEE+0x170) [0xeabe4820]
+ /lib/libSysdbPassiveEntityMgr.so(_ZN5Sysdb22PassiveEntityManagerSm16doInitiateMountsEv+0x1b70) [0xeabe7710]
+ /lib/libtac.so.0(_ZNK3Tac12NotifieeList5visitENS_11AttributeIdE+0x1e1) [0xf74ee291]
+ /lib/libtac.so.0(_ZN3Tac10NboAttrLog7Demuxer17handleFlowOutQRemERKNS_3PtrINS0_7FlowOutEEE+0xe5) [0xf75e4cf5]
+ /lib/libtac.so.0(+0x19fd83) [0xf75e4d83]
+ /lib/libtac.so.0(_ZN3Tac10NboAttrLog7Demuxer14runHeadFlowOutEb+0xda) [0xf75e8a0a]
+ /lib/libtac.so.0(_ZN3Tac10NboAttrLog7Demuxer18handleFlowOutRoundEv+0x2db) [0xf75ee7cb]
+ /lib/libtac.so.0(_ZN3Tac17ActivityManagerSm12doRunManagerEv+0x1228) [0xf75b3958]
+ /lib/libtac.so.0(_ZN3Tac6System5doRunEv+0x20) [0xf7592740]
+ /lib/libAgentBase.so.0(_ZN9AgentBase14AgentContainer11doRunAgentsEv+0x123) [0xf637bae3]
+ /lib/libAgentBase.so.0(+0x8bbae) [0xf637cbae]
+ /lib/libtac.so.0(_ZNK3Tac7TacAttr20genericIfAttributeOpERNS_18GenericIfRawResultERKNS_12GenericIfRawENS_9GenericIf11AttributeOpEPvS8_+0x92) [0xf7574272]
+ /lib/libtac.so.0(_ZNK3Tac7TacAttr13genericIfCallERNS_18GenericIfRawResultERKNS_12GenericIfRawERKN5boost9container12small_vectorIS3_Lj8ENS7_13new_allocatorIS3_EEEE+0x98) [0xf7574b08]
+ /lib/libtac.so.0(_ZNK3Tac7TacAttr13genericIfCallERKNS_3PtrINS_9GenericIfEEERKN5boost9container12small_vectorINS1_IKS2_EELj8ENS7_13new_allocatorISA_EEEE+0x22a) [0xf757920a]
+ /usr/lib/python2.7/site-packages/_Tac.so(+0x18fd4) [0xf79a2fd4]
+ /lib/libpython2.7.so.1.0(PyObject_Call+0x4e) [0xf7d4bdce]
+ /lib/libpython2.7.so.1.0(PyEval_EvalFrameEx+0x493a) [0xf7dec8ea]
+ /lib/libpython2.7.so.1.0(PyEval_EvalCodeEx+0x6a7) [0xf7df1187]
+ /lib/libpython2.7.so.1.0(PyEval_EvalFrameEx+0x6809) [0xf7dee7b9]
+ /lib/libpython2.7.so.1.0(PyEval_EvalCodeEx+0x6a7) [0xf7df1187]
+ /lib/libpython2.7.so.1.0(PyEval_EvalFrameEx+0x6809) [0xf7dee7b9]
+ /lib/libpython2.7.so.1.0(PyEval_EvalCodeEx+0x6a7) [0xf7df1187]
+ /lib/libpython2.7.so.1.0(PyEval_EvalCode+0x22) [0xf7df13f2]
+ /lib/libpython2.7.so.1.0(+0xeb619) [0xf7e0a619]
+ /lib/libpython2.7.so.1.0(PyRun_FileExFlags+0x5e) [0xf7e0c15e]
+ /lib/libpython2.7.so.1.0(PyRun_SimpleFileExFlags+0xde) [0xf7e0c28e]
+ /lib/libpython2.7.so.1.0(Py_Main+0x5eb) [0xf7e1f04b]
+ arista-python(main+0x27) [0x80484e7]
+ /lib/libc.so.6(__libc_start_main+0xe3) [0xf7b09003]
+ arista-python() [0x8048512]
+
+2022-02-13 13:08:03.730088   658 Log                  0 %FWK-3-SOCKET_CLOSE_LOCAL: Closing connection to OpenConfig (pid:10423) at tbl://sysdb/-24 (Processed an invalid mount profile. Component smpte not found in /ar/Sysdb)
+Readable bytes in output buffer = 5547
+Iov buffer length = 5547
+freeBufferBytes = 92757
+payload misaligned diff=0
+Top 1 entities inside output buffer
+Eid Count FullName
+1 88 /mount/tbl%3A%2F%2Fsysdb%2F-24-in
+Connection from (658) to OpenConfig (pid:10423) at tbl://sysdb/-24 closed locally (Processed an invalid mount profile. Component smpte not found in /ar/Sysdb)
+ countOfStreamAdapters=168 countOfMessagesDeserialized=24 countOfMessagesWithUnknownAid=1 countOfBytesDeserializedHeaderSize=128 countOfBytesDeserializedPayloadSize=165 countOfBytesTraversedInHandleReadable=48 flowOutMountRequests=30 inputMount::mountsInProgress=0 outputMount::mountsInProgress=30
+ countOfMessagesAborted=0 countOfMessagesCommitted=1452 countOfMessagesMissingEidPrefix=1177 countOfMessagesMissingAidPrefix=788 countOfMessagesCreatedFlowOut=168 txBytes=50035 alOutWrittenBytes=55582 countOfPayloadBytesCommitted=46330 countOfBytesMostRecentlySent=8253 countOfCallsSendMsg=9 countOfCallsSendMsgAcrossMultipleBufferBlocks=0 lastCallSendMsgAcrossMultipleBufferBlocks=0 countOfReturnsSendMsgError=0 lastReturnSendMsgError=0 countOfReturnsSendMsgPartialMessage=0 lastReturnSendMsgPartialMessage=0 countOfCallsRecvMsg=2 countOfReturnsRecvMsgError=0 lastReturnRecvMsgError=0 lastReturnRecvMsgPartialMessage=0 countOfBytesMostRecentlyReceived=48
+maxClockNotifTime=0 avgClockNotifTime=0.000006 maxIOWaitTime=3 avgIOWaitTime=0.065383 maxTimeBetweenActivityLoops=3 avgTimeBetweenActivityLoops=0 prevActivityLoopsExecTime=4246 maxFdsPerCycle=49 avgFdsPerCycle=2.285830 maxRemoteMountStat()->peerName=Bfd (pid:949) maxRemoteMountStat()->time=5.276354 maxRemoteMountStat()->mountName=/ar/Sysdb/cell/1/agent/config/Bfd avgRemoteMountTime=0.000348 mountRemoteCompleteCount=12486 mountRemoteRequestCount=16416 maxMountStat()->peerName= maxMountStat()->time=0.000000 maxMountStat()->mountName avgMountTime=0.000000 mountCompleteCount=0 mountRequestCount=0 maxFlowOutCount=3931 totalFlowOutCount=55482 currentFlowOutCount=3931 mountFlowOutOnNonSchedConnCount=0 avgFlowOutRunTime=0 maxFlowOutRunTime=0 avgCombinedFlowOutRunTime=0.000139 maxCombinedFlowOutRunTime=1.008447 activityMgrLoopCounter=52621 tacElEntityRefCount=228
+2022-02-13 13:08:04.832978   658 ConnectionManager    0 agent Name is "OpenConfig" connection type: domainSocketConnection connection name: tbl://sysdb/-24
+Processed an invalid mount profile. Component smpte not found in /ar/Sysdb
+ /lib/libSysdbPassiveEntityMgr.so(_ZN5Sysdb22PassiveEntityManagerSm11handleCloseERKN3Tac6StringE+0x2d0) [0xeabc7270]
+ /lib/libSysdbPassiveEntityMgr.so(_ZN5Sysdb22PassiveEntityManagerSm20doNestedPassiveMountERKNS_5MountE+0x26bc) [0xeabe0d6c]
+ /lib/libSysdbPassiveEntityMgr.so(_ZN5Sysdb22PassiveEntityManagerSm18handleMountProfileERKN3Tac3PtrIKNS_17PassiveMountGroupEEE+0x170) [0xeabe4820]
+ /lib/libSysdbPassiveEntityMgr.so(_ZN5Sysdb22PassiveEntityManagerSm16doInitiateMountsEv+0x1b70) [0xeabe7710]
+ /lib/libtac.so.0(_ZNK3Tac12NotifieeList5visitENS_11AttributeIdE+0x1e1) [0xf74ee291]
+ /lib/libtac.so.0(_ZN3Tac10NboAttrLog7Demuxer17handleFlowOutQRemERKNS_3PtrINS0_7FlowOutEEE+0xe5) [0xf75e4cf5]
+ /lib/libtac.so.0(+0x19fd83) [0xf75e4d83]
+ /lib/libtac.so.0(_ZN3Tac10NboAttrLog7Demuxer14runHeadFlowOutEb+0xda) [0xf75e8a0a]
+ /lib/libtac.so.0(_ZN3Tac10NboAttrLog7Demuxer18handleFlowOutRoundEv+0x2db) [0xf75ee7cb]
+ /lib/libtac.so.0(_ZN3Tac17ActivityManagerSm12doRunManagerEv+0x1228) [0xf75b3958]
+ /lib/libtac.so.0(_ZN3Tac6System5doRunEv+0x20) [0xf7592740]
+ /lib/libAgentBase.so.0(_ZN9AgentBase14AgentContainer11doRunAgentsEv+0x123) [0xf637bae3]
+ /lib/libAgentBase.so.0(+0x8bbae) [0xf637cbae]
+ /lib/libtac.so.0(_ZNK3Tac7TacAttr20genericIfAttributeOpERNS_18GenericIfRawResultERKNS_12GenericIfRawENS_9GenericIf11AttributeOpEPvS8_+0x92) [0xf7574272]
+ /lib/libtac.so.0(_ZNK3Tac7TacAttr13genericIfCallERNS_18GenericIfRawResultERKNS_12GenericIfRawERKN5boost9container12small_vectorIS3_Lj8ENS7_13new_allocatorIS3_EEEE+0x98) [0xf7574b08]
+ /lib/libtac.so.0(_ZNK3Tac7TacAttr13genericIfCallERKNS_3PtrINS_9GenericIfEEERKN5boost9container12small_vectorINS1_IKS2_EELj8ENS7_13new_allocatorISA_EEEE+0x22a) [0xf757920a]
+ /usr/lib/python2.7/site-packages/_Tac.so(+0x18fd4) [0xf79a2fd4]
+ /lib/libpython2.7.so.1.0(PyObject_Call+0x4e) [0xf7d4bdce]
+ /lib/libpython2.7.so.1.0(PyEval_EvalFrameEx+0x493a) [0xf7dec8ea]
+ /lib/libpython2.7.so.1.0(PyEval_EvalCodeEx+0x6a7) [0xf7df1187]
+ /lib/libpython2.7.so.1.0(PyEval_EvalFrameEx+0x6809) [0xf7dee7b9]
+ /lib/libpython2.7.so.1.0(PyEval_EvalCodeEx+0x6a7) [0xf7df1187]
+ /lib/libpython2.7.so.1.0(PyEval_EvalFrameEx+0x6809) [0xf7dee7b9]
+ /lib/libpython2.7.so.1.0(PyEval_EvalCodeEx+0x6a7) [0xf7df1187]
+ /lib/libpython2.7.so.1.0(PyEval_EvalCode+0x22) [0xf7df13f2]
+ /lib/libpython2.7.so.1.0(+0xeb619) [0xf7e0a619]
+ /lib/libpython2.7.so.1.0(PyRun_FileExFlags+0x5e) [0xf7e0c15e]
+ /lib/libpython2.7.so.1.0(PyRun_SimpleFileExFlags+0xde) [0xf7e0c28e]
+ /lib/libpython2.7.so.1.0(Py_Main+0x5eb) [0xf7e1f04b]
+ arista-python(main+0x27) [0x80484e7]
+ /lib/libc.so.6(__libc_start_main+0xe3) [0xf7b09003]
+ arista-python() [0x8048512]
+
+2022-02-13 13:08:04.840353   658 Log                  0 %FWK-3-SOCKET_CLOSE_LOCAL: Closing connection to OpenConfig (pid:10441) at tbl://sysdb/-24 (Processed an invalid mount profile. Component smpte not found in /ar/Sysdb)
+Readable bytes in output buffer = 5547
+Iov buffer length = 5547
+freeBufferBytes = 92757
+payload misaligned diff=0
+Top 1 entities inside output buffer
+Eid Count FullName
+1 88 /mount/tbl%3A%2F%2Fsysdb%2F-24-in
+Connection from (658) to OpenConfig (pid:10441) at tbl://sysdb/-24 closed locally (Processed an invalid mount profile. Component smpte not found in /ar/Sysdb)
+ countOfStreamAdapters=168 countOfMessagesDeserialized=24 countOfMessagesWithUnknownAid=1 countOfBytesDeserializedHeaderSize=128 countOfBytesDeserializedPayloadSize=165 countOfBytesTraversedInHandleReadable=48 flowOutMountRequests=30 inputMount::mountsInProgress=0 outputMount::mountsInProgress=30
+ countOfMessagesAborted=0 countOfMessagesCommitted=1452 countOfMessagesMissingEidPrefix=1177 countOfMessagesMissingAidPrefix=788 countOfMessagesCreatedFlowOut=168 txBytes=50035 alOutWrittenBytes=55582 countOfPayloadBytesCommitted=46330 countOfBytesMostRecentlySent=8253 countOfCallsSendMsg=9 countOfCallsSendMsgAcrossMultipleBufferBlocks=0 lastCallSendMsgAcrossMultipleBufferBlocks=0 countOfReturnsSendMsgError=0 lastReturnSendMsgError=0 countOfReturnsSendMsgPartialMessage=0 lastReturnSendMsgPartialMessage=0 countOfCallsRecvMsg=2 countOfReturnsRecvMsgError=0 lastReturnRecvMsgError=0 lastReturnRecvMsgPartialMessage=0 countOfBytesMostRecentlyReceived=48
+maxClockNotifTime=0 avgClockNotifTime=0.000005 maxIOWaitTime=3 avgIOWaitTime=0.039321 maxTimeBetweenActivityLoops=3 avgTimeBetweenActivityLoops=0 prevActivityLoopsExecTime=4247 maxFdsPerCycle=49 avgFdsPerCycle=2.437637 maxRemoteMountStat()->peerName=Bfd (pid:949) maxRemoteMountStat()->time=5.276354 maxRemoteMountStat()->mountName=/ar/Sysdb/cell/1/agent/config/Bfd avgRemoteMountTime=0.000301 mountRemoteCompleteCount=12518 mountRemoteRequestCount=16478 maxMountStat()->peerName= maxMountStat()->time=0.000000 maxMountStat()->mountName avgMountTime=0.000000 mountCompleteCount=0 mountRequestCount=0 maxFlowOutCount=3961 totalFlowOutCount=55650 currentFlowOutCount=3961 mountFlowOutOnNonSchedConnCount=0 avgFlowOutRunTime=0 maxFlowOutRunTime=0 avgCombinedFlowOutRunTime=0.000136 maxCombinedFlowOutRunTime=1.008447 activityMgrLoopCounter=52663 tacElEntityRefCount=228
+2022-02-13 13:08:05.845345   658 ConnectionManager    0 agent Name is "OpenConfig" connection type: domainSocketConnection connection name: tbl://sysdb/-24
+Processed an invalid mount profile. Component smpte not found in /ar/Sysdb
+ /lib/libSysdbPassiveEntityMgr.so(_ZN5Sysdb22PassiveEntityManagerSm11handleCloseERKN3Tac6StringE+0x2d0) [0xeabc7270]
+ /lib/libSysdbPassiveEntityMgr.so(_ZN5Sysdb22PassiveEntityManagerSm20doNestedPassiveMountERKNS_5MountE+0x26bc) [0xeabe0d6c]
+ /lib/libSysdbPassiveEntityMgr.so(_ZN5Sysdb22PassiveEntityManagerSm18handleMountProfileERKN3Tac3PtrIKNS_17PassiveMountGroupEEE+0x170) [0xeabe4820]
+ /lib/libSysdbPassiveEntityMgr.so(_ZN5Sysdb22PassiveEntityManagerSm16doInitiateMountsEv+0x1b70) [0xeabe7710]
+ /lib/libtac.so.0(_ZNK3Tac12NotifieeList5visitENS_11AttributeIdE+0x1e1) [0xf74ee291]
+ /lib/libtac.so.0(_ZN3Tac10NboAttrLog7Demuxer17handleFlowOutQRemERKNS_3PtrINS0_7FlowOutEEE+0xe5) [0xf75e4cf5]
+ /lib/libtac.so.0(+0x19fd83) [0xf75e4d83]
+ /lib/libtac.so.0(_ZN3Tac10NboAttrLog7Demuxer14runHeadFlowOutEb+0xda) [0xf75e8a0a]
+ /lib/libtac.so.0(_ZN3Tac10NboAttrLog7Demuxer18handleFlowOutRoundEv+0x2db) [0xf75ee7cb]
+ /lib/libtac.so.0(_ZN3Tac17ActivityManagerSm12doRunManagerEv+0x1228) [0xf75b3958]
+ /lib/libtac.so.0(_ZN3Tac6System5doRunEv+0x20) [0xf7592740]
+ /lib/libAgentBase.so.0(_ZN9AgentBase14AgentContainer11doRunAgentsEv+0x123) [0xf637bae3]
+ /lib/libAgentBase.so.0(+0x8bbae) [0xf637cbae]
+ /lib/libtac.so.0(_ZNK3Tac7TacAttr20genericIfAttributeOpERNS_18GenericIfRawResultERKNS_12GenericIfRawENS_9GenericIf11AttributeOpEPvS8_+0x92) [0xf7574272]
+ /lib/libtac.so.0(_ZNK3Tac7TacAttr13genericIfCallERNS_18GenericIfRawResultERKNS_12GenericIfRawERKN5boost9container12small_vectorIS3_Lj8ENS7_13new_allocatorIS3_EEEE+0x98) [0xf7574b08]
+ /lib/libtac.so.0(_ZNK3Tac7TacAttr13genericIfCallERKNS_3PtrINS_9GenericIfEEERKN5boost9container12small_vectorINS1_IKS2_EELj8ENS7_13new_allocatorISA_EEEE+0x22a) [0xf757920a]
+ /usr/lib/python2.7/site-packages/_Tac.so(+0x18fd4) [0xf79a2fd4]
+ /lib/libpython2.7.so.1.0(PyObject_Call+0x4e) [0xf7d4bdce]
+ /lib/libpython2.7.so.1.0(PyEval_EvalFrameEx+0x493a) [0xf7dec8ea]
+ /lib/libpython2.7.so.1.0(PyEval_EvalCodeEx+0x6a7) [0xf7df1187]
+ /lib/libpython2.7.so.1.0(PyEval_EvalFrameEx+0x6809) [0xf7dee7b9]
+ /lib/libpython2.7.so.1.0(PyEval_EvalCodeEx+0x6a7) [0xf7df1187]
+ /lib/libpython2.7.so.1.0(PyEval_EvalFrameEx+0x6809) [0xf7dee7b9]
+ /lib/libpython2.7.so.1.0(PyEval_EvalCodeEx+0x6a7) [0xf7df1187]
+ /lib/libpython2.7.so.1.0(PyEval_EvalCode+0x22) [0xf7df13f2]
+ /lib/libpython2.7.so.1.0(+0xeb619) [0xf7e0a619]
+ /lib/libpython2.7.so.1.0(PyRun_FileExFlags+0x5e) [0xf7e0c15e]
+ /lib/libpython2.7.so.1.0(PyRun_SimpleFileExFlags+0xde) [0xf7e0c28e]
+ /lib/libpython2.7.so.1.0(Py_Main+0x5eb) [0xf7e1f04b]
+ arista-python(main+0x27) [0x80484e7]
+ /lib/libc.so.6(__libc_start_main+0xe3) [0xf7b09003]
+ arista-python() [0x8048512]
+
+2022-02-13 13:08:05.855165   658 Log                  0 %FWK-3-SOCKET_CLOSE_LOCAL: Closing connection to OpenConfig (pid:10459) at tbl://sysdb/-24 (Processed an invalid mount profile. Component smpte not found in /ar/Sysdb)
+Readable bytes in output buffer = 5547
+Iov buffer length = 5547
+freeBufferBytes = 92757
+payload misaligned diff=0
+Top 1 entities inside output buffer
+Eid Count FullName
+1 88 /mount/tbl%3A%2F%2Fsysdb%2F-24-in
+Connection from (658) to OpenConfig (pid:10459) at tbl://sysdb/-24 closed locally (Processed an invalid mount profile. Component smpte not found in /ar/Sysdb)
+ countOfStreamAdapters=168 countOfMessagesDeserialized=24 countOfMessagesWithUnknownAid=1 countOfBytesDeserializedHeaderSize=128 countOfBytesDeserializedPayloadSize=165 countOfBytesTraversedInHandleReadable=48 flowOutMountRequests=30 inputMount::mountsInProgress=0 outputMount::mountsInProgress=30
+ countOfMessagesAborted=0 countOfMessagesCommitted=1452 countOfMessagesMissingEidPrefix=1177 countOfMessagesMissingAidPrefix=788 countOfMessagesCreatedFlowOut=168 txBytes=50035 alOutWrittenBytes=55582 countOfPayloadBytesCommitted=46330 countOfBytesMostRecentlySent=8253 countOfCallsSendMsg=8 countOfCallsSendMsgAcrossMultipleBufferBlocks=0 lastCallSendMsgAcrossMultipleBufferBlocks=0 countOfReturnsSendMsgError=0 lastReturnSendMsgError=0 countOfReturnsSendMsgPartialMessage=0 lastReturnSendMsgPartialMessage=0 countOfCallsRecvMsg=2 countOfReturnsRecvMsgError=0 lastReturnRecvMsgError=0 lastReturnRecvMsgPartialMessage=0 countOfBytesMostRecentlyReceived=48
+maxClockNotifTime=0 avgClockNotifTime=0.000006 maxIOWaitTime=3 avgIOWaitTime=0.045484 maxTimeBetweenActivityLoops=3 avgTimeBetweenActivityLoops=0 prevActivityLoopsExecTime=4248 maxFdsPerCycle=49 avgFdsPerCycle=2.092907 maxRemoteMountStat()->peerName=Bfd (pid:949) maxRemoteMountStat()->time=5.276354 maxRemoteMountStat()->mountName=/ar/Sysdb/cell/1/agent/config/Bfd avgRemoteMountTime=0.000364 mountRemoteCompleteCount=12550 mountRemoteRequestCount=16540 maxMountStat()->peerName= maxMountStat()->time=0.000000 maxMountStat()->mountName avgMountTime=0.000000 mountCompleteCount=0 mountRequestCount=0 maxFlowOutCount=3991 totalFlowOutCount=55818 currentFlowOutCount=3991 mountFlowOutOnNonSchedConnCount=0 avgFlowOutRunTime=0 maxFlowOutRunTime=0 avgCombinedFlowOutRunTime=0.000213 maxCombinedFlowOutRunTime=1.008447 activityMgrLoopCounter=52677 tacElEntityRefCount=228

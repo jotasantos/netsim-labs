@@ -1,0 +1,68 @@
+! The checkpoint file saved at Sun Feb 13 12:01:28 2022 by admin
+! device: pe1 (cEOSLab, EOS-4.27.0F-24305004.4270F (engineering build))
+!
+no aaa root
+!
+username admin privilege 15 role network-admin secret sha512 $6$K6cWWM3ag1Yj5kcB$kLJaZoGZ8lY02p58swRe1vFOluLoqaditPoLjVrdJHCOGc9iIQSd/ODwVDWQHvRLoNAj.suB9ZTO/WoSfdqFG.
+!
+transceiver qsfp default-mode 4x10G
+!
+service routing protocols model multi-agent
+!
+hostname pe1
+ip host c11 10.0.0.6 10.1.0.21
+ip host c12 10.0.0.7 10.1.0.25
+ip host c21 10.0.0.8 10.1.0.29
+ip host cx1 10.0.0.9 10.1.0.33
+ip host pe2 10.0.0.4 10.1.0.13 10.1.0.30 10.1.0.5
+ip host rr1 10.0.0.1 10.1.0.17 10.1.0.2 10.1.0.6
+ip host rr2 10.0.0.2 10.1.0.10 10.1.0.14
+ip host x1 10.0.0.5 10.1.0.18 10.1.0.34
+!
+spanning-tree mode mstp
+!
+management api http-commands
+   no shutdown
+!
+management api gnmi
+   transport grpc default
+!
+management api netconf
+   transport ssh default
+!
+interface Ethernet1
+   description pe1 -> rr1
+   mac-address 52:dc:ca:fe:03:01
+   no switchport
+   ip address 10.1.0.1/30
+!
+interface Ethernet2
+   description pe1 -> rr2
+   mac-address 52:dc:ca:fe:03:02
+   no switchport
+   ip address 10.1.0.9/30
+!
+interface Ethernet3
+   description pe1 -> c11
+   mac-address 52:dc:ca:fe:03:03
+   no switchport
+   ip address 10.1.0.22/30
+!
+interface Ethernet4
+   description pe1 -> c12
+   mac-address 52:dc:ca:fe:03:04
+   no switchport
+   ip address 10.1.0.26/30
+!
+interface Loopback0
+   ip address 10.0.0.3/32
+!
+interface Management0
+   ip address 172.20.20.9/24
+   ipv6 address 2001:172:20:20::9/64
+   no lldp transmit
+   no lldp receive
+!
+ip routing
+!
+end

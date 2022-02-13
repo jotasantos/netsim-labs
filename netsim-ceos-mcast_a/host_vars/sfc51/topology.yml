@@ -1,47 +1,64 @@
-# Ansible inventory created from ['./topology.yml', 'package:topology-defaults.yml']
+# Ansible inventory created from ['topology.yml', 'package:topology-defaults.yml']
 #
 ---
+af:
+  ipv4: true
 box: ceos:4.25.1F
-hostname: clab-netsim-ceos-mcast_a--sfc51
-interface_name: eth%d
-kind: ceos
-links:
-- ifindex: 1
+clab:
+  kind: ceos
+hostname: clab-netsim-ceos-mcast_a-sfc51
+interfaces:
+- clab:
+    name: eth1
+  ifindex: 1
   ifname: Ethernet1
   ipv4: 10.1.0.18/30
   linkindex: 5
   name: sfc51 -> dis51
   neighbors:
-    dis51:
-      ifname: Ethernet2
-      ipv4: 10.1.0.17/30
-  provider_ifname: eth1
+  - ifname: Ethernet2
+    ipv4: 10.1.0.17/30
+    node: dis51
+  ospf:
+    area: 0.0.0.0
+    network_type: point-to-point
+    passive: false
   remote_id: 6
   remote_ifindex: 2
   type: p2p
-- ifindex: 2
+- clab:
+    name: eth2
+  ifindex: 2
   ifname: Ethernet2
   ipv4: 10.1.0.42/30
   linkindex: 11
   name: sfc51 -> sfc01
   neighbors:
-    sfc01:
-      ifname: Ethernet2
-      ipv4: 10.1.0.41/30
-  provider_ifname: eth2
+  - ifname: Ethernet2
+    ipv4: 10.1.0.41/30
+    node: sfc01
+  ospf:
+    area: 0.0.0.0
+    network_type: point-to-point
+    passive: false
   remote_id: 3
   remote_ifindex: 2
   type: p2p
-- ifindex: 3
+- clab:
+    name: eth3
+  ifindex: 3
   ifname: Ethernet3
   ipv4: 10.1.0.50/30
   linkindex: 13
   name: sfc51 -> ser03
   neighbors:
-    ser03:
-      ifname: Ethernet2
-      ipv4: 10.1.0.49/30
-  provider_ifname: eth3
+  - ifname: Ethernet2
+    ipv4: 10.1.0.49/30
+    node: ser03
+  ospf:
+    area: 0.0.0.0
+    network_type: point-to-point
+    passive: false
   remote_id: 10
   remote_ifindex: 2
   type: p2p
@@ -53,3 +70,6 @@ mgmt:
   mac: 08-4F-A9-00-00-04
 module:
 - ospf
+ospf:
+  area: 0.0.0.0
+  router_id: 10.0.0.4

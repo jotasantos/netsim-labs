@@ -1,0 +1,825 @@
+===== Output from /usr/bin/OpenConfig [] (PID=3514) started Feb 13 12:07:22.250430 ===
+I0213 12:07:22.266336    3514 libmain.go:416] OpenConfig OpenConfig-v0.30.1 go1.16.5 386
+I0213 12:07:22.266380    3514 libmain.go:418] arista/agent v1.17.0-2-gb9df628
+I0213 12:07:22.869505    3514 logging.go:57] Setting module trace configuration to [] and global to [0]
+I0213 12:07:22.918001    3514 component.go:52] Toggle OCComponentCountersToggle is disabled
+I0213 12:07:22.944283    3514 read_messages.go:899] Sync of /ar/Sysdb is inProgress -- message count so far: 26
+I0213 12:07:22.945177    3514 read_messages.go:899] Sync of /ar/Sysdb is complete -- message count so far: 198
+I0213 12:07:22.945202    3514 read_messages.go:899] Sync of /ar/Sysdb/Sysdb is inProgress -- message count so far: 199
+I0213 12:07:22.945288    3514 read_messages.go:899] Sync of /ar/Sysdb/agent is inProgress -- message count so far: 202
+I0213 12:07:22.945359    3514 read_messages.go:899] Sync of /ar/Sysdb/cell is inProgress -- message count so far: 205
+I0213 12:07:22.945411    3514 read_messages.go:899] Sync of /ar/Sysdb/logging is inProgress -- message count so far: 208
+I0213 12:07:22.945481    3514 read_messages.go:899] Sync of /ar/Sysdb/Sysdb is complete -- message count so far: 221
+I0213 12:07:22.945534    3514 read_messages.go:899] Sync of /ar/Sysdb/agent is complete -- message count so far: 234
+I0213 12:07:22.945575    3514 read_messages.go:899] Sync of /ar/Sysdb/cell is complete -- message count so far: 243
+I0213 12:07:22.945628    3514 read_messages.go:899] Sync of /ar/Sysdb/logging is complete -- message count so far: 252
+I0213 12:07:22.945643    3514 read_messages.go:899] Sync of /ar/Sysdb/Sysdb/status is inProgress -- message count so far: 253
+I0213 12:07:22.945701    3514 read_messages.go:899] Sync of /ar/Sysdb/agent/config is inProgress -- message count so far: 256
+I0213 12:07:22.945812    3514 read_messages.go:899] Sync of /ar/Sysdb/cell/1 is inProgress -- message count so far: 259
+I0213 12:07:22.945880    3514 read_messages.go:899] Sync of /ar/Sysdb/logging/config is inProgress -- message count so far: 262
+I0213 12:07:22.945981    3514 read_messages.go:899] Sync of /ar/Sysdb/Sysdb/status is complete -- message count so far: 270
+I0213 12:07:22.946017    3514 read_messages.go:899] Sync of /ar/Sysdb/agent/config is complete -- message count so far: 274
+I0213 12:07:22.946192    3514 read_messages.go:899] Sync of /ar/Sysdb/cell/1 is complete -- message count so far: 322
+I0213 12:07:22.949910    3514 read_messages.go:899] Sync of /ar/Sysdb/logging/config is complete -- message count so far: 541
+I0213 12:07:22.949943    3514 read_messages.go:899] Sync of /ar/Sysdb/cell/1/Sysdb is inProgress -- message count so far: 542
+I0213 12:07:22.950017    3514 read_messages.go:899] Sync of /ar/Sysdb/cell/1/agent is inProgress -- message count so far: 545
+I0213 12:07:22.950072    3514 read_messages.go:899] Sync of /ar/Sysdb/cell/1/redundancy is inProgress -- message count so far: 548
+I0213 12:07:22.950185    3514 read_messages.go:899] Sync of /ar/Sysdb/cell/1/redundancySupport is inProgress -- message count so far: 551
+I0213 12:07:22.950270    3514 read_messages.go:899] Sync of /ar/Sysdb/cell/1/Sysdb is complete -- message count so far: 562
+I0213 12:07:22.950327    3514 read_messages.go:899] Sync of /ar/Sysdb/cell/1/agent is complete -- message count so far: 579
+I0213 12:07:22.950361    3514 read_messages.go:899] Sync of /ar/Sysdb/cell/1/redundancy is complete -- message count so far: 590
+I0213 12:07:22.950395    3514 read_messages.go:899] Sync of /ar/Sysdb/cell/1/redundancySupport is complete -- message count so far: 599
+I0213 12:07:22.950453    3514 read_messages.go:899] Sync of /ar/Sysdb/cell/1/Sysdb/localStatus is inProgress -- message count so far: 600
+I0213 12:07:22.950551    3514 read_messages.go:899] Sync of /ar/Sysdb/cell/1/agent/commandRequest is inProgress -- message count so far: 603
+I0213 12:07:22.950629    3514 read_messages.go:899] Sync of /ar/Sysdb/cell/1/agent/config is inProgress -- message count so far: 606
+I0213 12:07:22.950692    3514 read_messages.go:899] Sync of /ar/Sysdb/cell/1/agent/pingRequest is inProgress -- message count so far: 609
+I0213 12:07:22.950750    3514 read_messages.go:899] Sync of /ar/Sysdb/cell/1/agent/pingResponse is inProgress -- message count so far: 612
+I0213 12:07:22.950800    3514 read_messages.go:899] Sync of /ar/Sysdb/cell/1/agent/status is inProgress -- message count so far: 615
+I0213 12:07:22.950867    3514 read_messages.go:899] Sync of /ar/Sysdb/cell/1/agent/sync is inProgress -- message count so far: 618
+I0213 12:07:22.950934    3514 read_messages.go:899] Sync of /ar/Sysdb/cell/1/redundancy/status is inProgress -- message count so far: 621
+I0213 12:07:22.951000    3514 read_messages.go:899] Sync of /ar/Sysdb/cell/1/redundancySupport/status is inProgress -- message count so far: 624
+I0213 12:07:22.951073    3514 read_messages.go:899] Sync of /ar/Sysdb/cell/1/Sysdb/localStatus is complete -- message count so far: 634
+I0213 12:07:22.951108    3514 read_messages.go:899] Sync of /ar/Sysdb/cell/1/agent/commandRequest is complete -- message count so far: 643
+I0213 12:07:22.951385    3514 read_messages.go:899] Sync of /ar/Sysdb/cell/1/agent/config is complete -- message count so far: 761
+I0213 12:07:22.951422    3514 read_messages.go:899] Sync of /ar/Sysdb/cell/1/agent/pingRequest is complete -- message count so far: 764
+I0213 12:07:22.951714    3514 read_messages.go:899] Sync of /ar/Sysdb/cell/1/agent/pingResponse is complete -- message count so far: 881
+I0213 12:07:22.952063    3514 read_messages.go:899] Sync of /ar/Sysdb/cell/1/agent/status is complete -- message count so far: 999
+I0213 12:07:22.952127    3514 read_messages.go:899] Sync of /ar/Sysdb/cell/1/agent/sync is complete -- message count so far: 1010
+I0213 12:07:22.952225    3514 read_messages.go:899] Sync of /ar/Sysdb/cell/1/redundancy/status is complete -- message count so far: 1023
+I0213 12:07:22.952247    3514 read_messages.go:899] Sync of /ar/Sysdb/cell/1/redundancySupport/status is complete -- message count so far: 1026
+I0213 12:07:22.952258    3514 read_messages.go:899] Sync of /ar/Sysdb/cell/1/agent/commandRequest/config is inProgress -- message count so far: 1027
+I0213 12:07:22.952302    3514 read_messages.go:899] Sync of /ar/Sysdb/cell/1/agent/config/OpenConfig is inProgress -- message count so far: 1030
+I0213 12:07:22.952337    3514 read_messages.go:899] Sync of /ar/Sysdb/cell/1/agent/pingResponse/OpenConfig is inProgress -- message count so far: 1033
+I0213 12:07:22.952364    3514 read_messages.go:899] Sync of /ar/Sysdb/cell/1/agent/status/OpenConfig is inProgress -- message count so far: 1036
+I0213 12:07:22.952450    3514 read_messages.go:899] Sync of /ar/Sysdb/cell/1/agent/sync/config is inProgress -- message count so far: 1039
+I0213 12:07:22.952513    3514 read_messages.go:899] Sync of /ar/Sysdb/cell/1/agent/sync/configSysdb is inProgress -- message count so far: 1042
+I0213 12:07:22.952542    3514 read_messages.go:899] Sync of /ar/Sysdb/cell/1/agent/sync/status is inProgress -- message count so far: 1045
+I0213 12:07:22.952762    3514 read_messages.go:899] Sync of /ar/Sysdb/cell/1/agent/commandRequest/config is complete -- message count so far: 1168
+I0213 12:07:22.952816    3514 read_messages.go:899] Sync of /ar/Sysdb/cell/1/agent/config/OpenConfig is complete -- message count so far: 1175
+I0213 12:07:22.952837    3514 read_messages.go:899] Sync of /ar/Sysdb/cell/1/agent/pingResponse/OpenConfig is complete -- message count so far: 1179
+I0213 12:07:22.952867    3514 read_messages.go:899] Sync of /ar/Sysdb/cell/1/agent/status/OpenConfig is complete -- message count so far: 1193
+I0213 12:07:22.953058    3514 read_messages.go:899] Sync of /ar/Sysdb/cell/1/agent/sync/config is complete -- message count so far: 1309
+I0213 12:07:22.953239    3514 read_messages.go:899] Sync of /ar/Sysdb/cell/1/agent/sync/configSysdb is complete -- message count so far: 1425
+I0213 12:07:22.953275    3514 read_messages.go:899] Sync of /ar/Sysdb/cell/1/agent/sync/status is complete -- message count so far: 1429
+I0213 12:07:22.953287    3514 read_messages.go:899] Sync of /ar/Sysdb/cell/1/agent/commandRequest/config/OpenConfig is inProgress -- message count so far: 1430
+I0213 12:07:22.953359    3514 read_messages.go:899] Sync of /ar/Sysdb/cell/1/agent/sync/config/OpenConfig is inProgress -- message count so far: 1433
+I0213 12:07:22.953418    3514 read_messages.go:899] Sync of /ar/Sysdb/cell/1/agent/sync/configSysdb/OpenConfig is inProgress -- message count so far: 1436
+I0213 12:07:22.953491    3514 read_messages.go:899] Sync of /ar/Sysdb/cell/1/agent/commandRequest/config/OpenConfig is complete -- message count so far: 1446
+I0213 12:07:22.953507    3514 read_messages.go:899] Sync of /ar/Sysdb/cell/1/agent/sync/config/OpenConfig is complete -- message count so far: 1449
+I0213 12:07:22.953522    3514 read_messages.go:899] Sync of /ar/Sysdb/cell/1/agent/sync/configSysdb/OpenConfig is complete -- message count so far: 1452
+I0213 12:07:22.953532    3514 read_messages.go:899] Sync of /ar/Sysdb/cell/1/qos is inProgress -- message count so far: 1453
+I0213 12:07:22.953556    3514 read_messages.go:899] Sync of /ar/Sysdb/cell/1/sys is inProgress -- message count so far: 1456
+I0213 12:07:22.953598    3514 read_messages.go:899] Sync of /ar/Sysdb/acl is inProgress -- message count so far: 1459
+I0213 12:07:22.953627    3514 read_messages.go:899] Sync of /ar/Sysdb/arp is inProgress -- message count so far: 1462
+I0213 12:07:22.953646    3514 read_messages.go:899] Sync of /ar/Sysdb/bfd is inProgress -- message count so far: 1465
+I0213 12:07:22.953667    3514 read_messages.go:899] Sync of /ar/Sysdb/bridging is inProgress -- message count so far: 1468
+I0213 12:07:22.953717    3514 read_messages.go:899] Sync of /ar/Sysdb/cli is inProgress -- message count so far: 1471
+I0213 12:07:22.953738    3514 read_messages.go:899] Sync of /ar/Sysdb/environment is inProgress -- message count so far: 1474
+I0213 12:07:22.953765    3514 read_messages.go:899] Sync of /ar/Sysdb/firewall is inProgress -- message count so far: 1477
+I0213 12:07:22.953784    3514 read_messages.go:899] Sync of /ar/Sysdb/flexCounter is inProgress -- message count so far: 1480
+I0213 12:07:22.953807    3514 read_messages.go:899] Sync of /ar/Sysdb/hardware is inProgress -- message count so far: 1483
+I0213 12:07:22.953853    3514 read_messages.go:899] Sync of /ar/Sysdb/interface is inProgress -- message count so far: 1486
+I0213 12:07:22.953877    3514 read_messages.go:899] Sync of /ar/Sysdb/ip is inProgress -- message count so far: 1489
+I0213 12:07:22.953899    3514 read_messages.go:899] Sync of /ar/Sysdb/ip6 is inProgress -- message count so far: 1492
+I0213 12:07:22.953918    3514 read_messages.go:899] Sync of /ar/Sysdb/l2discovery is inProgress -- message count so far: 1495
+I0213 12:07:22.953949    3514 read_messages.go:899] Sync of /ar/Sysdb/l2protocolforwarding is inProgress -- message count so far: 1498
+I0213 12:07:22.953969    3514 read_messages.go:899] Sync of /ar/Sysdb/l3 is inProgress -- message count so far: 1501
+I0213 12:07:22.954002    3514 read_messages.go:899] Sync of /ar/Sysdb/lag is inProgress -- message count so far: 1504
+I0213 12:07:22.954026    3514 read_messages.go:899] Sync of /ar/Sysdb/mgmt is inProgress -- message count so far: 1507
+I0213 12:07:22.954049    3514 read_messages.go:899] Sync of /ar/Sysdb/mlag is inProgress -- message count so far: 1510
+I0213 12:07:22.954083    3514 read_messages.go:899] Sync of /ar/Sysdb/mpls is inProgress -- message count so far: 1513
+I0213 12:07:22.954104    3514 read_messages.go:899] Sync of /ar/Sysdb/openconfig is inProgress -- message count so far: 1516
+I0213 12:07:22.954125    3514 read_messages.go:899] Sync of /ar/Sysdb/openflow is inProgress -- message count so far: 1519
+I0213 12:07:22.954168    3514 read_messages.go:899] Sync of /ar/Sysdb/p4runtime is inProgress -- message count so far: 1522
+I0213 12:07:22.954192    3514 read_messages.go:899] Sync of /ar/Sysdb/qos is inProgress -- message count so far: 1525
+I0213 12:07:22.954214    3514 read_messages.go:899] Sync of /ar/Sysdb/reflector is inProgress -- message count so far: 1528
+I0213 12:07:22.954238    3514 helper.go:92] 	EOF Timestamp: 2022-02-13 12:07:22.954230505 +0000 UTC m=+0.701024714 (1644754042954230505)
+I0213 12:07:22.954280    3514 helper.go:92] 	EOF Timestamp: 2022-02-13 12:07:22.954230505 +0000 UTC m=+0.701024714 (1644754042954230505)
+panic: Connection to @/Arista/sysdb closed: are we not configured as a daemon in the CLI?  Or did Sysdb just die?  Either way, check the contents of /var/log/agents/Sysdb-* [recovered]
+	panic: Connection to @/Arista/sysdb closed: are we not configured as a daemon in the CLI?  Or did Sysdb just die?  Either way, check the contents of /var/log/agents/Sysdb-*
+
+goroutine 54 [running]:
+panic(0x8e00e00, 0x12426358)
+	runtime/panic.go:1065 +0x4b7 fp=0xc95dd3c sp=0xc95dcd8 pc=0x807b3b7
+arista/sysdb.(*Client).readSysdbMessages.func5(0xd47c000, 0xcf07070)
+	arista/sysdb/read_messages.go:329 +0x209 fp=0xc95dd8c sp=0xc95dd3c pc=0x8605be9
+runtime.call16(0x0, 0x9087aa8, 0xf5d3af8, 0x8, 0x8)
+	runtime/asm_386.s:561 +0x30 fp=0xc95dda0 sp=0xc95dd8c pc=0x80ace10
+runtime.reflectcallSave(0xc95de84, 0x9087aa8, 0xf5d3af8, 0x8)
+	runtime/panic.go:877 +0x49 fp=0xc95ddb8 sp=0xc95dda0 pc=0x807ae69
+runtime.runOpenDeferFrame(0x120af420, 0xf5d3ad0, 0xc95dea4)
+	runtime/panic.go:851 +0x5d0 fp=0xc95de40 sp=0xc95ddb8 pc=0x807abc0
+panic(0x8e00e00, 0x12426358)
+	runtime/panic.go:965 +0x15c fp=0xc95dea4 sp=0xc95de40 pc=0x807b05c
+arista/sysdb.(*Client).translateSysdbMessageToNotifications(0xd47c000, 0xf70b400, 0xc11fee8, 0x29c8c900, 0x0)
+	arista/sysdb/client_notification_producer.go:149 +0x695 fp=0xc95df3c sp=0xc95dea4 pc=0x85dfe65
+arista/sysdb.(*Client).produceSysdbMessage(0xd47c000, 0xf70b400, 0x0)
+	arista/sysdb/read_messages.go:243 +0x74 fp=0xc95df58 sp=0xc95df3c pc=0x85fbac4
+arista/sysdb.(*Client).readSysdbMessages(0xd47c000, 0x126d6ea0)
+	arista/sysdb/read_messages.go:341 +0x9b7 fp=0xc95dfe8 sp=0xc95df58 pc=0x85fc527
+runtime.goexit()
+	runtime/asm_386.s:1315 +0x1 fp=0xc95dfec sp=0xc95dfe8 pc=0x80ae041
+created by arista/sysdb.(*Client).run
+	arista/sysdb/client.go:441 +0x26f
+
+goroutine 1 [chan receive]:
+runtime.gopark(0x90891f8, 0xcb09e70, 0x9a9170e, 0x2)
+	runtime/proc.go:336 +0xe4 fp=0xc78bc08 sp=0xc78bbf4 pc=0x807e2f4
+runtime.chanrecv(0xcb09e40, 0x0, 0x9213d01, 0x9217bcc)
+	runtime/chan.go:576 +0x28c fp=0xc78bc50 sp=0xc78bc08 pc=0x804d18c
+runtime.chanrecv1(0xcb09e40, 0x0)
+	runtime/chan.go:439 +0x1c fp=0xc78bc64 sp=0xc78bc50 pc=0x804cecc
+arista/gopenconfig/cmd/OpenConfig/libmain.startEOSDevice(0x92069dc, 0x12415158, 0xc3683c0, 0xe7881388, 0xec813e8, 0x0, 0x0, 0xec651e8)
+	arista/gopenconfig/cmd/OpenConfig/libmain/libmain.go:925 +0xb0a fp=0xc78bd1c sp=0xc78bc64 pc=0x8c48c8a
+arista/gopenconfig/cmd/OpenConfig/libmain.prepareMultiprotocolServerAgent(0x92069dc, 0xec651d0, 0xc3683c0, 0xf, 0xc1d9e40, 0x1, 0x1, 0xc140a80, 0x0, 0x0)
+	arista/gopenconfig/cmd/OpenConfig/libmain/libmain.go:588 +0xcab fp=0xc78bdac sp=0xc78bd1c pc=0x8c460bb
+arista/gopenconfig/cmd/OpenConfig/libmain.Main(0x0, 0x0, 0x0)
+	arista/gopenconfig/cmd/OpenConfig/libmain/libmain.go:420 +0x1208 fp=0xc78bf78 sp=0xc78bdac pc=0x8c43e68
+main.main()
+	arista/cmd/Octa/main.go:76 +0x205 fp=0xc78bfc8 sp=0xc78bf78 pc=0x8cf05a5
+runtime.main()
+	runtime/proc.go:225 +0x253 fp=0xc78bff0 sp=0xc78bfc8 pc=0x807df13
+runtime.goexit()
+	runtime/asm_386.s:1315 +0x1 fp=0xc78bff4 sp=0xc78bff0 pc=0x80ae041
+
+goroutine 2 [force gc (idle)]:
+runtime.gopark(0x90892e8, 0x9a95be0, 0x1411, 0x1)
+	runtime/proc.go:336 +0xe4 fp=0xc056fdc sp=0xc056fc8 pc=0x807e2f4
+runtime.goparkunlock(...)
+	runtime/proc.go:342
+runtime.forcegchelper()
+	runtime/proc.go:276 +0xbf fp=0xc056ff0 sp=0xc056fdc pc=0x807e17f
+runtime.goexit()
+	runtime/asm_386.s:1315 +0x1 fp=0xc056ff4 sp=0xc056ff0 pc=0x80ae041
+created by runtime.init.5
+	runtime/proc.go:264 +0x2b
+
+goroutine 3 [GC sweep wait]:
+runtime.gopark(0x90892e8, 0x9a964a0, 0x140c, 0x1)
+	runtime/proc.go:336 +0xe4 fp=0xc0577d4 sp=0xc0577c0 pc=0x807e2f4
+runtime.goparkunlock(...)
+	runtime/proc.go:342
+runtime.bgsweep(0xc074000)
+	runtime/mgcsweep.go:182 +0x11d fp=0xc0577e8 sp=0xc0577d4 pc=0x80693ad
+runtime.goexit()
+	runtime/asm_386.s:1315 +0x1 fp=0xc0577ec sp=0xc0577e8 pc=0x80ae041
+created by runtime.gcenable
+	runtime/mgc.go:217 +0x4d
+
+goroutine 4 [GC scavenge wait]:
+runtime.gopark(0x90892e8, 0x9a960e0, 0x140d, 0x1)
+	runtime/proc.go:336 +0xe4 fp=0xc057fac sp=0xc057f98 pc=0x807e2f4
+runtime.goparkunlock(...)
+	runtime/proc.go:342
+runtime.bgscavenge(0xc074000)
+	runtime/mgcscavenge.go:314 +0x27f fp=0xc057fe8 sp=0xc057fac pc=0x806771f
+runtime.goexit()
+	runtime/asm_386.s:1315 +0x1 fp=0xc057fec sp=0xc057fe8 pc=0x80ae041
+created by runtime.gcenable
+	runtime/mgc.go:218 +0x6b
+
+goroutine 17 [finalizer wait]:
+runtime.gopark(0x90892e8, 0x9dc1090, 0xc9f1410, 0x1)
+	runtime/proc.go:336 +0xe4 fp=0xc0567a8 sp=0xc056794 pc=0x807e2f4
+runtime.goparkunlock(...)
+	runtime/proc.go:342
+runtime.runfinq()
+	runtime/mfinal.go:175 +0x94 fp=0xc0567f0 sp=0xc0567a8 pc=0x805ddb4
+runtime.goexit()
+	runtime/asm_386.s:1315 +0x1 fp=0xc0567f4 sp=0xc0567f0 pc=0x80ae041
+created by runtime.createfing
+	runtime/mfinal.go:156 +0x60
+
+goroutine 18 [GC worker (idle)]:
+runtime.gopark(0x9089234, 0xc03a0d8, 0xffff1418, 0x0)
+	runtime/proc.go:336 +0xe4 fp=0xc0527a4 sp=0xc052790 pc=0x807e2f4
+runtime.gcBgMarkWorker()
+	runtime/mgc.go:1911 +0xe5 fp=0xc0527f0 sp=0xc0527a4 pc=0x80620e5
+runtime.goexit()
+	runtime/asm_386.s:1315 +0x1 fp=0xc0527f4 sp=0xc0527f0 pc=0x80ae041
+created by runtime.gcBgMarkStartWorkers
+	runtime/mgc.go:1835 +0x2d
+
+goroutine 19 [GC worker (idle)]:
+runtime.gopark(0x9089234, 0xc36cf00, 0xffff1418, 0x0)
+	runtime/proc.go:336 +0xe4 fp=0xc052fa4 sp=0xc052f90 pc=0x807e2f4
+runtime.gcBgMarkWorker()
+	runtime/mgc.go:1911 +0xe5 fp=0xc052ff0 sp=0xc052fa4 pc=0x80620e5
+runtime.goexit()
+	runtime/asm_386.s:1315 +0x1 fp=0xc052ff4 sp=0xc052ff0 pc=0x80ae041
+created by runtime.gcBgMarkStartWorkers
+	runtime/mgc.go:1835 +0x2d
+
+goroutine 20 [GC worker (idle)]:
+runtime.gopark(0x9089234, 0xc36cf18, 0xffff1418, 0x0)
+	runtime/proc.go:336 +0xe4 fp=0xc0537a4 sp=0xc053790 pc=0x807e2f4
+runtime.gcBgMarkWorker()
+	runtime/mgc.go:1911 +0xe5 fp=0xc0537f0 sp=0xc0537a4 pc=0x80620e5
+runtime.goexit()
+	runtime/asm_386.s:1315 +0x1 fp=0xc0537f4 sp=0xc0537f0 pc=0x80ae041
+created by runtime.gcBgMarkStartWorkers
+	runtime/mgc.go:1835 +0x2d
+
+goroutine 33 [GC worker (idle)]:
+runtime.gopark(0x9089234, 0xc36cf30, 0xffff1418, 0x0)
+	runtime/proc.go:336 +0xe4 fp=0xc5467a4 sp=0xc546790 pc=0x807e2f4
+runtime.gcBgMarkWorker()
+	runtime/mgc.go:1911 +0xe5 fp=0xc5467f0 sp=0xc5467a4 pc=0x80620e5
+runtime.goexit()
+	runtime/asm_386.s:1315 +0x1 fp=0xc5467f4 sp=0xc5467f0 pc=0x80ae041
+created by runtime.gcBgMarkStartWorkers
+	runtime/mgc.go:1835 +0x2d
+
+goroutine 21 [GC worker (idle)]:
+runtime.gopark(0x9089234, 0xc36cf48, 0xffff1418, 0x0)
+	runtime/proc.go:336 +0xe4 fp=0xc053fa4 sp=0xc053f90 pc=0x807e2f4
+runtime.gcBgMarkWorker()
+	runtime/mgc.go:1911 +0xe5 fp=0xc053ff0 sp=0xc053fa4 pc=0x80620e5
+runtime.goexit()
+	runtime/asm_386.s:1315 +0x1 fp=0xc053ff4 sp=0xc053ff0 pc=0x80ae041
+created by runtime.gcBgMarkStartWorkers
+	runtime/mgc.go:1835 +0x2d
+
+goroutine 34 [GC worker (idle)]:
+runtime.gopark(0x9089234, 0xc54c000, 0xffff1418, 0x0)
+	runtime/proc.go:336 +0xe4 fp=0xc546fa4 sp=0xc546f90 pc=0x807e2f4
+runtime.gcBgMarkWorker()
+	runtime/mgc.go:1911 +0xe5 fp=0xc546ff0 sp=0xc546fa4 pc=0x80620e5
+runtime.goexit()
+	runtime/asm_386.s:1315 +0x1 fp=0xc546ff4 sp=0xc546ff0 pc=0x80ae041
+created by runtime.gcBgMarkStartWorkers
+	runtime/mgc.go:1835 +0x2d
+
+goroutine 35 [GC worker (idle)]:
+runtime.gopark(0x9089234, 0xc54c018, 0xffff1418, 0x0)
+	runtime/proc.go:336 +0xe4 fp=0xc5477a4 sp=0xc547790 pc=0x807e2f4
+runtime.gcBgMarkWorker()
+	runtime/mgc.go:1911 +0xe5 fp=0xc5477f0 sp=0xc5477a4 pc=0x80620e5
+runtime.goexit()
+	runtime/asm_386.s:1315 +0x1 fp=0xc5477f4 sp=0xc5477f0 pc=0x80ae041
+created by runtime.gcBgMarkStartWorkers
+	runtime/mgc.go:1835 +0x2d
+
+goroutine 36 [GC worker (idle)]:
+runtime.gopark(0x9089234, 0xc54c030, 0xffff1418, 0x0)
+	runtime/proc.go:336 +0xe4 fp=0xc547fa4 sp=0xc547f90 pc=0x807e2f4
+runtime.gcBgMarkWorker()
+	runtime/mgc.go:1911 +0xe5 fp=0xc547ff0 sp=0xc547fa4 pc=0x80620e5
+runtime.goexit()
+	runtime/asm_386.s:1315 +0x1 fp=0xc547ff4 sp=0xc547ff0 pc=0x80ae041
+created by runtime.gcBgMarkStartWorkers
+	runtime/mgc.go:1835 +0x2d
+
+goroutine 5 [select]:
+runtime.gopark(0x9089310, 0x0, 0x1809, 0x1)
+	runtime/proc.go:336 +0xe4 fp=0xc05866c sp=0xc058658 pc=0x807e2f4
+runtime.selectgo(0xc058790, 0xc058774, 0x0, 0x0, 0x2, 0x1, 0x0, 0x0)
+	runtime/select.go:327 +0xcea fp=0xc058750 sp=0xc05866c pc=0x808e16a
+arista/gopenconfig/abc.(*Closer).Wait(0xc47a1d0, 0x92069dc, 0xc140a80, 0x0, 0x0)
+	arista/gopenconfig/abc/abc.go:87 +0xe7 fp=0xc0587ac sp=0xc058750 pc=0x88375a7
+arista/gopenconfig/cmd/OpenConfig/libmain.Main.func2(0xc47a1d0, 0xc37cb68)
+	arista/gopenconfig/cmd/OpenConfig/libmain/libmain.go:377 +0x36 fp=0xc0587e8 sp=0xc0587ac pc=0x8c4ae16
+runtime.goexit()
+	runtime/asm_386.s:1315 +0x1 fp=0xc0587ec sp=0xc0587e8 pc=0x80ae041
+created by arista/gopenconfig/cmd/OpenConfig/libmain.Main
+	arista/gopenconfig/cmd/OpenConfig/libmain/libmain.go:376 +0xfc3
+
+goroutine 6 [select, locked to thread]:
+runtime.gopark(0x9089310, 0x0, 0x1809, 0x1)
+	runtime/proc.go:336 +0xe4 fp=0xc058eb8 sp=0xc058ea4 pc=0x807e2f4
+runtime.selectgo(0xc058fd8, 0xc058fd0, 0x0, 0x0, 0x2, 0x1, 0x1, 0x1)
+	runtime/select.go:327 +0xcea fp=0xc058f9c sp=0xc058eb8 pc=0x808e16a
+runtime.ensureSigM.func1()
+	runtime/signal_unix.go:889 +0x19d fp=0xc058ff0 sp=0xc058f9c pc=0x80a840d
+runtime.goexit()
+	runtime/asm_386.s:1315 +0x1 fp=0xc058ff4 sp=0xc058ff0 pc=0x80ae041
+created by runtime.ensureSigM
+	runtime/signal_unix.go:872 +0xbf
+
+goroutine 7 [syscall]:
+runtime.notetsleepg(0x9dc2340, 0xffffffff, 0xffffffff, 0x1)
+	runtime/lock_futex.go:235 +0x2e fp=0xc0597cc sp=0xc0597b4 pc=0x80523fe
+os/signal.signal_recv(0x0)
+	runtime/sigqueue.go:168 +0x132 fp=0xc0597e4 sp=0xc0597cc pc=0x80abb52
+os/signal.loop()
+	os/signal/signal_unix.go:23 +0x1a fp=0xc0597f0 sp=0xc0597e4 pc=0x855e31a
+runtime.goexit()
+	runtime/asm_386.s:1315 +0x1 fp=0xc0597f4 sp=0xc0597f0 pc=0x80ae041
+created by os/signal.Notify.func1.1
+	os/signal/signal.go:151 +0x33
+
+goroutine 22 [IO wait]:
+runtime.gopark(0x90892d8, 0xe7c173c0, 0x1b02, 0x5)
+	runtime/proc.go:336 +0xe4 fp=0xc640da4 sp=0xc640d90 pc=0x807e2f4
+runtime.netpollblock(0xe7c173a8, 0x72, 0x1000000, 0x800000)
+	runtime/netpoll.go:438 +0xa2 fp=0xc640dbc sp=0xc640da4 pc=0x80772b2
+internal/poll.runtime_pollWait(0xe7c173a8, 0x72, 0x0)
+	runtime/netpoll.go:222 +0x4b fp=0xc640dd0 sp=0xc640dbc pc=0x80a9c5b
+internal/poll.(*pollDesc).wait(0xc0983d4, 0x72, 0x0, 0x0, 0x8fee905)
+	internal/poll/fd_poll_runtime.go:87 +0x37 fp=0xc640de4 sp=0xc640dd0 pc=0x8112297
+internal/poll.(*pollDesc).waitRead(...)
+	internal/poll/fd_poll_runtime.go:92
+internal/poll.(*FD).Accept(0xc0983c0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0)
+	internal/poll/fd_unix.go:401 +0x1d7 fp=0xc640e28 sp=0xc640de4 pc=0x81145f7
+net.(*netFD).accept(0xc0983c0, 0x18, 0xf7edf790, 0x0)
+	net/fd_unix.go:172 +0x27 fp=0xc640e88 sp=0xc640e28 pc=0x816cb97
+net.(*TCPListener).accept(0xc12a020, 0x0, 0x8053cec, 0x18)
+	net/tcpsock_posix.go:139 +0x27 fp=0xc640ea8 sp=0xc640e88 pc=0x8184267
+net.(*TCPListener).Accept(0xc12a020, 0x8f3e6e0, 0xc644060, 0x8e08c00, 0x9a7d2c0)
+	net/tcpsock.go:261 +0x57 fp=0xc640ec4 sp=0xc640ea8 pc=0x8183377
+net/http.(*onceCloseListener).Accept(0xc1ca080, 0xc138030, 0x8e08c00, 0x9a7d2c0, 0x8fd2f80)
+	<autogenerated>:1 +0x2d fp=0xc640edc sp=0xc640ec4 pc=0x82f17fd
+net/http.(*Server).Serve(0xc1321b0, 0x920535c, 0xc12a020, 0x0, 0x0)
+	net/http/server.go:2981 +0x225 fp=0xc640f70 sp=0xc640edc pc=0x82d2ed5
+net/http.Serve(...)
+	net/http/server.go:2529
+github.com/aristanetworks/goarista/monitor.(*server).Serve(0xc00c020, 0x9a967e0, 0x0, 0x0)
+	github.com/aristanetworks/goarista@v0.0.0-20210715113802-a1396632fc37/monitor/server.go:98 +0x1ed fp=0xc640fc4 sp=0xc640f70 pc=0x834f30d
+github.com/aristanetworks/goarista/monitor.(*server).Run(0xc00c020, 0x9a967e0)
+	github.com/aristanetworks/goarista@v0.0.0-20210715113802-a1396632fc37/monitor/server.go:78 +0x2d fp=0xc640fe8 sp=0xc640fc4 pc=0x834f09d
+runtime.goexit()
+	runtime/asm_386.s:1315 +0x1 fp=0xc640fec sp=0xc640fe8 pc=0x80ae041
+created by arista/gopenconfig/cmd/OpenConfig/libmain.Main
+	arista/gopenconfig/cmd/OpenConfig/libmain/libmain.go:412 +0x137c
+
+goroutine 8 [select]:
+runtime.gopark(0x9089310, 0x0, 0x1809, 0x1)
+	runtime/proc.go:336 +0xe4 fp=0xc5496b0 sp=0xc54969c pc=0x807e2f4
+runtime.selectgo(0xc5497cc, 0xc5497b4, 0x0, 0x0, 0x2, 0x1, 0x0, 0x1)
+	runtime/select.go:327 +0xcea fp=0xc549794 sp=0xc5496b0 pc=0x808e16a
+arista/gopenconfig/model/notifier.(*Notifier).Run(0xeae5c10, 0x92069dc, 0xc6458a8)
+	arista/gopenconfig/model/notifier/notifier.go:61 +0xa5 fp=0xc5497e0 sp=0xc549794 pc=0x85bea35
+runtime.goexit()
+	runtime/asm_386.s:1315 +0x1 fp=0xc5497e4 sp=0xc5497e0 pc=0x80ae041
+created by arista/gopenconfig/cmd/OpenConfig/libmain.setupDatastores
+	arista/gopenconfig/cmd/OpenConfig/libmain/libmain.go:710 +0x12c
+
+goroutine 23 [syscall]:
+syscall.Syscall6(0x100, 0x8, 0x1248fdbc, 0x7, 0xffffffff, 0x0, 0x0, 0x0, 0x0, 0x0)
+	syscall/asm_linux_386.s:44 +0x5 fp=0x1248fd58 sp=0x1248fd54 pc=0x80f96b5
+golang.org/x/sys/unix.EpollWait(0x8, 0x1248fdbc, 0x7, 0x7, 0xffffffff, 0xcb09b68, 0x0, 0x804d406)
+	golang.org/x/sys@v0.0.0-20210630005230-0f9fa26af87c/unix/zsyscall_linux_386.go:87 +0x61 fp=0x1248fd8c sp=0x1248fd58 pc=0x83496b1
+github.com/aristanetworks/fsnotify.(*fdPoller).wait(0xd4449b0, 0x0, 0x0, 0x0)
+	github.com/aristanetworks/fsnotify@v1.4.3-0.20191226234409-ecf4061002b7/inotify_poller.go:86 +0x5d fp=0x1248fe18 sp=0x1248fd8c pc=0x834b41d
+github.com/aristanetworks/fsnotify.(*Watcher).readEvents(0x12425d10)
+	github.com/aristanetworks/fsnotify@v1.4.3-0.20191226234409-ecf4061002b7/inotify.go:195 +0x1c3 fp=0x1249ffe8 sp=0x1248fe18 pc=0x834a883
+runtime.goexit()
+	runtime/asm_386.s:1315 +0x1 fp=0x1249ffec sp=0x1249ffe8 pc=0x80ae041
+created by github.com/aristanetworks/fsnotify.NewWatcher
+	github.com/aristanetworks/fsnotify@v1.4.3-0.20191226234409-ecf4061002b7/inotify.go:59 +0x163
+
+goroutine 40 [select]:
+runtime.gopark(0x9089310, 0x0, 0x1809, 0x1)
+	runtime/proc.go:336 +0xe4 fp=0xc637ba8 sp=0xc637b94 pc=0x807e2f4
+runtime.selectgo(0xc637d3c, 0xc637cd4, 0x0, 0x0, 0x2, 0xcb06301, 0x0, 0x1)
+	runtime/select.go:327 +0xcea fp=0xc637c8c sp=0xc637ba8 pc=0x808e16a
+arista/smash.(*Table).waitForKick(0xd44a660, 0x0, 0xc7ab200, 0x8fe9a8a, 0x4)
+	arista/smash/smash.go:613 +0xe4 fp=0xc637dec sp=0xc637c8c pc=0x8c15394
+arista/smash.(*Table).Run(0xd44a660)
+	arista/smash/smash.go:572 +0x578 fp=0xc637fe8 sp=0xc637dec pc=0x8c140f8
+runtime.goexit()
+	runtime/asm_386.s:1315 +0x1 fp=0xc637fec sp=0xc637fe8 pc=0x80ae041
+created by arista/smash.(*manager).attachTable
+	arista/smash/manager.go:391 +0x99e
+
+goroutine 41 [IO wait]:
+runtime.gopark(0x90892d8, 0xe7c170c8, 0x1b02, 0x5)
+	runtime/proc.go:336 +0xe4 fp=0xc7edd10 sp=0xc7edcfc pc=0x807e2f4
+runtime.netpollblock(0xe7c170b0, 0x72, 0xc7f6000, 0x1000)
+	runtime/netpoll.go:438 +0xa2 fp=0xc7edd28 sp=0xc7edd10 pc=0x80772b2
+internal/poll.runtime_pollWait(0xe7c170b0, 0x72, 0xffffffff)
+	runtime/netpoll.go:222 +0x4b fp=0xc7edd3c sp=0xc7edd28 pc=0x80a9c5b
+internal/poll.(*pollDesc).wait(0x120dc514, 0x72, 0x1000, 0x1000, 0xffffffff)
+	internal/poll/fd_poll_runtime.go:87 +0x37 fp=0xc7edd50 sp=0xc7edd3c pc=0x8112297
+internal/poll.(*pollDesc).waitRead(...)
+	internal/poll/fd_poll_runtime.go:92
+internal/poll.(*FD).Read(0x120dc500, 0xc7f6000, 0x1000, 0x1000, 0x0, 0x0, 0x0)
+	internal/poll/fd_unix.go:166 +0x18d fp=0xc7edd84 sp=0xc7edd50 pc=0x8112fcd
+net.(*netFD).Read(0x120dc500, 0xc7f6000, 0x1000, 0x1000, 0x9, 0x0, 0x1000000)
+	net/fd_posix.go:55 +0x3f fp=0xc7eddb0 sp=0xc7edd84 pc=0x816b95f
+net.(*conn).Read(0xd38e050, 0xc7f6000, 0x1000, 0x1000, 0x0, 0x0, 0x0)
+	net/net.go:183 +0x67 fp=0xc7edde0 sp=0xc7eddb0 pc=0x817b9b7
+bufio.(*Reader).fill(0xd45c060)
+	bufio/bufio.go:101 +0xeb fp=0xc7ede04 sp=0xc7edde0 pc=0x81520ab
+bufio.(*Reader).ReadByte(0xd45c060, 0x7caa2b52, 0x22256, 0x1)
+	bufio/bufio.go:253 +0x2e fp=0xc7ede10 sp=0xc7ede04 pc=0x81527ee
+arista/smash.processWriterMsg(0xd45c060, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0xebe9e78, 0x16)
+	arista/smash/connection_manager.go:501 +0x30 fp=0xc7ede74 sp=0xc7ede10 pc=0x8bf22b0
+arista/smash.(*connMgr).readKick.func1(0xebe9e30)
+	arista/smash/connection_manager.go:354 +0x51 fp=0xc7edf10 sp=0xc7ede74 pc=0x8c173b1
+arista/smash.(*connMgr).readKick(0xebe9e30, 0x0, 0x921132c, 0xd38e050, 0xd45c060)
+	arista/smash/connection_manager.go:387 +0x54 fp=0xc7edf34 sp=0xc7edf10 pc=0x8bf14d4
+arista/smash.(*connMgr).start(0xebe9e30)
+	arista/smash/connection_manager.go:186 +0x4bb fp=0xc7edfe8 sp=0xc7edf34 pc=0x8befeeb
+runtime.goexit()
+	runtime/asm_386.s:1315 +0x1 fp=0xc7edfec sp=0xc7edfe8 pc=0x80ae041
+created by arista/smash.(*manager).createOrFindConnMgr
+	arista/smash/manager.go:465 +0x23c
+
+goroutine 38 [IO wait]:
+runtime.gopark(0x90892d8, 0xe7c17160, 0x1b02, 0x5)
+	runtime/proc.go:336 +0xe4 fp=0xc641d10 sp=0xc641cfc pc=0x807e2f4
+runtime.netpollblock(0xe7c17148, 0x72, 0xe900000, 0x1000)
+	runtime/netpoll.go:438 +0xa2 fp=0xc641d28 sp=0xc641d10 pc=0x80772b2
+internal/poll.runtime_pollWait(0xe7c17148, 0x72, 0xffffffff)
+	runtime/netpoll.go:222 +0x4b fp=0xc641d3c sp=0xc641d28 pc=0x80a9c5b
+internal/poll.(*pollDesc).wait(0x126b18c4, 0x72, 0x1000, 0x1000, 0xffffffff)
+	internal/poll/fd_poll_runtime.go:87 +0x37 fp=0xc641d50 sp=0xc641d3c pc=0x8112297
+internal/poll.(*pollDesc).waitRead(...)
+	internal/poll/fd_poll_runtime.go:92
+internal/poll.(*FD).Read(0x126b18b0, 0xe900000, 0x1000, 0x1000, 0x0, 0x0, 0x0)
+	internal/poll/fd_unix.go:166 +0x18d fp=0xc641d84 sp=0xc641d50 pc=0x8112fcd
+net.(*netFD).Read(0x126b18b0, 0xe900000, 0x1000, 0x1000, 0x9, 0x0, 0x1000000)
+	net/fd_posix.go:55 +0x3f fp=0xc641db0 sp=0xc641d84 pc=0x816b95f
+net.(*conn).Read(0xcf070a8, 0xe900000, 0x1000, 0x1000, 0x0, 0x0, 0x0)
+	net/net.go:183 +0x67 fp=0xc641de0 sp=0xc641db0 pc=0x817b9b7
+bufio.(*Reader).fill(0x126d6ed0)
+	bufio/bufio.go:101 +0xeb fp=0xc641e04 sp=0xc641de0 pc=0x81520ab
+bufio.(*Reader).ReadByte(0x126d6ed0, 0xcaa2b52a, 0x222567, 0x1)
+	bufio/bufio.go:253 +0x2e fp=0xc641e10 sp=0xc641e04 pc=0x81527ee
+arista/smash.processWriterMsg(0x126d6ed0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0xebb3f58, 0x16)
+	arista/smash/connection_manager.go:501 +0x30 fp=0xc641e74 sp=0xc641e10 pc=0x8bf22b0
+arista/smash.(*connMgr).readKick.func1(0xebb3f10)
+	arista/smash/connection_manager.go:354 +0x51 fp=0xc641f10 sp=0xc641e74 pc=0x8c173b1
+arista/smash.(*connMgr).readKick(0xebb3f10, 0x0, 0x921132c, 0xcf070a8, 0x126d6ed0)
+	arista/smash/connection_manager.go:387 +0x54 fp=0xc641f34 sp=0xc641f10 pc=0x8bf14d4
+arista/smash.(*connMgr).start(0xebb3f10)
+	arista/smash/connection_manager.go:186 +0x4bb fp=0xc641fe8 sp=0xc641f34 pc=0x8befeeb
+runtime.goexit()
+	runtime/asm_386.s:1315 +0x1 fp=0xc641fec sp=0xc641fe8 pc=0x80ae041
+created by arista/smash.(*manager).createOrFindConnMgr
+	arista/smash/manager.go:465 +0x23c
+
+goroutine 39 [select]:
+runtime.gopark(0x9089310, 0x0, 0x1809, 0x1)
+	runtime/proc.go:336 +0xe4 fp=0xc911ba8 sp=0xc911b94 pc=0x807e2f4
+runtime.selectgo(0xc911d3c, 0xc911cd4, 0x0, 0x0, 0x2, 0xe81a4801, 0x0, 0xb7292f01)
+	runtime/select.go:327 +0xcea fp=0xc911c8c sp=0xc911ba8 pc=0x808e16a
+arista/smash.(*Table).waitForKick(0xd44a480, 0x0, 0xc7ab140, 0x8fe9a8a, 0x4)
+	arista/smash/smash.go:613 +0xe4 fp=0xc911dec sp=0xc911c8c pc=0x8c15394
+arista/smash.(*Table).Run(0xd44a480)
+	arista/smash/smash.go:572 +0x578 fp=0xc911fe8 sp=0xc911dec pc=0x8c140f8
+runtime.goexit()
+	runtime/asm_386.s:1315 +0x1 fp=0xc911fec sp=0xc911fe8 pc=0x80ae041
+created by arista/smash.(*manager).attachTable
+	arista/smash/manager.go:391 +0x99e
+
+goroutine 28 [chan receive]:
+runtime.gopark(0x90891f8, 0xd1822b0, 0x170e, 0x2)
+	runtime/proc.go:336 +0xe4 fp=0xc054f5c sp=0xc054f48 pc=0x807e2f4
+runtime.chanrecv(0xd182280, 0xc054fd4, 0x1, 0x0)
+	runtime/chan.go:576 +0x28c fp=0xc054fa4 sp=0xc054f5c pc=0x804d18c
+runtime.chanrecv2(0xd182280, 0xc054fd4, 0x0)
+	runtime/chan.go:444 +0x1c fp=0xc054fb8 sp=0xc054fa4 pc=0x804ceec
+arista/agent.registerLogrotateHandler.func1(0xd182280)
+	arista/agent/logrotate.go:66 +0x3d fp=0xc054fe8 sp=0xc054fb8 pc=0x856709d
+runtime.goexit()
+	runtime/asm_386.s:1315 +0x1 fp=0xc054fec sp=0xc054fe8 pc=0x80ae041
+created by arista/agent.registerLogrotateHandler
+	arista/agent/logrotate.go:65 +0x2fb
+
+goroutine 29 [select]:
+runtime.gopark(0x9089310, 0x0, 0x1809, 0x1)
+	runtime/proc.go:336 +0xe4 fp=0xc05568c sp=0xc055678 pc=0x807e2f4
+runtime.selectgo(0xc0557a0, 0xc055790, 0x0, 0x0, 0x2, 0x1, 0x0, 0x0)
+	runtime/select.go:327 +0xcea fp=0xc055770 sp=0xc05568c pc=0x808e16a
+arista/sysdb.(*Client).WaitForNotification(0xd47c000)
+	arista/sysdb/sync.go:256 +0x93 fp=0xc0557b4 sp=0xc055770 pc=0x8601ed3
+arista/agent.(*agent).WaitForProviders(0xd456620)
+	arista/agent/agent.go:228 +0x3f fp=0xc0557c8 sp=0xc0557b4 pc=0x8561c3f
+arista/gopenconfig/syslog.(*LogTailorAdapter).PostInitialize.func1(0x9210bdc, 0xd456620, 0xd453610, 0x92069dc, 0xd454120)
+	arista/gopenconfig/syslog/ltadapter.go:98 +0x25 fp=0xc0557d8 sp=0xc0557c8 pc=0x8ace335
+runtime.goexit()
+	runtime/asm_386.s:1315 +0x1 fp=0xc0557dc sp=0xc0557d8 pc=0x80ae041
+created by arista/gopenconfig/syslog.(*LogTailorAdapter).PostInitialize
+	arista/gopenconfig/syslog/ltadapter.go:97 +0x53
+
+goroutine 37 [chan receive]:
+runtime.gopark(0x90891f8, 0xcb09cf0, 0xc54170e, 0x2)
+	runtime/proc.go:336 +0xe4 fp=0xc54876c sp=0xc548758 pc=0x807e2f4
+runtime.chanrecv(0xcb09cc0, 0xc5487d4, 0x8bfb801, 0xc540101)
+	runtime/chan.go:576 +0x28c fp=0xc5487b4 sp=0xc54876c pc=0x804d18c
+runtime.chanrecv2(0xcb09cc0, 0xc5487d4, 0x9089201)
+	runtime/chan.go:444 +0x1c fp=0xc5487c8 sp=0xc5487b4 pc=0x804ceec
+arista/smash.copyChan(0xd137480, 0xcb09cc0)
+	arista/smash/manager.go:614 +0x6f fp=0xc5487e8 sp=0xc5487c8 pc=0x8bfb85f
+runtime.goexit()
+	runtime/asm_386.s:1315 +0x1 fp=0xc5487ec sp=0xc5487e8 pc=0x80ae041
+created by arista/smash.(*manager).Run
+	arista/smash/manager.go:635 +0xb2
+
+goroutine 30 [select]:
+runtime.gopark(0x9089310, 0x0, 0x1809, 0x1)
+	runtime/proc.go:336 +0xe4 fp=0xc542658 sp=0xc542644 pc=0x807e2f4
+runtime.selectgo(0xc5427b4, 0xc542770, 0x0, 0x0, 0x3, 0x1, 0x0, 0x0)
+	runtime/select.go:327 +0xcea fp=0xc54273c sp=0xc542658 pc=0x808e16a
+arista/gopenconfig/eos/reactor.(*Proxy).Consume(0xec65218, 0x92069dc, 0x12415158, 0xcb09ec0, 0xcb09e40)
+	arista/gopenconfig/eos/reactor/reactor.go:252 +0x1ee fp=0xc5427d8 sp=0xc54273c pc=0x86b76de
+runtime.goexit()
+	runtime/asm_386.s:1315 +0x1 fp=0xc5427dc sp=0xc5427d8 pc=0x80ae041
+created by arista/gopenconfig/eos.(*Device).Start
+	arista/gopenconfig/eos/eos.go:138 +0x2ae
+
+goroutine 31 [select]:
+runtime.gopark(0x9089310, 0x0, 0x1809, 0x1)
+	runtime/proc.go:336 +0xe4 fp=0xc542e80 sp=0xc542e6c pc=0x807e2f4
+runtime.selectgo(0xc542f94, 0xc542f84, 0x0, 0x0, 0x2, 0x1, 0x0, 0x0)
+	runtime/select.go:327 +0xcea fp=0xc542f64 sp=0xc542e80 pc=0x808e16a
+arista/sysdb.(*Client).WaitForNotification(0xd47c000)
+	arista/sysdb/sync.go:256 +0x93 fp=0xc542fa8 sp=0xc542f64 pc=0x8601ed3
+arista/agent.(*agent).WaitForProviders(0xd456620)
+	arista/agent/agent.go:228 +0x3f fp=0xc542fbc sp=0xc542fa8 pc=0x8561c3f
+arista/gopenconfig/eos.(*Device).Start.func1(0x1240bfc0, 0x92069dc, 0x12415158)
+	arista/gopenconfig/eos/eos.go:144 +0x2a fp=0xc542fe0 sp=0xc542fbc pc=0x86bd08a
+runtime.goexit()
+	runtime/asm_386.s:1315 +0x1 fp=0xc542fe4 sp=0xc542fe0 pc=0x80ae041
+created by arista/gopenconfig/eos.(*Device).Start
+	arista/gopenconfig/eos/eos.go:143 +0x2ea
+
+goroutine 32 [select]:
+runtime.gopark(0x9089310, 0x0, 0x1809, 0x1)
+	runtime/proc.go:336 +0xe4 fp=0xc5435f0 sp=0xc5435dc pc=0x807e2f4
+runtime.selectgo(0xc54373c, 0xc543704, 0x0, 0x0, 0x4, 0x349201, 0x2, 0xe8311601)
+	runtime/select.go:327 +0xcea fp=0xc5436d4 sp=0xc5435f0 pc=0x808e16a
+arista/agent.(*agent).processProducersNotifications(0xd456620, 0x920697c, 0xe5ff020, 0xd182300, 0x0, 0x0)
+	arista/agent/agent.go:291 +0x161 fp=0xc543768 sp=0xc5436d4 pc=0x8562241
+arista/agent.(*agent).Run(0xd456620, 0x92069dc, 0x12415158, 0x0, 0x0)
+	arista/agent/agent.go:212 +0x262 fp=0xc5437b0 sp=0xc543768 pc=0x8561a22
+arista/gopenconfig/eos.(*Device).Start.func2(0x1240bfc0, 0x92069dc, 0x12415158)
+	arista/gopenconfig/eos/eos.go:157 +0x3a fp=0xc5437e0 sp=0xc5437b0 pc=0x86bd17a
+runtime.goexit()
+	runtime/asm_386.s:1315 +0x1 fp=0xc5437e4 sp=0xc5437e0 pc=0x80ae041
+created by arista/gopenconfig/eos.(*Device).Start
+	arista/gopenconfig/eos/eos.go:156 +0x318
+
+goroutine 49 [chan receive]:
+runtime.gopark(0x90891f8, 0xd1edc30, 0x170e, 0x2)
+	runtime/proc.go:336 +0xe4 fp=0xc63fe2c sp=0xc63fe18 pc=0x807e2f4
+runtime.chanrecv(0xd1edc00, 0x0, 0xd1edc01, 0xe5ff028)
+	runtime/chan.go:576 +0x28c fp=0xc63fe74 sp=0xc63fe2c pc=0x804d18c
+runtime.chanrecv1(0xd1edc00, 0x0)
+	runtime/chan.go:439 +0x1c fp=0xc63fe88 sp=0xc63fe74 pc=0x804cecc
+arista/sysdb.(*Client).run(0xd47c000, 0x920697c, 0xe5ff020, 0x0, 0x0)
+	arista/sysdb/client.go:454 +0x2ee fp=0xc63ff5c sp=0xc63fe88 pc=0x85dcdce
+arista/sysdb.(*Client).Run(0xd47c000, 0x920697c, 0xe5ff020, 0x0, 0x0)
+	arista/sysdb/client.go:380 +0x81 fp=0xc63ff8c sp=0xc63ff5c pc=0x85dc9d1
+arista/agent.(*agent).Run.func1(0x0, 0x0)
+	arista/agent/agent.go:202 +0x5e fp=0xc63ffc0 sp=0xc63ff8c pc=0x8566aee
+golang.org/x/sync/errgroup.(*Group).Go.func1(0x126d6de0, 0x1259abb8)
+	golang.org/x/sync@v0.0.0-20210220032951-036812b2e83c/errgroup/errgroup.go:57 +0x4f fp=0xc63ffe8 sp=0xc63ffc0 pc=0x855dacf
+runtime.goexit()
+	runtime/asm_386.s:1315 +0x1 fp=0xc63ffec sp=0xc63ffe8 pc=0x80ae041
+created by golang.org/x/sync/errgroup.(*Group).Go
+	golang.org/x/sync@v0.0.0-20210220032951-036812b2e83c/errgroup/errgroup.go:54 +0x54
+
+goroutine 50 [runnable]:
+syscall.Syscall(0xdc, 0xd, 0x127a6000, 0x2000, 0x50, 0x2000, 0x0)
+	syscall/asm_linux_386.s:19 +0x5 fp=0xc633a48 sp=0xc633a44 pc=0x80f9655
+syscall.Getdents(0xd, 0x127a6000, 0x2000, 0x2000, 0x1, 0x0, 0x809228f)
+	syscall/zsyscall_linux_386.go:429 +0x49 fp=0xc633a70 sp=0xc633a48 pc=0x80f7fb9
+syscall.ReadDirent(...)
+	syscall/syscall_linux.go:890
+internal/poll.ignoringEINTRIO(...)
+	internal/poll/fd_unix.go:581
+internal/poll.(*FD).ReadDirent(0x127a2000, 0x127a6000, 0x2000, 0x2000, 0x0, 0x0, 0x0)
+	internal/poll/fd_unix.go:433 +0xab fp=0xc633aa0 sp=0xc633a70 pc=0x811494b
+os.(*File).readdir(0x12448008, 0xffffffff, 0x0, 0x0, 0x0, 0x0, 0x811b4e1, 0xf51c540, 0x2c, 0x0, ...)
+	os/dir_unix.go:57 +0xb36 fp=0xc633b40 sp=0xc633aa0 pc=0x8118826
+os.(*File).Readdirnames(0x12448008, 0xffffffff, 0x0, 0x0, 0x12448008, 0x0, 0x0)
+	os/dir.go:70 +0x39 fp=0xc633b7c sp=0xc633b40 pc=0x81179e9
+arista/smash.walk(0xf51c540, 0x2c, 0x920dacc, 0xf6b6120, 0xc633dd8, 0x0, 0x0)
+	arista/smash/manager.go:531 +0xd5 fp=0xc633bec sp=0xc633b7c pc=0x8bfb295
+arista/smash.walk(0x1240d7a0, 0x1f, 0x920dacc, 0xefdc480, 0xc633dd8, 0x0, 0x0)
+	arista/smash/manager.go:547 +0x28f fp=0xc633c5c sp=0xc633bec pc=0x8bfb44f
+arista/smash.walk(0xc9f9a88, 0x17, 0x920dacc, 0xc7e0630, 0xc633dd8, 0x0, 0x0)
+	arista/smash/manager.go:547 +0x28f fp=0xc633ccc sp=0xc633c5c pc=0x8bfb44f
+arista/smash.walk(0xc9f99e0, 0x11, 0x920dacc, 0xc7e0480, 0xc633dd8, 0x0, 0x0)
+	arista/smash/manager.go:547 +0x28f fp=0xc633d3c sp=0xc633ccc pc=0x8bfb44f
+arista/smash.walk(0x900444c, 0xe, 0x920dacc, 0xc7e0360, 0xc633dd8, 0x0, 0x1)
+	arista/smash/manager.go:547 +0x28f fp=0xc633dac sp=0xc633d3c pc=0x8bfb44f
+arista/smash.(*manager).handleDir(0xd612370, 0x900444c, 0xe)
+	arista/smash/manager.go:563 +0x17f fp=0xc633de4 sp=0xc633dac pc=0x8bfb74f
+arista/smash.(*manager).Run(0xd612370, 0x920697c, 0xe5ff020, 0x0, 0x0)
+	arista/smash/manager.go:647 +0x377 fp=0xc633f8c sp=0xc633de4 pc=0x8bfbc07
+arista/agent.(*agent).Run.func1(0x0, 0x0)
+	arista/agent/agent.go:202 +0x5e fp=0xc633fc0 sp=0xc633f8c pc=0x8566aee
+golang.org/x/sync/errgroup.(*Group).Go.func1(0x126d6de0, 0x1259abd0)
+	golang.org/x/sync@v0.0.0-20210220032951-036812b2e83c/errgroup/errgroup.go:57 +0x4f fp=0xc633fe8 sp=0xc633fc0 pc=0x855dacf
+runtime.goexit()
+	runtime/asm_386.s:1315 +0x1 fp=0xc633fec sp=0xc633fe8 pc=0x80ae041
+created by golang.org/x/sync/errgroup.(*Group).Go
+	golang.org/x/sync@v0.0.0-20210220032951-036812b2e83c/errgroup/errgroup.go:54 +0x54
+
+goroutine 51 [select]:
+runtime.gopark(0x9089310, 0x0, 0x1809, 0x1)
+	runtime/proc.go:336 +0xe4 fp=0xc84bdf4 sp=0xc84bde0 pc=0x807e2f4
+runtime.selectgo(0xc84bf70, 0xc84bf4c, 0x0, 0x0, 0x2, 0xe74b401, 0x2, 0x4)
+	runtime/select.go:327 +0xcea fp=0xc84bed8 sp=0xc84bdf4 pc=0x808e16a
+arista/kernel.(*collector).Run(0x12425d40, 0x920697c, 0xe5ff020, 0x0, 0x0)
+	arista/kernel/collector.go:139 +0x1e9 fp=0xc84bf8c sp=0xc84bed8 pc=0x8be0039
+arista/agent.(*agent).Run.func1(0x0, 0x0)
+	arista/agent/agent.go:202 +0x5e fp=0xc84bfc0 sp=0xc84bf8c pc=0x8566aee
+golang.org/x/sync/errgroup.(*Group).Go.func1(0x126d6de0, 0x1259ac00)
+	golang.org/x/sync@v0.0.0-20210220032951-036812b2e83c/errgroup/errgroup.go:57 +0x4f fp=0xc84bfe8 sp=0xc84bfc0 pc=0x855dacf
+runtime.goexit()
+	runtime/asm_386.s:1315 +0x1 fp=0xc84bfec sp=0xc84bfe8 pc=0x80ae041
+created by golang.org/x/sync/errgroup.(*Group).Go
+	golang.org/x/sync@v0.0.0-20210220032951-036812b2e83c/errgroup/errgroup.go:54 +0x54
+
+goroutine 53 [select]:
+runtime.gopark(0x9089310, 0x0, 0x1809, 0x1)
+	runtime/proc.go:336 +0xe4 fp=0xc545e80 sp=0xc545e6c pc=0x807e2f4
+runtime.selectgo(0xc545f90, 0xc545f84, 0x0, 0x0, 0x2, 0x1, 0x0, 0x8dd65a0)
+	runtime/select.go:327 +0xcea fp=0xc545f64 sp=0xc545e80 pc=0x808e16a
+arista/sysdb.timerProc(0xe5ff140, 0x3b9aca00, 0x0)
+	arista/sysdb/client_notification_producer.go:52 +0xae fp=0xc545fe0 sp=0xc545f64 pc=0x85df41e
+runtime.goexit()
+	runtime/asm_386.s:1315 +0x1 fp=0xc545fe4 sp=0xc545fe0 pc=0x80ae041
+created by arista/sysdb.newTimer
+	arista/sysdb/client_notification_producer.go:76 +0xfc
+
+goroutine 55 [chan receive]:
+runtime.gopark(0x90891f8, 0xcb080f0, 0x170e, 0x2)
+	runtime/proc.go:336 +0xe4 fp=0xc055f2c sp=0xc055f18 pc=0x807e2f4
+runtime.chanrecv(0xcb080c0, 0xc055fc0, 0x1, 0x0)
+	runtime/chan.go:576 +0x28c fp=0xc055f74 sp=0xc055f2c pc=0x804d18c
+runtime.chanrecv2(0xcb080c0, 0xc055fc0, 0x0)
+	runtime/chan.go:444 +0x1c fp=0xc055f88 sp=0xc055f74 pc=0x804ceec
+arista/sysdb.(*Client).writeSysdbMessages(0xd47c000)
+	arista/sysdb/client.go:637 +0x177 fp=0xc055fe8 sp=0xc055f88 pc=0x85decd7
+runtime.goexit()
+	runtime/asm_386.s:1315 +0x1 fp=0xc055fec sp=0xc055fe8 pc=0x80ae041
+created by arista/sysdb.(*Client).run
+	arista/sysdb/client.go:442 +0x290
+
+goroutine 42 [select]:
+runtime.gopark(0x9089310, 0x0, 0x1809, 0x1)
+	runtime/proc.go:336 +0xe4 fp=0xc90dba8 sp=0xc90db94 pc=0x807e2f4
+runtime.selectgo(0xc90dd3c, 0xc90dcd4, 0x0, 0x0, 0x2, 0x1, 0x0, 0xb75d4401)
+	runtime/select.go:327 +0xcea fp=0xc90dc8c sp=0xc90dba8 pc=0x808e16a
+arista/smash.(*Table).waitForKick(0xd44b320, 0x0, 0xd1ae000, 0x8fe9a8a, 0x4)
+	arista/smash/smash.go:613 +0xe4 fp=0xc90ddec sp=0xc90dc8c pc=0x8c15394
+arista/smash.(*Table).Run(0xd44b320)
+	arista/smash/smash.go:572 +0x578 fp=0xc90dfe8 sp=0xc90ddec pc=0x8c140f8
+runtime.goexit()
+	runtime/asm_386.s:1315 +0x1 fp=0xc90dfec sp=0xc90dfe8 pc=0x80ae041
+created by arista/smash.(*manager).attachTable
+	arista/smash/manager.go:391 +0x99e
+
+goroutine 43 [IO wait]:
+runtime.gopark(0x90892d8, 0xe7c17290, 0x1b02, 0x5)
+	runtime/proc.go:336 +0xe4 fp=0xc7e9d10 sp=0xc7e9cfc pc=0x807e2f4
+runtime.netpollblock(0xe7c17278, 0x72, 0xc8d6000, 0x1000)
+	runtime/netpoll.go:438 +0xa2 fp=0xc7e9d28 sp=0xc7e9d10 pc=0x80772b2
+internal/poll.runtime_pollWait(0xe7c17278, 0x72, 0xffffffff)
+	runtime/netpoll.go:222 +0x4b fp=0xc7e9d3c sp=0xc7e9d28 pc=0x80a9c5b
+internal/poll.(*pollDesc).wait(0x120d4244, 0x72, 0x1000, 0x1000, 0xffffffff)
+	internal/poll/fd_poll_runtime.go:87 +0x37 fp=0xc7e9d50 sp=0xc7e9d3c pc=0x8112297
+internal/poll.(*pollDesc).waitRead(...)
+	internal/poll/fd_poll_runtime.go:92
+internal/poll.(*FD).Read(0x120d4230, 0xc8d6000, 0x1000, 0x1000, 0x0, 0x0, 0x0)
+	internal/poll/fd_unix.go:166 +0x18d fp=0xc7e9d84 sp=0xc7e9d50 pc=0x8112fcd
+net.(*netFD).Read(0x120d4230, 0xc8d6000, 0x1000, 0x1000, 0x9, 0x0, 0x1000000)
+	net/fd_posix.go:55 +0x3f fp=0xc7e9db0 sp=0xc7e9d84 pc=0x816b95f
+net.(*conn).Read(0xd3b40d0, 0xc8d6000, 0x1000, 0x1000, 0x0, 0x0, 0x0)
+	net/net.go:183 +0x67 fp=0xc7e9de0 sp=0xc7e9db0 pc=0x817b9b7
+bufio.(*Reader).fill(0x12424000)
+	bufio/bufio.go:101 +0xeb fp=0xc7e9e04 sp=0xc7e9de0 pc=0x81520ab
+bufio.(*Reader).ReadByte(0x12424000, 0x2a714d8a, 0x2c5, 0x1)
+	bufio/bufio.go:253 +0x2e fp=0xc7e9e10 sp=0xc7e9e04 pc=0x81527ee
+arista/smash.processWriterMsg(0x12424000, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0xec1f938, 0x16)
+	arista/smash/connection_manager.go:501 +0x30 fp=0xc7e9e74 sp=0xc7e9e10 pc=0x8bf22b0
+arista/smash.(*connMgr).readKick.func1(0xec1f8f0)
+	arista/smash/connection_manager.go:354 +0x51 fp=0xc7e9f10 sp=0xc7e9e74 pc=0x8c173b1
+arista/smash.(*connMgr).readKick(0xec1f8f0, 0x0, 0x921132c, 0xd3b40d0, 0x12424000)
+	arista/smash/connection_manager.go:387 +0x54 fp=0xc7e9f34 sp=0xc7e9f10 pc=0x8bf14d4
+arista/smash.(*connMgr).start(0xec1f8f0)
+	arista/smash/connection_manager.go:186 +0x4bb fp=0xc7e9fe8 sp=0xc7e9f34 pc=0x8befeeb
+runtime.goexit()
+	runtime/asm_386.s:1315 +0x1 fp=0xc7e9fec sp=0xc7e9fe8 pc=0x80ae041
+created by arista/smash.(*manager).createOrFindConnMgr
+	arista/smash/manager.go:465 +0x23c
+
+goroutine 44 [select]:
+runtime.gopark(0x9089310, 0x0, 0x1809, 0x1)
+	runtime/proc.go:336 +0xe4 fp=0xc8dfba8 sp=0xc8dfb94 pc=0x807e2f4
+runtime.selectgo(0xc8dfd3c, 0xc8dfcd4, 0x0, 0x0, 0x2, 0xf01a001, 0x0, 0x1)
+	runtime/select.go:327 +0xcea fp=0xc8dfc8c sp=0xc8dfba8 pc=0x808e16a
+arista/smash.(*Table).waitForKick(0xe9ba300, 0x0, 0xd250180, 0x8fe9a8a, 0x4)
+	arista/smash/smash.go:613 +0xe4 fp=0xc8dfdec sp=0xc8dfc8c pc=0x8c15394
+arista/smash.(*Table).Run(0xe9ba300)
+	arista/smash/smash.go:572 +0x578 fp=0xc8dffe8 sp=0xc8dfdec pc=0x8c140f8
+runtime.goexit()
+	runtime/asm_386.s:1315 +0x1 fp=0xc8dffec sp=0xc8dffe8 pc=0x80ae041
+created by arista/smash.(*manager).attachTable
+	arista/smash/manager.go:391 +0x99e
+
+goroutine 45 [IO wait]:
+runtime.gopark(0x90892d8, 0xe7c17030, 0x1b02, 0x5)
+	runtime/proc.go:336 +0xe4 fp=0xc7ead10 sp=0xc7eacfc pc=0x807e2f4
+runtime.netpollblock(0xe7c17018, 0x72, 0xc8d7000, 0x1000)
+	runtime/netpoll.go:438 +0xa2 fp=0xc7ead28 sp=0xc7ead10 pc=0x80772b2
+internal/poll.runtime_pollWait(0xe7c17018, 0x72, 0xffffffff)
+	runtime/netpoll.go:222 +0x4b fp=0xc7ead3c sp=0xc7ead28 pc=0x80a9c5b
+internal/poll.(*pollDesc).wait(0x120d4834, 0x72, 0x1000, 0x1000, 0xffffffff)
+	internal/poll/fd_poll_runtime.go:87 +0x37 fp=0xc7ead50 sp=0xc7ead3c pc=0x8112297
+internal/poll.(*pollDesc).waitRead(...)
+	internal/poll/fd_poll_runtime.go:92
+internal/poll.(*FD).Read(0x120d4820, 0xc8d7000, 0x1000, 0x1000, 0x0, 0x0, 0x0)
+	internal/poll/fd_unix.go:166 +0x18d fp=0xc7ead84 sp=0xc7ead50 pc=0x8112fcd
+net.(*netFD).Read(0x120d4820, 0xc8d7000, 0x1000, 0x1000, 0x9, 0x0, 0x1000000)
+	net/fd_posix.go:55 +0x3f fp=0xc7eadb0 sp=0xc7ead84 pc=0x816b95f
+net.(*conn).Read(0xd3b4508, 0xc8d7000, 0x1000, 0x1000, 0x0, 0x0, 0x0)
+	net/net.go:183 +0x67 fp=0xc7eade0 sp=0xc7eadb0 pc=0x817b9b7
+bufio.(*Reader).fill(0x12424030)
+	bufio/bufio.go:101 +0xeb fp=0xc7eae04 sp=0xc7eade0 pc=0x81520ab
+bufio.(*Reader).ReadByte(0x12424030, 0x21509e, 0x0, 0x1)
+	bufio/bufio.go:253 +0x2e fp=0xc7eae10 sp=0xc7eae04 pc=0x81527ee
+arista/smash.processWriterMsg(0x12424030, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0xec478c8, 0x16)
+	arista/smash/connection_manager.go:501 +0x30 fp=0xc7eae74 sp=0xc7eae10 pc=0x8bf22b0
+arista/smash.(*connMgr).readKick.func1(0xec47880)
+	arista/smash/connection_manager.go:354 +0x51 fp=0xc7eaf10 sp=0xc7eae74 pc=0x8c173b1
+arista/smash.(*connMgr).readKick(0xec47880, 0x0, 0x921132c, 0xd3b4508, 0x12424030)
+	arista/smash/connection_manager.go:387 +0x54 fp=0xc7eaf34 sp=0xc7eaf10 pc=0x8bf14d4
+arista/smash.(*connMgr).start(0xec47880)
+	arista/smash/connection_manager.go:186 +0x4bb fp=0xc7eafe8 sp=0xc7eaf34 pc=0x8befeeb
+runtime.goexit()
+	runtime/asm_386.s:1315 +0x1 fp=0xc7eafec sp=0xc7eafe8 pc=0x80ae041
+created by arista/smash.(*manager).createOrFindConnMgr
+	arista/smash/manager.go:465 +0x23c
+
+goroutine 46 [select]:
+runtime.gopark(0x9089310, 0x0, 0x1809, 0x1)
+	runtime/proc.go:336 +0xe4 fp=0xc8e1ba8 sp=0xc8e1b94 pc=0x807e2f4
+runtime.selectgo(0xc8e1d3c, 0xc8e1cd4, 0x0, 0x0, 0x2, 0x1, 0x0, 0x8112001)
+	runtime/select.go:327 +0xcea fp=0xc8e1c8c sp=0xc8e1ba8 pc=0x808e16a
+arista/smash.(*Table).waitForKick(0xe9ba900, 0x0, 0xd2501e0, 0x8fe9a8a, 0x4)
+	arista/smash/smash.go:613 +0xe4 fp=0xc8e1dec sp=0xc8e1c8c pc=0x8c15394
+arista/smash.(*Table).Run(0xe9ba900)
+	arista/smash/smash.go:572 +0x578 fp=0xc8e1fe8 sp=0xc8e1dec pc=0x8c140f8
+runtime.goexit()
+	runtime/asm_386.s:1315 +0x1 fp=0xc8e1fec sp=0xc8e1fe8 pc=0x80ae041
+created by arista/smash.(*manager).attachTable
+	arista/smash/manager.go:391 +0x99e
+
+goroutine 47 [IO wait]:
+runtime.gopark(0x90892d8, 0xe7c17328, 0x1b02, 0x5)
+	runtime/proc.go:336 +0xe4 fp=0xc84cd10 sp=0xc84ccfc pc=0x807e2f4
+runtime.netpollblock(0xe7c17310, 0x72, 0xf32c000, 0x1000)
+	runtime/netpoll.go:438 +0xa2 fp=0xc84cd28 sp=0xc84cd10 pc=0x80772b2
+internal/poll.runtime_pollWait(0xe7c17310, 0x72, 0xffffffff)
+	runtime/netpoll.go:222 +0x4b fp=0xc84cd3c sp=0xc84cd28 pc=0x80a9c5b
+internal/poll.(*pollDesc).wait(0xec74d34, 0x72, 0x1000, 0x1000, 0xffffffff)
+	internal/poll/fd_poll_runtime.go:87 +0x37 fp=0xc84cd50 sp=0xc84cd3c pc=0x8112297
+internal/poll.(*pollDesc).waitRead(...)
+	internal/poll/fd_poll_runtime.go:92
+internal/poll.(*FD).Read(0xec74d20, 0xf32c000, 0x1000, 0x1000, 0x0, 0x0, 0x0)
+	internal/poll/fd_unix.go:166 +0x18d fp=0xc84cd84 sp=0xc84cd50 pc=0x8112fcd
+net.(*netFD).Read(0xec74d20, 0xf32c000, 0x1000, 0x1000, 0x9, 0x0, 0x1000000)
+	net/fd_posix.go:55 +0x3f fp=0xc84cdb0 sp=0xc84cd84 pc=0x816b95f
+net.(*conn).Read(0xd98eeb0, 0xf32c000, 0x1000, 0x1000, 0x0, 0x0, 0x0)
+	net/net.go:183 +0x67 fp=0xc84cde0 sp=0xc84cdb0 pc=0x817b9b7
+bufio.(*Reader).fill(0xf273830)
+	bufio/bufio.go:101 +0xeb fp=0xc84ce04 sp=0xc84cde0 pc=0x81520ab
+bufio.(*Reader).ReadByte(0xf273830, 0x10a84, 0x0, 0x2)
+	bufio/bufio.go:253 +0x2e fp=0xc84ce10 sp=0xc84ce04 pc=0x81527ee
+arista/smash.processWriterMsg(0xf273830, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0xec9aeb8, 0x18)
+	arista/smash/connection_manager.go:501 +0x30 fp=0xc84ce74 sp=0xc84ce10 pc=0x8bf22b0
+arista/smash.(*connMgr).readKick.func1(0xec9ae70)
+	arista/smash/connection_manager.go:354 +0x51 fp=0xc84cf10 sp=0xc84ce74 pc=0x8c173b1
+arista/smash.(*connMgr).readKick(0xec9ae70, 0x0, 0x921132c, 0xd98eeb0, 0xf273830)
+	arista/smash/connection_manager.go:387 +0x54 fp=0xc84cf34 sp=0xc84cf10 pc=0x8bf14d4
+arista/smash.(*connMgr).start(0xec9ae70)
+	arista/smash/connection_manager.go:186 +0x4bb fp=0xc84cfe8 sp=0xc84cf34 pc=0x8befeeb
+runtime.goexit()
+	runtime/asm_386.s:1315 +0x1 fp=0xc84cfec sp=0xc84cfe8 pc=0x80ae041
+created by arista/smash.(*manager).createOrFindConnMgr
+	arista/smash/manager.go:465 +0x23c
+
+goroutine 48 [select]:
+runtime.gopark(0x9089310, 0x0, 0x1809, 0x1)
+	runtime/proc.go:336 +0xe4 fp=0xc8dbba8 sp=0xc8dbb94 pc=0x807e2f4
+runtime.selectgo(0xc8dbd3c, 0xc8dbcd4, 0x0, 0x0, 0x2, 0x1, 0x0, 0xb8500301)
+	runtime/select.go:327 +0xcea fp=0xc8dbc8c sp=0xc8dbba8 pc=0x808e16a
+arista/smash.(*Table).waitForKick(0xe9baf00, 0x0, 0xd1920c0, 0x8fe9a8a, 0x4)
+	arista/smash/smash.go:613 +0xe4 fp=0xc8dbdec sp=0xc8dbc8c pc=0x8c15394
+arista/smash.(*Table).Run(0xe9baf00)
+	arista/smash/smash.go:572 +0x578 fp=0xc8dbfe8 sp=0xc8dbdec pc=0x8c140f8
+runtime.goexit()
+	runtime/asm_386.s:1315 +0x1 fp=0xc8dbfec sp=0xc8dbfe8 pc=0x80ae041
+created by arista/smash.(*manager).attachTable
+	arista/smash/manager.go:391 +0x99e
+
+goroutine 65 [select]:
+runtime.gopark(0x9089310, 0x0, 0x1809, 0x1)
+	runtime/proc.go:336 +0xe4 fp=0xc8ddba8 sp=0xc8ddb94 pc=0x807e2f4
+runtime.selectgo(0xc8ddd3c, 0xc8ddcd4, 0x0, 0x0, 0x2, 0x1, 0x0, 0xb8553e01)
+	runtime/select.go:327 +0xcea fp=0xc8ddc8c sp=0xc8ddba8 pc=0x808e16a
+arista/smash.(*Table).waitForKick(0xe9bb080, 0x0, 0xf439080, 0x8fe9a8a, 0x4)
+	arista/smash/smash.go:613 +0xe4 fp=0xc8dddec sp=0xc8ddc8c pc=0x8c15394
+arista/smash.(*Table).Run(0xe9bb080)
+	arista/smash/smash.go:572 +0x578 fp=0xc8ddfe8 sp=0xc8dddec pc=0x8c140f8
+runtime.goexit()
+	runtime/asm_386.s:1315 +0x1 fp=0xc8ddfec sp=0xc8ddfe8 pc=0x80ae041
+created by arista/smash.(*manager).attachTable
+	arista/smash/manager.go:391 +0x99e

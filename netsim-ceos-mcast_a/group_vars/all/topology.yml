@@ -1,8 +1,9 @@
-# Ansible inventory created from ['./topology.yml', 'package:topology-defaults.yml']
+# Ansible inventory created from ['topology.yml', 'package:topology-defaults.yml']
 #
 ---
 netlab_provider: clab
 pools:
+  l2only: {}
   lan:
     ipv4: 172.16.0.0/16
     prefix: 24
@@ -17,3 +18,6 @@ pools:
   p2p:
     ipv4: 10.1.0.0/16
     prefix: 30
+  router_id:
+    ipv4: 10.0.0.0/24
+    prefix: 32

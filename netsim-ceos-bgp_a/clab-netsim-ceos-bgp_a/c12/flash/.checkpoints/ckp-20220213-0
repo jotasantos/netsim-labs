@@ -1,0 +1,33 @@
+! The checkpoint file saved at Sun Feb 13 12:01:20 2022 by admin
+! device: c12 (cEOSLab, EOS-4.27.0F-24305004.4270F (engineering build))
+!
+no aaa root
+!
+username admin privilege 15 role network-admin secret sha512 $6$gCt2njYZRxlYRr/2$BbXq9aMRb3nlpgZCCd.5Mbip9ilsHPCDKf89YBEjky6L1/aevg0HDnHY6QaFQ4HtRvny/mxT3OPLOqT2B5J4r1
+!
+transceiver qsfp default-mode 4x10G
+!
+service routing protocols model multi-agent
+!
+hostname c12
+!
+spanning-tree mode mstp
+!
+management api http-commands
+   no shutdown
+!
+management api gnmi
+   transport grpc default
+!
+management api netconf
+   transport ssh default
+!
+interface Ethernet1
+!
+interface Management0
+   ip address 172.20.20.5/24
+   ipv6 address 2001:172:20:20::5/64
+!
+no ip routing
+!
+end

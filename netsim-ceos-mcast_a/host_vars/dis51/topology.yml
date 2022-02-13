@@ -1,60 +1,82 @@
-# Ansible inventory created from ['./topology.yml', 'package:topology-defaults.yml']
+# Ansible inventory created from ['topology.yml', 'package:topology-defaults.yml']
 #
 ---
+af:
+  ipv4: true
 box: ceos:4.25.1F
-hostname: clab-netsim-ceos-mcast_a--dis51
-interface_name: eth%d
-kind: ceos
-links:
-- ifindex: 1
+clab:
+  kind: ceos
+hostname: clab-netsim-ceos-mcast_a-dis51
+interfaces:
+- clab:
+    name: eth1
+  ifindex: 1
   ifname: Ethernet1
   ipv4: 10.1.0.6/30
   linkindex: 2
   name: dis51 -> dis01
   neighbors:
-    dis01:
-      ifname: Ethernet2
-      ipv4: 10.1.0.5/30
-  provider_ifname: eth1
+  - ifname: Ethernet2
+    ipv4: 10.1.0.5/30
+    node: dis01
+  ospf:
+    area: 0.0.0.0
+    network_type: point-to-point
+    passive: false
   remote_id: 5
   remote_ifindex: 2
   type: p2p
-- ifindex: 2
+- clab:
+    name: eth2
+  ifindex: 2
   ifname: Ethernet2
   ipv4: 10.1.0.17/30
   linkindex: 5
   name: dis51 -> sfc51
   neighbors:
-    sfc51:
-      ifname: Ethernet1
-      ipv4: 10.1.0.18/30
-  provider_ifname: eth2
+  - ifname: Ethernet1
+    ipv4: 10.1.0.18/30
+    node: sfc51
+  ospf:
+    area: 0.0.0.0
+    network_type: point-to-point
+    passive: false
   remote_id: 4
   remote_ifindex: 1
   type: p2p
-- ifindex: 3
+- clab:
+    name: eth3
+  ifindex: 3
   ifname: Ethernet3
   ipv4: 10.1.0.21/30
   linkindex: 6
   name: dis51 -> edz
   neighbors:
-    edz:
-      ifname: Ethernet2
-      ipv4: 10.1.0.22/30
-  provider_ifname: eth3
+  - ifname: Ethernet2
+    ipv4: 10.1.0.22/30
+    node: edz
+  ospf:
+    area: 0.0.0.0
+    network_type: point-to-point
+    passive: false
   remote_id: 7
   remote_ifindex: 2
   type: p2p
-- ifindex: 4
+- clab:
+    name: eth4
+  ifindex: 4
   ifname: Ethernet4
   ipv4: 10.1.0.25/30
   linkindex: 7
   name: dis51 -> sfp51
   neighbors:
-    sfp51:
-      ifname: Ethernet1
-      ipv4: 10.1.0.26/30
-  provider_ifname: eth4
+  - ifname: Ethernet1
+    ipv4: 10.1.0.26/30
+    node: sfp51
+  ospf:
+    area: 0.0.0.0
+    network_type: point-to-point
+    passive: false
   remote_id: 2
   remote_ifindex: 1
   type: p2p
@@ -66,3 +88,6 @@ mgmt:
   mac: 08-4F-A9-00-00-06
 module:
 - ospf
+ospf:
+  area: 0.0.0.0
+  router_id: 10.0.0.6

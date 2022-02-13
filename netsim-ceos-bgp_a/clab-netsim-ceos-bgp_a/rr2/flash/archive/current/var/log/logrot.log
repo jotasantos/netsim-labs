@@ -1,0 +1,522 @@
+Sun Feb 13 13:01:01 UTC 2022
+reading config file /etc/logrotate.conf
+including /etc/logrotate.d
+Ignoring syslog.Eos, because of .Eos ending
+reading config file nginx
+reading config file ppp
+reading config file radsecproxy
+reading config file rasdaemon
+reading config file redis
+reading config file snmpd
+reading config file syslog
+reading config file yum
+Allocating hash table for state file, size 10496 B
+
+Handling 21 logs
+
+rotating pattern: /var/log/nginx-*.log  512000 bytes (4 rotations)
+empty log files are not rotated, old logs are removed
+considering log /var/log/nginx-access.log
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/nginx-error.log
+  log does not need rotating (log size is below the 'size' threshold)
+not running postrotate script, since no logs were rotated
+
+rotating pattern: /var/log/ppp/connect-errors  after 1 days (5 rotations)
+empty log files are not rotated, old logs are removed
+considering log /var/log/ppp/connect-errors
+
+rotating pattern: /var/log/radsecproxy/radsecproxy.log  10240 bytes (4 rotations)
+empty log files are not rotated, old logs are removed
+switching euid to 998 and egid to 994
+considering log /var/log/radsecproxy/radsecproxy.log
+  log /var/log/radsecproxy/radsecproxy.log does not exist -- skipping
+not running postrotate script, since no logs were rotated
+switching euid to 0 and egid to 0
+
+rotating pattern: /var/log/mcelog  512000 bytes (4 rotations)
+empty log files are not rotated, old logs are removed
+considering log /var/log/mcelog
+  log does not need rotating (log size is below the 'size' threshold)
+
+rotating pattern: /var/log/redis/*.log  weekly (10 rotations)
+empty log files are not rotated, old logs are removed
+No logs found. Rotation not needed.
+
+rotating pattern: /var/log/snmpd  10240 bytes (4 rotations)
+empty log files are not rotated, old logs are removed
+considering log /var/log/snmpd
+  log /var/log/snmpd does not exist -- skipping
+not running postrotate script, since no logs were rotated
+
+rotating pattern: /var/log/secure /var/log/maillog /var/log/spooler  10240 bytes (4 rotations)
+empty log files are not rotated, old logs are removed
+considering log /var/log/secure
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/maillog
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/spooler
+  log does not need rotating (log size is below the 'size' threshold)
+not running postrotate script, since no logs were rotated
+
+rotating pattern: /var/log/yum.log  yearly (4 rotations)
+empty log files are not rotated, log files >= 30720 are rotated earlier, old logs are removed
+considering log /var/log/yum.log
+  log /var/log/yum.log does not exist -- skipping
+
+rotating pattern: /var/log/wtmp  monthly (1 rotations)
+empty log files are not rotated, old logs are removed
+considering log /var/log/wtmp
+  log does not need rotating (log has been rotated at 2022-2-13 12:0, that is not month ago yet)
+
+rotating pattern: /var/log/btmp  1048576 bytes (1 rotations)
+empty log files are not rotated, old logs are removed
+considering log /var/log/btmp
+  log does not need rotating (log size is below the 'size' threshold)
+
+rotating pattern: /var/log/account.log  2097152 bytes (3 rotations)
+empty log files are not rotated, old logs are removed
+considering log /var/log/account.log
+  log does not need rotating (log size is below the 'size' threshold)
+
+rotating pattern: /var/log/messages /var/log/eos  10485760 bytes (4 rotations)
+empty log files are not rotated, old logs are removed
+considering log /var/log/messages
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/eos
+  log does not need rotating (log size is below the 'size' threshold)
+not running prerotate script, since no logs will be rotated
+not running postrotate script, since no logs were rotated
+
+rotating pattern: /var/log/kernel.debug /var/log/canary.log  2097152 bytes (4 rotations)
+empty log files are not rotated, old logs are removed
+considering log /var/log/kernel.debug
+  log /var/log/kernel.debug does not exist -- skipping
+considering log /var/log/canary.log
+  log /var/log/canary.log does not exist -- skipping
+not running postrotate script, since no logs were rotated
+
+rotating pattern: /var/log/eos-console /var/log/eos-console-sync /var/log/eos-monitor /var/log/eos-monitor-sync  10240 bytes (no old logs will be kept)
+empty log files are not rotated, old logs are removed
+considering log /var/log/eos-console
+  log needs rotating
+considering log /var/log/eos-console-sync
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/eos-monitor
+  log needs rotating
+considering log /var/log/eos-monitor-sync
+  log does not need rotating (log size is below the 'size' threshold)
+rotating log /var/log/eos-console, log->rotateCount is 0
+Converted ' .%Y-%m-%d_%s' -> '.%Y-%m-%d_%s'
+dateext suffix '.2022-02-13_1644757261'
+glob pattern '.[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]_[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]'
+glob finding old rotated logs failed
+rotating log /var/log/eos-monitor, log->rotateCount is 0
+Converted ' .%Y-%m-%d_%s' -> '.%Y-%m-%d_%s'
+dateext suffix '.2022-02-13_1644757261'
+glob pattern '.[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]_[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]'
+glob finding old rotated logs failed
+renaming /var/log/eos-console to /var/log/eos-console.2022-02-13_1644757261
+disposeName will be /var/log/eos-console.2022-02-13_1644757261
+creating new /var/log/eos-console mode = 0640 uid = 0 gid = 88
+renaming /var/log/eos-monitor to /var/log/eos-monitor.2022-02-13_1644757261
+disposeName will be /var/log/eos-monitor.2022-02-13_1644757261
+creating new /var/log/eos-monitor mode = 0640 uid = 0 gid = 88
+running postrotate script
+removing old log /var/log/eos-console.2022-02-13_1644757261
+removing old log /var/log/eos-monitor.2022-02-13_1644757261
+
+rotating pattern: "/var/core/core*.*[^.'gz']?"  10240 bytes (4 rotations)
+empty log files are not rotated, old logs are removed
+considering log /var/core/core*.*[^.'gz']?
+  log /var/core/core*.*[^.'gz']? does not exist -- skipping
+not running postrotate script, since no logs were rotated
+
+rotating pattern: "/var/log/qt/*.qt.[12]"  10240 bytes (no old logs will be kept)
+empty log files are not rotated, old logs are removed
+considering log /var/log/qt/*.qt.[12]
+  log /var/log/qt/*.qt.[12] does not exist -- skipping
+
+rotating pattern: "/var/log/agents/*-[0-9]*[^g][^z]"  512000 bytes (4 rotations)
+empty log files are not rotated, old logs are removed
+considering log /var/log/agents/Aaa-980
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/Acl-984
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/AgentMonitor-963
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/AleL3Agent-979
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/Arp-989
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/Bfd-960
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/Bgp-1158
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/BgpCliHelper-1155
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/CapiApp-973
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/ConfigAgent-660
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/ConnectedRoute-1156
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/Ebra-997
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/Etba-988
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/EventHistoryAgent-948
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/EventMgr-983
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/EvpnrtrEncap-1159
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/FibServices-977
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/Fru-661
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/IgmpSnooping-1000
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/IpRib-1154
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/Ira-966
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/KernelFib-991
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/KernelNetworkInfo-986
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/L2Rib-994
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/LacpTxAgent-957
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/Lag-976
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/Launcher-663
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/LedPolicy-970
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/Lldp-990
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/McastCommon-958
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/McastCommon6-987
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-2183
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-2203
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-2221
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-2241
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-2690
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-2709
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-2729
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-2775
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-3038
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-3058
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-3079
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-3098
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-3284
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-3303
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-3322
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-3341
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-3522
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-3541
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-3561
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-3592
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-3777
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-3797
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-3817
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-3837
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-4019
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-4037
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-4057
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-4077
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-4286
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-4305
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-4325
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-4344
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-4524
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-4556
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-4585
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-4605
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-4789
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-4808
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-4827
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-4846
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-5028
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-5047
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-5066
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-5084
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-5267
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-5286
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-5304
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-5323
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-5506
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-5524
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-5543
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-5562
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-5744
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-5762
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-5781
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-5800
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-6027
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-6045
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-6064
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-6082
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-6261
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-6280
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-6298
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-6317
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-6500
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-6519
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-6537
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-6556
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-6741
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-6759
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-6778
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-6797
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-6976
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-6995
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-7013
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-7032
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-7217
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-7236
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-7254
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-7276
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-7475
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-7494
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-7512
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-7531
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-7741
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-7759
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-7779
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-7798
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-7978
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-7996
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-8015
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-8034
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-8215
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-8234
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-8253
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-8271
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-8456
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-8475
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-8495
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-8513
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-8692
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-8711
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-8730
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-8749
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-8933
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-8952
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-8971
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-8990
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-9172
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-9190
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-9223
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-9242
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-9422
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-9441
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-9460
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-9478
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-961
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/Ospf-2506
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/PhyEthtool-978
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/PortSec-959
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/PowerFuse-996
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/ProcMgr-master-563
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/ProcMgr-worker-573
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/Qos-992
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/ReloadCauseAgent-998
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/RouteInput-1157
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/SharedSecretProfile-999
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/SlabMonitor-662
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/StageMgr-658
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/StandbyCpld-975
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/StaticRoute-1153
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/Stp-985
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/StpTopology-981
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/StpTxRx-974
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/SuperServer-964
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/Sysdb-657
+  log needs rotating
+considering log /var/log/agents/Thermostat-993
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/TopoAgent-965
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/Tunnel-982
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/rbfdu-995
+  log does not need rotating (log size is below the 'size' threshold)
+rotating log /var/log/agents/Sysdb-657, log->rotateCount is 4
+Converted ' .%Y-%m-%d_%s' -> '.%Y-%m-%d_%s'
+dateext suffix '.2022-02-13_1644757261'
+glob pattern '.[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]_[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]'
+renaming /var/log/agents/Sysdb-657.4 to /var/log/agents/Sysdb-657.5 (rotatecount 4, logstart 1, i 4), 
+old log /var/log/agents/Sysdb-657.4 does not exist
+renaming /var/log/agents/Sysdb-657.3 to /var/log/agents/Sysdb-657.4 (rotatecount 4, logstart 1, i 3), 
+old log /var/log/agents/Sysdb-657.3 does not exist
+renaming /var/log/agents/Sysdb-657.2 to /var/log/agents/Sysdb-657.3 (rotatecount 4, logstart 1, i 2), 
+old log /var/log/agents/Sysdb-657.2 does not exist
+renaming /var/log/agents/Sysdb-657.1 to /var/log/agents/Sysdb-657.2 (rotatecount 4, logstart 1, i 1), 
+old log /var/log/agents/Sysdb-657.1 does not exist
+renaming /var/log/agents/Sysdb-657.0 to /var/log/agents/Sysdb-657.1 (rotatecount 4, logstart 1, i 0), 
+old log /var/log/agents/Sysdb-657.0 does not exist
+log /var/log/agents/Sysdb-657.5 doesn't exist -- won't try to dispose of it
+running prerotate script
+renaming /var/log/agents/Sysdb-657 to /var/log/agents/Sysdb-657.1
+running postrotate script
+
+rotating pattern: "/var/log/ribd_dump*.*[^.'gz']?"  10240 bytes (4 rotations)
+empty log files are not rotated, old logs are removed
+considering log /var/log/ribd_dump*.*[^.'gz']?
+  log /var/log/ribd_dump*.*[^.'gz']? does not exist -- skipping
+not running postrotate script, since no logs were rotated
+
+rotating pattern: /var/log/charon.log  3145728 bytes (4 rotations)
+empty log files are not rotated, old logs are removed
+considering log /var/log/charon.log
+  log does not need rotating (log size is below the 'size' threshold)
+
+rotating pattern: /var/log/watchdogd.log  512000 bytes (4 rotations)
+empty log files are not rotated, old logs are removed
+considering log /var/log/watchdogd.log
+  log does not need rotating (log size is below the 'size' threshold)
+
+rotating pattern: /var/log/cron  after 1 days (3 rotations)
+empty log files are not rotated, old logs are removed
+considering log /var/log/cron
+  log does not need rotating (log has been rotated at 2022-2-13 12:0, that is not day ago yet)

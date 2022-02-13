@@ -1,0 +1,23 @@
+===== Output from /usr/bin/ReloadCauseAgent [] (PID=1023) started Feb 13 11:59:32.992320 ===
+EntityManager::doBackoff waiting for remote sysdb version ....ok
+waiting for cell mount ...ok
+2022-02-13 11:59:53.050609  1023 Log                  0 %AGENT-6-INITIALIZED: Agent 'ReloadCauseAgent' initialized; pid=1023
+2022-02-13 11:59:59.753930  1023 ReloadCauseAgent     3 Root::doInit
+2022-02-13 11:59:59.891201  1023 ReloadCauseAgent     3 Root::doMountsComplete
+2022-02-13 11:59:59.891333  1023 ReloadCauseAgent     3 Root::doMountsComplete Initializing state machines 
+2022-02-13 11:59:59.891346  1023 ReloadCauseAgent     5 handleInitialized
+2022-02-13 11:59:59.891370  1023 ReloadCauseAgent     5 handleInitialized Initializing reloadCauseSm, initialized: false file status: false
+2022-02-13 11:59:59.891518  1023 ReloadCause          5 ReloadCauseSm::handleInitialized initialized false file status false
+2022-02-13 11:59:59.891530  1023 ReloadCause          5 ReloadCauseSm::handleReloadCauseHistoryFile
+2022-02-13 11:59:59.891541  1023 ReloadCause          5 handleReloadCauseHistoryFile /mnt/flash/debug/reload_history
+2022-02-13 11:59:59.891560  1023 ReloadCause          3 handleReloadCauseHistoryFile Failed to stat. Probably OK. /mnt/flash/debug/reload_history
+2022-02-13 11:59:59.891745  1023 ReloadCause          5 ReloadCauseSm::initializeInotifyFd
+2022-02-13 11:59:59.891765  1023 ReloadCause          5 handleInotifyFdReadable inotifyFd() returning 
+2022-02-13 11:59:59.891786  1023 ReloadCause          5 new inotify fd inotifyFd() 11 11;In;levelTriggered;0x57ba1ce8
+2022-02-13 11:59:59.891794  1023 ReloadCause          5 ReloadCauseSm::initializeWatchId
+2022-02-13 11:59:59.891820  1023 ReloadCause          5  pathToWatch is: /mnt/flash/debug
+2022-02-13 11:59:59.891836  1023 ReloadCause          5 new inotify watch id is 1
+2022-02-13 11:59:59.891993  1023 ReloadCauseCommon    0 createReloadCauseAgentInitFile opened file /var/tmp/reloadCauseAgentInitStatusFile
+2022-02-13 11:59:59.892005  1023 ReloadCause          5 ReloadCauseSm::handleInitialized done
+2022-02-13 12:09:59.892030  1023 ReloadCauseAgent     3 void ReloadCauseAgent::ReloadCauseAgentSm::handleSyslogDelayClock()
+2022-02-13 12:09:59.892235  1023 Log                  0 %SYS-6-SYSTEM_INFO: Reload Cause 1: Unknown

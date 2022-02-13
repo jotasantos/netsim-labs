@@ -1,0 +1,37 @@
+# Ansible inventory created from ['topology.yml', 'package:topology-defaults.yml']
+#
+---
+af:
+  ipv4: true
+box: arista/veos
+interfaces:
+- ifindex: 1
+  ifname: Ethernet1
+  ipv4: 10.1.0.18/30
+  linkindex: 5
+  name: sfc51 -> dis51
+  neighbors:
+  - ifname: Ethernet2
+    ipv4: 10.1.0.17/30
+    node: dis51
+  remote_id: 6
+  remote_ifindex: 2
+  type: p2p
+- ifindex: 2
+  ifname: Ethernet2
+  ipv4: 10.1.0.42/30
+  linkindex: 11
+  name: sfc51 -> sfc01
+  neighbors:
+  - ifname: Ethernet2
+    ipv4: 10.1.0.41/30
+    node: sfc01
+  remote_id: 3
+  remote_ifindex: 2
+  type: p2p
+loopback:
+  ipv4: 10.0.0.4/32
+mgmt:
+  ifname: Management1
+  ipv4: 192.168.121.104
+  mac: 08-4F-A9-00-00-04

@@ -9,7 +9,6 @@
       copy: src=config//{{inventory_hostname}}/interfaces dest=/etc/network/
     - name: Restore FRR daemons file
       copy: src=daemons dest=/etc/frr/daemons
-
     - name: reload switchd
       service: name=switchd state=restarted
     - name: reload networking
