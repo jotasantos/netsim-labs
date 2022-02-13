@@ -1,4 +1,4 @@
-Sun Feb 13 13:01:01 UTC 2022
+Sun Feb 13 13:15:01 UTC 2022
 reading config file /etc/logrotate.conf
 including /etc/logrotate.d
 Ignoring syslog.Eos, because of .Eos ending
@@ -99,32 +99,14 @@ not running postrotate script, since no logs were rotated
 rotating pattern: /var/log/eos-console /var/log/eos-console-sync /var/log/eos-monitor /var/log/eos-monitor-sync  10240 bytes (no old logs will be kept)
 empty log files are not rotated, old logs are removed
 considering log /var/log/eos-console
-  log needs rotating
+  log does not need rotating (log size is below the 'size' threshold)
 considering log /var/log/eos-console-sync
   log does not need rotating (log size is below the 'size' threshold)
 considering log /var/log/eos-monitor
-  log needs rotating
+  log does not need rotating (log size is below the 'size' threshold)
 considering log /var/log/eos-monitor-sync
   log does not need rotating (log size is below the 'size' threshold)
-rotating log /var/log/eos-console, log->rotateCount is 0
-Converted ' .%Y-%m-%d_%s' -> '.%Y-%m-%d_%s'
-dateext suffix '.2022-02-13_1644757261'
-glob pattern '.[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]_[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]'
-glob finding old rotated logs failed
-rotating log /var/log/eos-monitor, log->rotateCount is 0
-Converted ' .%Y-%m-%d_%s' -> '.%Y-%m-%d_%s'
-dateext suffix '.2022-02-13_1644757261'
-glob pattern '.[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]_[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]'
-glob finding old rotated logs failed
-renaming /var/log/eos-console to /var/log/eos-console.2022-02-13_1644757261
-disposeName will be /var/log/eos-console.2022-02-13_1644757261
-creating new /var/log/eos-console mode = 0640 uid = 0 gid = 88
-renaming /var/log/eos-monitor to /var/log/eos-monitor.2022-02-13_1644757261
-disposeName will be /var/log/eos-monitor.2022-02-13_1644757261
-creating new /var/log/eos-monitor mode = 0640 uid = 0 gid = 88
-running postrotate script
-removing old log /var/log/eos-console.2022-02-13_1644757261
-removing old log /var/log/eos-monitor.2022-02-13_1644757261
+not running postrotate script, since no logs were rotated
 
 rotating pattern: "/var/core/core*.*[^.'gz']?"  10240 bytes (4 rotations)
 empty log files are not rotated, old logs are removed
@@ -200,6 +182,54 @@ considering log /var/log/agents/Lldp-990
 considering log /var/log/agents/McastCommon-958
   log does not need rotating (log size is below the 'size' threshold)
 considering log /var/log/agents/McastCommon6-987
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-10028
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-10046
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-10065
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-10083
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-10270
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-10290
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-10308
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-10327
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-10513
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-10544
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-10563
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-10581
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-10766
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-10786
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-10805
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-10824
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-11007
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-11026
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-11045
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-11064
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-11242
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-11261
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-11280
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-11298
   log does not need rotating (log size is below the 'size' threshold)
 considering log /var/log/agents/OpenConfig-2183
   log does not need rotating (log size is below the 'size' threshold)
@@ -435,6 +465,14 @@ considering log /var/log/agents/OpenConfig-9478
   log does not need rotating (log size is below the 'size' threshold)
 considering log /var/log/agents/OpenConfig-961
   log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-9725
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-9744
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-9762
+  log does not need rotating (log size is below the 'size' threshold)
+considering log /var/log/agents/OpenConfig-9780
+  log does not need rotating (log size is below the 'size' threshold)
 considering log /var/log/agents/Ospf-2506
   log does not need rotating (log size is below the 'size' threshold)
 considering log /var/log/agents/PhyEthtool-978
@@ -472,7 +510,7 @@ considering log /var/log/agents/StpTxRx-974
 considering log /var/log/agents/SuperServer-964
   log does not need rotating (log size is below the 'size' threshold)
 considering log /var/log/agents/Sysdb-657
-  log needs rotating
+  log does not need rotating (log size is below the 'size' threshold)
 considering log /var/log/agents/Thermostat-993
   log does not need rotating (log size is below the 'size' threshold)
 considering log /var/log/agents/TopoAgent-965
@@ -481,24 +519,6 @@ considering log /var/log/agents/Tunnel-982
   log does not need rotating (log size is below the 'size' threshold)
 considering log /var/log/agents/rbfdu-995
   log does not need rotating (log size is below the 'size' threshold)
-rotating log /var/log/agents/Sysdb-657, log->rotateCount is 4
-Converted ' .%Y-%m-%d_%s' -> '.%Y-%m-%d_%s'
-dateext suffix '.2022-02-13_1644757261'
-glob pattern '.[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]_[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]'
-renaming /var/log/agents/Sysdb-657.4 to /var/log/agents/Sysdb-657.5 (rotatecount 4, logstart 1, i 4), 
-old log /var/log/agents/Sysdb-657.4 does not exist
-renaming /var/log/agents/Sysdb-657.3 to /var/log/agents/Sysdb-657.4 (rotatecount 4, logstart 1, i 3), 
-old log /var/log/agents/Sysdb-657.3 does not exist
-renaming /var/log/agents/Sysdb-657.2 to /var/log/agents/Sysdb-657.3 (rotatecount 4, logstart 1, i 2), 
-old log /var/log/agents/Sysdb-657.2 does not exist
-renaming /var/log/agents/Sysdb-657.1 to /var/log/agents/Sysdb-657.2 (rotatecount 4, logstart 1, i 1), 
-old log /var/log/agents/Sysdb-657.1 does not exist
-renaming /var/log/agents/Sysdb-657.0 to /var/log/agents/Sysdb-657.1 (rotatecount 4, logstart 1, i 0), 
-old log /var/log/agents/Sysdb-657.0 does not exist
-log /var/log/agents/Sysdb-657.5 doesn't exist -- won't try to dispose of it
-running prerotate script
-renaming /var/log/agents/Sysdb-657 to /var/log/agents/Sysdb-657.1
-running postrotate script
 
 rotating pattern: "/var/log/ribd_dump*.*[^.'gz']?"  10240 bytes (4 rotations)
 empty log files are not rotated, old logs are removed
