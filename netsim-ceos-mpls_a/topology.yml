@@ -1,0 +1,48 @@
+#
+# Using FRR on containerlab to make it fast
+#
+defaults.device: eos
+provider: clab
+#
+module: [ ospf, bgp ]
+
+bgp.as_list:
+  65000:
+    members: [ rr1, rr2, pe1, pe2]
+    rr: [ rr1, rr2 ]
+  65001:
+    members: [ x1 ]
+
+groups:
+  as65000:
+    node_data:
+      bgp.advertise_loopback: false
+
+nodes:
+  rr1:
+    module: [ ospf, bgp ]
+  rr2:
+    module: [ ospf, bgp ]
+  pe1:
+    module: [ ospf, bgp ]
+  pe2:
+    module: [ ospf, bgp ]
+  x1:
+    module: [ ]
+  c11:
+    module: [ ]
+  c12:
+    module: [ ]
+  c21:
+    module: [ ]
+  cx1:
+    module: [ ]
+  red1:
+    module: [ ]
+  red2:
+    module: [ ]
+  blue1:
+    module: [ ]
+        
+
+links: [ rr1-pe1, rr1-pe2, rr2-pe1, rr2-pe2, rr1-x1, c11-pe1, c12-pe1, c21-pe2, cx1-x1, c11-red1, c12-blue1, c21-red2 ]

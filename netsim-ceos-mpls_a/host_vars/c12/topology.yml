@@ -1,0 +1,45 @@
+# Ansible inventory created from ['./topology.yml', 'package:topology-defaults.yml']
+#
+---
+af:
+  ipv4: true
+box: ceos:4.25.1F
+clab:
+  kind: ceos
+hostname: clab-netsim-ceos-mpls_a-c12
+interfaces:
+- clab:
+    name: eth1
+  ifindex: 1
+  ifname: Ethernet1
+  ipv4: 10.1.0.25/30
+  linkindex: 7
+  name: c12 -> pe1
+  neighbors:
+  - ifname: Ethernet4
+    ipv4: 10.1.0.26/30
+    node: pe1
+  remote_id: 3
+  remote_ifindex: 4
+  type: p2p
+- clab:
+    name: eth2
+  ifindex: 2
+  ifname: Ethernet2
+  ipv4: 10.1.0.42/30
+  linkindex: 11
+  name: c12 -> blue1
+  neighbors:
+  - ifname: Ethernet1
+    ipv4: 10.1.0.41/30
+    node: blue1
+  remote_id: 12
+  remote_ifindex: 1
+  type: p2p
+loopback:
+  ipv4: 10.0.0.7/32
+mgmt:
+  ifname: Management0
+  ipv4: 192.168.121.107
+  mac: 08-4F-A9-00-00-07
+module: []
