@@ -1,0 +1,16 @@
+---
+- name: Arista collect facts
+  gather_facts: False
+  ignore_unreachable: yes
+  hosts: eos
+  
+  tasks:
+    - name: Collect and Save command outputs
+      arista.eos.eos_facts:
+        gather_subset: 
+        - interfaces
+      register: command_output
+
+    - name: Print result
+      debug:
+        msg: "{{ command_output }}"
