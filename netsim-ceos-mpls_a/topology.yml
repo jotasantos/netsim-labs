@@ -2,8 +2,9 @@
 # Using FRR on containerlab to make it fast
 #
 defaults.device: eos
-provider: clab
-#
+  #provider: clab
+provider: libvirt 
+  #
 module: [ ospf, bgp ]
 
 bgp.as_list:
@@ -27,22 +28,25 @@ nodes:
     module: [ ospf, bgp ]
   pe2:
     module: [ ospf, bgp ]
-  x1:
-    module: [ ]
+  p1:
+    module: [ ospf]
+  p2:
+    module: [ ospf]
+  p3:
+    module: [ ospf]
+  p4:
+    module: [ ospf]
+  p5:
+    module: [ ospf]
+
   c11:
     module: [ ]
   c12:
     module: [ ]
   c21:
     module: [ ]
-  cx1:
+  x1:
     module: [ ]
-  red1:
-    module: [ ]
-  red2:
-    module: [ ]
-  blue1:
-    module: [ ]
-        
+ 
 
-links: [ rr1-pe1, rr1-pe2, rr2-pe1, rr2-pe2, rr1-x1, c11-pe1, c12-pe1, c21-pe2, cx1-x1, c11-red1, c12-blue1, c21-red2 ]
+links: [ rr1-pe1, rr1-pe2, rr2-pe1, rr2-pe2, rr1-x1, c11-pe1, c12-pe1, c21-pe2, pe1-p1, p2-p2, p2-p3, p3-pe2, pe1-p4, p4-p5, p5-pe2 ]

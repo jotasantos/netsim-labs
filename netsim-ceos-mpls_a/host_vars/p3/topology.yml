@@ -1,0 +1,52 @@
+# Ansible inventory created from ['topology.yml', 'package:topology-defaults.yml']
+#
+---
+af:
+  ipv4: true
+box: arista/veos
+interfaces:
+- ifindex: 1
+  ifname: Ethernet1
+  ipv4: 10.1.0.42/30
+  linkindex: 11
+  name: p3 -> p2
+  neighbors:
+  - ifname: Ethernet3
+    ipv4: 10.1.0.41/30
+    node: p2
+  ospf:
+    area: 0.0.0.0
+    network_type: point-to-point
+    passive: false
+  remote_id: 6
+  remote_ifindex: 3
+  type: p2p
+- ifindex: 2
+  ifname: Ethernet2
+  ipv4: 10.1.0.45/30
+  linkindex: 12
+  name: p3 -> pe2
+  neighbors:
+  - ifname: Ethernet4
+    ipv4: 10.1.0.46/30
+    node: pe2
+  ospf:
+    area: 0.0.0.0
+    network_type: point-to-point
+    passive: false
+  remote_id: 4
+  remote_ifindex: 4
+  type: p2p
+loopback:
+  ipv4: 10.0.0.7/32
+mgmt:
+  ifname: Management1
+  ipv4: 192.168.121.107
+  mac: 08-4F-A9-00-00-07
+module:
+- ospf
+ospf:
+  af:
+    ipv4: true
+  area: 0.0.0.0
+  router_id: 10.0.0.7

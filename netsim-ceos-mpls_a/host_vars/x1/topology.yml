@@ -1,19 +1,14 @@
-# Ansible inventory created from ['./topology.yml', 'package:topology-defaults.yml']
+# Ansible inventory created from ['topology.yml', 'package:topology-defaults.yml']
 #
 ---
 af:
   ipv4: true
 bgp:
   as: 65001
-  router_id: 10.0.0.5
-box: ceos:4.25.1F
-clab:
-  kind: ceos
-hostname: clab-netsim-ceos-mpls_a-x1
+  router_id: 10.0.0.13
+box: arista/veos
 interfaces:
-- clab:
-    name: eth1
-  ifindex: 1
+- ifindex: 1
   ifname: Ethernet1
   ipv4: 10.1.0.18/30
   linkindex: 5
@@ -26,24 +21,10 @@ interfaces:
   remote_ifindex: 3
   role: external
   type: p2p
-- clab:
-    name: eth2
-  ifindex: 2
-  ifname: Ethernet2
-  ipv4: 10.1.0.34/30
-  linkindex: 9
-  name: x1 -> cx1
-  neighbors:
-  - ifname: Ethernet1
-    ipv4: 10.1.0.33/30
-    node: cx1
-  remote_id: 9
-  remote_ifindex: 1
-  type: p2p
 loopback:
-  ipv4: 10.0.0.5/32
+  ipv4: 10.0.0.13/32
 mgmt:
-  ifname: Management0
-  ipv4: 192.168.121.105
-  mac: 08-4F-A9-00-00-05
+  ifname: Management1
+  ipv4: 192.168.121.113
+  mac: 08-4F-A9-00-00-0D
 module: []
