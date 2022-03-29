@@ -265,6 +265,14 @@ SCRIPT
                   :libvirt__tunnel_port => "10005",
                   :libvirt__iface_name => "vgif_p1_1",
                   auto_config: false
+    p1.vm.network :private_network,
+                  :libvirt__tunnel_type => "udp",
+                  :libvirt__tunnel_local_ip => "127.1.5.2",
+                  :libvirt__tunnel_local_port => "10002",
+                  :libvirt__tunnel_ip => "127.1.6.1",
+                  :libvirt__tunnel_port => "10001",
+                  :libvirt__iface_name => "vgif_p1_2",
+                  auto_config: false
   end
   config.vm.define "p2" do |p2|
     p2.vm.provider :libvirt do |domain|
@@ -290,7 +298,7 @@ SCRIPT
                   :libvirt__tunnel_type => "udp",
                   :libvirt__tunnel_local_ip => "127.1.6.1",
                   :libvirt__tunnel_local_port => "10001",
-                  :libvirt__tunnel_ip => "127.1.6.2",
+                  :libvirt__tunnel_ip => "127.1.5.2",
                   :libvirt__tunnel_port => "10002",
                   :libvirt__iface_name => "vgif_p2_1",
                   auto_config: false
@@ -298,17 +306,9 @@ SCRIPT
                   :libvirt__tunnel_type => "udp",
                   :libvirt__tunnel_local_ip => "127.1.6.2",
                   :libvirt__tunnel_local_port => "10002",
-                  :libvirt__tunnel_ip => "127.1.6.1",
-                  :libvirt__tunnel_port => "10001",
-                  :libvirt__iface_name => "vgif_p2_2",
-                  auto_config: false
-    p2.vm.network :private_network,
-                  :libvirt__tunnel_type => "udp",
-                  :libvirt__tunnel_local_ip => "127.1.6.3",
-                  :libvirt__tunnel_local_port => "10003",
                   :libvirt__tunnel_ip => "127.1.7.1",
                   :libvirt__tunnel_port => "10001",
-                  :libvirt__iface_name => "vgif_p2_3",
+                  :libvirt__iface_name => "vgif_p2_2",
                   auto_config: false
   end
   config.vm.define "p3" do |p3|
@@ -335,8 +335,8 @@ SCRIPT
                   :libvirt__tunnel_type => "udp",
                   :libvirt__tunnel_local_ip => "127.1.7.1",
                   :libvirt__tunnel_local_port => "10001",
-                  :libvirt__tunnel_ip => "127.1.6.3",
-                  :libvirt__tunnel_port => "10003",
+                  :libvirt__tunnel_ip => "127.1.6.2",
+                  :libvirt__tunnel_port => "10002",
                   :libvirt__iface_name => "vgif_p3_1",
                   auto_config: false
     p3.vm.network :private_network,
