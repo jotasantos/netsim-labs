@@ -1,0 +1,146 @@
+! Startup-config last modified at Sat Apr  2 22:17:50 2022 by admin
+! device: pe2 (cEOSLab, EOS-4.27.0F-24305004.4270F (engineering build))
+!
+no aaa root
+!
+username admin privilege 15 role network-admin secret sha512 $6$a4RqPwk/FkCc.4AL$.gHjXIeia7CEUWaCWf/4lli/t8QINprw6jwkDMUBr0uG99v8HebC8/5xEpupCMuWMRdPBtPRY4tBy5ezO7yKs1
+!
+transceiver qsfp default-mode 4x10G
+!
+service routing protocols model multi-agent
+!
+hostname pe2
+ip host c11 10.0.0.10 10.1.0.21
+ip host c12 10.0.0.11 10.1.0.25
+ip host c21 10.0.0.12 10.1.0.29
+ip host p1 10.0.0.5 10.1.0.33 10.1.0.37
+ip host p2 10.0.0.6 10.1.0.38 10.1.0.41
+ip host p3 10.0.0.7 10.1.0.42 10.1.0.45
+ip host p4 10.0.0.8 10.1.0.49 10.1.0.53
+ip host p5 10.0.0.9 10.1.0.54 10.1.0.57
+ip host pe1 10.0.0.3 10.1.0.1 10.1.0.22 10.1.0.26 10.1.0.34 10.1.0.50 10.1.0.9
+ip host rr1 10.0.0.1 10.1.0.17 10.1.0.2 10.1.0.6
+ip host rr2 10.0.0.2 10.1.0.10 10.1.0.14
+ip host x1 10.0.0.13 10.1.0.18
+!
+spanning-tree mode mstp
+!
+vrf instance BLUE
+!
+vrf instance RED
+!
+vrf instance management
+!
+management api http-commands
+   no shutdown
+!
+management api gnmi
+   transport grpc default
+!
+management api netconf
+   transport ssh default
+!
+interface Ethernet1
+   description pe2 -> rr1
+   mac-address 52:dc:ca:fe:04:01
+   no switchport
+   ip address 10.1.0.5/30
+   ip ospf network point-to-point
+   ip ospf area 0.0.0.0
+!
+interface Ethernet2
+   description pe2 -> rr2
+   mac-address 52:dc:ca:fe:04:02
+   no switchport
+   ip address 10.1.0.13/30
+   ip ospf network point-to-point
+   ip ospf area 0.0.0.0
+!
+interface Ethernet3
+   description pe2 -> c21
+   mac-address 52:dc:ca:fe:04:03
+   no switchport
+   ip address 10.1.0.30/30
+   ip ospf network point-to-point
+   ip ospf area 0.0.0.0
+!
+interface Ethernet4
+   description pe2 -> p3
+   mac-address 52:dc:ca:fe:04:04
+   no switchport
+   ip address 10.1.0.46/30
+   ip ospf network point-to-point
+   ip ospf area 0.0.0.0
+!
+interface Ethernet5
+   description pe2 -> p5
+   mac-address 52:dc:ca:fe:04:05
+   no switchport
+   ip address 10.1.0.58/30
+   ip ospf network point-to-point
+   ip ospf area 0.0.0.0
+!
+interface Loopback0
+   ip address 10.0.0.4/32
+   ip ospf area 0.0.0.0
+!
+interface Management0
+   ip address 172.20.20.10/24
+   ipv6 address 2001:172:20:20::a/64
+!
+ip routing
+ip routing vrf BLUE
+ip routing vrf RED
+no ip routing vrf management
+!
+mpls ip
+!
+mpls ldp
+   router-id interface Loopback0
+   no shutdown
+!
+router bgp 65000
+   router-id 10.0.0.3
+   bgp advertise-inactive
+   neighbor 10.0.0.1 remote-as 65000
+   neighbor 10.0.0.1 next-hop-self
+   neighbor 10.0.0.1 update-source Loopback0
+   neighbor 10.0.0.1 description rr1
+   neighbor 10.0.0.1 send-community standard extended
+   neighbor 10.0.0.2 remote-as 65000
+   neighbor 10.0.0.2 next-hop-self
+   neighbor 10.0.0.2 update-source Loopback0
+   neighbor 10.0.0.2 description rr2
+   neighbor 10.0.0.2 send-community standard extended
+   !
+   address-family ipv4
+      neighbor 10.0.0.1 activate
+      neighbor 10.0.0.2 activate
+   !
+   address-family vpn-ipv4
+      neighbor 10.0.0.1 activate
+      neighbor 10.0.0.2 activate
+      neighbor 10.0.0.1 encapsulation mpls next-hop-self source-interface Loopback0
+      neighbor 10.0.0.2 encapsulation mpls next-hop-self source-interface Loopback0
+   !
+   vrf BLUE
+      rd 1.1.1.1:200
+      route-target import vpn-ipv4 200:0
+      route-target export vpn-ipv4 200:0
+      redistribute connected
+      redistribute ospf
+      redistribute static
+   !
+   vrf RED
+      rd 1.1.1.1:100
+      route-target import vpn-ipv4 100:0
+      route-target export vpn-ipv4 100:0
+      redistribute connected
+      redistribute ospf
+      redistribute static
+!
+router ospf 1
+   router-id 10.0.0.4
+   max-lsa 12000
+!
+end
