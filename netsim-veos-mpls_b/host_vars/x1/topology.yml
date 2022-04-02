@@ -1,4 +1,4 @@
-# Ansible inventory created from ['./topology.yml', 'package:topology-defaults.yml']
+# Ansible inventory created from ['topology.yml', 'package:topology-defaults.yml']
 #
 ---
 af:
@@ -6,14 +6,9 @@ af:
 bgp:
   as: 65001
   router_id: 10.0.0.13
-box: ceos:4.27.0F
-clab:
-  kind: ceos
-hostname: clab-netsim-ceos-mpls_a-x1
+box: arista/veos
 interfaces:
-- clab:
-    name: eth1
-  ifindex: 1
+- ifindex: 1
   ifname: Ethernet1
   ipv4: 10.1.0.18/30
   linkindex: 5
@@ -29,7 +24,7 @@ interfaces:
 loopback:
   ipv4: 10.0.0.13/32
 mgmt:
-  ifname: Management0
+  ifname: Management1
   ipv4: 192.168.121.113
   mac: 08-4F-A9-00-00-0D
 module: []

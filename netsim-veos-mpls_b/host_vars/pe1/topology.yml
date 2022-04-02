@@ -1,4 +1,4 @@
-# Ansible inventory created from ['./topology.yml', 'package:topology-defaults.yml']
+# Ansible inventory created from ['topology.yml', 'package:topology-defaults.yml']
 #
 ---
 af:
@@ -26,14 +26,9 @@ bgp:
     type: ibgp
   next_hop_self: true
   router_id: 10.0.0.3
-box: ceos:4.27.0F
-clab:
-  kind: ceos
-hostname: clab-netsim-ceos-mpls_a-pe1
+box: arista/veos
 interfaces:
-- clab:
-    name: eth1
-  ifindex: 1
+- ifindex: 1
   ifname: Ethernet1
   ipv4: 10.1.0.1/30
   linkindex: 1
@@ -49,9 +44,7 @@ interfaces:
   remote_id: 1
   remote_ifindex: 1
   type: p2p
-- clab:
-    name: eth2
-  ifindex: 2
+- ifindex: 2
   ifname: Ethernet2
   ipv4: 10.1.0.9/30
   linkindex: 3
@@ -67,9 +60,7 @@ interfaces:
   remote_id: 2
   remote_ifindex: 1
   type: p2p
-- clab:
-    name: eth3
-  ifindex: 3
+- ifindex: 3
   ifname: Ethernet3
   ipv4: 10.1.0.22/30
   linkindex: 6
@@ -85,9 +76,7 @@ interfaces:
   remote_id: 10
   remote_ifindex: 1
   type: p2p
-- clab:
-    name: eth4
-  ifindex: 4
+- ifindex: 4
   ifname: Ethernet4
   ipv4: 10.1.0.26/30
   linkindex: 7
@@ -103,9 +92,7 @@ interfaces:
   remote_id: 11
   remote_ifindex: 1
   type: p2p
-- clab:
-    name: eth5
-  ifindex: 5
+- ifindex: 5
   ifname: Ethernet5
   ipv4: 10.1.0.34/30
   linkindex: 9
@@ -121,9 +108,7 @@ interfaces:
   remote_id: 5
   remote_ifindex: 1
   type: p2p
-- clab:
-    name: eth6
-  ifindex: 6
+- ifindex: 6
   ifname: Ethernet6
   ipv4: 10.1.0.50/30
   linkindex: 13
@@ -142,12 +127,14 @@ interfaces:
 loopback:
   ipv4: 10.0.0.3/32
 mgmt:
-  ifname: Management0
+  ifname: Management1
   ipv4: 192.168.121.103
   mac: 08-4F-A9-00-00-03
 module:
 - ospf
 - bgp
 ospf:
+  af:
+    ipv4: true
   area: 0.0.0.0
   router_id: 10.0.0.3
