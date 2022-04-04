@@ -1,4 +1,4 @@
-! Startup-config last modified at Sat Apr  2 22:17:50 2022 by admin
+! Startup-config last modified at Mon Apr  4 20:53:13 2022 by admin
 ! device: pe2 (cEOSLab, EOS-4.27.0F-24305004.4270F (engineering build))
 !
 no aaa root
@@ -60,6 +60,7 @@ interface Ethernet3
    description pe2 -> c21
    mac-address 52:dc:ca:fe:04:03
    no switchport
+   vrf RED
    ip address 10.1.0.30/30
    ip ospf network point-to-point
    ip ospf area 0.0.0.0
@@ -85,13 +86,16 @@ interface Loopback0
    ip ospf area 0.0.0.0
 !
 interface Management0
-   ip address 172.20.20.10/24
-   ipv6 address 2001:172:20:20::a/64
+   ip address 172.20.20.14/24
+   ipv6 address 2001:172:20:20::e/64
 !
 ip routing
 ip routing vrf BLUE
 ip routing vrf RED
 no ip routing vrf management
+!
+ip prefix-list SERVICES seq 10 permit 0.0.0.0/0
+ip prefix-list SERVICES seq 20 permit 0.0.0.0/0 le 32
 !
 mpls ip
 !
@@ -99,32 +103,30 @@ mpls ldp
    router-id interface Loopback0
    no shutdown
 !
+route-map BGP-IMPORT-VRF-SERVICES permit 10
+   match extcommunity SERVICES
+   match ip address prefix-list SERVICES
+!
 router bgp 65000
-   router-id 10.0.0.3
+   router-id 10.0.0.4
    bgp advertise-inactive
    neighbor 10.0.0.1 remote-as 65000
    neighbor 10.0.0.1 next-hop-self
    neighbor 10.0.0.1 update-source Loopback0
    neighbor 10.0.0.1 description rr1
    neighbor 10.0.0.1 send-community standard extended
-   neighbor 10.0.0.2 remote-as 65000
-   neighbor 10.0.0.2 next-hop-self
-   neighbor 10.0.0.2 update-source Loopback0
-   neighbor 10.0.0.2 description rr2
-   neighbor 10.0.0.2 send-community standard extended
    !
    address-family ipv4
       neighbor 10.0.0.1 activate
-      neighbor 10.0.0.2 activate
+      no neighbor 10.0.0.2 activate
    !
    address-family vpn-ipv4
       neighbor 10.0.0.1 activate
-      neighbor 10.0.0.2 activate
+      no neighbor 10.0.0.2 activate
       neighbor 10.0.0.1 encapsulation mpls next-hop-self source-interface Loopback0
-      neighbor 10.0.0.2 encapsulation mpls next-hop-self source-interface Loopback0
    !
    vrf BLUE
-      rd 1.1.1.1:200
+      rd 2.2.2.2:200
       route-target import vpn-ipv4 200:0
       route-target export vpn-ipv4 200:0
       redistribute connected
@@ -132,7 +134,7 @@ router bgp 65000
       redistribute static
    !
    vrf RED
-      rd 1.1.1.1:100
+      rd 2.2.2.2:100
       route-target import vpn-ipv4 100:0
       route-target export vpn-ipv4 100:0
       redistribute connected

@@ -1,4 +1,4 @@
-! Startup-config last modified at Sat Apr  2 22:17:58 2022 by admin
+! Startup-config last modified at Mon Apr  4 20:53:53 2022 by admin
 ! device: rr1 (cEOSLab, EOS-4.27.0F-24305004.4270F (engineering build))
 !
 no aaa root
@@ -61,8 +61,8 @@ interface Loopback0
    ip ospf area 0.0.0.0
 !
 interface Management0
-   ip address 172.20.20.12/24
-   ipv6 address 2001:172:20:20::c/64
+   ip address 172.20.20.5/24
+   ipv6 address 2001:172:20:20::5/64
 !
 ip routing
 !
@@ -83,13 +83,11 @@ router bgp 65000
    neighbor 10.0.0.2 description rr2
    neighbor 10.0.0.2 send-community standard extended
    neighbor 10.0.0.3 remote-as 65000
-   neighbor 10.0.0.3 next-hop-self
    neighbor 10.0.0.3 update-source Loopback0
    neighbor 10.0.0.3 description pe1
    neighbor 10.0.0.3 route-reflector-client
    neighbor 10.0.0.3 send-community standard extended
    neighbor 10.0.0.4 remote-as 65000
-   neighbor 10.0.0.4 next-hop-self
    neighbor 10.0.0.4 update-source Loopback0
    neighbor 10.0.0.4 description pe2
    neighbor 10.0.0.4 route-reflector-client
