@@ -1,4 +1,4 @@
-! Startup-config last modified at Mon Apr  4 20:53:50 2022 by admin
+! Startup-config last modified at Tue Apr  5 13:21:04 2022 by admin
 ! device: pe1 (cEOSLab, EOS-4.27.0F-24305004.4270F (engineering build))
 !
 no aaa root
@@ -93,8 +93,8 @@ interface Loopback0
    ip ospf area 0.0.0.0
 !
 interface Management0
-   ip address 172.20.20.4/24
-   ipv6 address 2001:172:20:20::4/64
+   ip address 172.20.20.12/24
+   ipv6 address 2001:172:20:20::c/64
 !
 ip routing
 ip routing vrf BLUE
@@ -151,6 +151,11 @@ router ospf 1
    max-lsa 12000
 !
 router ospf 2 vrf RED
+   router-id 1.1.1.1
+   redistribute bgp
+   max-lsa 12000
+!
+router ospf 3 vrf BLUE
    router-id 1.1.1.1
    max-lsa 12000
 !

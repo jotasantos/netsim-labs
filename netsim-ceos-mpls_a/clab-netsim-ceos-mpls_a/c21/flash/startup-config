@@ -1,4 +1,4 @@
-! Startup-config last modified at Mon Apr  4 18:34:28 2022 by root
+! Startup-config last modified at Tue Apr  5 13:12:08 2022 by admin
 ! device: c21 (cEOSLab, EOS-4.27.0F-24305004.4270F (engineering build))
 !
 no aaa root
@@ -39,14 +39,21 @@ interface Ethernet1
    mac-address 52:dc:ca:fe:12:01
    no switchport
    ip address 10.1.0.29/30
+   ip ospf network point-to-point
+   ip ospf area 0.0.0.0
 !
 interface Loopback0
-   ip address 10.0.0.12/32
+   ip address 21.21.21.21/32
+   ip ospf area 0.0.0.0
 !
 interface Management0
-   ip address 172.20.20.3/24
-   ipv6 address 2001:172:20:20::3/64
+   ip address 172.20.20.8/24
+   ipv6 address 2001:172:20:20::8/64
 !
 ip routing
+!
+router ospf 1
+   router-id 21.21.21.21
+   max-lsa 12000
 !
 end
