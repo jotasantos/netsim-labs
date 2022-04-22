@@ -1,0 +1,57 @@
+name: netsim-ceos-flowpec_a
+
+topology:
+  nodes:
+    rr:
+      kind: ceos
+      image: ceos:4.27.3F
+      env: {'INTFTYPE': 'et'}
+    ixp:
+      kind: ceos
+      image: ceos:4.27.3F
+      env: {'INTFTYPE': 'et'}
+    r1:
+      kind: ceos
+      image: ceos:4.27.3F
+      env: {'INTFTYPE': 'et'}
+    r2:
+      kind: ceos
+      image: ceos:4.27.3F
+      env: {'INTFTYPE': 'et'}
+    r3:
+      kind: ceos
+      image: ceos:4.27.3F
+      env: {'INTFTYPE': 'et'}
+    servera:
+      kind: linux
+      image: alpine
+    serverb:
+      kind: linux
+      image: alpine
+    serverc:
+      kind: linux
+      image: alpine
+
+
+  links:
+  - endpoints:
+    - "rr:et1"
+    - "ixp:et1"
+  - endpoints:
+    - "ixp:et2"
+    - "r1:et1"
+  - endpoints:
+    - "ixp:et3"
+    - "r2:et1"
+  - endpoints:
+    - "ixp:et4"
+    - "r3:et1"
+  - endpoints:
+    - "r1:et2"
+    - "servera:eth1"
+  - endpoints:
+    - "r2:et2"
+    - "serverb:eth1"
+  - endpoints:
+    - "r3:et2"
+    - "serverc:eth1"

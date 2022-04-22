@@ -1,5 +1,5 @@
-! Startup-config last modified at Tue Apr  5 13:21:04 2022 by admin
-! device: pe1 (cEOSLab, EOS-4.27.0F-24305004.4270F (engineering build))
+! Startup-config last modified at Fri Apr  8 20:39:04 2022 by admin
+! device: pe1 (cEOSLab, EOS-4.27.3F-26379303.4273F (engineering build))
 !
 no aaa root
 !
@@ -92,9 +92,14 @@ interface Loopback0
    ip address 10.0.0.3/32
    ip ospf area 0.0.0.0
 !
+interface Loopback1
+   vrf RED
+   ip address 8.8.8.8/32
+   ip ospf area 0.0.0.0
+!
 interface Management0
-   ip address 172.20.20.12/24
-   ipv6 address 2001:172:20:20::c/64
+   ip address 172.20.20.2/24
+   ipv6 address 2001:172:20:20::2/64
 !
 ip routing
 ip routing vrf BLUE
@@ -109,26 +114,15 @@ mpls ldp
 router bgp 65000
    router-id 10.0.0.3
    bgp advertise-inactive
-   neighbor 10.0.0.1 remote-as 65000
-   neighbor 10.0.0.1 next-hop-self
-   neighbor 10.0.0.1 update-source Loopback0
-   neighbor 10.0.0.1 description rr1
-   neighbor 10.0.0.1 send-community standard extended
-   neighbor 10.0.0.2 remote-as 65000
-   neighbor 10.0.0.2 next-hop-self
-   neighbor 10.0.0.2 update-source Loopback0
-   neighbor 10.0.0.2 description rr2
-   neighbor 10.0.0.2 send-community standard extended
-   !
-   address-family ipv4
-      neighbor 10.0.0.1 activate
-      neighbor 10.0.0.2 activate
+   neighbor 10.0.0.4 remote-as 65000
+   neighbor 10.0.0.4 next-hop-self
+   neighbor 10.0.0.4 update-source Loopback0
+   neighbor 10.0.0.4 description pe2
+   neighbor 10.0.0.4 send-community standard extended
    !
    address-family vpn-ipv4
-      neighbor 10.0.0.1 activate
-      neighbor 10.0.0.2 activate
-      neighbor 10.0.0.1 encapsulation mpls next-hop-self source-interface Loopback0
-      neighbor 10.0.0.2 encapsulation mpls next-hop-self source-interface Loopback0
+      neighbor 10.0.0.4 activate
+      neighbor 10.0.0.4 encapsulation mpls next-hop-self source-interface Loopback0
    !
    vrf BLUE
       rd 1.1.1.1:200

@@ -1,0 +1,61 @@
+# Ansible inventory created from ['./topology.yml', 'package:topology-defaults.yml']
+#
+---
+af:
+  ipv4: true
+box: ceos:4.27.3F
+clab:
+  env:
+    INTFTYPE: et
+  kind: ceos
+hostname: clab-netsim-ceos-flowpec_a-r2
+interfaces:
+- clab:
+    name: et1
+  ifindex: 1
+  ifname: Ethernet1
+  ipv4: 10.1.0.10/30
+  linkindex: 3
+  name: r2 -> ixp
+  neighbors:
+  - ifname: Ethernet3
+    ipv4: 10.1.0.9/30
+    node: ixp
+  ospf:
+    area: 0.0.0.0
+    network_type: point-to-point
+    passive: false
+  remote_id: 2
+  remote_ifindex: 3
+  type: p2p
+- bridge: netsim-br_6
+  clab:
+    name: et2
+  ifindex: 2
+  ifname: Ethernet2
+  ipv4: 172.16.1.4/24
+  linkindex: 6
+  name: r2 -> [serverb]
+  neighbors:
+  - ifname: eth1
+    ipv4: 172.16.1.7/24
+    node: serverb
+  ospf:
+    area: 0.0.0.0
+    network_type: point-to-point
+    passive: true
+  role: stub
+  type: lan
+loopback:
+  ipv4: 10.0.0.4/32
+mgmt:
+  ifname: Management0
+  ipv4: 192.168.121.104
+  mac: 08-4F-A9-00-00-04
+module:
+- ospf
+ospf:
+  af:
+    ipv4: true
+  area: 0.0.0.0
+  router_id: 10.0.0.4

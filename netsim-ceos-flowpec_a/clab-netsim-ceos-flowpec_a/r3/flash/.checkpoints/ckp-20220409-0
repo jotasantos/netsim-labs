@@ -1,0 +1,35 @@
+! The checkpoint file saved at Sat Apr  9 14:00:28 2022 by admin
+! device: r3 (cEOSLab, EOS-4.27.3F-26379303.4273F (engineering build))
+!
+no aaa root
+!
+username admin privilege 15 role network-admin secret sha512 $6$X3EGb.vTmX7Ksjz1$AMwvLhP57rrZ4Rp37hn5UC9Gddgl2ItVxUiOv2tMedc4daT4cmCNwGQu5hc3f/ozMMIo/9lIji5s3V4Or.vXV0
+!
+transceiver qsfp default-mode 4x10G
+!
+service routing protocols model multi-agent
+!
+hostname r3
+!
+spanning-tree mode mstp
+!
+management api http-commands
+   no shutdown
+!
+management api gnmi
+   transport grpc default
+!
+management api netconf
+   transport ssh default
+!
+interface Ethernet1
+!
+interface Ethernet2
+!
+interface Management0
+   ip address 172.20.20.7/24
+   ipv6 address 2001:172:20:20::7/64
+!
+no ip routing
+!
+end

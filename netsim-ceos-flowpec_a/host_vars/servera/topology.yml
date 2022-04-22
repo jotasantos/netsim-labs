@@ -1,0 +1,31 @@
+# Ansible inventory created from ['./topology.yml', 'package:topology-defaults.yml']
+#
+---
+af:
+  ipv4: true
+box: alpine
+clab:
+  kind: linux
+hostname: clab-netsim-ceos-flowpec_a-servera
+interfaces:
+- bridge: netsim-br_5
+  gateway:
+    ipv4: 172.16.0.3/24
+  ifindex: 1
+  ifname: eth1
+  ipv4: 172.16.0.6/24
+  linkindex: 5
+  mtu: 1500
+  name: servera -> [r1]
+  neighbors:
+  - ifname: Ethernet2
+    ipv4: 172.16.0.3/24
+    node: r1
+  role: stub
+  type: lan
+mgmt:
+  ifname: eth0
+  ipv4: 192.168.121.106
+  mac: 08-4F-A9-00-00-06
+mtu: 1500
+role: host

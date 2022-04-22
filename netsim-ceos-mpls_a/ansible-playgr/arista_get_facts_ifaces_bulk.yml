@@ -1,0 +1,15 @@
+---
+- name: NAPALM Arista collect facts
+  gather_facts: False
+  ignore_unreachable: yes
+  hosts: EOS
+  
+  tasks:
+    - name: Collect interface facts
+      arista.eos.eos_l3_interfaces:
+        state: gathered
+      register: command_output
+
+    - name: Print result
+      debug:
+        msg: "{{ command_output }}"

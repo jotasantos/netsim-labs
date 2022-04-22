@@ -1,0 +1,20 @@
+---
+- name: Arista collect facts
+  gather_facts: False
+  ignore_unreachable: yes
+  hosts: '{{ target }}'
+  
+  tasks:
+    - name: Collect and print command_output
+      arista.eos.eos_facts:
+        gather_subset: 
+        - interfaces
+      register: command_output
+
+    - name: Print result
+      debug:
+        msg: "{{ command_output.ansible_facts.ansible_net_all_ipv6_addresses }}"
+    - name: Test ansible py module
+      script_eos:
+         name: 'eos'
+
