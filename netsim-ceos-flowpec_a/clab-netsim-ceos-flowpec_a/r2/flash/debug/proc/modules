@@ -1,3 +1,6 @@
+vrf 32768 0 [permanent], Live 0xffffffffc11fc000
+bonding 180224 0 - Live 0xffffffffc11a6000
+tls 102400 1 bonding, Live 0xffffffffc118c000
 dummy 16384 0 - Live 0xffffffffc1150000
 binfmt_misc 24576 0 - Live 0xffffffffc110a000
 xt_HL 16384 0 - Live 0xffffffffc10f5000
@@ -20,12 +23,12 @@ garp 16384 1 8021q, Live 0xffffffffc1076000
 mrp 20480 1 8021q, Live 0xffffffffc106d000
 xt_nat 16384 32 - Live 0xffffffffc0e2f000
 veth 28672 0 - Live 0xffffffffc0e3f000
-vhost_net 32768 1 - Live 0xffffffffc0e36000
+vhost_net 32768 0 - Live 0xffffffffc0e36000
 vhost 53248 1 vhost_net, Live 0xffffffffc0e21000
 vhost_iotlb 16384 1 vhost, Live 0xffffffffc0e1a000
 tap 24576 1 vhost_net, Live 0xffffffffc0e10000
 nf_conntrack_netlink 49152 0 - Live 0xffffffffc1046000
-xfrm_user 36864 11 - Live 0xffffffffc1037000
+xfrm_user 36864 9 - Live 0xffffffffc1037000
 xfrm_algo 16384 1 xfrm_user, Live 0xffffffffc102f000
 xt_addrtype 16384 2 - Live 0xffffffffc101d000
 br_netfilter 28672 0 - Live 0xffffffffc1011000
@@ -64,7 +67,7 @@ snd_pcm 114688 2 snd_intel8x0,snd_ac97_codec, Live 0xffffffffc0c6a000
 snd_seq_midi 20480 0 - Live 0xffffffffc0889000
 snd_seq_midi_event 16384 1 snd_seq_midi, Live 0xffffffffc0b6a000
 snd_rawmidi 36864 1 snd_seq_midi, Live 0xffffffffc0aed000
-kvm_intel 303104 4 - Live 0xffffffffc0ca1000
+kvm_intel 303104 0 - Live 0xffffffffc0ca1000
 snd_seq 73728 2 snd_seq_midi,snd_seq_midi_event, Live 0xffffffffc0dba000
 kvm 864256 1 kvm_intel, Live 0xffffffffc0b88000
 snd_seq_device 16384 3 snd_seq_midi,snd_rawmidi,snd_seq, Live 0xffffffffc0b83000
@@ -81,7 +84,7 @@ snd 94208 11 snd_intel8x0,snd_ac97_codec,snd_pcm,snd_rawmidi,snd_seq,snd_seq_dev
 soundcore 16384 1 snd, Live 0xffffffffc096a000
 mac_hid 16384 0 - Live 0xffffffffc0877000
 vboxguest 45056 0 - Live 0xffffffffc086b000
-sch_fq_codel 20480 5 - Live 0xffffffffc082d000
+sch_fq_codel 20480 4 - Live 0xffffffffc082d000
 vmwgfx 319488 2 - Live 0xffffffffc0a51000
 ttm 69632 1 vmwgfx, Live 0xffffffffc0953000
 drm_kms_helper 253952 1 vmwgfx, Live 0xffffffffc09f3000

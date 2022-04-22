@@ -1,4 +1,4 @@
-! Startup-config last modified at Sat Apr  9 14:55:36 2022 by admin
+! Startup-config last modified at Fri Apr 22 21:31:11 2022 by root
 ! device: r3 (cEOSLab, EOS-4.27.3F-26379303.4273F (engineering build))
 !
 no aaa root
@@ -49,10 +49,9 @@ interface Loopback0
    ip ospf area 0.0.0.0
 !
 interface Management0
-   ip address 172.20.20.7/24
-   ipv6 address 2001:172:20:20::7/64
-   no lldp transmit
-   no lldp receive
+   description test
+   ip address 172.20.20.3/24
+   ipv6 address 2001:172:20:20::3/64
 !
 ip routing
 !

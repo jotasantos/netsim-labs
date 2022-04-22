@@ -3,9 +3,13 @@ name: netsim-ceos-flowpec_a
 topology:
   nodes:
     rr:
-      kind: ceos
-      image: ceos:4.27.3F
-      env: {'INTFTYPE': 'et'}
+      kind: cvx
+      image: networkop/cx:4.3.0
+      runtime: docker
+      binds:
+        - startup-config/interfaces-rr:/etc/network/interfaces
+        - startup-config/frr-rr:/etc/frr/frr.conf
+        - startup-config/daemons-rr:/etc/frr/daemons
     ixp:
       kind: ceos
       image: ceos:4.27.3F
@@ -35,7 +39,7 @@ topology:
 
   links:
   - endpoints:
-    - "rr:et1"
+    - "rr:swp1"
     - "ixp:et1"
   - endpoints:
     - "ixp:et2"
