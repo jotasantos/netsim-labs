@@ -1,0 +1,31 @@
+! The checkpoint file saved at Thu Apr 28 13:16:09 2022 by admin
+! device: r4 (cEOSLab, EOS-4.27.3F-26379303.4273F (engineering build))
+!
+no aaa root
+!
+username admin privilege 15 role network-admin secret sha512 $6$AIFWp0KI7ObfAOSa$0hz6c3ctzaQ83ANQcLi79asHimQrOZIYlEKRImnIPEQbPULzYpQeJCn18WOjGhqj5O6v1sIrokp2OucB.T0Su.
+!
+transceiver qsfp default-mode 4x10G
+!
+service routing protocols model multi-agent
+!
+hostname r4
+!
+spanning-tree mode mstp
+!
+management api http-commands
+   no shutdown
+!
+management api gnmi
+   transport grpc default
+!
+management api netconf
+   transport ssh default
+!
+interface Management0
+   ip address 172.20.20.9/24
+   ipv6 address 2001:172:20:20::9/64
+!
+no ip routing
+!
+end
