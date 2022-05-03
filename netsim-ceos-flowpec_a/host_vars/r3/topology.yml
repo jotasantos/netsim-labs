@@ -1,8 +1,20 @@
-# Ansible inventory created from ['./topology.yml', 'package:topology-defaults.yml']
+# Ansible inventory created from ['topology.yml', 'package:topology-defaults.yml']
 #
 ---
 af:
   ipv4: true
+bgp:
+  advertise_loopback: true
+  as: 65003
+  community:
+    ebgp:
+    - standard
+    ibgp:
+    - standard
+    - extended
+  neighbors: []
+  next_hop_self: true
+  router_id: 10.0.0.5
 box: ceos:4.27.3F
 clab:
   env:
@@ -28,7 +40,9 @@ interfaces:
   remote_id: 2
   remote_ifindex: 4
   type: p2p
-- bridge: netsim-br_7
+- bgp:
+    advertise: true
+  bridge: netsim-br_7
   clab:
     name: et2
   ifindex: 2
@@ -38,7 +52,7 @@ interfaces:
   name: r3 -> [serverc]
   neighbors:
   - ifname: eth1
-    ipv4: 172.16.2.8/24
+    ipv4: 172.16.2.11/24
     node: serverc
   ospf:
     area: 0.0.0.0
@@ -54,6 +68,7 @@ mgmt:
   mac: 08-4F-A9-00-00-05
 module:
 - ospf
+- bgp
 ospf:
   af:
     ipv4: true

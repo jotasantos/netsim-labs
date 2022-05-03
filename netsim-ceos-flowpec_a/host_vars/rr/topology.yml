@@ -1,8 +1,22 @@
-# Ansible inventory created from ['./topology.yml', 'package:topology-defaults.yml']
+# Ansible inventory created from ['topology.yml', 'package:topology-defaults.yml']
 #
 ---
 af:
   ipv4: true
+bgp:
+  advertise_loopback: true
+  as: 65000
+  community:
+    ebgp:
+    - standard
+    ibgp:
+    - standard
+    - extended
+  neighbors: []
+  next_hop_self: true
+  router_id: 10.0.0.1
+  rr: true
+  rr_cluster_id: 10.0.0.1
 box: networkop/cx:4.3.0
 clab:
   kind: cvx
@@ -33,6 +47,7 @@ mgmt:
   mac: 08-4F-A9-00-00-01
 module:
 - ospf
+- bgp
 mtu: 1500
 ospf:
   af:

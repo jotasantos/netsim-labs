@@ -1,4 +1,4 @@
-! Startup-config last modified at Fri Apr 22 21:31:11 2022 by root
+! Startup-config last modified at Mon May  2 12:54:07 2022 by root
 ! device: ixp (cEOSLab, EOS-4.27.3F-26379303.4273F (engineering build))
 !
 no aaa root
@@ -13,10 +13,13 @@ hostname ixp
 ip host r1 10.0.0.3 10.1.0.6 172.16.0.3
 ip host r2 10.0.0.4 10.1.0.10 172.16.1.4
 ip host r3 10.0.0.5 10.1.0.14 172.16.2.5
+ip host r4 10.0.0.6
+ip host r5 10.0.0.7
+ip host r6 10.0.0.8
 ip host rr 10.0.0.1 10.1.0.2
-ip host servera 172.16.0.6
-ip host serverb 172.16.1.7
-ip host serverc 172.16.2.8
+ip host servera 172.16.0.9
+ip host serverb 172.16.1.10
+ip host serverc 172.16.2.11
 !
 spanning-tree mode mstp
 !
@@ -33,23 +36,15 @@ management api netconf
    transport ssh default
 !
 interface Ethernet1
-   description ixp -> rr
-   mac-address 52:dc:ca:fe:02:01
    switchport access vlan 2
 !
 interface Ethernet2
-   description ixp -> r1
-   mac-address 52:dc:ca:fe:02:02
    switchport access vlan 2
 !
 interface Ethernet3
-   description ixp -> r2
-   mac-address 52:dc:ca:fe:02:03
    switchport access vlan 2
 !
 interface Ethernet4
-   description ixp -> r3
-   mac-address 52:dc:ca:fe:02:04
    switchport access vlan 2
 !
 interface Loopback0

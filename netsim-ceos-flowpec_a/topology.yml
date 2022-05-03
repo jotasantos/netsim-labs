@@ -1,13 +1,21 @@
-#
-# Using FRR on containerlab to make it fast
-#
 defaults.device: eos
 defaults.devices.eos.clab.image: ceos:4.27.3F
 defaults.devices.linux.image: alpine
-#provider: clab
-provider: clab 
-  #
-module: [ ospf ]
+provider: clab
+
+module: [ ospf, bgp ]
+
+bgp:
+  as_list:
+    65000:
+      members: [ rr ]
+      rr: [ rr ]
+    65001:
+      members: [ r1, r4, r5, r6 ]
+    65002:
+      members: [ r2 ]
+    65003:
+      members: [ r3 ]
 
 nodes:
   rr:
@@ -16,12 +24,19 @@ nodes:
   r1:
   r2:
   r3:
+  r4:
+  r5:
+  r6:
   ixp:
+    module: [ ]
   servera:
-         device: linux
+    device: linux
+    module: [ ]
   serverb:
-         device: linux
+    device: linux
+    module: [ ]
   serverc:
-         device: linux
+    device: linux
+    module: [ ]
 
 links: [ rr-ixp, r1-ixp, r2-ixp, r3-ixp, r1-servera, r2-serverb, r3-serverc]
