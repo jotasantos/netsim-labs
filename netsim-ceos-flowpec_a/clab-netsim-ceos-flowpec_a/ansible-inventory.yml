@@ -1,0 +1,18 @@
+all:
+  children:
+    ceos:
+      hosts:
+        clab-netsim-ceos-flowpec_a-r1:
+          ansible_host: 172.20.20.2
+        clab-netsim-ceos-flowpec_a-r2:
+          ansible_host: 172.20.20.4
+    cvx:
+      hosts:
+        clab-netsim-ceos-flowpec_a-rr:
+          ansible_host: 172.20.20.6
+    linux:
+      hosts:
+        clab-netsim-ceos-flowpec_a-servera:
+          ansible_host: 172.20.20.3
+        clab-netsim-ceos-flowpec_a-serverb:
+          ansible_host: 172.20.20.5
