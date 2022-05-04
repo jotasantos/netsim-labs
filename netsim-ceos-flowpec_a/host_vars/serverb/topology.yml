@@ -8,25 +8,25 @@ clab:
   kind: linux
 hostname: clab-netsim-ceos-flowpec_a-serverb
 interfaces:
-- bridge: netsim-br_6
+- bridge: netsim-br_4
   gateway:
-    ipv4: 172.16.1.4/24
+    ipv4: 172.16.1.3/24
   ifindex: 1
   ifname: eth1
-  ipv4: 172.16.1.10/24
-  linkindex: 6
+  ipv4: 172.16.1.5/24
+  linkindex: 4
   mtu: 1500
   name: serverb -> [r2]
   neighbors:
   - ifname: Ethernet2
-    ipv4: 172.16.1.4/24
+    ipv4: 172.16.1.3/24
     node: r2
   role: stub
   type: lan
 mgmt:
   ifname: eth0
-  ipv4: 192.168.121.110
-  mac: 08-4F-A9-00-00-0A
+  ipv4: 192.168.121.105
+  mac: 08-4F-A9-00-00-05
 module: []
 mtu: 1500
 role: host

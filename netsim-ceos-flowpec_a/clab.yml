@@ -5,7 +5,6 @@ topology:
     rr:
       kind: cvx
       image: networkop/cx:4.3.0
-      #image: frrouting/frr:latest
       group: as65000
       runtime: docker
       binds:
@@ -13,13 +12,6 @@ topology:
         - startup-config/frr-rr:/etc/frr/frr.conf
         - startup-config/daemons-rr:/etc/frr/daemons
         - startup-config/vtysh.conf:/etc/frr/vtysh.conf
-      exec:
-        - ip link set dev swp1 mtu 1500
-    ixp:
-      kind: ceos
-      image: ceos:4.27.3F
-      group: 
-      env: {'INTFTYPE': 'et'}
     r1:
       kind: ceos
       image: ceos:4.27.3F
@@ -30,26 +22,6 @@ topology:
       image: ceos:4.27.3F
       group: as65002
       env: {'INTFTYPE': 'et'}
-    r3:
-      kind: ceos
-      image: ceos:4.27.3F
-      group: as65003
-      env: {'INTFTYPE': 'et'}
-    r4:
-      kind: ceos
-      image: ceos:4.27.3F
-      group: as65001
-      env: {'INTFTYPE': 'et'}
-    r5:
-      kind: ceos
-      image: ceos:4.27.3F
-      group: as65001
-      env: {'INTFTYPE': 'et'}
-    r6:
-      kind: ceos
-      image: ceos:4.27.3F
-      group: as65001
-      env: {'INTFTYPE': 'et'}
     servera:
       kind: linux
       image: alpine
@@ -58,31 +30,18 @@ topology:
       kind: linux
       image: alpine
       group: 
-    serverc:
-      kind: linux
-      image: alpine
-      group: 
 
 
   links:
   - endpoints:
     - "rr:swp1"
-    - "ixp:et1"
-  - endpoints:
-    - "ixp:et2"
-    - "r1:et1"
-  - endpoints:
-    - "ixp:et3"
     - "r2:et1"
   - endpoints:
-    - "ixp:et4"
-    - "r3:et1"
+    - "rr:swp2"
+    - "r1:et1"
   - endpoints:
     - "r1:et2"
     - "servera:eth1"
   - endpoints:
     - "r2:et2"
     - "serverb:eth1"
-  - endpoints:
-    - "r3:et2"
-    - "serverc:eth1"

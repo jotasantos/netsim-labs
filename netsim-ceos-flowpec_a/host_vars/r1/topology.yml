@@ -14,20 +14,13 @@ bgp:
     - extended
   ipv4: true
   neighbors:
-  - as: 65001
-    ipv4: 10.0.0.6
-    name: r4
-    type: ibgp
-  - as: 65001
-    ipv4: 10.0.0.7
-    name: r5
-    type: ibgp
-  - as: 65001
-    ipv4: 10.0.0.8
-    name: r6
-    type: ibgp
+  - as: 65000
+    ifindex: 1
+    ipv4: 10.1.0.6
+    name: rr
+    type: ebgp
   next_hop_self: true
-  router_id: 10.0.0.3
+  router_id: 10.0.0.2
 box: ceos:4.27.3F
 clab:
   env:
@@ -39,33 +32,30 @@ interfaces:
     name: et1
   ifindex: 1
   ifname: Ethernet1
-  ipv4: 10.1.0.6/30
+  ipv4: 10.1.0.5/30
   linkindex: 2
-  name: r1 -> ixp
+  name: r1 -> rr
   neighbors:
-  - ifname: Ethernet2
-    ipv4: 10.1.0.5/30
-    node: ixp
-  ospf:
-    area: 0.0.0.0
-    network_type: point-to-point
-    passive: false
-  remote_id: 2
+  - ifname: swp2
+    ipv4: 10.1.0.6/30
+    node: rr
+  remote_id: 1
   remote_ifindex: 2
+  role: external
   type: p2p
 - bgp:
     advertise: true
-  bridge: netsim-br_5
+  bridge: netsim-br_3
   clab:
     name: et2
   ifindex: 2
   ifname: Ethernet2
-  ipv4: 172.16.0.3/24
-  linkindex: 5
+  ipv4: 172.16.0.2/24
+  linkindex: 3
   name: r1 -> [servera]
   neighbors:
   - ifname: eth1
-    ipv4: 172.16.0.9/24
+    ipv4: 172.16.0.4/24
     node: servera
   ospf:
     area: 0.0.0.0
@@ -74,11 +64,11 @@ interfaces:
   role: stub
   type: lan
 loopback:
-  ipv4: 10.0.0.3/32
+  ipv4: 10.0.0.2/32
 mgmt:
   ifname: Management0
-  ipv4: 192.168.121.103
-  mac: 08-4F-A9-00-00-03
+  ipv4: 192.168.121.102
+  mac: 08-4F-A9-00-00-02
 module:
 - ospf
 - bgp
@@ -86,4 +76,4 @@ ospf:
   af:
     ipv4: true
   area: 0.0.0.0
-  router_id: 10.0.0.3
+  router_id: 10.0.0.2

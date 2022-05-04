@@ -23,20 +23,12 @@ bgp:
     65000:
       members:
       - rr
-      rr:
-      - rr
     65001:
       members:
       - r1
-      - r4
-      - r5
-      - r6
     65002:
       members:
       - r2
-    65003:
-      members:
-      - r3
   community:
     ebgp:
     - standard
@@ -853,15 +845,9 @@ groups:
   as65001:
     members:
     - r1
-    - r4
-    - r5
-    - r6
   as65002:
     members:
     - r2
-  as65003:
-    members:
-    - r3
 includes:
 - defaults
 - global_defaults
@@ -871,15 +857,15 @@ input:
 links:
 - interfaces:
   - ipv4: 10.1.0.1/30
-    node: ixp
+    node: r2
   - ipv4: 10.1.0.2/30
     node: rr
   left:
     ifname: Ethernet1
     ipv4: 10.1.0.1/30
-    node: ixp
+    node: r2
   linkindex: 1
-  name: ixp - rr
+  name: r2 - rr
   node_count: 2
   prefix:
     ipv4: 10.1.0.0/30
@@ -887,104 +873,54 @@ links:
     ifname: swp1
     ipv4: 10.1.0.2/30
     node: rr
+  role: external
   type: p2p
 - interfaces:
   - ipv4: 10.1.0.5/30
-    node: ixp
-  - ipv4: 10.1.0.6/30
     node: r1
+  - ipv4: 10.1.0.6/30
+    node: rr
   left:
-    ifname: Ethernet2
+    ifname: Ethernet1
     ipv4: 10.1.0.5/30
-    node: ixp
+    node: r1
   linkindex: 2
-  name: ixp - r1
+  name: r1 - rr
   node_count: 2
   prefix:
     ipv4: 10.1.0.4/30
   right:
-    ifname: Ethernet1
+    ifname: swp2
     ipv4: 10.1.0.6/30
-    node: r1
+    node: rr
+  role: external
   type: p2p
-- interfaces:
-  - ipv4: 10.1.0.9/30
-    node: ixp
-  - ipv4: 10.1.0.10/30
-    node: r2
-  left:
-    ifname: Ethernet3
-    ipv4: 10.1.0.9/30
-    node: ixp
-  linkindex: 3
-  name: ixp - r2
-  node_count: 2
-  prefix:
-    ipv4: 10.1.0.8/30
-  right:
-    ifname: Ethernet1
-    ipv4: 10.1.0.10/30
-    node: r2
-  type: p2p
-- interfaces:
-  - ipv4: 10.1.0.13/30
-    node: ixp
-  - ipv4: 10.1.0.14/30
-    node: r3
-  left:
-    ifname: Ethernet4
-    ipv4: 10.1.0.13/30
-    node: ixp
-  linkindex: 4
-  name: ixp - r3
-  node_count: 2
-  prefix:
-    ipv4: 10.1.0.12/30
-  right:
-    ifname: Ethernet1
-    ipv4: 10.1.0.14/30
-    node: r3
-  type: p2p
-- bridge: netsim-br_5
+- bridge: netsim-br_3
   gateway:
-    ipv4: 172.16.0.3/24
+    ipv4: 172.16.0.2/24
   interfaces:
-  - ipv4: 172.16.0.3/24
+  - ipv4: 172.16.0.2/24
     node: r1
-  - ipv4: 172.16.0.9/24
+  - ipv4: 172.16.0.4/24
     node: servera
-  linkindex: 5
+  linkindex: 3
   node_count: 2
   prefix:
     ipv4: 172.16.0.0/24
   role: stub
   type: lan
-- bridge: netsim-br_6
+- bridge: netsim-br_4
   gateway:
-    ipv4: 172.16.1.4/24
+    ipv4: 172.16.1.3/24
   interfaces:
-  - ipv4: 172.16.1.4/24
+  - ipv4: 172.16.1.3/24
     node: r2
-  - ipv4: 172.16.1.10/24
+  - ipv4: 172.16.1.5/24
     node: serverb
-  linkindex: 6
+  linkindex: 4
   node_count: 2
   prefix:
     ipv4: 172.16.1.0/24
-  role: stub
-  type: lan
-- bridge: netsim-br_7
-  gateway:
-    ipv4: 172.16.2.5/24
-  interfaces:
-  - ipv4: 172.16.2.5/24
-    node: r3
-  - ipv4: 172.16.2.11/24
-    node: serverc
-  linkindex: 7
-  node_count: 2
-  prefix:
-    ipv4: 172.16.2.0/24
   role: stub
   type: lan
 module:
@@ -992,82 +928,6 @@ module:
 - bgp
 name: netsim-ceos-flowpec_a
 nodes:
-  ixp:
-    af:
-      ipv4: true
-    box: ceos:4.27.3F
-    clab:
-      env:
-        INTFTYPE: et
-      kind: ceos
-    device: eos
-    hostname: clab-netsim-ceos-flowpec_a-ixp
-    id: 2
-    interfaces:
-    - clab:
-        name: et1
-      ifindex: 1
-      ifname: Ethernet1
-      ipv4: 10.1.0.1/30
-      linkindex: 1
-      name: ixp -> rr
-      neighbors:
-      - ifname: swp1
-        ipv4: 10.1.0.2/30
-        node: rr
-      remote_id: 1
-      remote_ifindex: 1
-      type: p2p
-    - clab:
-        name: et2
-      ifindex: 2
-      ifname: Ethernet2
-      ipv4: 10.1.0.5/30
-      linkindex: 2
-      name: ixp -> r1
-      neighbors:
-      - ifname: Ethernet1
-        ipv4: 10.1.0.6/30
-        node: r1
-      remote_id: 3
-      remote_ifindex: 1
-      type: p2p
-    - clab:
-        name: et3
-      ifindex: 3
-      ifname: Ethernet3
-      ipv4: 10.1.0.9/30
-      linkindex: 3
-      name: ixp -> r2
-      neighbors:
-      - ifname: Ethernet1
-        ipv4: 10.1.0.10/30
-        node: r2
-      remote_id: 4
-      remote_ifindex: 1
-      type: p2p
-    - clab:
-        name: et4
-      ifindex: 4
-      ifname: Ethernet4
-      ipv4: 10.1.0.13/30
-      linkindex: 4
-      name: ixp -> r3
-      neighbors:
-      - ifname: Ethernet1
-        ipv4: 10.1.0.14/30
-        node: r3
-      remote_id: 5
-      remote_ifindex: 1
-      type: p2p
-    loopback:
-      ipv4: 10.0.0.2/32
-    mgmt:
-      ifname: Management0
-      ipv4: 192.168.121.102
-      mac: 08-4F-A9-00-00-02
-    module: []
-    name: ixp
   r1:
     af:
       ipv4: true
@@ -1082,18 +942,91 @@ nodes:
         - extended
       ipv4: true
       neighbors:
-      - as: 65001
-        ipv4: 10.0.0.6
-        name: r4
-        type: ibgp
-      - as: 65001
-        ipv4: 10.0.0.7
-        name: r5
-        type: ibgp
-      - as: 65001
-        ipv4: 10.0.0.8
-        name: r6
-        type: ibgp
+      - as: 65000
+        ifindex: 1
+        ipv4: 10.1.0.6
+        name: rr
+        type: ebgp
+      next_hop_self: true
+      router_id: 10.0.0.2
+    box: ceos:4.27.3F
+    clab:
+      env:
+        INTFTYPE: et
+      kind: ceos
+    device: eos
+    hostname: clab-netsim-ceos-flowpec_a-r1
+    id: 2
+    interfaces:
+    - clab:
+        name: et1
+      ifindex: 1
+      ifname: Ethernet1
+      ipv4: 10.1.0.5/30
+      linkindex: 2
+      name: r1 -> rr
+      neighbors:
+      - ifname: swp2
+        ipv4: 10.1.0.6/30
+        node: rr
+      remote_id: 1
+      remote_ifindex: 2
+      role: external
+      type: p2p
+    - bgp:
+        advertise: true
+      bridge: netsim-br_3
+      clab:
+        name: et2
+      ifindex: 2
+      ifname: Ethernet2
+      ipv4: 172.16.0.2/24
+      linkindex: 3
+      name: r1 -> [servera]
+      neighbors:
+      - ifname: eth1
+        ipv4: 172.16.0.4/24
+        node: servera
+      ospf:
+        area: 0.0.0.0
+        network_type: point-to-point
+        passive: true
+      role: stub
+      type: lan
+    loopback:
+      ipv4: 10.0.0.2/32
+    mgmt:
+      ifname: Management0
+      ipv4: 192.168.121.102
+      mac: 08-4F-A9-00-00-02
+    module:
+    - ospf
+    - bgp
+    name: r1
+    ospf:
+      af:
+        ipv4: true
+      area: 0.0.0.0
+      router_id: 10.0.0.2
+  r2:
+    af:
+      ipv4: true
+    bgp:
+      advertise_loopback: true
+      as: 65002
+      community:
+        ebgp:
+        - standard
+        ibgp:
+        - standard
+        - extended
+      ipv4: true
+      neighbors:
+      - as: 65000
+        ifindex: 1
+        ipv4: 10.1.0.2
+        name: rr
+        type: ebgp
       next_hop_self: true
       router_id: 10.0.0.3
     box: ceos:4.27.3F
@@ -1102,41 +1035,38 @@ nodes:
         INTFTYPE: et
       kind: ceos
     device: eos
-    hostname: clab-netsim-ceos-flowpec_a-r1
+    hostname: clab-netsim-ceos-flowpec_a-r2
     id: 3
     interfaces:
     - clab:
         name: et1
       ifindex: 1
       ifname: Ethernet1
-      ipv4: 10.1.0.6/30
-      linkindex: 2
-      name: r1 -> ixp
+      ipv4: 10.1.0.1/30
+      linkindex: 1
+      name: r2 -> rr
       neighbors:
-      - ifname: Ethernet2
-        ipv4: 10.1.0.5/30
-        node: ixp
-      ospf:
-        area: 0.0.0.0
-        network_type: point-to-point
-        passive: false
-      remote_id: 2
-      remote_ifindex: 2
+      - ifname: swp1
+        ipv4: 10.1.0.2/30
+        node: rr
+      remote_id: 1
+      remote_ifindex: 1
+      role: external
       type: p2p
     - bgp:
         advertise: true
-      bridge: netsim-br_5
+      bridge: netsim-br_4
       clab:
         name: et2
       ifindex: 2
       ifname: Ethernet2
-      ipv4: 172.16.0.3/24
-      linkindex: 5
-      name: r1 -> [servera]
+      ipv4: 172.16.1.3/24
+      linkindex: 4
+      name: r2 -> [serverb]
       neighbors:
       - ifname: eth1
-        ipv4: 172.16.0.9/24
-        node: servera
+        ipv4: 172.16.1.5/24
+        node: serverb
       ospf:
         area: 0.0.0.0
         network_type: point-to-point
@@ -1152,304 +1082,12 @@ nodes:
     module:
     - ospf
     - bgp
-    name: r1
-    ospf:
-      af:
-        ipv4: true
-      area: 0.0.0.0
-      router_id: 10.0.0.3
-  r2:
-    af:
-      ipv4: true
-    bgp:
-      advertise_loopback: true
-      as: 65002
-      community:
-        ebgp:
-        - standard
-        ibgp:
-        - standard
-        - extended
-      neighbors: []
-      next_hop_self: true
-      router_id: 10.0.0.4
-    box: ceos:4.27.3F
-    clab:
-      env:
-        INTFTYPE: et
-      kind: ceos
-    device: eos
-    hostname: clab-netsim-ceos-flowpec_a-r2
-    id: 4
-    interfaces:
-    - clab:
-        name: et1
-      ifindex: 1
-      ifname: Ethernet1
-      ipv4: 10.1.0.10/30
-      linkindex: 3
-      name: r2 -> ixp
-      neighbors:
-      - ifname: Ethernet3
-        ipv4: 10.1.0.9/30
-        node: ixp
-      ospf:
-        area: 0.0.0.0
-        network_type: point-to-point
-        passive: false
-      remote_id: 2
-      remote_ifindex: 3
-      type: p2p
-    - bgp:
-        advertise: true
-      bridge: netsim-br_6
-      clab:
-        name: et2
-      ifindex: 2
-      ifname: Ethernet2
-      ipv4: 172.16.1.4/24
-      linkindex: 6
-      name: r2 -> [serverb]
-      neighbors:
-      - ifname: eth1
-        ipv4: 172.16.1.10/24
-        node: serverb
-      ospf:
-        area: 0.0.0.0
-        network_type: point-to-point
-        passive: true
-      role: stub
-      type: lan
-    loopback:
-      ipv4: 10.0.0.4/32
-    mgmt:
-      ifname: Management0
-      ipv4: 192.168.121.104
-      mac: 08-4F-A9-00-00-04
-    module:
-    - ospf
-    - bgp
     name: r2
     ospf:
       af:
         ipv4: true
       area: 0.0.0.0
-      router_id: 10.0.0.4
-  r3:
-    af:
-      ipv4: true
-    bgp:
-      advertise_loopback: true
-      as: 65003
-      community:
-        ebgp:
-        - standard
-        ibgp:
-        - standard
-        - extended
-      neighbors: []
-      next_hop_self: true
-      router_id: 10.0.0.5
-    box: ceos:4.27.3F
-    clab:
-      env:
-        INTFTYPE: et
-      kind: ceos
-    device: eos
-    hostname: clab-netsim-ceos-flowpec_a-r3
-    id: 5
-    interfaces:
-    - clab:
-        name: et1
-      ifindex: 1
-      ifname: Ethernet1
-      ipv4: 10.1.0.14/30
-      linkindex: 4
-      name: r3 -> ixp
-      neighbors:
-      - ifname: Ethernet4
-        ipv4: 10.1.0.13/30
-        node: ixp
-      ospf:
-        area: 0.0.0.0
-        network_type: point-to-point
-        passive: false
-      remote_id: 2
-      remote_ifindex: 4
-      type: p2p
-    - bgp:
-        advertise: true
-      bridge: netsim-br_7
-      clab:
-        name: et2
-      ifindex: 2
-      ifname: Ethernet2
-      ipv4: 172.16.2.5/24
-      linkindex: 7
-      name: r3 -> [serverc]
-      neighbors:
-      - ifname: eth1
-        ipv4: 172.16.2.11/24
-        node: serverc
-      ospf:
-        area: 0.0.0.0
-        network_type: point-to-point
-        passive: true
-      role: stub
-      type: lan
-    loopback:
-      ipv4: 10.0.0.5/32
-    mgmt:
-      ifname: Management0
-      ipv4: 192.168.121.105
-      mac: 08-4F-A9-00-00-05
-    module:
-    - ospf
-    - bgp
-    name: r3
-    ospf:
-      af:
-        ipv4: true
-      area: 0.0.0.0
-      router_id: 10.0.0.5
-  r4:
-    af:
-      ipv4: true
-    bgp:
-      advertise_loopback: true
-      as: 65001
-      community:
-        ebgp:
-        - standard
-        ibgp:
-        - standard
-        - extended
-      ipv4: true
-      neighbors:
-      - as: 65001
-        ipv4: 10.0.0.3
-        name: r1
-        type: ibgp
-      - as: 65001
-        ipv4: 10.0.0.7
-        name: r5
-        type: ibgp
-      - as: 65001
-        ipv4: 10.0.0.8
-        name: r6
-        type: ibgp
-      next_hop_self: true
-      router_id: 10.0.0.6
-    box: ceos:4.27.3F
-    clab:
-      env:
-        INTFTYPE: et
-      kind: ceos
-    device: eos
-    hostname: clab-netsim-ceos-flowpec_a-r4
-    id: 6
-    interfaces: []
-    loopback:
-      ipv4: 10.0.0.6/32
-    mgmt:
-      ifname: Management0
-      ipv4: 192.168.121.106
-      mac: 08-4F-A9-00-00-06
-    module:
-    - bgp
-    name: r4
-  r5:
-    af:
-      ipv4: true
-    bgp:
-      advertise_loopback: true
-      as: 65001
-      community:
-        ebgp:
-        - standard
-        ibgp:
-        - standard
-        - extended
-      ipv4: true
-      neighbors:
-      - as: 65001
-        ipv4: 10.0.0.3
-        name: r1
-        type: ibgp
-      - as: 65001
-        ipv4: 10.0.0.6
-        name: r4
-        type: ibgp
-      - as: 65001
-        ipv4: 10.0.0.8
-        name: r6
-        type: ibgp
-      next_hop_self: true
-      router_id: 10.0.0.7
-    box: ceos:4.27.3F
-    clab:
-      env:
-        INTFTYPE: et
-      kind: ceos
-    device: eos
-    hostname: clab-netsim-ceos-flowpec_a-r5
-    id: 7
-    interfaces: []
-    loopback:
-      ipv4: 10.0.0.7/32
-    mgmt:
-      ifname: Management0
-      ipv4: 192.168.121.107
-      mac: 08-4F-A9-00-00-07
-    module:
-    - bgp
-    name: r5
-  r6:
-    af:
-      ipv4: true
-    bgp:
-      advertise_loopback: true
-      as: 65001
-      community:
-        ebgp:
-        - standard
-        ibgp:
-        - standard
-        - extended
-      ipv4: true
-      neighbors:
-      - as: 65001
-        ipv4: 10.0.0.3
-        name: r1
-        type: ibgp
-      - as: 65001
-        ipv4: 10.0.0.6
-        name: r4
-        type: ibgp
-      - as: 65001
-        ipv4: 10.0.0.7
-        name: r5
-        type: ibgp
-      next_hop_self: true
-      router_id: 10.0.0.8
-    box: ceos:4.27.3F
-    clab:
-      env:
-        INTFTYPE: et
-      kind: ceos
-    device: eos
-    hostname: clab-netsim-ceos-flowpec_a-r6
-    id: 8
-    interfaces: []
-    loopback:
-      ipv4: 10.0.0.8/32
-    mgmt:
-      ifname: Management0
-      ipv4: 192.168.121.108
-      mac: 08-4F-A9-00-00-08
-    module:
-    - bgp
-    name: r6
+      router_id: 10.0.0.3
   rr:
     af:
       ipv4: true
@@ -1462,11 +1100,20 @@ nodes:
         ibgp:
         - standard
         - extended
-      neighbors: []
+      ipv4: true
+      neighbors:
+      - as: 65002
+        ifindex: 1
+        ipv4: 10.1.0.1
+        name: r2
+        type: ebgp
+      - as: 65001
+        ifindex: 2
+        ipv4: 10.1.0.5
+        name: r1
+        type: ebgp
       next_hop_self: true
       router_id: 10.0.0.1
-      rr: true
-      rr_cluster_id: 10.0.0.1
     box: networkop/cx:4.3.0
     clab:
       kind: cvx
@@ -1479,17 +1126,28 @@ nodes:
       ipv4: 10.1.0.2/30
       linkindex: 1
       mtu: 1500
-      name: rr -> ixp
+      name: rr -> r2
       neighbors:
       - ifname: Ethernet1
         ipv4: 10.1.0.1/30
-        node: ixp
-      ospf:
-        area: 0.0.0.0
-        network_type: point-to-point
-        passive: false
+        node: r2
+      remote_id: 3
+      remote_ifindex: 1
+      role: external
+      type: p2p
+    - ifindex: 2
+      ifname: swp2
+      ipv4: 10.1.0.6/30
+      linkindex: 2
+      mtu: 1500
+      name: rr -> r1
+      neighbors:
+      - ifname: Ethernet1
+        ipv4: 10.1.0.5/30
+        node: r1
       remote_id: 2
       remote_ifindex: 1
+      role: external
       type: p2p
     loopback:
       ipv4: 10.0.0.1/32
@@ -1498,15 +1156,9 @@ nodes:
       ipv4: 192.168.121.101
       mac: 08-4F-A9-00-00-01
     module:
-    - ospf
     - bgp
     mtu: 1500
     name: rr
-    ospf:
-      af:
-        ipv4: true
-      area: 0.0.0.0
-      router_id: 10.0.0.1
     runtime: docker
   servera:
     af:
@@ -1516,27 +1168,27 @@ nodes:
       kind: linux
     device: linux
     hostname: clab-netsim-ceos-flowpec_a-servera
-    id: 9
+    id: 4
     interfaces:
-    - bridge: netsim-br_5
+    - bridge: netsim-br_3
       gateway:
-        ipv4: 172.16.0.3/24
+        ipv4: 172.16.0.2/24
       ifindex: 1
       ifname: eth1
-      ipv4: 172.16.0.9/24
-      linkindex: 5
+      ipv4: 172.16.0.4/24
+      linkindex: 3
       mtu: 1500
       name: servera -> [r1]
       neighbors:
       - ifname: Ethernet2
-        ipv4: 172.16.0.3/24
+        ipv4: 172.16.0.2/24
         node: r1
       role: stub
       type: lan
     mgmt:
       ifname: eth0
-      ipv4: 192.168.121.109
-      mac: 08-4F-A9-00-00-09
+      ipv4: 192.168.121.104
+      mac: 08-4F-A9-00-00-04
     module: []
     mtu: 1500
     name: servera
@@ -1549,63 +1201,30 @@ nodes:
       kind: linux
     device: linux
     hostname: clab-netsim-ceos-flowpec_a-serverb
-    id: 10
+    id: 5
     interfaces:
-    - bridge: netsim-br_6
+    - bridge: netsim-br_4
       gateway:
-        ipv4: 172.16.1.4/24
+        ipv4: 172.16.1.3/24
       ifindex: 1
       ifname: eth1
-      ipv4: 172.16.1.10/24
-      linkindex: 6
+      ipv4: 172.16.1.5/24
+      linkindex: 4
       mtu: 1500
       name: serverb -> [r2]
       neighbors:
       - ifname: Ethernet2
-        ipv4: 172.16.1.4/24
+        ipv4: 172.16.1.3/24
         node: r2
       role: stub
       type: lan
     mgmt:
       ifname: eth0
-      ipv4: 192.168.121.110
-      mac: 08-4F-A9-00-00-0A
+      ipv4: 192.168.121.105
+      mac: 08-4F-A9-00-00-05
     module: []
     mtu: 1500
     name: serverb
-    role: host
-  serverc:
-    af:
-      ipv4: true
-    box: alpine
-    clab:
-      kind: linux
-    device: linux
-    hostname: clab-netsim-ceos-flowpec_a-serverc
-    id: 11
-    interfaces:
-    - bridge: netsim-br_7
-      gateway:
-        ipv4: 172.16.2.5/24
-      ifindex: 1
-      ifname: eth1
-      ipv4: 172.16.2.11/24
-      linkindex: 7
-      mtu: 1500
-      name: serverc -> [r3]
-      neighbors:
-      - ifname: Ethernet2
-        ipv4: 172.16.2.5/24
-        node: r3
-      role: stub
-      type: lan
-    mgmt:
-      ifname: eth0
-      ipv4: 192.168.121.111
-      mac: 08-4F-A9-00-00-0B
-    module: []
-    mtu: 1500
-    name: serverc
     role: host
 ospf:
   area: 0.0.0.0

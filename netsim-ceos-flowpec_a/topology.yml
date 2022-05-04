@@ -9,34 +9,21 @@ bgp:
   as_list:
     65000:
       members: [ rr ]
-      rr: [ rr ]
     65001:
-      members: [ r1, r4, r5, r6 ]
+      members: [ r1 ]
     65002:
       members: [ r2 ]
-    65003:
-      members: [ r3 ]
 
 nodes:
   rr:
          device: cumulus
-  ixp:
   r1:
   r2:
-  r3:
-  r4:
-  r5:
-  r6:
-  ixp:
-    module: [ ]
   servera:
     device: linux
     module: [ ]
   serverb:
     device: linux
     module: [ ]
-  serverc:
-    device: linux
-    module: [ ]
 
-links: [ rr-ixp, r1-ixp, r2-ixp, r3-ixp, r1-servera, r2-serverb, r3-serverc]
+links: [ rr-r2, rr-r1,r1-servera, r2-serverb]
