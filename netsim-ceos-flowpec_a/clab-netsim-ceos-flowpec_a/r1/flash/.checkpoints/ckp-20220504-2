@@ -1,4 +1,4 @@
-! The checkpoint file saved at Wed May  4 14:12:17 2022 by admin
+! The checkpoint file saved at Wed May  4 16:01:43 2022 by admin
 ! device: r1 (cEOSLab, EOS-4.27.3F-26379303.4273F (engineering build))
 !
 no aaa root
@@ -37,24 +37,16 @@ interface Ethernet2
    mac-address 52:dc:ca:fe:02:02
    no switchport
    ip address 172.16.0.2/24
-   ip ospf network point-to-point
-   ip ospf area 0.0.0.0
 !
 interface Loopback0
    ip address 10.0.0.2/32
-   ip ospf area 0.0.0.0
 !
 interface Management0
-   ip address 172.20.20.3/24
-   ipv6 address 2001:172:20:20::3/64
+   ip address 172.20.20.2/24
+   ipv6 address 2001:172:20:20::2/64
    no lldp transmit
    no lldp receive
 !
 ip routing
-!
-router ospf 1
-   router-id 10.0.0.2
-   passive-interface Ethernet2
-   max-lsa 12000
 !
 end

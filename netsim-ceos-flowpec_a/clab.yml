@@ -12,6 +12,8 @@ topology:
         - startup-config/frr-rr:/etc/frr/frr.conf
         - startup-config/daemons-rr:/etc/frr/daemons
         - startup-config/vtysh.conf:/etc/frr/vtysh.conf
+      exec:
+        - ip link set dev swp1 mtu 1500
     r1:
       kind: ceos
       image: ceos:4.27.3F
