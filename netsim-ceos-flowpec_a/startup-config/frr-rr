@@ -1,0 +1,41 @@
+frr version 7.5+cl4.3.0u1
+frr defaults datacenter
+hostname rr
+log syslog informational
+service integrated-vtysh-config
+!
+interface lo
+ ip address 10.0.0.1/32
+ ip ospf 1 area 0.0.0.0
+!
+interface swp1
+ description rr -> r2 [external]
+ ip address 10.1.0.2/30
+ ip ospf 1 area 0.0.0.0
+ ip ospf network point-to-point
+!
+interface swp2
+ description rr -> r1 [external]
+ ip address 10.1.0.6/30
+ ip ospf 1 area 0.0.0.0
+ ip ospf network point-to-point
+!
+router bgp 65000
+ bgp router-id 10.0.0.1
+ no bgp default ipv4-unicast
+ neighbor 10.1.0.1 remote-as 65002
+ neighbor 10.1.0.1 description r2
+ neighbor 10.1.0.5 remote-as 65001
+ neighbor 10.1.0.5 description r1
+ !
+ address-family ipv4 unicast
+  network 10.0.0.1/32
+  neighbor 10.1.0.1 activate
+  neighbor 10.1.0.5 activate
+ exit-address-family
+!
+router ospf 1
+ ospf router-id 10.0.0.1
+!
+line vty
+!

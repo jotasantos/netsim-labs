@@ -1,4 +1,4 @@
-! The checkpoint file saved at Wed May  4 14:16:17 2022 by admin
+! The checkpoint file saved at Wed May  4 16:13:06 2022 by admin
 ! device: r1 (cEOSLab, EOS-4.27.3F-26379303.4273F (engineering build))
 !
 no aaa root
@@ -45,12 +45,24 @@ interface Loopback0
    ip ospf area 0.0.0.0
 !
 interface Management0
-   ip address 172.20.20.2/24
-   ipv6 address 2001:172:20:20::2/64
+   ip address 172.20.20.5/24
+   ipv6 address 2001:172:20:20::5/64
    no lldp transmit
    no lldp receive
 !
 ip routing
+!
+router bgp 65001
+   router-id 10.0.0.2
+   bgp advertise-inactive
+   neighbor 10.1.0.6 remote-as 65000
+   neighbor 10.1.0.6 description rr
+   neighbor 10.1.0.6 send-community standard
+   !
+   address-family ipv4
+      neighbor 10.1.0.6 activate
+      network 10.0.0.2/32
+      network 172.16.0.0/24
 !
 router ospf 1
    router-id 10.0.0.2
