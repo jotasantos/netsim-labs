@@ -21,19 +21,16 @@ bgp:
     type: ebgp
   next_hop_self: true
   router_id: 10.0.0.2
-box: ceos:4.27.3F
+box: networkop/cx:4.3.0
 clab:
-  env:
-    INTFTYPE: et
-  kind: ceos
+  kind: cvx
 hostname: clab-netsim-ceos-flowpec_a-r1
 interfaces:
-- clab:
-    name: et1
-  ifindex: 1
-  ifname: Ethernet1
+- ifindex: 1
+  ifname: swp1
   ipv4: 10.1.0.5/30
   linkindex: 2
+  mtu: 1500
   name: r1 -> rr
   neighbors:
   - ifname: swp2
@@ -46,12 +43,11 @@ interfaces:
 - bgp:
     advertise: true
   bridge: netsim-br_3
-  clab:
-    name: et2
   ifindex: 2
-  ifname: Ethernet2
+  ifname: swp2
   ipv4: 172.16.0.2/24
   linkindex: 3
+  mtu: 1500
   name: r1 -> [servera]
   neighbors:
   - ifname: eth1
@@ -66,14 +62,16 @@ interfaces:
 loopback:
   ipv4: 10.0.0.2/32
 mgmt:
-  ifname: Management0
+  ifname: eth0
   ipv4: 192.168.121.102
   mac: 08-4F-A9-00-00-02
 module:
 - ospf
 - bgp
+mtu: 1500
 ospf:
   af:
     ipv4: true
   area: 0.0.0.0
   router_id: 10.0.0.2
+runtime: docker

@@ -881,7 +881,7 @@ links:
   - ipv4: 10.1.0.6/30
     node: rr
   left:
-    ifname: Ethernet1
+    ifname: swp1
     ipv4: 10.1.0.5/30
     node: r1
   linkindex: 2
@@ -949,21 +949,18 @@ nodes:
         type: ebgp
       next_hop_self: true
       router_id: 10.0.0.2
-    box: ceos:4.27.3F
+    box: networkop/cx:4.3.0
     clab:
-      env:
-        INTFTYPE: et
-      kind: ceos
-    device: eos
+      kind: cvx
+    device: cumulus
     hostname: clab-netsim-ceos-flowpec_a-r1
     id: 2
     interfaces:
-    - clab:
-        name: et1
-      ifindex: 1
-      ifname: Ethernet1
+    - ifindex: 1
+      ifname: swp1
       ipv4: 10.1.0.5/30
       linkindex: 2
+      mtu: 1500
       name: r1 -> rr
       neighbors:
       - ifname: swp2
@@ -976,12 +973,11 @@ nodes:
     - bgp:
         advertise: true
       bridge: netsim-br_3
-      clab:
-        name: et2
       ifindex: 2
-      ifname: Ethernet2
+      ifname: swp2
       ipv4: 172.16.0.2/24
       linkindex: 3
+      mtu: 1500
       name: r1 -> [servera]
       neighbors:
       - ifname: eth1
@@ -996,18 +992,20 @@ nodes:
     loopback:
       ipv4: 10.0.0.2/32
     mgmt:
-      ifname: Management0
+      ifname: eth0
       ipv4: 192.168.121.102
       mac: 08-4F-A9-00-00-02
     module:
     - ospf
     - bgp
+    mtu: 1500
     name: r1
     ospf:
       af:
         ipv4: true
       area: 0.0.0.0
       router_id: 10.0.0.2
+    runtime: docker
   r2:
     af:
       ipv4: true
@@ -1142,7 +1140,7 @@ nodes:
       mtu: 1500
       name: rr -> r1
       neighbors:
-      - ifname: Ethernet1
+      - ifname: swp1
         ipv4: 10.1.0.5/30
         node: r1
       remote_id: 2
@@ -1180,7 +1178,7 @@ nodes:
       mtu: 1500
       name: servera -> [r1]
       neighbors:
-      - ifname: Ethernet2
+      - ifname: swp2
         ipv4: 172.16.0.2/24
         node: r1
       role: stub

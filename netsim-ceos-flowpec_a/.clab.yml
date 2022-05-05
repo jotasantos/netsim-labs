@@ -7,18 +7,11 @@ topology:
       image: networkop/cx:4.3.0
       group: as65000
       runtime: docker
-      binds:
-        - startup-config/interfaces-rr:/etc/network/interfaces
-        - startup-config/frr-rr:/etc/frr/frr.conf
-        - startup-config/daemons-rr:/etc/frr/daemons
-        - startup-config/vtysh.conf:/etc/frr/vtysh.conf
-      exec:
-        - ip link set dev swp1 mtu 1500
     r1:
-      kind: ceos
-      image: ceos:4.27.3F
+      kind: cvx
+      image: networkop/cx:4.3.0
       group: as65001
-      env: {'INTFTYPE': 'et'}
+      runtime: docker
     r2:
       kind: ceos
       image: ceos:4.27.3F
@@ -40,9 +33,9 @@ topology:
     - "r2:et1"
   - endpoints:
     - "rr:swp2"
-    - "r1:et1"
+    - "r1:swp1"
   - endpoints:
-    - "r1:et2"
+    - "r1:swp2"
     - "servera:eth1"
   - endpoints:
     - "r2:et2"
