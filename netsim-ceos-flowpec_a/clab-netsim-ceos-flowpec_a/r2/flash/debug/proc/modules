@@ -1,3 +1,7 @@
+nfnetlink_queue 24576 0 - Live 0xffffffffc1658000
+bluetooth 651264 0 - Live 0xffffffffc1686000
+ecdh_generic 16384 1 bluetooth, Live 0xffffffffc162a000
+ecc 36864 1 ecdh_generic, Live 0xffffffffc161d000
 udp_diag 16384 0 - Live 0xffffffffc13c4000
 raw_diag 16384 0 - Live 0xffffffffc13bc000
 unix_diag 16384 0 - Live 0xffffffffc13b4000
@@ -5,7 +9,7 @@ af_packet_diag 16384 0 - Live 0xffffffffc13ac000
 netlink_diag 16384 0 - Live 0xffffffffc13a7000
 tcp_diag 16384 0 - Live 0xffffffffc139f000
 inet_diag 24576 3 udp_diag,raw_diag,tcp_diag, Live 0xffffffffc1394000
-binfmt_misc 24576 0 - Live 0xffffffffc1223000
+binfmt_misc 24576 1 - Live 0xffffffffc1223000
 xt_HL 16384 0 - Live 0xffffffffc1202000
 xt_u32 16384 0 - Live 0xffffffffc11fd000
 nfnetlink_log 20480 0 - Live 0xffffffffc11ef000
@@ -47,7 +51,7 @@ xt_MASQUERADE 20480 9 - Live 0xffffffffc0e57000
 xt_conntrack 16384 5 - Live 0xffffffffc0e4f000
 ipt_REJECT 16384 4 - Live 0xffffffffc0e3f000
 nf_reject_ipv4 16384 1 ipt_REJECT, Live 0xffffffffc0d39000
-xt_tcpudp 20480 38 - Live 0xffffffffc0e28000
+xt_tcpudp 20480 39 - Live 0xffffffffc0e28000
 ip6table_mangle 16384 1 - Live 0xffffffffc0e23000
 ip6table_nat 16384 1 - Live 0xffffffffc0d49000
 iptable_mangle 16384 1 - Live 0xffffffffc0e45000
@@ -57,7 +61,7 @@ nf_conntrack 147456 6 xt_CT,xt_nat,nf_conntrack_netlink,xt_MASQUERADE,xt_conntra
 nf_defrag_ipv6 24576 1 nf_conntrack, Live 0xffffffffc0d91000
 nf_defrag_ipv4 16384 1 nf_conntrack, Live 0xffffffffc0d3f000
 nf_tables 212992 0 - Live 0xffffffffc0dc6000
-nfnetlink 20480 4 nfnetlink_log,nf_conntrack_netlink,nf_tables, Live 0xffffffffc0dbc000
+nfnetlink 20480 5 nfnetlink_queue,nfnetlink_log,nf_conntrack_netlink,nf_tables, Live 0xffffffffc0dbc000
 ip6table_filter 16384 1 - Live 0xffffffffc0db4000
 ip6_tables 32768 4 ip6table_raw,ip6table_mangle,ip6table_nat,ip6table_filter, Live 0xffffffffc0da7000
 iptable_filter 16384 1 - Live 0xffffffffc0d9f000
