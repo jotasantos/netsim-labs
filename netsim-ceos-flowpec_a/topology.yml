@@ -13,13 +13,16 @@ bgp:
       members: [ r1 ]
     65002:
       members: [ r2 ]
+    65003:
+      members: [ r3 ]
+
 
 nodes:
   rr:
          device: cumulus
   r1:
-         device: cumulus
   r2:
+  r3:
   servera:
     device: linux
     module: [ ]
@@ -27,4 +30,4 @@ nodes:
     device: linux
     module: [ ]
 
-links: [ rr-r2, rr-r1, r1-servera, r2-serverb]
+links: [ r3-r1, r3-r2, r3-rr, r1-servera, r2-serverb]

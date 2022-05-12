@@ -17,7 +17,7 @@ In our case, the containers don't have internet access, so we just download the 
 ## Topology and how it works
 servera -- r1 -- rr -- r2 -- serverb
 + servera and serverb are linux alpine instances
-+ r1 is cEOS
++ r2 is cEOS
 + rr and r2 are FRR instances
 
 

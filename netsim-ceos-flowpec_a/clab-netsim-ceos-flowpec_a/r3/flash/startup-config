@@ -1,0 +1,96 @@
+! Startup-config last modified at Thu May 12 14:37:57 2022 by admin
+! device: r3 (cEOSLab, EOS-4.27.3F-26379303.4273F (engineering build))
+!
+no aaa root
+!
+username admin privilege 15 role network-admin secret sha512 $6$UEvwPuC7RonM5rM1$P2Kwigi1CyS/Hy5EYbKm6hiMlC2fb4hVcDSwiHoHwSqO1GWbLse.U/nm0Vpp/EUZCoXey0zdt/jjKdBaeKujb.
+!
+transceiver qsfp default-mode 4x10G
+!
+service routing protocols model multi-agent
+!
+hostname r3
+ip host r1 10.0.0.2 10.1.0.1 172.16.0.2
+ip host r2 10.0.0.3 10.1.0.5 172.16.1.3
+ip host rr 10.0.0.1 10.1.0.10
+ip host servera 172.16.0.5
+ip host serverb 172.16.1.6
+!
+spanning-tree mode mstp
+!
+management api http-commands
+   no shutdown
+!
+management api gnmi
+   transport grpc default
+!
+management api netconf
+   transport ssh default
+!
+interface Ethernet1
+   description r3 -> r1 [external]
+   mac-address 52:dc:ca:fe:04:01
+   no switchport
+   flow-spec ipv4 ipv6
+   ip address 10.1.0.2/30
+   ip ospf network point-to-point
+   ip ospf area 0.0.0.0
+!
+interface Ethernet2
+   description r3 -> r2 [external]
+   mac-address 52:dc:ca:fe:04:02
+   no switchport
+   ip address 10.1.0.6/30
+!
+interface Ethernet3
+   description r3 -> rr [external]
+   mac-address 52:dc:ca:fe:04:03
+   no switchport
+   ip address 10.1.0.9/30
+!
+interface Loopback0
+   ip address 10.0.0.4/32
+   ip ospf area 0.0.0.0
+!
+interface Management0
+   ip address 172.20.20.7/24
+   ipv6 address 2001:172:20:20::7/64
+   no lldp transmit
+   no lldp receive
+!
+ip routing
+!
+router bgp 65003
+   router-id 10.0.0.4
+   bgp advertise-inactive
+   neighbor 10.1.0.1 remote-as 65001
+   neighbor 10.1.0.1 description r1
+   neighbor 10.1.0.1 send-community standard
+   neighbor 10.1.0.2 remote-as 65000
+   neighbor 10.1.0.2 transport remote-port 1179
+   neighbor 10.1.0.2 description rr
+   neighbor 10.1.0.2 send-community extended
+   neighbor 10.1.0.2 maximum-routes 12000
+   neighbor 10.1.0.5 remote-as 65002
+   neighbor 10.1.0.5 description r2
+   neighbor 10.1.0.5 send-community standard
+   neighbor 10.1.0.10 remote-as 65000
+   neighbor 10.1.0.10 description rr
+   neighbor 10.1.0.10 send-community standard
+   redistribute connected
+   !
+   address-family flow-spec ipv4
+      no neighbor 10.1.0.2 activate
+      neighbor 10.1.0.10 activate
+   !
+   address-family ipv4
+      neighbor 10.1.0.1 activate
+      neighbor 10.1.0.5 activate
+      no neighbor 10.1.0.10 activate
+      network 10.0.0.4/32
+!
+router ospf 1
+   router-id 10.0.0.4
+   max-lsa 12000
+!
+end

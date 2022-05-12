@@ -8,6 +8,7 @@ from time import sleep
 messages = [
     'announce route 100.10.0.0/24 next-hop self',
     'announce route 200.20.0.0/24 next-hop self',
+    'announce flow route { match { source 172.16.1.3/32; } then { discard; } }',
 ]
 
 sleep(5)

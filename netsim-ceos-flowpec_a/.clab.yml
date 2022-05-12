@@ -9,47 +9,51 @@ topology:
       runtime: docker
       exec:
         - ip link set dev swp1 mtu 1500
-        - ip link set dev swp2 mtu 1500
       binds:
         - rr-exabgp-files/exabgp.conf:/exabgp.conf
         - rr-exabgp-files/routes.py:/routes.py
-
     r1:
-      kind: cvx
-      image: networkop/cx:4.3.0
+      kind: ceos
+      image: ceos:4.27.3F
       group: as65001
-      runtime: docker
+      env: {'INTFTYPE': 'et'}
       exec:
         - ip link set dev swp1 mtu 1500
-        - ip link set dev swp2 mtu 1500
     r2:
       kind: ceos
       image: ceos:4.27.3F
       group: as65002
+      env: {'INTFTYPE': 'et'}
+    r3:
+      kind: ceos
+      image: ceos:4.27.3F
+      group: as65003
       env: {'INTFTYPE': 'et'}
     servera:
       kind: linux
       image: alpine
       group:
       exec:
-        - ip link set dev eth1 mtu 1500
+        - ip link set dev eth1 mtu 1500 
     serverb:
       kind: linux
       image: alpine
-      group:
-      exec: 
+      group: 
+      exec:
         - ip link set dev eth1 mtu 1500
-
-
+        - ip address add 172.16.1.2/24 dev eth1
   links:
   - endpoints:
-    - "rr:swp1"
+    - "r1:et1"
+    - "r3:et1"
+  - endpoints:
     - "r2:et1"
+    - "r3:et2"
   - endpoints:
-    - "rr:swp2"
-    - "r1:swp1"
+    - "rr:swp1"
+    - "r3:et3"
   - endpoints:
-    - "r1:swp2"
+    - "r1:et2"
     - "servera:eth1"
   - endpoints:
     - "r2:et2"

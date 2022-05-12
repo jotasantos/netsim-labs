@@ -1,15 +1,15 @@
-! The checkpoint file saved at Wed May  4 16:06:31 2022 by admin
-! device: r2 (cEOSLab, EOS-4.27.3F-26379303.4273F (engineering build))
+! The checkpoint file saved at Wed May 11 16:46:25 2022 by admin
+! device: r3 (cEOSLab, EOS-4.27.3F-26379303.4273F (engineering build))
 !
 no aaa root
 !
-username admin privilege 15 role network-admin secret sha512 $6$YxRI0.6KRbVAFGEh$Hs14yglV/mGpwkTCnXnuCCT.e.3VOkeKqJzkLRLTUwqatgbquldYaNU7YpIPTMa7fUTBveBwfNivlWXc1F12u/
+username admin privilege 15 role network-admin secret sha512 $6$UEvwPuC7RonM5rM1$P2Kwigi1CyS/Hy5EYbKm6hiMlC2fb4hVcDSwiHoHwSqO1GWbLse.U/nm0Vpp/EUZCoXey0zdt/jjKdBaeKujb.
 !
 transceiver qsfp default-mode 4x10G
 !
 service routing protocols model multi-agent
 !
-hostname r2
+hostname r3
 !
 spanning-tree mode mstp
 !
@@ -23,8 +23,6 @@ management api netconf
    transport ssh default
 !
 interface Ethernet1
-!
-interface Ethernet2
 !
 interface Management0
    ip address 172.20.20.6/24
