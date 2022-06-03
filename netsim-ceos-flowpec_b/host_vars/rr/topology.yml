@@ -1,0 +1,71 @@
+# Ansible inventory created from ['topology.yml', 'package:topology-defaults.yml']
+#
+---
+af:
+  ipv4: true
+bgp:
+  advertise_loopback: true
+  as: 65000
+  community:
+    ebgp:
+    - standard
+    ibgp:
+    - standard
+    - extended
+  ipv4: true
+  neighbors:
+  - as: 65002
+    ifindex: 1
+    ipv4: 10.1.0.1
+    name: r2
+    type: ebgp
+  - as: 65001
+    ifindex: 2
+    ipv4: 10.1.0.5
+    name: r1
+    type: ebgp
+  next_hop_self: true
+  router_id: 10.0.0.1
+box: networkop/cx:4.3.0
+clab:
+  kind: cvx
+hostname: clab-netsim-ceos-flowpec_b-rr
+interfaces:
+- ifindex: 1
+  ifname: swp1
+  ipv4: 10.1.0.2/30
+  linkindex: 1
+  mtu: 1500
+  name: rr -> r2
+  neighbors:
+  - ifname: Ethernet1
+    ipv4: 10.1.0.1/30
+    node: r2
+  remote_id: 3
+  remote_ifindex: 1
+  role: external
+  type: p2p
+- ifindex: 2
+  ifname: swp2
+  ipv4: 10.1.0.6/30
+  linkindex: 2
+  mtu: 1500
+  name: rr -> r1
+  neighbors:
+  - ifname: swp1
+    ipv4: 10.1.0.5/30
+    node: r1
+  remote_id: 2
+  remote_ifindex: 1
+  role: external
+  type: p2p
+loopback:
+  ipv4: 10.0.0.1/32
+mgmt:
+  ifname: eth0
+  ipv4: 192.168.121.101
+  mac: 08-4F-A9-00-00-01
+module:
+- bgp
+mtu: 1500
+runtime: docker
