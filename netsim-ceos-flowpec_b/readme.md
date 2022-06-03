@@ -7,7 +7,8 @@ It's based on containerlab, therefore we need to load exabgp manually. The rest 
 In our case, the containers don't have internet access, so we just download the exabgp blob and transfer it to the FRR intance/s:
 
     # In the host
-    netlab initial
+    containerlab deploy -t clab.yml    # to start the lab
+    netlab initial    # to load basic ip configuration
     wget -O 4.0.0.tar.gz https://github.com/Exa-Networks/exabgp/archive/4.0.0.tar.gz
     docker ps -q | xargs -n 1 docker inspect --format '{{ .Name }} {{range .NetworkSettings.Networks}} {{.IPAddress}}{{end}}' | sed 's#^/##';   # this is to find the IP of the FRR container/s
     scp 4.0.0.tar.gz root@<container-mgmt-IP>:/
