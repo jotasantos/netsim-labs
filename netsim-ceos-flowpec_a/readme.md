@@ -36,4 +36,14 @@ And we are able to see the routes (defined in the python script in 'rr'), inject
      B E      200.20.0.0/24 [200/0] via 10.1.0.2, Ethernet1
 
 
-In addition, we insert a flowspec rule aimed to deny all traffic from 
+In addition, we insert a flowspec rule aimed to deny all traffic from
+
+
+---
+# Status:
+
+---
+
+# References:
+- https://github.com/sflow-rt/containerlab
+ 
