@@ -1,0 +1,93 @@
+name: ddos
+mgmt:
+  network: fixedips
+  ipv4_subnet: 172.100.100.0/24
+  ipv6_subnet: 2001:172:100:100::/80
+topology:
+  nodes:
+    sp-router:
+      kind: linux
+      image: sflow/clab-frr
+      mgmt_ipv4: 172.100.100.2
+      mgmt_ipv6: 2001:172:100:100::2
+      env:
+        LOCAL_AS: 64496
+        NEIGHBORS: eth1 
+        FLOWSPEC: yes
+        RTBH: 203.0.113.2
+        HOSTPORT: eth2
+        HOSTNET: "198.51.100.1/24"
+      exec:
+        - touch /tmp/initialized
+    ce-router:
+      kind: linux
+      image: sflow/clab-frr
+      mgmt_ipv4: 172.100.100.3      
+      mgmt_ipv6: 2001:172:100:100::3
+      env:                          
+        LOCAL_AS: 64497
+        NEIGHBORS: eth1
+        FLOWSPEC: yes
+        HOSTPORT: eth2
+        HOSTNET: "192.0.2.1/24"
+        CTLASN: 64497
+        COLLECTOR: 172.100.100.6
+      exec:                         
+        - touch /tmp/initialized
+    attacker:
+      kind: linux
+      image: sflow/clab-iperf3
+      mgmt_ipv4: 172.100.100.4
+      mgmt_ipv6: 2001:172:100:100::4
+      exec:
+        - ip addr add 198.51.100.2/24 dev eth1
+        - ip route add 192.0.2.0/24 via 198.51.100.1
+    victim:
+      kind: linux
+      image: sflow/clab-iperf3
+      mgmt_ipv4: 172.100.100.5
+      mgmt_ipv6: 2001:172:100:100::5
+      exec:
+        - ip addr add 192.0.2.129/24 dev eth1
+        - ip route add 198.51.100.0/24 via 192.0.2.1
+    controller:
+      kind: linux
+      image: sflow/ddos-protect
+      mgmt_ipv4: 172.100.100.6
+      mgmt_ipv6: 2001:172:100:100::6
+      env:
+        RTPROP: >
+          -Dddos_protect.as=64497
+          -Dddos_protect.nexthop=203.0.113.2
+          -Dddos_protect.enable.flowspec=yes
+          -Dddos_protect.router=172.100.100.3
+          -Dddos_protect.group.local=192.0.2.0/24
+          -Dddos_protect.mode=automatic
+          -Dddos_protect.icmp_flood.action=filter
+          -Dddos_protect.icmp_flood.threshold=10000
+          -Dddos_protect.icmp_flood.timeout=2
+          -Dddos_protect.ip_flood.action=filter
+          -Dddos_protect.ip_flood.threshold=10000
+          -Dddos_protect.ip_flood.timeout=2
+          -Dddos_protect.ip_fragmentation.action=filter
+          -Dddos_protect.ip_fragmentation.threshold=10000
+          -Dddos_protect.ip_fragmentation.timeout=2
+          -Dddos_protect.tcp_amplification.action=filter
+          -Dddos_protect.tcp_amplification.threshold=10000
+          -Dddos_protect.tcp_amplification.timeout=2
+          -Dddos_protect.tcp_flood.action=filter
+          -Dddos_protect.tcp_flood.threshold=10000
+          -Dddos_protect.tcp_flood.timeout=2
+          -Dddos_protect.udp_amplification.action=filter
+          -Dddos_protect.udp_amplification.threshold=10000
+          -Dddos_protect.udp_amplification.timeout=2
+          -Dddos_protect.udp_flood.action=filter
+          -Dddos_protect.udp_flood.threshold=10000
+          -Dddos_protect.udp_flood.timeout=2
+      ports:
+        - 8008:8008
+  links:
+    - endpoints: ["sp-router:eth1","ce-router:eth1"]
+    - endpoints: ["sp-router:eth2","attacker:eth1"]
+    - endpoints: ["ce-router:eth2","victim:eth1"]
+

@@ -42,8 +42,7 @@ In addition, we insert a flowspec rule aimed to deny all traffic from
 ---
 # Status:
 
----
-
-# References:
-- https://github.com/sflow-rt/containerlab
- 
+- Routes 'rules' are pushed to the cEOS but traffic is not really drop.
+ - most likely cEOS is just working for flowspec control plane but not data plane
+ - test it with vEOS/cumulus 8.2.2
+  - get inspiration from https://github.com/sflow-rt/containerlab
