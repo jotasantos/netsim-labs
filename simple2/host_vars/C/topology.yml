@@ -1,0 +1,135 @@
+# Ansible inventory created from ['./topology.yml', 'package:topology-defaults.yml']
+#
+---
+af:
+  ipv4: true
+bgp:
+  advertise_loopback: true
+  as: 65002
+  community:
+    ebgp:
+    - standard
+    ibgp:
+    - standard
+    - extended
+  ipv4: true
+  neighbors:
+  - activate:
+      ipv4: true
+    as: 65002
+    ipv4: 10.0.0.4
+    name: D
+    type: ibgp
+  - activate:
+      ipv4: true
+    as: 65002
+    ipv4: 10.0.0.5
+    name: E
+    type: ibgp
+  - activate:
+      ipv4: true
+    as: 65002
+    ipv4: 10.0.0.6
+    name: F
+    type: ibgp
+  - activate:
+      ipv4: true
+    as: 65002
+    ipv4: 10.0.0.7
+    name: G
+    type: ibgp
+  - activate:
+      ipv4: true
+    as: 65001
+    ifindex: 1
+    ipv4: 10.1.0.1
+    name: A
+    type: ebgp
+  - activate:
+      ipv4: true
+    as: 65001
+    ifindex: 2
+    ipv4: 10.1.0.9
+    name: B
+    type: ebgp
+  next_hop_self: true
+  router_id: 10.0.0.3
+box: ceos:4.28.1F
+clab:
+  env:
+    INTFTYPE: et
+  kind: ceos
+hostname: clab-simple2-C
+interfaces:
+- clab:
+    name: et1
+  ifindex: 1
+  ifname: Ethernet1
+  ipv4: 10.1.0.2/30
+  linkindex: 1
+  name: C -> A
+  neighbors:
+  - ifname: Ethernet1
+    ipv4: 10.1.0.1/30
+    node: A
+  role: external
+  type: p2p
+- clab:
+    name: et2
+  ifindex: 2
+  ifname: Ethernet2
+  ipv4: 10.1.0.10/30
+  linkindex: 3
+  name: C -> B
+  neighbors:
+  - ifname: Ethernet1
+    ipv4: 10.1.0.9/30
+    node: B
+  role: external
+  type: p2p
+- clab:
+    name: et3
+  ifindex: 3
+  ifname: Ethernet3
+  ipv4: 10.1.0.17/30
+  linkindex: 5
+  name: C -> D
+  neighbors:
+  - ifname: Ethernet3
+    ipv4: 10.1.0.18/30
+    node: D
+  ospf:
+    area: 0.0.0.0
+    network_type: point-to-point
+    passive: false
+  type: p2p
+- clab:
+    name: et4
+  ifindex: 4
+  ifname: Ethernet4
+  ipv4: 10.1.0.21/30
+  linkindex: 6
+  name: C -> E
+  neighbors:
+  - ifname: Ethernet1
+    ipv4: 10.1.0.22/30
+    node: E
+  ospf:
+    area: 0.0.0.0
+    network_type: point-to-point
+    passive: false
+  type: p2p
+loopback:
+  ipv4: 10.0.0.3/32
+mgmt:
+  ifname: Management0
+  ipv4: 192.168.121.103
+  mac: 08-4F-A9-00-00-03
+module:
+- ospf
+- bgp
+ospf:
+  af:
+    ipv4: true
+  area: 0.0.0.0
+  router_id: 10.0.0.3

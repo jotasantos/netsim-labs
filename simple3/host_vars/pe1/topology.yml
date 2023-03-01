@@ -1,0 +1,139 @@
+# Ansible inventory created from ['topology.yml', 'package:topology-defaults.yml']
+#
+---
+af:
+  ipv4: true
+  vpnv4: true
+bgp:
+  advertise_loopback: true
+  as: 65002
+  community:
+    ebgp:
+    - standard
+    ibgp:
+    - standard
+    - extended
+  ipv4: true
+  neighbors:
+  - activate:
+      ipv4: true
+    as: 65002
+    ipv4: 10.0.0.4
+    name: rr
+    rr: true
+    type: ibgp
+    vpnv4: 10.0.0.4
+  next_hop_self: true
+  router_id: 10.0.0.1
+box: arista/veos
+interfaces:
+- ifindex: 1
+  ifname: Ethernet1
+  ipv4: 10.1.0.2/30
+  libvirt:
+    type: tunnel
+  linkindex: 1
+  name: pe1 -> ce1
+  neighbors:
+  - ifname: Ethernet1
+    ipv4: 10.1.0.1/30
+    node: ce1
+  remote_id: 5
+  remote_ifindex: 1
+  type: p2p
+  vrf: red
+- ifindex: 2
+  ifname: Ethernet2
+  ipv4: 10.1.0.10/30
+  ldp:
+    passive: false
+  libvirt:
+    type: tunnel
+  linkindex: 3
+  name: pe1 -> p1
+  neighbors:
+  - ifname: Ethernet1
+    ipv4: 10.1.0.9/30
+    node: p1
+  ospf:
+    area: 0.0.0.0
+    network_type: point-to-point
+    passive: false
+  remote_id: 3
+  remote_ifindex: 1
+  type: p2p
+- ifindex: 3
+  ifname: Ethernet3
+  ipv4: 10.1.0.13/30
+  ldp:
+    passive: false
+  libvirt:
+    type: tunnel
+  linkindex: 4
+  name: pe1 -> pe2
+  neighbors:
+  - ifname: Ethernet2
+    ipv4: 10.1.0.14/30
+    node: pe2
+  ospf:
+    area: 0.0.0.0
+    network_type: point-to-point
+    passive: false
+  remote_id: 2
+  remote_ifindex: 2
+  type: p2p
+- ifindex: 4
+  ifname: Ethernet4
+  ipv4: 10.1.0.26/30
+  ldp:
+    passive: false
+  libvirt:
+    type: tunnel
+  linkindex: 7
+  name: pe1 -> p1
+  neighbors:
+  - ifname: Ethernet4
+    ipv4: 10.1.0.25/30
+    node: p1
+  ospf:
+    area: 0.0.0.0
+    network_type: point-to-point
+    passive: false
+  remote_id: 3
+  remote_ifindex: 4
+  type: p2p
+ldp:
+  router_id: 10.0.0.1
+loopback:
+  ipv4: 10.0.0.1/32
+mgmt:
+  ifname: Management1
+  ipv4: 192.168.121.101
+  mac: 08-4F-A9-00-00-01
+module:
+- bgp
+- ospf
+- mpls
+- vrf
+mpls:
+  vpn:
+    ipv4:
+    - ibgp
+ospf:
+  af:
+    ipv4: true
+  area: 0.0.0.0
+  router_id: 10.0.0.1
+vrf:
+  as: 65000
+vrfs:
+  red:
+    af:
+      ipv4: true
+    export:
+    - '65002:1'
+    id: 1
+    import:
+    - '65002:1'
+    rd: '65002:1'
+    vrfidx: 100

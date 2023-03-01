@@ -1,0 +1,111 @@
+# Ansible inventory created from ['./topology.yml', 'package:topology-defaults.yml']
+#
+---
+af:
+  ipv4: true
+bgp:
+  advertise_loopback: true
+  as: 65002
+  community:
+    ebgp:
+    - standard
+    ibgp:
+    - standard
+    - extended
+  ipv4: true
+  neighbors:
+  - activate:
+      ipv4: true
+    as: 65002
+    ipv4: 10.0.0.3
+    name: C
+    type: ibgp
+  - activate:
+      ipv4: true
+    as: 65002
+    ipv4: 10.0.0.4
+    name: D
+    type: ibgp
+  - activate:
+      ipv4: true
+    as: 65002
+    ipv4: 10.0.0.5
+    name: E
+    type: ibgp
+  - activate:
+      ipv4: true
+    as: 65002
+    ipv4: 10.0.0.7
+    name: G
+    type: ibgp
+  next_hop_self: true
+  router_id: 10.0.0.6
+box: ceos:4.28.1F
+clab:
+  env:
+    INTFTYPE: et
+  kind: ceos
+hostname: clab-simple2-F
+interfaces:
+- clab:
+    name: et1
+  ifindex: 1
+  ifname: Ethernet1
+  ipv4: 10.1.0.26/30
+  linkindex: 7
+  name: F -> D
+  neighbors:
+  - ifname: Ethernet4
+    ipv4: 10.1.0.25/30
+    node: D
+  ospf:
+    area: 0.0.0.0
+    network_type: point-to-point
+    passive: false
+  type: p2p
+- clab:
+    name: et2
+  ifindex: 2
+  ifname: Ethernet2
+  ipv4: 10.1.0.30/30
+  linkindex: 8
+  name: F -> E
+  neighbors:
+  - ifname: Ethernet2
+    ipv4: 10.1.0.29/30
+    node: E
+  ospf:
+    area: 0.0.0.0
+    network_type: point-to-point
+    passive: false
+  type: p2p
+- clab:
+    name: et3
+  ifindex: 3
+  ifname: Ethernet3
+  ipv4: 10.1.0.37/30
+  linkindex: 10
+  name: F -> G
+  neighbors:
+  - ifname: Ethernet2
+    ipv4: 10.1.0.38/30
+    node: G
+  ospf:
+    area: 0.0.0.0
+    network_type: point-to-point
+    passive: false
+  type: p2p
+loopback:
+  ipv4: 10.0.0.6/32
+mgmt:
+  ifname: Management0
+  ipv4: 192.168.121.106
+  mac: 08-4F-A9-00-00-06
+module:
+- ospf
+- bgp
+ospf:
+  af:
+    ipv4: true
+  area: 0.0.0.0
+  router_id: 10.0.0.6

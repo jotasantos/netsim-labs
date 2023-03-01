@@ -1,0 +1,29 @@
+defaults.device: eos
+defaults.devices.eos.clab.image: ceos:4.28.1F
+provider: clab
+
+module: [ ospf, bgp ]
+
+bgp.as_list:
+  65001:
+    members: [ A, B]
+  65002:
+    members: [ C, D, E, F, G ]
+
+nodes:
+  A:
+    module: [ bgp ]
+  B:
+    module: [ bgp ]
+  C:
+    module: [ ospf, bgp ]
+  D:
+    module: [ ospf, bgp ]
+  E:
+    module: [ ospf, bgp ]
+  F:
+    module: [ ospf, bgp ]
+  G:
+    module: [ ospf, bgp ]
+
+links: [ A-C, A-D, B-C, B-D, C-D, C-E, D-F, E-F, E-G, F-G ]

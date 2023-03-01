@@ -1,0 +1,89 @@
+# Ansible inventory created from ['topology.yml', 'package:topology-defaults.yml']
+#
+---
+af:
+  ipv4: true
+bgp:
+  advertise_loopback: true
+  as: 65002
+  community:
+    ebgp:
+    - standard
+    ibgp:
+    - standard
+    - extended
+  ipv4: true
+  neighbors:
+  - activate:
+      ipv4: true
+    as: 65002
+    ipv4: 10.0.0.1
+    name: pe1
+    type: ibgp
+    vpnv4: 10.0.0.1
+    vpnv6: 10.0.0.1
+  - activate:
+      ipv4: true
+    as: 65002
+    ipv4: 10.0.0.2
+    name: pe2
+    type: ibgp
+    vpnv4: 10.0.0.2
+    vpnv6: 10.0.0.2
+  - activate:
+      ipv4: true
+    as: 65002
+    ipv4: 10.0.0.3
+    name: p1
+    type: ibgp
+    vpnv4: 10.0.0.3
+    vpnv6: 10.0.0.3
+  next_hop_self: true
+  router_id: 10.0.0.4
+  rr: true
+  rr_cluster_id: 10.0.0.4
+box: arista/veos
+interfaces:
+- ifindex: 1
+  ifname: Ethernet1
+  ipv4: 10.1.0.22/30
+  ldp:
+    passive: false
+  libvirt:
+    type: tunnel
+  linkindex: 6
+  name: rr -> p1
+  neighbors:
+  - ifname: Ethernet3
+    ipv4: 10.1.0.21/30
+    node: p1
+  ospf:
+    area: 0.0.0.0
+    network_type: point-to-point
+    passive: false
+  remote_id: 3
+  remote_ifindex: 3
+  type: p2p
+ldp:
+  router_id: 10.0.0.4
+loopback:
+  ipv4: 10.0.0.4/32
+mgmt:
+  ifname: Management1
+  ipv4: 192.168.121.104
+  mac: 08-4F-A9-00-00-04
+module:
+- ospf
+- bgp
+- mpls
+mpls:
+  vpn:
+    ipv4:
+    - ibgp
+    ipv6:
+    - ibgp
+ospf:
+  af:
+    ipv4: true
+  area: 0.0.0.0
+  router_id: 10.0.0.4

@@ -1,0 +1,41 @@
+# Ansible inventory created from ['topology.yml', 'package:topology-defaults.yml']
+#
+---
+af:
+  ipv4: true
+box: ceos:4.28.1F
+clab:
+  env:
+    INTFTYPE: et
+  kind: ceos
+hostname: clab-simple1--A
+interfaces:
+- clab:
+    name: et1
+  ifindex: 1
+  ifname: Ethernet1
+  ipv4: 10.1.0.1/30
+  linkindex: 1
+  name: A -> B
+  neighbors:
+  - ifname: Ethernet1
+    ipv4: 10.1.0.2/30
+    node: B
+  ospf:
+    area: 0.0.0.0
+    network_type: point-to-point
+    passive: false
+  type: p2p
+loopback:
+  ipv4: 10.0.0.1/32
+mgmt:
+  ifname: Management0
+  ipv4: 192.168.121.101
+  mac: 08-4F-A9-00-00-01
+module:
+- ospf
+ospf:
+  af:
+    ipv4: true
+  area: 0.0.0.0
+  router_id: 10.0.0.1
