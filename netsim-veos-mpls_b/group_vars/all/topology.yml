@@ -1,6 +1,7 @@
-# Ansible inventory created from ['topology.yml', 'package:topology-defaults.yml']
+# Ansible inventory created from ['/home/jaime/netsim-labs/netsim-veos-mpls_b/topology.yml', 'package:topology-defaults.yml']
 #
----
+
+netlab_name: netsim-veos-
 netlab_provider: libvirt
 pools:
   l2only: {}
@@ -20,4 +21,7 @@ pools:
     prefix: 30
   router_id:
     ipv4: 10.0.0.0/24
+    prefix: 32
+  vrf_loopback:
+    ipv4: 10.2.0.0/24
     prefix: 32

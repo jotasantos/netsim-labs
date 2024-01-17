@@ -1,6 +1,6 @@
-# Ansible inventory created from ['topology.yml', 'package:topology-defaults.yml']
+# Ansible inventory created from ['/home/jaime/netsim-labs/netsim-veos-mpls/topology.yml', 'package:topology-defaults.yml']
 #
----
+
 af:
   ipv4: true
 box: arista/veos
@@ -8,6 +8,8 @@ interfaces:
 - ifindex: 1
   ifname: Ethernet1
   ipv4: 10.1.0.2/30
+  libvirt:
+    type: tunnel
   linkindex: 1
   name: sfp01 -> edz
   neighbors:
@@ -18,8 +20,12 @@ interfaces:
   remote_ifindex: 1
   type: p2p
 loopback:
+  ifindex: 0
+  ifname: Loopback0
   ipv4: 10.0.0.1/32
+  neighbors: []
+  type: loopback
 mgmt:
   ifname: Management1
   ipv4: 192.168.121.101
-  mac: 08-4F-A9-00-00-01
+  mac: 08:4f:a9:00:00:01

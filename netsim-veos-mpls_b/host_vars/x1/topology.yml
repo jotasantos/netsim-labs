@@ -1,16 +1,35 @@
-# Ansible inventory created from ['topology.yml', 'package:topology-defaults.yml']
+# Ansible inventory created from ['/home/jaime/netsim-labs/netsim-veos-mpls_b/topology.yml', 'package:topology-defaults.yml']
 #
----
+
 af:
   ipv4: true
 bgp:
+  advertise_loopback: true
   as: 65001
+  community:
+    ebgp:
+    - standard
+    ibgp:
+    - standard
+    - extended
+  ipv4: true
+  neighbors:
+  - activate:
+      ipv4: true
+    as: 65000
+    ifindex: 1
+    ipv4: 10.1.0.17
+    name: rr1
+    type: ebgp
+  next_hop_self: true
   router_id: 10.0.0.13
 box: arista/veos
 interfaces:
 - ifindex: 1
   ifname: Ethernet1
   ipv4: 10.1.0.18/30
+  libvirt:
+    type: tunnel
   linkindex: 5
   name: x1 -> rr1
   neighbors:
@@ -26,5 +45,6 @@ loopback:
 mgmt:
   ifname: Management1
   ipv4: 192.168.121.113
-  mac: 08-4F-A9-00-00-0D
-module: []
+  mac: 08:4f:a9:00:00:0d
+module:
+- bgp

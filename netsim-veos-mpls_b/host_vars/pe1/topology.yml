@@ -1,6 +1,6 @@
-# Ansible inventory created from ['topology.yml', 'package:topology-defaults.yml']
+# Ansible inventory created from ['/home/jaime/netsim-labs/netsim-veos-mpls_b/topology.yml', 'package:topology-defaults.yml']
 #
----
+
 af:
   ipv4: true
 bgp:
@@ -14,12 +14,16 @@ bgp:
     - extended
   ipv4: true
   neighbors:
-  - as: 65000
+  - activate:
+      ipv4: true
+    as: 65000
     ipv4: 10.0.0.1
     name: rr1
     rr: true
     type: ibgp
-  - as: 65000
+  - activate:
+      ipv4: true
+    as: 65000
     ipv4: 10.0.0.2
     name: rr2
     rr: true
@@ -31,6 +35,8 @@ interfaces:
 - ifindex: 1
   ifname: Ethernet1
   ipv4: 10.1.0.1/30
+  libvirt:
+    type: tunnel
   linkindex: 1
   name: pe1 -> rr1
   neighbors:
@@ -47,6 +53,8 @@ interfaces:
 - ifindex: 2
   ifname: Ethernet2
   ipv4: 10.1.0.9/30
+  libvirt:
+    type: tunnel
   linkindex: 3
   name: pe1 -> rr2
   neighbors:
@@ -63,6 +71,8 @@ interfaces:
 - ifindex: 3
   ifname: Ethernet3
   ipv4: 10.1.0.22/30
+  libvirt:
+    type: tunnel
   linkindex: 6
   name: pe1 -> c11
   neighbors:
@@ -79,6 +89,8 @@ interfaces:
 - ifindex: 4
   ifname: Ethernet4
   ipv4: 10.1.0.26/30
+  libvirt:
+    type: tunnel
   linkindex: 7
   name: pe1 -> c12
   neighbors:
@@ -95,6 +107,8 @@ interfaces:
 - ifindex: 5
   ifname: Ethernet5
   ipv4: 10.1.0.34/30
+  libvirt:
+    type: tunnel
   linkindex: 9
   name: pe1 -> p1
   neighbors:
@@ -111,6 +125,8 @@ interfaces:
 - ifindex: 6
   ifname: Ethernet6
   ipv4: 10.1.0.50/30
+  libvirt:
+    type: tunnel
   linkindex: 13
   name: pe1 -> p4
   neighbors:
@@ -129,7 +145,7 @@ loopback:
 mgmt:
   ifname: Management1
   ipv4: 192.168.121.103
-  mac: 08-4F-A9-00-00-03
+  mac: 08:4f:a9:00:00:03
 module:
 - ospf
 - bgp

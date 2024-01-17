@@ -1,6 +1,6 @@
-# Ansible inventory created from ['topology.yml', 'package:topology-defaults.yml']
+# Ansible inventory created from ['/home/jaime/netsim-labs/netsim-veos-mpls_b/topology.yml', 'package:topology-defaults.yml']
 #
----
+
 af:
   ipv4: true
 bgp:
@@ -14,20 +14,28 @@ bgp:
     - extended
   ipv4: true
   neighbors:
-  - as: 65000
+  - activate:
+      ipv4: true
+    as: 65000
     ipv4: 10.0.0.2
     name: rr2
     rr: true
     type: ibgp
-  - as: 65000
+  - activate:
+      ipv4: true
+    as: 65000
     ipv4: 10.0.0.3
     name: pe1
     type: ibgp
-  - as: 65000
+  - activate:
+      ipv4: true
+    as: 65000
     ipv4: 10.0.0.4
     name: pe2
     type: ibgp
-  - as: 65001
+  - activate:
+      ipv4: true
+    as: 65001
     ifindex: 3
     ipv4: 10.1.0.18
     name: x1
@@ -41,6 +49,8 @@ interfaces:
 - ifindex: 1
   ifname: Ethernet1
   ipv4: 10.1.0.2/30
+  libvirt:
+    type: tunnel
   linkindex: 1
   name: rr1 -> pe1
   neighbors:
@@ -57,6 +67,8 @@ interfaces:
 - ifindex: 2
   ifname: Ethernet2
   ipv4: 10.1.0.6/30
+  libvirt:
+    type: tunnel
   linkindex: 2
   name: rr1 -> pe2
   neighbors:
@@ -73,6 +85,8 @@ interfaces:
 - ifindex: 3
   ifname: Ethernet3
   ipv4: 10.1.0.17/30
+  libvirt:
+    type: tunnel
   linkindex: 5
   name: rr1 -> x1
   neighbors:
@@ -88,7 +102,7 @@ loopback:
 mgmt:
   ifname: Management1
   ipv4: 192.168.121.101
-  mac: 08-4F-A9-00-00-01
+  mac: 08:4f:a9:00:00:01
 module:
 - ospf
 - bgp
