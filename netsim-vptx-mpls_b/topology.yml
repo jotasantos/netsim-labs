@@ -1,0 +1,52 @@
+#
+# Using FRR on containerlab to make it fast
+#
+defaults.device: vptx
+  #provider: clab
+provider: libvirt 
+  #
+module: [ ospf, bgp ]
+
+bgp.as_list:
+  65000:
+    members: [ rr1, rr2, pe1, pe2]
+    rr: [ rr1, rr2 ]
+  65001:
+    members: [ x1 ]
+
+groups:
+  as65000:
+    node_data:
+      bgp.advertise_loopback: false
+      bgp.as: 65000
+nodes:
+  rr1:
+    module: [ ospf, bgp ]
+  rr2:
+    module: [ ospf, bgp ]
+  pe1:
+    module: [ ospf, bgp ]
+  pe2:
+    module: [ ospf, bgp ]
+  p1:
+    module: [ ospf]
+  p2:
+    module: [ ospf]
+  p3:
+    module: [ ospf]
+  p4:
+    module: [ ospf]
+  p5:
+    module: [ ospf]
+
+  c11:
+    module: [ ]
+  c12:
+    module: [ ]
+  c21:
+    module: [ ]
+  x1:
+    module: [ bgp ]
+ 
+
+links: [ rr1-pe1, rr1-pe2, rr2-pe1, rr2-pe2, rr1-x1, c11-pe1, c12-pe1, c21-pe2, pe1-p1, p1-p2, p2-p3, p3-pe2, pe1-p4, p4-p5, p5-pe2 ]

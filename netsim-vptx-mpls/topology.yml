@@ -1,0 +1,13 @@
+---
+provider: libvirt
+defaults:
+  device: vptx
+
+nodes:
+  sfp01:
+    module: [ ospf ]
+  edz:
+    module: [ ospf ]
+
+links:
+- edz-sfp01
