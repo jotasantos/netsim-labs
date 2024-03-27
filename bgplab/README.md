@@ -4,6 +4,7 @@ This repository contains _netlab_ topology files for a series of hands-on labs t
 
 **Basic BGP Setup**
 
+* [Configuring and monitoring routing daemons on Cumulus Linux and FRRouting](basic/0-frrouting)
 * [Establish a BGP session](basic/1-session)
 * [Connect to two upstream providers](basic/2-multihomed)
 * [Advertise your IP prefixes](basic/3-originate)
@@ -14,6 +15,7 @@ This repository contains _netlab_ topology files for a series of hands-on labs t
 
 * [Protect EBGP sessions](basic/6-protect) with MD5 passwords and TTL protection (GTSM)
 * Protect BGP sessions with [TCP Authentication Option (TCP-AO)](basic/9-ao)
+* [Limit the Number of Accepted BGP Prefixes](basic/b-max-prefix)
 
 **Running BGP in Larger Networks**
 
@@ -38,6 +40,7 @@ This repository contains _netlab_ topology files for a series of hands-on labs t
 
 * [Use BGP Communities in Routing Policies](policy/9-community-use)
 * [Using BGP Local Preference in a Complex Routing Policy](policy/a-locpref-route-map)
+* [Use BGP Policy Templates](session/7-policy)
 
 **Advanced Topics**
 
@@ -46,6 +49,8 @@ This repository contains _netlab_ topology files for a series of hands-on labs t
 * [Reuse a BGP AS Number Across Multiple Sites](session/1-allowas_in)
 * [Fix AS-Path in Environments Reusing BGP AS Numbers](session/2-asoverride)
 * [Use Multiple AS Numbers on the Same Router](session/3-localas)
+* [Remove Private BGP AS Numbers from the AS Path](session/4-removeprivate)
+* [Advertise Default Route in BGP](basic/c-default-route)
 
 See [lab documentation](https://bgplab.github.io/bgplab/) for more details and the complete list of planned labs.
 

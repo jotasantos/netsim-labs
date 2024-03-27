@@ -38,10 +38,18 @@ defaults:
     - vxlan
     node_id_id:
       max: 250
-      next: 2
+      next: 5
       value: !!set
         1: null
         2: null
+        3: null
+        4: null
+        5: null
+    vlan_id_id:
+      max: 4094
+      next: 1000
+      value: !!set
+        1000: null
   addressing:
     l2only: null
     lan:
@@ -549,7 +557,7 @@ defaults:
     transform_after:
     - vlan
   const: {}
-  device: frr
+  device: eos
   devices:
     arubacx:
       clab:
@@ -853,7 +861,7 @@ defaults:
           ansible_become_method: enable
           ansible_ssh_pass: admin
           ansible_user: admin
-        image: ceos:4.26.4M
+        image: ceos:4.31.1F
         interface:
           name: et{ifindex}
         mgmt_if: Management0
@@ -901,8 +909,10 @@ defaults:
           unnumbered: true
         sr: {}
         vlan:
+          mixed_trunk: {}
           model: l3-switch
           native_routed: true
+          routed_subif_name: {}
           subif_name: '{ifname}.{subif_index}'
           svi_interface_name: Vlan{vlan}
         vrf: {}
@@ -917,7 +927,7 @@ defaults:
       interface_name: Ethernet{ifindex}
       libvirt:
         create_template: eos.xml.j2
-        image: arista/veos
+        image: arista/veos:4.28.3M
       loopback_interface_name: Loopback{ifindex}
       mgmt_if: Management1
       tunnel_interface_name: Tunnel{ifindex}
@@ -1176,6 +1186,7 @@ defaults:
         docker_shell: sh -il
         netlab_lldp_enable: true
         netlab_net_tools: true
+      image: alpine
       interface_name: eth{ifindex}
       libvirt:
         group_vars:
@@ -2088,7 +2099,7 @@ defaults:
     - vrf
     type: level-2
   module:
-  - ospf
+  - vlan
   mpls:
     attributes:
       global:
@@ -2222,7 +2233,7 @@ defaults:
             tunnel_id: '{id}'
             vifprefix: vif_{id}
       name: ml_{id}
-  name: netsim-frr-m
+  name: netsim-ceos-
   ospf:
     area: 0.0.0.0
     attributes:
@@ -2395,7 +2406,7 @@ defaults:
     https: 443
     netconf: 830
     ssh: 22
-  provider: libvirt
+  provider: clab
   providers:
     clab:
       act_probe: docker ps
@@ -2654,6 +2665,7 @@ defaults:
         trunk: null
       node:
         mode: null
+      node_copy: {}
       phy_ifattr:
         _selfloop_ifindex: null
         bridge: null
@@ -2790,116 +2802,403 @@ defaults:
     - vlan
     - vrf
     use_v6_vtep: false
+groups:
+  hosts:
+    device: linux
+    members:
+    - h1
+  switches:
+    device: eos
+    members:
+    - sw1
+    - sw2
+    - sw
+    module:
+    - vlan
 input:
-- /home/jaime/netsim-labs/netsim-frr-mpls/topology.yml
+- /home/jaime/netsim-labs/netsim-ceos-vlan-vrrp1/topology.yml
+- /home/jaime/.netlab.yml
 - package:topology-defaults.yml
 links:
-- interfaces:
-  - ifindex: 1
-    ifname: eth1
-    ipv4: 10.1.0.1/30
-    node: edz
-  - ifindex: 1
-    ifname: eth1
-    ipv4: 10.1.0.2/30
-    node: sfp01
+- bridge: netsim-ceo_1
+  interfaces:
+  - _vlan_mode: irb
+    ifindex: 1
+    ifname: Ethernet1
+    ipv4: 172.16.0.1/24
+    node: sw1
+    vlan:
+      access: red
+  - _vlan_mode: irb
+    ifindex: 1
+    ifname: Ethernet1
+    ipv4: 172.16.0.3/24
+    node: sw
+    vlan:
+      access: red
   linkindex: 1
   node_count: 2
   prefix:
-    ipv4: 10.1.0.0/30
+    allocation: id_based
+    ipv4: 172.16.0.0/24
   provider:
-    libvirt: true
-  type: p2p
+    clab: true
+  type: lan
+  vlan:
+    access: red
+- bridge: netsim-ceo_2
+  interfaces:
+  - _vlan_mode: irb
+    ifindex: 1
+    ifname: Ethernet1
+    ipv4: 172.16.0.2/24
+    node: sw2
+    vlan:
+      access: red
+  - _vlan_mode: irb
+    ifindex: 2
+    ifname: Ethernet2
+    ipv4: 172.16.0.3/24
+    node: sw
+    vlan:
+      access: red
+  linkindex: 2
+  node_count: 2
+  prefix:
+    allocation: id_based
+    ipv4: 172.16.0.0/24
+  provider:
+    clab: true
+  type: lan
+  vlan:
+    access: red
+- bridge: netsim-ceo_3
+  gateway:
+    ipv4: 172.16.0.3/24
+  interfaces:
+  - ifindex: 1
+    ifname: eth1
+    ipv4: 172.16.0.4/24
+    node: h1
+  - _vlan_mode: irb
+    ifindex: 3
+    ifname: Ethernet3
+    ipv4: 172.16.0.3/24
+    node: sw
+    vlan:
+      access: red
+  linkindex: 3
+  node_count: 2
+  prefix:
+    allocation: id_based
+    ipv4: 172.16.0.0/24
+  provider:
+    clab: true
+  type: lan
+  vlan:
+    access: red
 module:
-- ospf
-name: netsim-frr-m
+- vlan
+name: netsim-ceos-
 nodes:
-  edz:
+  h1:
     af:
       ipv4: true
-    box: generic/ubuntu2004
-    device: frr
-    id: 2
+    box: alpine
+    clab:
+      binds:
+      - clab_files/h1/hosts:/etc/hosts
+      config_templates:
+      - hosts:/etc/hosts
+      kind: linux
+    device: linux
+    hostname: clab-netsim-ceos--h1
+    id: 4
     interfaces:
-    - ifindex: 1
+    - bridge: netsim-ceo_3
+      gateway:
+        ipv4: 172.16.0.3/24
+      ifindex: 1
       ifname: eth1
-      ipv4: 10.1.0.1/30
-      libvirt:
-        type: tunnel
-      linkindex: 1
-      name: edz -> sfp01
+      ipv4: 172.16.0.4/24
+      linkindex: 3
+      mtu: 1500
+      name: h1 -> [sw,sw1,sw2]
       neighbors:
-      - ifname: eth1
-        ipv4: 10.1.0.2/30
-        node: sfp01
-      ospf:
-        area: 0.0.0.0
-        network_type: point-to-point
-        passive: false
-      remote_id: 1
-      remote_ifindex: 1
-      type: p2p
+      - ifname: Vlan1000
+        ipv4: 172.16.0.3/24
+        node: sw
+      - ifname: Vlan1000
+        ipv4: 172.16.0.1/24
+        node: sw1
+      - ifname: Vlan1000
+        ipv4: 172.16.0.2/24
+        node: sw2
+      type: lan
+    mgmt:
+      ifname: eth0
+      ipv4: 192.168.121.104
+      mac: 08:4f:a9:00:00:04
+    mtu: 1500
+    name: h1
+    role: host
+  h2:
+    af:
+      ipv4: true
+    box: ceos:4.31.1F
+    clab:
+      env:
+        CLAB_MGMT_VRF: management
+        INTFTYPE: et
+      kind: ceos
+    device: eos
+    hostname: clab-netsim-ceos--h2
+    id: 5
+    interfaces: []
     loopback:
       ifindex: 0
-      ifname: lo0
-      ipv4: 10.0.0.2/32
+      ifname: Loopback0
+      ipv4: 10.0.0.5/32
       neighbors: []
       type: loopback
     mgmt:
-      ifname: eth0
-      ipv4: 192.168.121.102
-      mac: 08:4f:a9:00:00:02
-    module:
-    - ospf
-    name: edz
-    ospf:
-      af:
-        ipv4: true
-      area: 0.0.0.0
-      router_id: 10.0.0.2
-  sfp01:
+      ifname: Management0
+      ipv4: 192.168.121.105
+      mac: 08:4f:a9:00:00:05
+    name: h2
+  sw:
     af:
       ipv4: true
-    box: generic/ubuntu2004
-    device: frr
-    id: 1
+    box: ceos:4.31.1F
+    clab:
+      env:
+        CLAB_MGMT_VRF: management
+        INTFTYPE: et
+      kind: ceos
+    device: eos
+    hostname: clab-netsim-ceos--sw
+    id: 3
     interfaces:
-    - ifindex: 1
-      ifname: eth1
-      ipv4: 10.1.0.2/30
-      libvirt:
-        type: tunnel
+    - bridge: netsim-ceo_1
+      clab:
+        name: et1
+      ifindex: 1
+      ifname: Ethernet1
       linkindex: 1
-      name: sfp01 -> edz
+      type: lan
+      vlan:
+        access: red
+        access_id: 1000
+    - bridge: netsim-ceo_2
+      clab:
+        name: et2
+      ifindex: 2
+      ifname: Ethernet2
+      linkindex: 2
+      type: lan
+      vlan:
+        access: red
+        access_id: 1000
+    - bridge: netsim-ceo_3
+      clab:
+        name: et3
+      ifindex: 3
+      ifname: Ethernet3
+      linkindex: 3
+      type: lan
+      vlan:
+        access: red
+        access_id: 1000
+    - bridge_group: 1
+      ifindex: 4
+      ifname: Vlan1000
+      ipv4: 172.16.0.3/24
+      name: VLAN red (1000) -> [sw1,sw2,h1]
       neighbors:
+      - ifname: Vlan1000
+        ipv4: 172.16.0.1/24
+        node: sw1
+      - ifname: Vlan1000
+        ipv4: 172.16.0.2/24
+        node: sw2
       - ifname: eth1
-        ipv4: 10.1.0.1/30
-        node: edz
-      ospf:
-        area: 0.0.0.0
-        network_type: point-to-point
-        passive: false
-      remote_id: 2
-      remote_ifindex: 1
-      type: p2p
+        ipv4: 172.16.0.4/24
+        node: h1
+      type: svi
+      virtual_interface: true
+      vlan:
+        mode: irb
     loopback:
       ifindex: 0
-      ifname: lo0
+      ifname: Loopback0
+      ipv4: 10.0.0.3/32
+      neighbors: []
+      type: loopback
+    mgmt:
+      ifname: Management0
+      ipv4: 192.168.121.103
+      mac: 08:4f:a9:00:00:03
+    module:
+    - vlan
+    name: sw
+    vlan:
+      max_bridge_group: 1
+    vlans:
+      red:
+        bridge_group: 1
+        id: 1000
+        mode: irb
+        prefix:
+          allocation: id_based
+          ipv4: 172.16.0.0/24
+  sw1:
+    af:
+      ipv4: true
+    box: ceos:4.31.1F
+    clab:
+      env:
+        CLAB_MGMT_VRF: management
+        INTFTYPE: et
+      kind: ceos
+    device: eos
+    hostname: clab-netsim-ceos--sw1
+    id: 1
+    interfaces:
+    - bridge: netsim-ceo_1
+      clab:
+        name: et1
+      ifindex: 1
+      ifname: Ethernet1
+      linkindex: 1
+      type: lan
+      vlan:
+        access: red
+        access_id: 1000
+    - bridge_group: 1
+      ifindex: 2
+      ifname: Vlan1000
+      ipv4: 172.16.0.1/24
+      name: VLAN red (1000) -> [sw,sw2,h1]
+      neighbors:
+      - ifname: Vlan1000
+        ipv4: 172.16.0.3/24
+        node: sw
+      - ifname: Vlan1000
+        ipv4: 172.16.0.2/24
+        node: sw2
+      - ifname: eth1
+        ipv4: 172.16.0.4/24
+        node: h1
+      type: svi
+      virtual_interface: true
+      vlan:
+        mode: irb
+    loopback:
+      ifindex: 0
+      ifname: Loopback0
       ipv4: 10.0.0.1/32
       neighbors: []
       type: loopback
     mgmt:
-      ifname: eth0
+      ifname: Management0
       ipv4: 192.168.121.101
       mac: 08:4f:a9:00:00:01
     module:
-    - ospf
-    name: sfp01
-    ospf:
-      af:
-        ipv4: true
-      area: 0.0.0.0
-      router_id: 10.0.0.1
-ospf:
-  area: 0.0.0.0
-provider: libvirt
+    - vlan
+    name: sw1
+    vlan:
+      max_bridge_group: 1
+    vlans:
+      red:
+        bridge_group: 1
+        id: 1000
+        mode: irb
+        prefix:
+          allocation: id_based
+          ipv4: 172.16.0.0/24
+  sw2:
+    af:
+      ipv4: true
+    box: ceos:4.31.1F
+    clab:
+      env:
+        CLAB_MGMT_VRF: management
+        INTFTYPE: et
+      kind: ceos
+    device: eos
+    hostname: clab-netsim-ceos--sw2
+    id: 2
+    interfaces:
+    - bridge: netsim-ceo_2
+      clab:
+        name: et1
+      ifindex: 1
+      ifname: Ethernet1
+      linkindex: 2
+      type: lan
+      vlan:
+        access: red
+        access_id: 1000
+    - bridge_group: 1
+      ifindex: 2
+      ifname: Vlan1000
+      ipv4: 172.16.0.2/24
+      name: VLAN red (1000) -> [sw,sw1,h1]
+      neighbors:
+      - ifname: Vlan1000
+        ipv4: 172.16.0.3/24
+        node: sw
+      - ifname: Vlan1000
+        ipv4: 172.16.0.1/24
+        node: sw1
+      - ifname: eth1
+        ipv4: 172.16.0.4/24
+        node: h1
+      type: svi
+      virtual_interface: true
+      vlan:
+        mode: irb
+    loopback:
+      ifindex: 0
+      ifname: Loopback0
+      ipv4: 10.0.0.2/32
+      neighbors: []
+      type: loopback
+    mgmt:
+      ifname: Management0
+      ipv4: 192.168.121.102
+      mac: 08:4f:a9:00:00:02
+    module:
+    - vlan
+    name: sw2
+    vlan:
+      max_bridge_group: 1
+    vlans:
+      red:
+        bridge_group: 1
+        id: 1000
+        mode: irb
+        prefix:
+          allocation: id_based
+          ipv4: 172.16.0.0/24
+provider: clab
+vlans:
+  red:
+    host_count: 1
+    id: 1000
+    neighbors:
+    - ifname: Vlan1000
+      ipv4: 172.16.0.3/24
+      node: sw
+    - ifname: Vlan1000
+      ipv4: 172.16.0.1/24
+      node: sw1
+    - ifname: Vlan1000
+      ipv4: 172.16.0.2/24
+      node: sw2
+    - ifname: eth1
+      ipv4: 172.16.0.4/24
+      node: h1
+    prefix:
+      allocation: id_based
+      ipv4: 172.16.0.0/24

@@ -1,0 +1,31 @@
+defaults.device: eos
+defaults.devices.eos.clab.image: ceos:4.31.1F
+defaults.devices.linux.image: alpine
+
+provider: clab
+
+nodes: [ sw1, sw2, sw, h1, h2 ]
+
+groups:
+  hosts:
+    members: [ h1 ]
+    device: linux
+  switches:
+    members: [ sw1, sw2, sw ]
+    module: [ vlan ]
+    device: eos
+
+vlans:
+  red:
+
+links:
+- sw1:
+  sw:
+  vlan.access: red
+- sw2:
+  sw:
+  vlan.access: red
+- h1:
+  sw:
+  vlan.access: red
+

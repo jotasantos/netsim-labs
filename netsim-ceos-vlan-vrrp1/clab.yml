@@ -1,0 +1,56 @@
+name: netsim-ceos-
+
+mgmt:
+  network: netlab_mgmt
+  ipv4-subnet: 192.168.121.0/24
+  # Note: 'start' not validated
+topology:
+  nodes:
+    sw1:
+      mgmt-ipv4: 192.168.121.101
+      kind: ceos
+      env: {'INTFTYPE': 'et', 'CLAB_MGMT_VRF': 'management'}
+      image: ceos:4.31.1F
+      runtime: docker
+      group: switches
+    sw2:
+      mgmt-ipv4: 192.168.121.102
+      kind: ceos
+      env: {'INTFTYPE': 'et', 'CLAB_MGMT_VRF': 'management'}
+      image: ceos:4.31.1F
+      runtime: docker
+      group: switches
+    sw:
+      mgmt-ipv4: 192.168.121.103
+      kind: ceos
+      env: {'INTFTYPE': 'et', 'CLAB_MGMT_VRF': 'management'}
+      image: ceos:4.31.1F
+      runtime: docker
+      group: switches
+    h1:
+      mgmt-ipv4: 192.168.121.104
+      kind: linux
+      image: alpine
+      runtime: docker
+      group: hosts
+      binds:
+      - clab_files/h1/hosts:/etc/hosts
+    h2:
+      mgmt-ipv4: 192.168.121.105
+      kind: ceos
+      env: {'INTFTYPE': 'et', 'CLAB_MGMT_VRF': 'management'}
+      image: ceos:4.31.1F
+      runtime: docker
+      group: 
+
+
+  links:
+  - endpoints:
+    - "sw1:et1"
+    - "sw:et1"
+  - endpoints:
+    - "sw2:et1"
+    - "sw:et2"
+  - endpoints:
+    - "sw:et3"
+    - "h1:eth1"

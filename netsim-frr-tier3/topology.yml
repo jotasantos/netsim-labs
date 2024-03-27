@@ -1,0 +1,30 @@
+---
+provider: libvirt
+defaults:
+  device: frr
+
+nodes:
+  fgt:
+    module: [ ospf ]
+  core:
+    module: [ ospf ]
+  dis1:
+    module: [ ospf ]
+  dis2:
+    module: [ ospf ]
+  access1:
+  access2:
+  endp1:
+    device: linux
+  endp2:
+    device: linux
+
+
+links:
+- fgt-core
+- core-dis1
+- core-dis2
+- dis1-access1
+- dis2-access2
+- access1-endp1
+- access2-endp2
