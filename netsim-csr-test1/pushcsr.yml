@@ -1,0 +1,8 @@
+---
+- name: save csr config
+  hosts: csr
+  gather_facts: true
+  tasks:
+    - name: Load configuration from files
+      cisco.ios.ios_config:
+        src: config/{{inventory_hostname}}.cfg

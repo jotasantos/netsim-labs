@@ -1,0 +1,67 @@
+---
+provider: libvirt
+defaults.device: csr
+
+vrfs:
+  red:
+  blue:
+  white:
+
+bgp.as: 65000
+mpls.ldp: True
+mpls.vpn: True
+
+nodes:
+  p1:
+    module: [ vrf,ospf,bgp,mpls ]
+  p2:
+    module: [ vrf,ospf,bgp,mpls ]
+  p3:
+    module: [ vrf,ospf,bgp,mpls ]
+  p4:
+    module: [ vrf,ospf,bgp,mpls ]
+  p5:
+    module: [ vrf,ospf,bgp,mpls ]
+  pe1:
+    module: [ vrf,ospf,bgp,mpls ]
+  pe2:
+    module: [ vrf,ospf,bgp,mpls ]
+  pe3:
+    module: [ vrf,ospf,bgp,mpls ]
+  pe4:
+    module: [ vrf,ospf,bgp,mpls ]
+  ce1:
+   device: frr
+   module: [ ospf ]
+   ospf.process: 2
+  ce2:
+   device: frr
+   module: [ ospf ]
+   ospf.process: 2
+  ce3:
+   device: frr
+   module: [ ospf ]
+   ospf.process: 2
+  ce4:
+   device: frr
+   module: [ ospf ]
+   ospf.process: 2
+
+links:
+- pe1: { vrf: blue }
+  ce1:
+- pe2: { vrf: red }
+  ce2:
+- pe3: { vrf: white } 
+  ce3:
+- pe4: { vrf: blue } 
+  ce4:
+- p1-p2
+- p2-p3
+- p1-p4
+- p4-p5
+- p5-p3
+- pe1-p1
+- pe2-p1
+- pe3-p2
+- pe4-p2

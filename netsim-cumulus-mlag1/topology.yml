@@ -1,0 +1,16 @@
+---
+provider: libvirt
+defaults.device: eos
+defaults.devices.eos.libvirt.image: arista/veos:4.28.1F
+defaults.devices.eos.clab.image: ceos:4.28.1F
+
+nodes:
+  s1:
+    module: [ ospf ]
+  s2:
+    module: [ ospf ]
+  cl:
+    device: eos
+
+links: [ s1-s2, s1-cl, s2-cl ]
+

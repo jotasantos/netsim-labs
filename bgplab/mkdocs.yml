@@ -31,6 +31,7 @@ nav:
     - basic/3-originate.md
     - basic/4-ipv6.md
     - basic/5-redistribute.md
+    - "EBGP Sessions over IPv6 LLA Interfaces": basic/d-interface.md
   - "Protecting BGP Sessions":
     - "MD5 Passwords and GTSM": basic/6-protect.md
     - "TCP Autentication Option (TCP-AO)": basic/9-ao.md
@@ -41,15 +42,22 @@ nav:
     - "Use BGP Route Reflectors": ibgp/3-rr.md
     - session/6-templates.md
     - "BGP Policy Templates": session/7-policy.md
+    - session/9-dynamic.md
   - "Manipulate AS Path":
     - session/1-allowas_in.md
     - session/2-asoverride.md
     - session/3-localas.md
     - session/4-removeprivate.md
+    - session/5-routeserver.md
+  - "Load Balancing":
+    - lb/1-ebgp.md
+    - lb/2-dmz-bw.md
+    - lb/3-ibgp.md
   - "Other Useful Topics":
     - basic/7-bfd.md
     - basic/8-aggregate.md
     - basic/c-default-route.md
+    - "EBGP Sessions over IPv6 LLA Interfaces": basic/d-interface.md
 
 - "Routing Policies":
   - Overview: policy/index.md
@@ -58,6 +66,7 @@ nav:
     - policy/3-prefix.md
     - policy/4-reduce.md
     - basic/b-max-prefix.md
+    - policy/d-no-export.md
   - "Outgoing (Egress) Traffic":
     - policy/1-weights.md
     - policy/5-local-preference.md
@@ -71,15 +80,20 @@ nav:
     - session/7-policy.md
 
 - Challenges:
-  - challenge/20-merge-as.md
+  - challenge/03-graceful-shutdown.md
   - challenge/04-block-fat-fingers.md
+  - challenge/20-merge-as.md
+  - challenge/30-reduce-fib.md
+  - challenge/40-mpls-core.md
 
 - "Upcoming":
   - Overview: 3-upcoming.md
-  - challenge/02-no-export.md
-  - challenge/03-graceful-shutdown.md
   - challenge/01-bird-rr.md
-  - session/5-routeserver.md
+  - policy/b-disaggregate.md
+  - lb/4-ibgp-add-path.md
+  - challenge/02-anycast.md
+  - challenge/05-ebgp-dc.md
+  - session/8-passive.md
 
 markdown_extensions:
 - footnotes

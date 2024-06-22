@@ -1,0 +1,49 @@
+---
+provider: libvirt
+defaults.device: csr
+#defaults.devices.eos.libvirt.image: arista/veos:4.28.1F
+#defaults.devices.eos.clab.image: ceos:4.28.1F
+
+ospf:
+  area: 0.0.0.0
+nodes:
+  c:
+    module: [ ospf ]
+  s1:
+    module: [ ospf ]
+  s1a:
+    module: [ ospf ]
+    ospf:
+      area: 0.0.0.10
+  s2:
+    module: [ ospf ]
+  s2a:
+    module: [ ospf ]
+    ospf:
+      area: 0.0.0.20
+  server1:
+    device: linux
+  server2:
+    device: linux
+
+
+links: 
+- c:
+  s1:
+- c:
+  s2:
+
+- s1:
+  s1a:
+  ospf:
+    area: 0.0.0.10
+- s2:
+  s2a:
+  ospf:
+    area: 0.0.0.20
+
+- s1a:
+  server1:
+
+- s2a:
+  server2:

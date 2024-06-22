@@ -1,0 +1,25 @@
+defaults.device: csr
+# defaults.devices.eos.clab.image: ceos:4.27.3F
+# defaults.devices.linux.image: alpine
+provider: libvirt
+
+# module: [ ospf, bgp ]
+
+# bgp:
+#   as_list:
+#     65000:
+#       members: [ rr ]
+#     65001:
+#       members: [ r1 ]
+#     65002:
+#       members: [ r2 ]
+#     65003:
+#       members: [ r3 ]
+
+
+nodes:
+  servera:
+  r1:
+  r2:
+
+links: [ servera-r1, r1-r2]

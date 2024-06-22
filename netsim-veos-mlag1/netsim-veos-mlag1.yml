@@ -1,0 +1,20 @@
+---
+- name: MCLAG Configuration on vEOS
+  hosts: s1:s2
+  gather_facts: false
+  vars_files:
+    - mclag_vars.yml
+  # tasks:
+  #   - name: load configuration from files
+  #     eos_config:
+  #       src: config/{{inventory_hostname}}.cfg
+  tasks:
+    - name: Render MCLAG configuration using Jinja2 template
+      template:
+        src: mclag_config.j2
+        dest: ./mclag_config.conf
+
+    - name: Configure vEOS switches with the rendered config
+      eos_config:
+        src: ./mclag_config.conf
+        save_when: modified  

@@ -1,7 +1,7 @@
 %YAML 1.1
 ---
 defaults:
-  provider: clab
+  provider: libvirt
   providers:
     clab:
       description: containerlab with Docker
@@ -552,7 +552,7 @@ defaults:
             INTFTYPE: et
             CLAB_MGMT_VRF: management
         mgmt_if: Management0
-        image: ceos:4.27.3F
+        image: ceos:4.31.1F
         group_vars:
           ansible_user: admin
           ansible_ssh_pass: admin
@@ -860,7 +860,6 @@ defaults:
             ipv6: true
           server: true
           relay: true
-        initial: {}
       libvirt:
         image: generic/ubuntu2004
         group_vars:
@@ -893,7 +892,6 @@ defaults:
         image: none
       graphite:
         icon: server
-      image: alpine
     none:
       description: Dummy device used to test topology transformation
       interface_name: eth{ifindex}
@@ -1551,7 +1549,6 @@ defaults:
         image: none
       graphite:
         icon: server
-      image: alpine
       packages:
         bird: bird
       daemon_config:
@@ -1604,7 +1601,6 @@ defaults:
         image: none
       graphite:
         icon: server
-      image: alpine
       packages:
         dnsmasq: dnsmasq
       daemon_config:
@@ -2074,11 +2070,11 @@ defaults:
           _bridge: nl_mgmt_{id}
   paths:
     validate:
-    - /home/jaime/netsim-labs/netsim-ceos-flowpec_a/validate
+    - /home/jaime/netsim-labs/netsim-csr-test1/validate
     - /home/jaime/.local/lib/python3.10/site-packages/netsim/validate
     custom:
       dirs:
-      - /home/jaime/netsim-labs/netsim-ceos-flowpec_a
+      - /home/jaime/netsim-labs/netsim-csr-test1
       - /home/jaime/.netlab
       - /home/jaime/.local/lib/python3.10/site-packages/netsim/extra
       files:
@@ -2112,7 +2108,7 @@ defaults:
       - '{{ custom_config }}/deploy.yml'
     deploy:
       dirs:
-      - /home/jaime/netsim-labs/netsim-ceos-flowpec_a/tasks
+      - /home/jaime/netsim-labs/netsim-csr-test1/tasks
       - /home/jaime/.netlab/tasks
       - /home/jaime/.local/lib/python3.10/site-packages/netsim/ansible/tasks
       tasks_generic:
@@ -2135,7 +2131,7 @@ defaults:
       - deploy-config/{{ ansible_network_os }}.yml
     templates:
       dirs:
-      - /home/jaime/netsim-labs/netsim-ceos-flowpec_a/templates
+      - /home/jaime/netsim-labs/netsim-csr-test1/templates
       - /home/jaime/.netlab/templates
       - /home/jaime/.local/lib/python3.10/site-packages/netsim/ansible/templates
       - /home/jaime/.local/lib/python3.10/site-packages/netsim/daemons
@@ -2150,7 +2146,7 @@ defaults:
       - '{{netlab_device_type}}/{{config_module}}.j2'
     ready:
       dirs:
-      - /home/jaime/netsim-labs/netsim-ceos-flowpec_a/readiness-check
+      - /home/jaime/netsim-labs/netsim-csr-test1/readiness-check
       - /home/jaime/.netlab/readiness-check
       - /home/jaime/.local/lib/python3.10/site-packages/netsim/ansible/tasks/readiness-check
       files:
@@ -2160,7 +2156,7 @@ defaults:
       - '{{ansible_network_os}}.yml'
     collect:
       dirs:
-      - /home/jaime/netsim-labs/netsim-ceos-flowpec_a/fetch-config
+      - /home/jaime/netsim-labs/netsim-csr-test1/fetch-config
       - /home/jaime/.netlab/fetch-config
       - /home/jaime/.local/lib/python3.10/site-packages/netsim/ansible/tasks/fetch-config
   ports:
@@ -3228,7 +3224,7 @@ defaults:
     - sros
     - unknown
     - vyos
-  device: eos
+  device: csr
   sources:
     list: []
     extra: []
@@ -3251,201 +3247,86 @@ defaults:
     - vrf
     - vxlan
     node_id_id:
-      next: 6
+      next: 3
       max: 250
       value: !!set
         1:
         2:
         3:
-        4:
-        5:
-        6:
-  module:
-  - bgp
-  - ospf
-  name: netsim-ceos-
+  name: netsim-csr-t
   plugin: []
   const: {}
-provider: clab
-module:
-- bgp
-- ospf
-bgp:
-  advertise_loopback: true
-  community:
-    ibgp:
-    - standard
-    - extended
-    ebgp:
-    - standard
-  next_hop_self: true
-  as_list:
-    65000:
-      members:
-      - rr
-    65001:
-      members:
-      - r1
-    65002:
-      members:
-      - r2
-    65003:
-      members:
-      - r3
+provider: libvirt
 nodes:
-  rr:
-    device: cumulus
-    name: rr
+  servera:
+    name: servera
     interfaces:
-    - ipv4: 10.1.0.10/30
-      linkindex: 3
+    - ipv4: 10.1.0.2/30
+      linkindex: 1
       type: p2p
-      role: external
-      name: rr -> r3
-      ifindex: 1
-      ifname: swp1
-      mtu: 1500
+      name: servera -> r1
+      ifindex: 2
+      ifname: GigabitEthernet2
       neighbors:
-      - ifname: Ethernet3
-        node: r3
-        ipv4: 10.1.0.9/30
-    bgp:
-      advertise_loopback: true
-      community:
-        ibgp:
-        - standard
-        - large
-        - extended
-        ebgp:
-        - standard
-        - large
-        ibgp_localas:
-        - standard
-        - large
-        - extended
-      next_hop_self: true
-      as: 65000
-      router_id: 10.0.0.1
-      neighbors:
-      - ifindex: 1
-        name: r3
-        as: 65003
-        type: ebgp
-        ipv4: 10.1.0.9
-        activate:
-          ipv4: true
-      ipv4: true
-    clab:
-      kind: cvx
-      runtime: docker
-      config_templates:
-      - interfaces:/etc/network/interfaces
-      binds:
-      - clab_files/rr/interfaces:/etc/network/interfaces
-    box: networkop/cx:4.4.0
-    module:
-    - bgp
+      - ifname: GigabitEthernet2
+        node: r1
+        ipv4: 10.1.0.1/30
+      libvirt:
+        type: tunnel
+      remote_ifindex: 2
+      remote_id: 2
+    device: csr
+    box: cisco/csr1000v
     id: 1
-    mtu: 1500
+    min_mtu: 1500
     af:
       ipv4: true
     loopback:
       ipv4: 10.0.0.1/32
-      ifname: lo
+      ifname: Loopback0
       ifindex: 0
       type: loopback
       neighbors: []
       virtual_interface: true
-      ospf:
-        area: 0.0.0.0
     mgmt:
-      ifname: eth0
+      ifname: GigabitEthernet1
       ipv4: 192.168.121.101
       mac: 08:4f:a9:00:00:01
-    hostname: clab-netsim-ceos--rr
   r1:
     name: r1
     interfaces:
     - ipv4: 10.1.0.1/30
       linkindex: 1
       type: p2p
-      role: external
-      name: r1 -> r3
-      ifindex: 1
-      ifname: Ethernet1
-      clab:
-        name: et1
-      neighbors:
-      - ifname: Ethernet1
-        node: r3
-        ipv4: 10.1.0.2/30
-    - ipv4: 172.16.0.2/24
-      bridge: netsim-ceo_4
-      linkindex: 4
-      type: lan
-      role: stub
       name: r1 -> servera
       ifindex: 2
-      ifname: Ethernet2
-      clab:
-        name: et2
+      ifname: GigabitEthernet2
       neighbors:
-      - ifname: eth1
+      - ifname: GigabitEthernet2
         node: servera
-        ipv4: 172.16.0.5/24
-      ospf:
-        area: 0.0.0.0
-        passive: true
-        network_type: point-to-point
-      bgp:
-        advertise: true
-    bgp:
-      advertise_loopback: true
-      community:
-        ibgp:
-        - standard
-        - large
-        - extended
-        ebgp:
-        - standard
-        - large
-        ibgp_localas:
-        - standard
-        - large
-        - extended
-      next_hop_self: true
-      _cprop_order:
-      - standard
-      - extended
-      - large
-      - link-bandwidth
-      as: 65001
-      router_id: 10.0.0.2
+        ipv4: 10.1.0.2/30
+      libvirt:
+        type: tunnel
+      remote_ifindex: 2
+      remote_id: 1
+    - ipv4: 10.1.0.5/30
+      linkindex: 2
+      type: p2p
+      name: r1 -> r2
+      ifindex: 3
+      ifname: GigabitEthernet3
       neighbors:
-      - ifindex: 1
-        name: r3
-        as: 65003
-        type: ebgp
-        ipv4: 10.1.0.2
-        activate:
-          ipv4: true
-      ipv4: true
-    device: eos
-    clab:
-      kind: ceos
-      env:
-        INTFTYPE: et
-        CLAB_MGMT_VRF: management
-    box: ceos:4.27.3F
-    module:
-    - ospf
-    - bgp
-    ospf:
-      area: 0.0.0.0
-      router_id: 10.0.0.2
-      af:
-        ipv4: true
+      - ifname: GigabitEthernet2
+        node: r2
+        ipv4: 10.1.0.6/30
+      libvirt:
+        type: tunnel
+      remote_ifindex: 2
+      remote_id: 3
+    device: csr
+    box: cisco/csr1000v
     id: 2
+    min_mtu: 1500
     af:
       ipv4: true
     loopback:
@@ -3455,96 +3336,31 @@ nodes:
       type: loopback
       neighbors: []
       virtual_interface: true
-      ospf:
-        area: 0.0.0.0
     mgmt:
-      ifname: Management0
+      ifname: GigabitEthernet1
       ipv4: 192.168.121.102
       mac: 08:4f:a9:00:00:02
-    hostname: clab-netsim-ceos--r1
   r2:
     name: r2
     interfaces:
-    - ipv4: 10.1.0.5/30
+    - ipv4: 10.1.0.6/30
       linkindex: 2
       type: p2p
-      role: external
-      name: r2 -> r3
-      ifindex: 1
-      ifname: Ethernet1
-      clab:
-        name: et1
-      neighbors:
-      - ifname: Ethernet2
-        node: r3
-        ipv4: 10.1.0.6/30
-    - ipv4: 172.16.1.3/24
-      bridge: netsim-ceo_5
-      linkindex: 5
-      type: lan
-      role: stub
-      name: r2 -> serverb
+      name: r2 -> r1
       ifindex: 2
-      ifname: Ethernet2
-      clab:
-        name: et2
+      ifname: GigabitEthernet2
       neighbors:
-      - ifname: eth1
-        node: serverb
-        ipv4: 172.16.1.6/24
-      ospf:
-        area: 0.0.0.0
-        passive: true
-        network_type: point-to-point
-      bgp:
-        advertise: true
-    bgp:
-      advertise_loopback: true
-      community:
-        ibgp:
-        - standard
-        - large
-        - extended
-        ebgp:
-        - standard
-        - large
-        ibgp_localas:
-        - standard
-        - large
-        - extended
-      next_hop_self: true
-      _cprop_order:
-      - standard
-      - extended
-      - large
-      - link-bandwidth
-      as: 65002
-      router_id: 10.0.0.3
-      neighbors:
-      - ifindex: 1
-        name: r3
-        as: 65003
-        type: ebgp
-        ipv4: 10.1.0.6
-        activate:
-          ipv4: true
-      ipv4: true
-    device: eos
-    clab:
-      kind: ceos
-      env:
-        INTFTYPE: et
-        CLAB_MGMT_VRF: management
-    box: ceos:4.27.3F
-    module:
-    - ospf
-    - bgp
-    ospf:
-      area: 0.0.0.0
-      router_id: 10.0.0.3
-      af:
-        ipv4: true
+      - ifname: GigabitEthernet3
+        node: r1
+        ipv4: 10.1.0.5/30
+      libvirt:
+        type: tunnel
+      remote_ifindex: 3
+      remote_id: 2
+    device: csr
+    box: cisco/csr1000v
     id: 3
+    min_mtu: 1500
     af:
       ipv4: true
     loopback:
@@ -3554,312 +3370,48 @@ nodes:
       type: loopback
       neighbors: []
       virtual_interface: true
-      ospf:
-        area: 0.0.0.0
     mgmt:
-      ifname: Management0
+      ifname: GigabitEthernet1
       ipv4: 192.168.121.103
       mac: 08:4f:a9:00:00:03
-    hostname: clab-netsim-ceos--r2
-  r3:
-    name: r3
-    interfaces:
-    - ipv4: 10.1.0.2/30
-      linkindex: 1
-      type: p2p
-      role: external
-      name: r3 -> r1
-      ifindex: 1
-      ifname: Ethernet1
-      clab:
-        name: et1
-      neighbors:
-      - ifname: Ethernet1
-        node: r1
-        ipv4: 10.1.0.1/30
-    - ipv4: 10.1.0.6/30
-      linkindex: 2
-      type: p2p
-      role: external
-      name: r3 -> r2
-      ifindex: 2
-      ifname: Ethernet2
-      clab:
-        name: et2
-      neighbors:
-      - ifname: Ethernet1
-        node: r2
-        ipv4: 10.1.0.5/30
-    - ipv4: 10.1.0.9/30
-      linkindex: 3
-      type: p2p
-      role: external
-      name: r3 -> rr
-      ifindex: 3
-      ifname: Ethernet3
-      clab:
-        name: et3
-      neighbors:
-      - ifname: swp1
-        node: rr
-        ipv4: 10.1.0.10/30
-    bgp:
-      advertise_loopback: true
-      community:
-        ibgp:
-        - standard
-        - large
-        - extended
-        ebgp:
-        - standard
-        - large
-        ibgp_localas:
-        - standard
-        - large
-        - extended
-      next_hop_self: true
-      _cprop_order:
-      - standard
-      - extended
-      - large
-      - link-bandwidth
-      as: 65003
-      router_id: 10.0.0.4
-      neighbors:
-      - ifindex: 1
-        name: r1
-        as: 65001
-        type: ebgp
-        ipv4: 10.1.0.1
-        activate:
-          ipv4: true
-      - ifindex: 2
-        name: r2
-        as: 65002
-        type: ebgp
-        ipv4: 10.1.0.5
-        activate:
-          ipv4: true
-      - ifindex: 3
-        name: rr
-        as: 65000
-        type: ebgp
-        ipv4: 10.1.0.10
-        activate:
-          ipv4: true
-      ipv4: true
-    device: eos
-    clab:
-      kind: ceos
-      env:
-        INTFTYPE: et
-        CLAB_MGMT_VRF: management
-    box: ceos:4.27.3F
-    module:
-    - bgp
-    id: 4
-    af:
-      ipv4: true
-    loopback:
-      ipv4: 10.0.0.4/32
-      ifname: Loopback0
-      ifindex: 0
-      type: loopback
-      neighbors: []
-      virtual_interface: true
-      ospf:
-        area: 0.0.0.0
-    mgmt:
-      ifname: Management0
-      ipv4: 192.168.121.104
-      mac: 08:4f:a9:00:00:04
-    hostname: clab-netsim-ceos--r3
-  servera:
-    device: linux
-    module: []
-    name: servera
-    interfaces:
-    - ipv4: 172.16.0.5/24
-      bridge: netsim-ceo_4
-      linkindex: 4
-      type: lan
-      role: stub
-      name: servera -> r1
-      ifindex: 1
-      ifname: eth1
-      mtu: 1500
-      neighbors:
-      - ifname: Ethernet2
-        node: r1
-        ipv4: 172.16.0.2/24
-      gateway:
-        ipv4: 172.16.0.2/24
-    clab:
-      kind: linux
-      config_templates:
-      - hosts:/etc/hosts
-      binds:
-      - clab_files/servera/hosts:/etc/hosts
-    box: alpine
-    id: 5
-    role: host
-    mtu: 1500
-    af:
-      ipv4: true
-    mgmt:
-      ifname: eth0
-      ipv4: 192.168.121.105
-      mac: 08:4f:a9:00:00:05
-    hostname: clab-netsim-ceos--servera
-  serverb:
-    device: linux
-    module: []
-    name: serverb
-    interfaces:
-    - ipv4: 172.16.1.6/24
-      bridge: netsim-ceo_5
-      linkindex: 5
-      type: lan
-      role: stub
-      name: serverb -> r2
-      ifindex: 1
-      ifname: eth1
-      mtu: 1500
-      neighbors:
-      - ifname: Ethernet2
-        node: r2
-        ipv4: 172.16.1.3/24
-      gateway:
-        ipv4: 172.16.1.3/24
-    clab:
-      kind: linux
-      config_templates:
-      - hosts:/etc/hosts
-      binds:
-      - clab_files/serverb/hosts:/etc/hosts
-    box: alpine
-    id: 6
-    role: host
-    mtu: 1500
-    af:
-      ipv4: true
-    mgmt:
-      ifname: eth0
-      ipv4: 192.168.121.106
-      mac: 08:4f:a9:00:00:06
-    hostname: clab-netsim-ceos--serverb
 links:
 - interfaces:
-  - node: r3
+  - node: servera
     ipv4: 10.1.0.2/30
-    ifindex: 1
-    ifname: Ethernet1
+    ifindex: 2
+    ifname: GigabitEthernet2
   - node: r1
     ipv4: 10.1.0.1/30
-    ifindex: 1
-    ifname: Ethernet1
+    ifindex: 2
+    ifname: GigabitEthernet2
   linkindex: 1
-  role: external
   node_count: 2
   type: p2p
   prefix:
     ipv4: 10.1.0.0/30
   provider:
-    clab: true
+    libvirt: true
 - interfaces:
-  - node: r3
+  - node: r1
+    ipv4: 10.1.0.5/30
+    ifindex: 3
+    ifname: GigabitEthernet3
+  - node: r2
     ipv4: 10.1.0.6/30
     ifindex: 2
-    ifname: Ethernet2
-  - node: r2
-    ipv4: 10.1.0.5/30
-    ifindex: 1
-    ifname: Ethernet1
+    ifname: GigabitEthernet2
   linkindex: 2
-  role: external
   node_count: 2
   type: p2p
   prefix:
     ipv4: 10.1.0.4/30
   provider:
-    clab: true
-- interfaces:
-  - node: r3
-    ipv4: 10.1.0.9/30
-    ifindex: 3
-    ifname: Ethernet3
-  - node: rr
-    ipv4: 10.1.0.10/30
-    ifindex: 1
-    ifname: swp1
-  linkindex: 3
-  role: external
-  node_count: 2
-  type: p2p
-  prefix:
-    ipv4: 10.1.0.8/30
-  provider:
-    clab: true
-- interfaces:
-  - node: r1
-    ipv4: 172.16.0.2/24
-    ifindex: 2
-    ifname: Ethernet2
-  - node: servera
-    ipv4: 172.16.0.5/24
-    ifindex: 1
-    ifname: eth1
-  linkindex: 4
-  node_count: 2
-  role: stub
-  type: lan
-  bridge: netsim-ceo_4
-  prefix:
-    ipv4: 172.16.0.0/24
-  gateway:
-    ipv4: 172.16.0.2/24
-  provider:
-    clab: true
-- interfaces:
-  - node: r2
-    ipv4: 172.16.1.3/24
-    ifindex: 2
-    ifname: Ethernet2
-  - node: serverb
-    ipv4: 172.16.1.6/24
-    ifindex: 1
-    ifname: eth1
-  linkindex: 5
-  node_count: 2
-  role: stub
-  type: lan
-  bridge: netsim-ceo_5
-  prefix:
-    ipv4: 172.16.1.0/24
-  gateway:
-    ipv4: 172.16.1.3/24
-  provider:
-    clab: true
+    libvirt: true
 input:
-- /home/jaime/netsim-labs/netsim-ceos-flowpec_a/topology.yml
+- /home/jaime/netsim-labs/netsim-csr-test1/topology.yml
 - /home/jaime/.netlab.yml
 - package:topology-defaults.yml
-name: netsim-ceos-
-groups:
-  as65000:
-    members:
-    - rr
-  as65001:
-    members:
-    - r1
-  as65002:
-    members:
-    - r2
-  as65003:
-    members:
-    - r3
-ospf:
-  area: 0.0.0.0
+name: netsim-csr-t
 addressing:
   lan:
     ipv4: 172.16.0.0/16

@@ -1,7 +1,8 @@
 %YAML 1.1
 ---
+provider: libvirt
 defaults:
-  provider: clab
+  provider: libvirt
   providers:
     clab:
       description: containerlab with Docker
@@ -139,11 +140,13 @@ defaults:
       ifindex_offset: 1
       libvirt:
         image: aruba/cx
+        build: https://netlab.tools/labs/arubacx/
         create: virt-install --connect=qemu:///system --name=vm_box --arch=x86_64
           --cpu host --vcpus=2 --hvm --ram=4096 --network=network:vagrant-libvirt,model=virtio
           --graphics none --import --disk path=vm.qcow2,format=qcow2,bus=ide
       clab:
         image: vrnetlab/vr-aoscx:20231110145644
+        build: https://containerlab.dev/manual/kinds/vr-aoscx/
         mtu: 1500
         node:
           kind: vr-aoscx
@@ -160,7 +163,7 @@ defaults:
         bgp:
           activate_af: true
           local_as: true
-          local_as_ibgp: true
+          local_as_ibgp: false
           vrf_local_as: true
         evpn:
           asymmetrical_irb: true
@@ -203,11 +206,8 @@ defaults:
         isis: {}
       libvirt:
         image: cisco/asav
-        create: virt-install --connect=qemu:///system --network network=vagrant-libvirt,model=virtio
-          --name=vm_box --cpu host --arch=x86_64 --machine=pc-1.0 --vcpus=1 --ram=2048
-          --os-type=linux --noacpi --virt-type=kvm --watchdog i6300esb,action=reset
-          --disk path=vm.qcow2,format=qcow2,device=disk,bus=virtio,cache=writethrough
-          --disk path=bootstrap.iso,format=iso,device=cdrom --graphics none --import
+        create_template: asav.xml.j2
+        build: https://netlab.tools/labs/asav/
         create_iso: asav
     csr:
       description: Cisco CSR 1000v
@@ -225,6 +225,7 @@ defaults:
         netlab_initial: always
       libvirt:
         image: cisco/csr1000v
+        build: https://netlab.tools/labs/csr/
         create: virt-install --connect=qemu:///system --name=vm_box --os-variant=rhel4.0
           --arch=x86_64 --cpu host --vcpus=1 --hvm --ram=4096 --disk path=vm.qcow2,bus=ide,format=qcow2
           --network=network:vagrant-libvirt,model=virtio --graphics none --import
@@ -424,6 +425,7 @@ defaults:
             unnumbered: true
           ipv6:
             lla: true
+          delay: 30
         bgp:
           activate_af: true
           ipv6_lla: true
@@ -447,6 +449,7 @@ defaults:
         vxlan: {}
       clab:
         image: vrnetlab/vr-ftosv
+        build: https://containerlab.dev/manual/kinds/vr-ftosv/
         node:
           kind: vr-ftosv
         interface:
@@ -454,10 +457,12 @@ defaults:
         mtu: 1500
       libvirt:
         image: dell/os10
+        build: https://netlab.tools/labs/dellos10/
         create: virt-install --connect=qemu:///system --name=vm_box --arch=x86_64
           --cpu host --vcpus=2 --hvm --ram=2048 --network=network:vagrant-libvirt,model=virtio
           --graphics none --import --disk path=vm.qcow2,format=qcow2,bus=sata --disk
           path=hdb_OS10-installer.qcow2,format=qcow2,bus=virtio --disk path=hdc_OS10-platform.qcow2,format=qcow2,bus=virtio
+        pre_install: dellos10
       group_vars:
         ansible_network_os: dellos10
         ansible_connection: network_cli
@@ -544,6 +549,7 @@ defaults:
           bgp: true
         vxlan: {}
       clab:
+        build: https://netlab.tools/labs/ceos/
         interface:
           name: et{ifindex}
         node:
@@ -552,13 +558,14 @@ defaults:
             INTFTYPE: et
             CLAB_MGMT_VRF: management
         mgmt_if: Management0
-        image: ceos:4.27.3F
+        image: ceos:4.31.1F
         group_vars:
           ansible_user: admin
           ansible_ssh_pass: admin
           ansible_become: 'yes'
           ansible_become_method: enable
       libvirt:
+        build: https://netlab.tools/labs/eos/
         image: arista/veos:4.28.3M
         create_template: eos.xml.j2
       external:
@@ -614,6 +621,7 @@ defaults:
           - vtysh
           - -c
           - show $@
+          netlab_mgmt_vrf: true
         image: quay.io/frrouting/frr:9.1.0
         mtu: 1500
         node:
@@ -707,6 +715,7 @@ defaults:
         netlab_initial: always
       libvirt:
         image: cisco/iosv
+        build: https://netlab.tools/labs/iosv/
         create_template: iosv.xml.j2
       virtualbox:
         image: cisco/iosv
@@ -796,6 +805,7 @@ defaults:
         image: none
       libvirt:
         image: cisco/iosxr
+        build: https://netlab.tools/labs/iosxr/
         create: virt-install --connect=qemu:///system --network network=vagrant-libvirt,model=e1000
           --name=vm_box --cpu host --arch=x86_64 --vcpus=2 --ram=8192 --virt-type=kvm
           --disk path=vm.qcow2,format=qcow2,device=disk,bus=ide --graphics none --import
@@ -807,6 +817,7 @@ defaults:
         interface:
           name: Gi0-0-0-{ifindex}
         image: ios-xr/xrd-control-plane:7.11.1
+        build: https://containerlab.dev/manual/kinds/xrd/
         group_vars:
           ansible_user: clab
           ansible_ssh_pass: clab@123
@@ -860,7 +871,6 @@ defaults:
             ipv6: true
           server: true
           relay: true
-        initial: {}
       libvirt:
         image: generic/ubuntu2004
         group_vars:
@@ -893,7 +903,6 @@ defaults:
         image: none
       graphite:
         icon: server
-      image: alpine
     none:
       description: Dummy device used to test topology transformation
       interface_name: eth{ifindex}
@@ -1006,6 +1015,7 @@ defaults:
       libvirt:
         create_template: nxos.xml.j2
         image: cisco/nexus9300v
+        build: https://netlab.tools/labs/nxos/
       external:
         image: none
       graphite:
@@ -1017,6 +1027,7 @@ defaults:
       ifindex_offset: 2
       libvirt:
         image: mikrotik/chr
+        build: https://stefano.dscnet.org/a/mikrotik_vagrant/
       group_vars:
         ansible_network_os: routeros
         ansible_connection: network_cli
@@ -1049,6 +1060,7 @@ defaults:
       ifindex_offset: 2
       libvirt:
         image: mikrotik/chr7
+        build: https://netlab.tools/labs/routeros7/
         create: virt-install --connect=qemu:///system --name=vm_box --arch=x86_64
           --cpu host --vcpus=2 --hvm --ram=256 --network=network:vagrant-libvirt,model=virtio
           --graphics none --import --disk path=vm.qcow2,format=qcow2,bus=ide
@@ -1074,12 +1086,63 @@ defaults:
           bgp: true
       clab:
         image: vrnetlab/vr-routeros:7.6
+        build: https://containerlab.dev/manual/kinds/vr-ros/
         node:
           kind: vr-ros
         interface:
           name: eth{ifindex-1}
       external:
         image: none
+      graphite:
+        icon: router
+    sonic:
+      description: Sonic VM
+      interface_name: Ethernet{ifindex * 4}
+      ifindex_offset: 0
+      mgmt_if: eth0
+      loopback_interface_name: Loopback{ifindex}
+      group_vars:
+        ansible_network_os: frr
+        ansible_python_interpreter: auto_silent
+        netlab_device_type: sonic
+      libvirt:
+        image: netlab/sonic
+        mtu: 1500
+        create_template: sonic.xml.j2
+        group_vars:
+          ansible_connection: paramiko
+          ansible_user: admin
+          ansible_ssh_pass: YourPaSsWoRd
+          netlab_show_command:
+          - sudo
+          - vtysh
+          - -c
+          - show $@
+      external:
+        image: none
+      features:
+        initial:
+          ipv4:
+            unnumbered: true
+          ipv6:
+            lla: true
+        bgp:
+          activate_af: true
+          ipv6_lla: true
+          local_as: true
+          local_as_ibgp: true
+          rfc8950: true
+          vrf_local_as: true
+          community:
+            standard:
+            - standard
+            - large
+            large:
+            - large
+            extended:
+            - extended
+            2octet:
+            - standard
       graphite:
         icon: router
     srlinux:
@@ -1101,7 +1164,7 @@ defaults:
         min_tx: 100
         min_rx: 100
       clab:
-        image: ghcr.io/nokia/srlinux:23.3.1
+        image: ghcr.io/nokia/srlinux:24.3.2
         node:
           kind: srl
           type: ixrd2
@@ -1136,15 +1199,16 @@ defaults:
           irb: true
           asymmetrical_irb: true
         ospf:
-          unnumbered: false
+          unnumbered: true
         isis:
           unnumbered:
-            ipv4: false
+            ipv4: true
             ipv6: true
-            network: false
+            network: true
         vrf:
           keep_module: true
           ospfv2: true
+          ospfv3: true
           bgp: true
         gateway:
           protocol:
@@ -1225,6 +1289,7 @@ defaults:
           bgp: true
       clab:
         image: vrnetlab/vr-sros
+        build: https://containerlab.dev/manual/kinds/vr-sros/
         mtu: 1500
         node:
           kind: vr-sros
@@ -1306,6 +1371,7 @@ defaults:
         image: none
       clab:
         image: vrnetlab/vr-vmx:18.2R1.9
+        build: https://containerlab.dev/manual/kinds/vr-vmx/
         node:
           kind: vr-vmx
         interface:
@@ -1359,10 +1425,12 @@ defaults:
         image: none
       libvirt:
         image: juniper/vptx
+        build: https://netlab.tools/labs/vptx/
         pre_install: vptx
         create_template: vptx.xml.j2
       clab:
         image: vrnetlab/vr-vjunosevolved:23.2R1-S1.8-EVO
+        build: https://containerlab.dev/manual/kinds/vr-vjunosevolved/
         mtu: 1500
         node:
           kind: juniper_vjunosevolved
@@ -1420,6 +1488,7 @@ defaults:
         image: juniper/vsrx3
       libvirt:
         image: juniper/vsrx3
+        build: https://netlab.tools/labs/vsrx/
         create_iso: vsrx
         create: virt-install --connect=qemu:///system --name=vm_box --os-variant=freebsd10.0
           --arch=x86_64 --cpu host --vcpus=2 --hvm --ram=4096 --disk path=vm.qcow2,bus=ide,format=qcow2
@@ -1427,6 +1496,7 @@ defaults:
           --graphics none --import
       clab:
         image: vrnetlab/vr-vsrx:23.1R1.8
+        build: https://containerlab.dev/manual/kinds/vr-vsrx/
         node:
           kind: vr-vsrx
         interface:
@@ -1437,7 +1507,7 @@ defaults:
       graphite:
         icon: firewall
     vyos:
-      description: Vyatta VyOS VM/container
+      description: VyOS VM/container
       interface_name: eth{ifindex}
       loopback_interface_name: dum{ifindex}
       mgmt_if: eth0
@@ -1547,11 +1617,11 @@ defaults:
           - birdc
           - show $@
           docker_shell: bash -il
+        build: https://netlab.tools/netlab/clab/#netlab-clab-build
       external:
         image: none
       graphite:
         icon: server
-      image: alpine
       packages:
         bird: bird
       daemon_config:
@@ -1600,11 +1670,11 @@ defaults:
           ansible_user: root
           netlab_linux_distro: vanilla
           docker_shell: bash -il
+        build: https://netlab.tools/netlab/clab/#netlab-clab-build
       external:
         image: none
       graphite:
         icon: server
-      image: alpine
       packages:
         dnsmasq: dnsmasq
       daemon_config:
@@ -1635,6 +1705,7 @@ defaults:
           - show $@
           docker_shell: bash -il
         image: netlab/bird:latest
+        build: https://netlab.tools/netlab/clab/#netlab-clab-build
       libvirt:
         image:
       virtualbox:
@@ -1660,6 +1731,7 @@ defaults:
         group_vars:
           docker_shell: bash -il
         image: netlab/dnsmasq:latest
+        build: https://netlab.tools/netlab/clab/#netlab-clab-build
       libvirt:
         image:
       virtualbox:
@@ -1853,7 +1925,7 @@ defaults:
     - vlan
     - dhcp
     interface:
-      node: id
+      node: node_id
       ipv4:
         type: ipv4
         use: interface
@@ -2045,9 +2117,11 @@ defaults:
       node_bundle: |
         evpn.bundle attribute can be used only in global VRF definition
       asn: >
-        You could use 'bgp.as' parameter to specify the global AS. Otherwise, specify
-        the global AS used by EVPN in 'vrf.as' parameter if you use VRFs, or in
-        'evpn.as' parameter if you use EVPN in bridging-only scenarios.
+        You could use the global 'bgp.as' parameter to specify the AS to use in EVPN
+        route targets. 'bgp.as' specified on individual nodes or groups will not work.
+        You
+        can also specify the global AS used by EVPN in 'vrf.as' parameter if you use
+        VRFs, or in 'evpn.as' parameter if you use EVPN in bridging-only scenarios.
     bgp:
       igp: >
         Add a supported IGP (ospf, isis, eigrp) to the list of modules.
@@ -2058,6 +2132,17 @@ defaults:
         package-, system-, user- or current directory. You can also specify a report
         in a
         defaults.outputs.report setting.
+    quirks:
+      junos_lb: >
+        Junos devices cannot have more than one loopback interface per routing instance
+    vrf:
+      inactive: ''
+    cli:
+      recreate: netlab transforms lab topology into device- and platform data and
+        stores the results in a snapshot file that is used by most netlab commands.
+        Changes to source files (including lab topology or defaults) are not automatically
+        reflected in the snapshot file. Use 'netlab create' or 'netlab up' to create
+        a new snapshot file.
   multilab:
     change:
       name: ml_{id}
@@ -2074,11 +2159,14 @@ defaults:
           _bridge: nl_mgmt_{id}
   paths:
     validate:
-    - /home/jaime/netsim-labs/netsim-ceos-flowpec_a/validate
     - /home/jaime/.local/lib/python3.10/site-packages/netsim/validate
+    plugin:
+    - /home/jaime/netsim-labs/netsim-csr-mpls1
+    - /home/jaime/.netlab
+    - /home/jaime/.local/lib/python3.10/site-packages/netsim/extra
     custom:
       dirs:
-      - /home/jaime/netsim-labs/netsim-ceos-flowpec_a
+      - /home/jaime/netsim-labs/netsim-csr-mpls1
       - /home/jaime/.netlab
       - /home/jaime/.local/lib/python3.10/site-packages/netsim/extra
       files:
@@ -2112,8 +2200,6 @@ defaults:
       - '{{ custom_config }}/deploy.yml'
     deploy:
       dirs:
-      - /home/jaime/netsim-labs/netsim-ceos-flowpec_a/tasks
-      - /home/jaime/.netlab/tasks
       - /home/jaime/.local/lib/python3.10/site-packages/netsim/ansible/tasks
       tasks_generic:
       - deploy-config/{{ netlab_device_type }}-{{ node_provider }}.yml
@@ -2135,8 +2221,6 @@ defaults:
       - deploy-config/{{ ansible_network_os }}.yml
     templates:
       dirs:
-      - /home/jaime/netsim-labs/netsim-ceos-flowpec_a/templates
-      - /home/jaime/.netlab/templates
       - /home/jaime/.local/lib/python3.10/site-packages/netsim/ansible/templates
       - /home/jaime/.local/lib/python3.10/site-packages/netsim/daemons
     t_files:
@@ -2150,8 +2234,6 @@ defaults:
       - '{{netlab_device_type}}/{{config_module}}.j2'
     ready:
       dirs:
-      - /home/jaime/netsim-labs/netsim-ceos-flowpec_a/readiness-check
-      - /home/jaime/.netlab/readiness-check
       - /home/jaime/.local/lib/python3.10/site-packages/netsim/ansible/tasks/readiness-check
       files:
       - '{{netlab_device_type}}-{{provider|default(netlab_provider)}}.yml'
@@ -2160,8 +2242,6 @@ defaults:
       - '{{ansible_network_os}}.yml'
     collect:
       dirs:
-      - /home/jaime/netsim-labs/netsim-ceos-flowpec_a/fetch-config
-      - /home/jaime/.netlab/fetch-config
       - /home/jaime/.local/lib/python3.10/site-packages/netsim/ansible/tasks/fetch-config
   ports:
     ssh: 22
@@ -2368,6 +2448,7 @@ defaults:
           rr:
             type: list
             _subtype: node_id
+      vrf_aware: {}
     features:
       local_as: Supports local-as functionality
       vrf_local_as: Supports local-as within a VRF
@@ -2399,6 +2480,7 @@ defaults:
     - nxos
     - routeros
     - routeros7
+    - sonic
     - srlinux
     - sros
     - unknown
@@ -2476,6 +2558,8 @@ defaults:
         as: asn
       link:
         passive: bool
+    warnings:
+      inactive: true
     supported_on:
     - csr
     - iosv
@@ -2732,12 +2816,16 @@ defaults:
           type: str
           valid_values:
           - point-to-point
+          _alt_types:
+          - bool
         passive: bool
     features:
       unnumbered:
         ipv4: IPv4 unnumbered interfaces
         ipv6: IPv6 unnumbered interfaces
         network: multi-access unnumbered links
+    warnings:
+      inactive: true
     supported_on:
     - asav
     - csr
@@ -2764,6 +2852,7 @@ defaults:
     transform_after:
     - vlan
     - bgp
+    - vrf
     ldp: true
     attributes:
       global:
@@ -2852,6 +2941,7 @@ defaults:
           - ibgp
       link:
         ldp: bool
+      node_copy: {}
     features:
       ldp: Can run LDP within an autonomous system
       bgp: Supports BGP Labeled Unicast address family
@@ -2971,6 +3061,8 @@ defaults:
     features:
       unnumbered: Can run OSPFv2 over unnumbered IPv4 interfaces
       strict_bfd: Supports strict BFD mode (RFC 9355)
+    warnings:
+      inactive: true
     supported_on:
     - arubacx
     - bird
@@ -3157,6 +3249,9 @@ defaults:
         loopback: bool
       link: id
       interface: id
+      node_copy: {}
+    warnings:
+      inactive: true
     supported_on:
     - arubacx
     - csr
@@ -3228,7 +3323,7 @@ defaults:
     - sros
     - unknown
     - vyos
-  device: eos
+  device: csr
   sources:
     list: []
     extra: []
@@ -3250,8 +3345,23 @@ defaults:
     - vlan
     - vrf
     - vxlan
+    vrf_id_id:
+      value: !!set
+        1:
+        2:
+        3:
+      next: 3
+      max: 4095
+    vrf_rd_id:
+      value: !!set
+        1:
+        2:
+        3:
+        '65000:3':
+        '65000:2':
+        '65000:1':
     node_id_id:
-      next: 6
+      next: 13
       max: 250
       value: !!set
         1:
@@ -3260,16 +3370,43 @@ defaults:
         4:
         5:
         6:
+        7:
+        8:
+        9:
+        10:
+        11:
+        12:
+        13:
+  name: netsim-csr-m
+  plugin: []
   module:
   - bgp
   - ospf
-  name: netsim-ceos-
-  plugin: []
+  - mpls
+  - vrf
   const: {}
-provider: clab
-module:
-- bgp
-- ospf
+vrfs:
+  red:
+    id: 1
+    rd: '65000:1'
+    import:
+    - '65000:1'
+    export:
+    - '65000:1'
+  blue:
+    id: 2
+    rd: '65000:2'
+    import:
+    - '65000:2'
+    export:
+    - '65000:2'
+  white:
+    id: 3
+    rd: '65000:3'
+    import:
+    - '65000:3'
+    export:
+    - '65000:3'
 bgp:
   advertise_loopback: true
   community:
@@ -3279,79 +3416,180 @@ bgp:
     ebgp:
     - standard
   next_hop_self: true
-  as_list:
-    65000:
-      members:
-      - rr
-    65001:
-      members:
-      - r1
-    65002:
-      members:
-      - r2
-    65003:
-      members:
-      - r3
+  as: 65000
+mpls:
+  ldp: true
+  vpn: true
 nodes:
-  rr:
-    device: cumulus
-    name: rr
+  p1:
+    module:
+    - bgp
+    - ospf
+    - mpls
+    name: p1
     interfaces:
-    - ipv4: 10.1.0.10/30
-      linkindex: 3
+    - ipv4: 10.1.0.17/30
+      linkindex: 5
       type: p2p
-      role: external
-      name: rr -> r3
-      ifindex: 1
-      ifname: swp1
-      mtu: 1500
+      name: p1 -> p2
+      ifindex: 2
+      ifname: GigabitEthernet2
       neighbors:
-      - ifname: Ethernet3
-        node: r3
-        ipv4: 10.1.0.9/30
+      - ifname: GigabitEthernet2
+        node: p2
+        ipv4: 10.1.0.18/30
+      ospf:
+        area: 0.0.0.0
+        passive: false
+        network_type: point-to-point
+      ldp:
+        passive: false
+      libvirt:
+        type: tunnel
+      remote_ifindex: 2
+      remote_id: 2
+    - ipv4: 10.1.0.25/30
+      linkindex: 7
+      type: p2p
+      name: p1 -> p4
+      ifindex: 3
+      ifname: GigabitEthernet3
+      neighbors:
+      - ifname: GigabitEthernet2
+        node: p4
+        ipv4: 10.1.0.26/30
+      ospf:
+        area: 0.0.0.0
+        passive: false
+        network_type: point-to-point
+      ldp:
+        passive: false
+      libvirt:
+        type: tunnel
+      remote_ifindex: 2
+      remote_id: 4
+    - ipv4: 10.1.0.37/30
+      linkindex: 10
+      type: p2p
+      name: p1 -> pe1
+      ifindex: 4
+      ifname: GigabitEthernet4
+      neighbors:
+      - ifname: GigabitEthernet3
+        node: pe1
+        ipv4: 10.1.0.38/30
+      ospf:
+        area: 0.0.0.0
+        passive: false
+        network_type: point-to-point
+      ldp:
+        passive: false
+      libvirt:
+        type: tunnel
+      remote_ifindex: 3
+      remote_id: 6
+    - ipv4: 10.1.0.41/30
+      linkindex: 11
+      type: p2p
+      name: p1 -> pe2
+      ifindex: 5
+      ifname: GigabitEthernet5
+      neighbors:
+      - ifname: GigabitEthernet3
+        node: pe2
+        ipv4: 10.1.0.42/30
+      ospf:
+        area: 0.0.0.0
+        passive: false
+        network_type: point-to-point
+      ldp:
+        passive: false
+      libvirt:
+        type: tunnel
+      remote_ifindex: 3
+      remote_id: 7
+    device: csr
+    box: cisco/csr1000v
+    vrf:
+      as: 65000
+    ospf:
+      area: 0.0.0.0
+      router_id: 10.0.0.1
+      af:
+        ipv4: true
     bgp:
       advertise_loopback: true
       community:
         ibgp:
         - standard
-        - large
         - extended
         ebgp:
         - standard
-        - large
         ibgp_localas:
         - standard
-        - large
         - extended
       next_hop_self: true
       as: 65000
       router_id: 10.0.0.1
       neighbors:
-      - ifindex: 1
-        name: r3
-        as: 65003
-        type: ebgp
-        ipv4: 10.1.0.9
+      - name: p2
+        as: 65000
+        type: ibgp
+        ipv4: 10.0.0.2
+        activate:
+          ipv4: true
+      - name: p3
+        as: 65000
+        type: ibgp
+        ipv4: 10.0.0.3
+        activate:
+          ipv4: true
+      - name: p4
+        as: 65000
+        type: ibgp
+        ipv4: 10.0.0.4
+        activate:
+          ipv4: true
+      - name: p5
+        as: 65000
+        type: ibgp
+        ipv4: 10.0.0.5
+        activate:
+          ipv4: true
+      - name: pe1
+        as: 65000
+        type: ibgp
+        ipv4: 10.0.0.6
+        activate:
+          ipv4: true
+      - name: pe2
+        as: 65000
+        type: ibgp
+        ipv4: 10.0.0.7
+        activate:
+          ipv4: true
+      - name: pe3
+        as: 65000
+        type: ibgp
+        ipv4: 10.0.0.8
+        activate:
+          ipv4: true
+      - name: pe4
+        as: 65000
+        type: ibgp
+        ipv4: 10.0.0.9
         activate:
           ipv4: true
       ipv4: true
-    clab:
-      kind: cvx
-      runtime: docker
-      config_templates:
-      - interfaces:/etc/network/interfaces
-      binds:
-      - clab_files/rr/interfaces:/etc/network/interfaces
-    box: networkop/cx:4.4.0
-    module:
-    - bgp
+    mpls:
+      vpn: {}
     id: 1
-    mtu: 1500
+    min_mtu: 1500
     af:
       ipv4: true
     loopback:
       ipv4: 10.0.0.1/32
-      ifname: lo
+      ifname: Loopback0
       ifindex: 0
       type: loopback
       neighbors: []
@@ -3359,93 +3597,175 @@ nodes:
       ospf:
         area: 0.0.0.0
     mgmt:
-      ifname: eth0
+      ifname: GigabitEthernet1
       ipv4: 192.168.121.101
       mac: 08:4f:a9:00:00:01
-    hostname: clab-netsim-ceos--rr
-  r1:
-    name: r1
+    ldp:
+      router_id: 10.0.0.1
+  p2:
+    module:
+    - bgp
+    - ospf
+    - mpls
+    name: p2
     interfaces:
-    - ipv4: 10.1.0.1/30
-      linkindex: 1
+    - ipv4: 10.1.0.18/30
+      linkindex: 5
       type: p2p
-      role: external
-      name: r1 -> r3
-      ifindex: 1
-      ifname: Ethernet1
-      clab:
-        name: et1
-      neighbors:
-      - ifname: Ethernet1
-        node: r3
-        ipv4: 10.1.0.2/30
-    - ipv4: 172.16.0.2/24
-      bridge: netsim-ceo_4
-      linkindex: 4
-      type: lan
-      role: stub
-      name: r1 -> servera
+      name: p2 -> p1
       ifindex: 2
-      ifname: Ethernet2
-      clab:
-        name: et2
+      ifname: GigabitEthernet2
       neighbors:
-      - ifname: eth1
-        node: servera
-        ipv4: 172.16.0.5/24
+      - ifname: GigabitEthernet2
+        node: p1
+        ipv4: 10.1.0.17/30
       ospf:
         area: 0.0.0.0
-        passive: true
+        passive: false
         network_type: point-to-point
-      bgp:
-        advertise: true
-    bgp:
-      advertise_loopback: true
-      community:
-        ibgp:
-        - standard
-        - large
-        - extended
-        ebgp:
-        - standard
-        - large
-        ibgp_localas:
-        - standard
-        - large
-        - extended
-      next_hop_self: true
-      _cprop_order:
-      - standard
-      - extended
-      - large
-      - link-bandwidth
-      as: 65001
-      router_id: 10.0.0.2
+      ldp:
+        passive: false
+      libvirt:
+        type: tunnel
+      remote_ifindex: 2
+      remote_id: 1
+    - ipv4: 10.1.0.21/30
+      linkindex: 6
+      type: p2p
+      name: p2 -> p3
+      ifindex: 3
+      ifname: GigabitEthernet3
       neighbors:
-      - ifindex: 1
-        name: r3
-        as: 65003
-        type: ebgp
-        ipv4: 10.1.0.2
-        activate:
-          ipv4: true
-      ipv4: true
-    device: eos
-    clab:
-      kind: ceos
-      env:
-        INTFTYPE: et
-        CLAB_MGMT_VRF: management
-    box: ceos:4.27.3F
-    module:
-    - ospf
-    - bgp
+      - ifname: GigabitEthernet2
+        node: p3
+        ipv4: 10.1.0.22/30
+      ospf:
+        area: 0.0.0.0
+        passive: false
+        network_type: point-to-point
+      ldp:
+        passive: false
+      libvirt:
+        type: tunnel
+      remote_ifindex: 2
+      remote_id: 3
+    - ipv4: 10.1.0.45/30
+      linkindex: 12
+      type: p2p
+      name: p2 -> pe3
+      ifindex: 4
+      ifname: GigabitEthernet4
+      neighbors:
+      - ifname: GigabitEthernet3
+        node: pe3
+        ipv4: 10.1.0.46/30
+      ospf:
+        area: 0.0.0.0
+        passive: false
+        network_type: point-to-point
+      ldp:
+        passive: false
+      libvirt:
+        type: tunnel
+      remote_ifindex: 3
+      remote_id: 8
+    - ipv4: 10.1.0.49/30
+      linkindex: 13
+      type: p2p
+      name: p2 -> pe4
+      ifindex: 5
+      ifname: GigabitEthernet5
+      neighbors:
+      - ifname: GigabitEthernet3
+        node: pe4
+        ipv4: 10.1.0.50/30
+      ospf:
+        area: 0.0.0.0
+        passive: false
+        network_type: point-to-point
+      ldp:
+        passive: false
+      libvirt:
+        type: tunnel
+      remote_ifindex: 3
+      remote_id: 9
+    device: csr
+    box: cisco/csr1000v
+    vrf:
+      as: 65000
     ospf:
       area: 0.0.0.0
       router_id: 10.0.0.2
       af:
         ipv4: true
+    bgp:
+      advertise_loopback: true
+      community:
+        ibgp:
+        - standard
+        - extended
+        ebgp:
+        - standard
+        ibgp_localas:
+        - standard
+        - extended
+      next_hop_self: true
+      as: 65000
+      router_id: 10.0.0.2
+      neighbors:
+      - name: p1
+        as: 65000
+        type: ibgp
+        ipv4: 10.0.0.1
+        activate:
+          ipv4: true
+      - name: p3
+        as: 65000
+        type: ibgp
+        ipv4: 10.0.0.3
+        activate:
+          ipv4: true
+      - name: p4
+        as: 65000
+        type: ibgp
+        ipv4: 10.0.0.4
+        activate:
+          ipv4: true
+      - name: p5
+        as: 65000
+        type: ibgp
+        ipv4: 10.0.0.5
+        activate:
+          ipv4: true
+      - name: pe1
+        as: 65000
+        type: ibgp
+        ipv4: 10.0.0.6
+        activate:
+          ipv4: true
+      - name: pe2
+        as: 65000
+        type: ibgp
+        ipv4: 10.0.0.7
+        activate:
+          ipv4: true
+      - name: pe3
+        as: 65000
+        type: ibgp
+        ipv4: 10.0.0.8
+        activate:
+          ipv4: true
+      - name: pe4
+        as: 65000
+        type: ibgp
+        ipv4: 10.0.0.9
+        activate:
+          ipv4: true
+      ipv4: true
+    mpls:
+      vpn: {}
     id: 2
+    min_mtu: 1500
     af:
       ipv4: true
     loopback:
@@ -3458,93 +3778,135 @@ nodes:
       ospf:
         area: 0.0.0.0
     mgmt:
-      ifname: Management0
+      ifname: GigabitEthernet1
       ipv4: 192.168.121.102
       mac: 08:4f:a9:00:00:02
-    hostname: clab-netsim-ceos--r1
-  r2:
-    name: r2
+    ldp:
+      router_id: 10.0.0.2
+  p3:
+    module:
+    - bgp
+    - ospf
+    - mpls
+    name: p3
     interfaces:
-    - ipv4: 10.1.0.5/30
-      linkindex: 2
+    - ipv4: 10.1.0.22/30
+      linkindex: 6
       type: p2p
-      role: external
-      name: r2 -> r3
-      ifindex: 1
-      ifname: Ethernet1
-      clab:
-        name: et1
-      neighbors:
-      - ifname: Ethernet2
-        node: r3
-        ipv4: 10.1.0.6/30
-    - ipv4: 172.16.1.3/24
-      bridge: netsim-ceo_5
-      linkindex: 5
-      type: lan
-      role: stub
-      name: r2 -> serverb
+      name: p3 -> p2
       ifindex: 2
-      ifname: Ethernet2
-      clab:
-        name: et2
+      ifname: GigabitEthernet2
       neighbors:
-      - ifname: eth1
-        node: serverb
-        ipv4: 172.16.1.6/24
+      - ifname: GigabitEthernet3
+        node: p2
+        ipv4: 10.1.0.21/30
       ospf:
         area: 0.0.0.0
-        passive: true
+        passive: false
         network_type: point-to-point
-      bgp:
-        advertise: true
-    bgp:
-      advertise_loopback: true
-      community:
-        ibgp:
-        - standard
-        - large
-        - extended
-        ebgp:
-        - standard
-        - large
-        ibgp_localas:
-        - standard
-        - large
-        - extended
-      next_hop_self: true
-      _cprop_order:
-      - standard
-      - extended
-      - large
-      - link-bandwidth
-      as: 65002
-      router_id: 10.0.0.3
+      ldp:
+        passive: false
+      libvirt:
+        type: tunnel
+      remote_ifindex: 3
+      remote_id: 2
+    - ipv4: 10.1.0.33/30
+      linkindex: 9
+      type: p2p
+      name: p3 -> p5
+      ifindex: 3
+      ifname: GigabitEthernet3
       neighbors:
-      - ifindex: 1
-        name: r3
-        as: 65003
-        type: ebgp
-        ipv4: 10.1.0.6
-        activate:
-          ipv4: true
-      ipv4: true
-    device: eos
-    clab:
-      kind: ceos
-      env:
-        INTFTYPE: et
-        CLAB_MGMT_VRF: management
-    box: ceos:4.27.3F
-    module:
-    - ospf
-    - bgp
+      - ifname: GigabitEthernet3
+        node: p5
+        ipv4: 10.1.0.34/30
+      ospf:
+        area: 0.0.0.0
+        passive: false
+        network_type: point-to-point
+      ldp:
+        passive: false
+      libvirt:
+        type: tunnel
+      remote_ifindex: 3
+      remote_id: 5
+    device: csr
+    box: cisco/csr1000v
+    vrf:
+      as: 65000
     ospf:
       area: 0.0.0.0
       router_id: 10.0.0.3
       af:
         ipv4: true
+    bgp:
+      advertise_loopback: true
+      community:
+        ibgp:
+        - standard
+        - extended
+        ebgp:
+        - standard
+        ibgp_localas:
+        - standard
+        - extended
+      next_hop_self: true
+      as: 65000
+      router_id: 10.0.0.3
+      neighbors:
+      - name: p1
+        as: 65000
+        type: ibgp
+        ipv4: 10.0.0.1
+        activate:
+          ipv4: true
+      - name: p2
+        as: 65000
+        type: ibgp
+        ipv4: 10.0.0.2
+        activate:
+          ipv4: true
+      - name: p4
+        as: 65000
+        type: ibgp
+        ipv4: 10.0.0.4
+        activate:
+          ipv4: true
+      - name: p5
+        as: 65000
+        type: ibgp
+        ipv4: 10.0.0.5
+        activate:
+          ipv4: true
+      - name: pe1
+        as: 65000
+        type: ibgp
+        ipv4: 10.0.0.6
+        activate:
+          ipv4: true
+      - name: pe2
+        as: 65000
+        type: ibgp
+        ipv4: 10.0.0.7
+        activate:
+          ipv4: true
+      - name: pe3
+        as: 65000
+        type: ibgp
+        ipv4: 10.0.0.8
+        activate:
+          ipv4: true
+      - name: pe4
+        as: 65000
+        type: ibgp
+        ipv4: 10.0.0.9
+        activate:
+          ipv4: true
+      ipv4: true
+    mpls:
+      vpn: {}
     id: 3
+    min_mtu: 1500
     af:
       ipv4: true
     loopback:
@@ -3557,107 +3919,135 @@ nodes:
       ospf:
         area: 0.0.0.0
     mgmt:
-      ifname: Management0
+      ifname: GigabitEthernet1
       ipv4: 192.168.121.103
       mac: 08:4f:a9:00:00:03
-    hostname: clab-netsim-ceos--r2
-  r3:
-    name: r3
+    ldp:
+      router_id: 10.0.0.3
+  p4:
+    module:
+    - bgp
+    - ospf
+    - mpls
+    name: p4
     interfaces:
-    - ipv4: 10.1.0.2/30
-      linkindex: 1
+    - ipv4: 10.1.0.26/30
+      linkindex: 7
       type: p2p
-      role: external
-      name: r3 -> r1
-      ifindex: 1
-      ifname: Ethernet1
-      clab:
-        name: et1
-      neighbors:
-      - ifname: Ethernet1
-        node: r1
-        ipv4: 10.1.0.1/30
-    - ipv4: 10.1.0.6/30
-      linkindex: 2
-      type: p2p
-      role: external
-      name: r3 -> r2
+      name: p4 -> p1
       ifindex: 2
-      ifname: Ethernet2
-      clab:
-        name: et2
+      ifname: GigabitEthernet2
       neighbors:
-      - ifname: Ethernet1
-        node: r2
-        ipv4: 10.1.0.5/30
-    - ipv4: 10.1.0.9/30
-      linkindex: 3
+      - ifname: GigabitEthernet3
+        node: p1
+        ipv4: 10.1.0.25/30
+      ospf:
+        area: 0.0.0.0
+        passive: false
+        network_type: point-to-point
+      ldp:
+        passive: false
+      libvirt:
+        type: tunnel
+      remote_ifindex: 3
+      remote_id: 1
+    - ipv4: 10.1.0.29/30
+      linkindex: 8
       type: p2p
-      role: external
-      name: r3 -> rr
+      name: p4 -> p5
       ifindex: 3
-      ifname: Ethernet3
-      clab:
-        name: et3
+      ifname: GigabitEthernet3
       neighbors:
-      - ifname: swp1
-        node: rr
-        ipv4: 10.1.0.10/30
+      - ifname: GigabitEthernet2
+        node: p5
+        ipv4: 10.1.0.30/30
+      ospf:
+        area: 0.0.0.0
+        passive: false
+        network_type: point-to-point
+      ldp:
+        passive: false
+      libvirt:
+        type: tunnel
+      remote_ifindex: 2
+      remote_id: 5
+    device: csr
+    box: cisco/csr1000v
+    vrf:
+      as: 65000
+    ospf:
+      area: 0.0.0.0
+      router_id: 10.0.0.4
+      af:
+        ipv4: true
     bgp:
       advertise_loopback: true
       community:
         ibgp:
         - standard
-        - large
         - extended
         ebgp:
         - standard
-        - large
         ibgp_localas:
         - standard
-        - large
         - extended
       next_hop_self: true
-      _cprop_order:
-      - standard
-      - extended
-      - large
-      - link-bandwidth
-      as: 65003
+      as: 65000
       router_id: 10.0.0.4
       neighbors:
-      - ifindex: 1
-        name: r1
-        as: 65001
-        type: ebgp
-        ipv4: 10.1.0.1
-        activate:
-          ipv4: true
-      - ifindex: 2
-        name: r2
-        as: 65002
-        type: ebgp
-        ipv4: 10.1.0.5
-        activate:
-          ipv4: true
-      - ifindex: 3
-        name: rr
+      - name: p1
         as: 65000
-        type: ebgp
-        ipv4: 10.1.0.10
+        type: ibgp
+        ipv4: 10.0.0.1
+        activate:
+          ipv4: true
+      - name: p2
+        as: 65000
+        type: ibgp
+        ipv4: 10.0.0.2
+        activate:
+          ipv4: true
+      - name: p3
+        as: 65000
+        type: ibgp
+        ipv4: 10.0.0.3
+        activate:
+          ipv4: true
+      - name: p5
+        as: 65000
+        type: ibgp
+        ipv4: 10.0.0.5
+        activate:
+          ipv4: true
+      - name: pe1
+        as: 65000
+        type: ibgp
+        ipv4: 10.0.0.6
+        activate:
+          ipv4: true
+      - name: pe2
+        as: 65000
+        type: ibgp
+        ipv4: 10.0.0.7
+        activate:
+          ipv4: true
+      - name: pe3
+        as: 65000
+        type: ibgp
+        ipv4: 10.0.0.8
+        activate:
+          ipv4: true
+      - name: pe4
+        as: 65000
+        type: ibgp
+        ipv4: 10.0.0.9
         activate:
           ipv4: true
       ipv4: true
-    device: eos
-    clab:
-      kind: ceos
-      env:
-        INTFTYPE: et
-        CLAB_MGMT_VRF: management
-    box: ceos:4.27.3F
-    module:
-    - bgp
+    mpls:
+      vpn: {}
     id: 4
+    min_mtu: 1500
     af:
       ipv4: true
     loopback:
@@ -3670,196 +4060,1299 @@ nodes:
       ospf:
         area: 0.0.0.0
     mgmt:
-      ifname: Management0
+      ifname: GigabitEthernet1
       ipv4: 192.168.121.104
       mac: 08:4f:a9:00:00:04
-    hostname: clab-netsim-ceos--r3
-  servera:
-    device: linux
-    module: []
-    name: servera
+    ldp:
+      router_id: 10.0.0.4
+  p5:
+    module:
+    - bgp
+    - ospf
+    - mpls
+    name: p5
     interfaces:
-    - ipv4: 172.16.0.5/24
-      bridge: netsim-ceo_4
-      linkindex: 4
-      type: lan
-      role: stub
-      name: servera -> r1
-      ifindex: 1
-      ifname: eth1
-      mtu: 1500
+    - ipv4: 10.1.0.30/30
+      linkindex: 8
+      type: p2p
+      name: p5 -> p4
+      ifindex: 2
+      ifname: GigabitEthernet2
       neighbors:
-      - ifname: Ethernet2
-        node: r1
-        ipv4: 172.16.0.2/24
-      gateway:
-        ipv4: 172.16.0.2/24
-    clab:
-      kind: linux
-      config_templates:
-      - hosts:/etc/hosts
-      binds:
-      - clab_files/servera/hosts:/etc/hosts
-    box: alpine
+      - ifname: GigabitEthernet3
+        node: p4
+        ipv4: 10.1.0.29/30
+      ospf:
+        area: 0.0.0.0
+        passive: false
+        network_type: point-to-point
+      ldp:
+        passive: false
+      libvirt:
+        type: tunnel
+      remote_ifindex: 3
+      remote_id: 4
+    - ipv4: 10.1.0.34/30
+      linkindex: 9
+      type: p2p
+      name: p5 -> p3
+      ifindex: 3
+      ifname: GigabitEthernet3
+      neighbors:
+      - ifname: GigabitEthernet3
+        node: p3
+        ipv4: 10.1.0.33/30
+      ospf:
+        area: 0.0.0.0
+        passive: false
+        network_type: point-to-point
+      ldp:
+        passive: false
+      libvirt:
+        type: tunnel
+      remote_ifindex: 3
+      remote_id: 3
+    device: csr
+    box: cisco/csr1000v
+    vrf:
+      as: 65000
+    ospf:
+      area: 0.0.0.0
+      router_id: 10.0.0.5
+      af:
+        ipv4: true
+    bgp:
+      advertise_loopback: true
+      community:
+        ibgp:
+        - standard
+        - extended
+        ebgp:
+        - standard
+        ibgp_localas:
+        - standard
+        - extended
+      next_hop_self: true
+      as: 65000
+      router_id: 10.0.0.5
+      neighbors:
+      - name: p1
+        as: 65000
+        type: ibgp
+        ipv4: 10.0.0.1
+        activate:
+          ipv4: true
+      - name: p2
+        as: 65000
+        type: ibgp
+        ipv4: 10.0.0.2
+        activate:
+          ipv4: true
+      - name: p3
+        as: 65000
+        type: ibgp
+        ipv4: 10.0.0.3
+        activate:
+          ipv4: true
+      - name: p4
+        as: 65000
+        type: ibgp
+        ipv4: 10.0.0.4
+        activate:
+          ipv4: true
+      - name: pe1
+        as: 65000
+        type: ibgp
+        ipv4: 10.0.0.6
+        activate:
+          ipv4: true
+      - name: pe2
+        as: 65000
+        type: ibgp
+        ipv4: 10.0.0.7
+        activate:
+          ipv4: true
+      - name: pe3
+        as: 65000
+        type: ibgp
+        ipv4: 10.0.0.8
+        activate:
+          ipv4: true
+      - name: pe4
+        as: 65000
+        type: ibgp
+        ipv4: 10.0.0.9
+        activate:
+          ipv4: true
+      ipv4: true
+    mpls:
+      vpn: {}
     id: 5
-    role: host
-    mtu: 1500
+    min_mtu: 1500
     af:
       ipv4: true
+    loopback:
+      ipv4: 10.0.0.5/32
+      ifname: Loopback0
+      ifindex: 0
+      type: loopback
+      neighbors: []
+      virtual_interface: true
+      ospf:
+        area: 0.0.0.0
     mgmt:
-      ifname: eth0
+      ifname: GigabitEthernet1
       ipv4: 192.168.121.105
       mac: 08:4f:a9:00:00:05
-    hostname: clab-netsim-ceos--servera
-  serverb:
-    device: linux
-    module: []
-    name: serverb
+    ldp:
+      router_id: 10.0.0.5
+  pe1:
+    module:
+    - bgp
+    - ospf
+    - mpls
+    - vrf
+    name: pe1
     interfaces:
-    - ipv4: 172.16.1.6/24
-      bridge: netsim-ceo_5
-      linkindex: 5
-      type: lan
-      role: stub
-      name: serverb -> r2
-      ifindex: 1
-      ifname: eth1
-      mtu: 1500
+    - vrf: blue
+      ipv4: 10.1.0.2/30
+      linkindex: 1
+      type: p2p
+      name: pe1 -> ce1
+      ifindex: 2
+      ifname: GigabitEthernet2
       neighbors:
-      - ifname: Ethernet2
-        node: r2
-        ipv4: 172.16.1.3/24
-      gateway:
-        ipv4: 172.16.1.3/24
-    clab:
-      kind: linux
-      config_templates:
-      - hosts:/etc/hosts
-      binds:
-      - clab_files/serverb/hosts:/etc/hosts
-    box: alpine
+      - ifname: eth1
+        node: ce1
+        ipv4: 10.1.0.1/30
+      libvirt:
+        type: tunnel
+      remote_ifindex: 1
+      remote_id: 10
+    - ipv4: 10.1.0.38/30
+      linkindex: 10
+      type: p2p
+      name: pe1 -> p1
+      ifindex: 3
+      ifname: GigabitEthernet3
+      neighbors:
+      - ifname: GigabitEthernet4
+        node: p1
+        ipv4: 10.1.0.37/30
+      ospf:
+        area: 0.0.0.0
+        passive: false
+        network_type: point-to-point
+      ldp:
+        passive: false
+      libvirt:
+        type: tunnel
+      remote_ifindex: 4
+      remote_id: 1
+    device: csr
+    box: cisco/csr1000v
+    vrf:
+      as: 65000
+    ospf:
+      area: 0.0.0.0
+      router_id: 10.0.0.6
+      af:
+        ipv4: true
+    bgp:
+      advertise_loopback: true
+      community:
+        ibgp:
+        - standard
+        - extended
+        ebgp:
+        - standard
+        ibgp_localas:
+        - standard
+        - extended
+      next_hop_self: true
+      as: 65000
+      router_id: 10.0.0.6
+      neighbors:
+      - name: p1
+        as: 65000
+        type: ibgp
+        ipv4: 10.0.0.1
+        activate:
+          ipv4: true
+        vpnv4: 10.0.0.1
+      - name: p2
+        as: 65000
+        type: ibgp
+        ipv4: 10.0.0.2
+        activate:
+          ipv4: true
+        vpnv4: 10.0.0.2
+      - name: p3
+        as: 65000
+        type: ibgp
+        ipv4: 10.0.0.3
+        activate:
+          ipv4: true
+        vpnv4: 10.0.0.3
+      - name: p4
+        as: 65000
+        type: ibgp
+        ipv4: 10.0.0.4
+        activate:
+          ipv4: true
+        vpnv4: 10.0.0.4
+      - name: p5
+        as: 65000
+        type: ibgp
+        ipv4: 10.0.0.5
+        activate:
+          ipv4: true
+        vpnv4: 10.0.0.5
+      - name: pe2
+        as: 65000
+        type: ibgp
+        ipv4: 10.0.0.7
+        activate:
+          ipv4: true
+        vpnv4: 10.0.0.7
+      - name: pe3
+        as: 65000
+        type: ibgp
+        ipv4: 10.0.0.8
+        activate:
+          ipv4: true
+        vpnv4: 10.0.0.8
+      - name: pe4
+        as: 65000
+        type: ibgp
+        ipv4: 10.0.0.9
+        activate:
+          ipv4: true
+        vpnv4: 10.0.0.9
+      ipv4: true
+    mpls:
+      vpn:
+        ipv4:
+        - ibgp
     id: 6
-    role: host
-    mtu: 1500
+    min_mtu: 1500
     af:
       ipv4: true
+      vpnv4: true
+    loopback:
+      ipv4: 10.0.0.6/32
+      ifname: Loopback0
+      ifindex: 0
+      type: loopback
+      neighbors: []
+      virtual_interface: true
+      ospf:
+        area: 0.0.0.0
     mgmt:
-      ifname: eth0
+      ifname: GigabitEthernet1
       ipv4: 192.168.121.106
       mac: 08:4f:a9:00:00:06
-    hostname: clab-netsim-ceos--serverb
+    vrfs:
+      blue:
+        id: 2
+        rd: '65000:2'
+        import:
+        - '65000:2'
+        export:
+        - '65000:2'
+        af:
+          ipv4: true
+        vrfidx: 100
+        ospf:
+          area: 0.0.0.0
+          router_id: 10.0.0.6
+          interfaces:
+          - vrf: blue
+            ipv4: 10.1.0.2/30
+            linkindex: 1
+            type: p2p
+            name: pe1 -> ce1
+            ifindex: 2
+            ifname: GigabitEthernet2
+            neighbors:
+            - ifname: eth1
+              node: ce1
+              ipv4: 10.1.0.1/30
+            ospf:
+              area: 0.0.0.0
+              passive: false
+              network_type: point-to-point
+          active: true
+    ldp:
+      router_id: 10.0.0.6
+  pe2:
+    module:
+    - bgp
+    - ospf
+    - mpls
+    - vrf
+    name: pe2
+    interfaces:
+    - vrf: red
+      ipv4: 10.1.0.6/30
+      linkindex: 2
+      type: p2p
+      name: pe2 -> ce2
+      ifindex: 2
+      ifname: GigabitEthernet2
+      neighbors:
+      - ifname: eth1
+        node: ce2
+        ipv4: 10.1.0.5/30
+      libvirt:
+        type: tunnel
+      remote_ifindex: 1
+      remote_id: 11
+    - ipv4: 10.1.0.42/30
+      linkindex: 11
+      type: p2p
+      name: pe2 -> p1
+      ifindex: 3
+      ifname: GigabitEthernet3
+      neighbors:
+      - ifname: GigabitEthernet5
+        node: p1
+        ipv4: 10.1.0.41/30
+      ospf:
+        area: 0.0.0.0
+        passive: false
+        network_type: point-to-point
+      ldp:
+        passive: false
+      libvirt:
+        type: tunnel
+      remote_ifindex: 5
+      remote_id: 1
+    device: csr
+    box: cisco/csr1000v
+    vrf:
+      as: 65000
+    ospf:
+      area: 0.0.0.0
+      router_id: 10.0.0.7
+      af:
+        ipv4: true
+    bgp:
+      advertise_loopback: true
+      community:
+        ibgp:
+        - standard
+        - extended
+        ebgp:
+        - standard
+        ibgp_localas:
+        - standard
+        - extended
+      next_hop_self: true
+      as: 65000
+      router_id: 10.0.0.7
+      neighbors:
+      - name: p1
+        as: 65000
+        type: ibgp
+        ipv4: 10.0.0.1
+        activate:
+          ipv4: true
+        vpnv4: 10.0.0.1
+      - name: p2
+        as: 65000
+        type: ibgp
+        ipv4: 10.0.0.2
+        activate:
+          ipv4: true
+        vpnv4: 10.0.0.2
+      - name: p3
+        as: 65000
+        type: ibgp
+        ipv4: 10.0.0.3
+        activate:
+          ipv4: true
+        vpnv4: 10.0.0.3
+      - name: p4
+        as: 65000
+        type: ibgp
+        ipv4: 10.0.0.4
+        activate:
+          ipv4: true
+        vpnv4: 10.0.0.4
+      - name: p5
+        as: 65000
+        type: ibgp
+        ipv4: 10.0.0.5
+        activate:
+          ipv4: true
+        vpnv4: 10.0.0.5
+      - name: pe1
+        as: 65000
+        type: ibgp
+        ipv4: 10.0.0.6
+        activate:
+          ipv4: true
+        vpnv4: 10.0.0.6
+      - name: pe3
+        as: 65000
+        type: ibgp
+        ipv4: 10.0.0.8
+        activate:
+          ipv4: true
+        vpnv4: 10.0.0.8
+      - name: pe4
+        as: 65000
+        type: ibgp
+        ipv4: 10.0.0.9
+        activate:
+          ipv4: true
+        vpnv4: 10.0.0.9
+      ipv4: true
+    mpls:
+      vpn:
+        ipv4:
+        - ibgp
+    id: 7
+    min_mtu: 1500
+    af:
+      ipv4: true
+      vpnv4: true
+    loopback:
+      ipv4: 10.0.0.7/32
+      ifname: Loopback0
+      ifindex: 0
+      type: loopback
+      neighbors: []
+      virtual_interface: true
+      ospf:
+        area: 0.0.0.0
+    mgmt:
+      ifname: GigabitEthernet1
+      ipv4: 192.168.121.107
+      mac: 08:4f:a9:00:00:07
+    vrfs:
+      red:
+        id: 1
+        rd: '65000:1'
+        import:
+        - '65000:1'
+        export:
+        - '65000:1'
+        af:
+          ipv4: true
+        vrfidx: 100
+        ospf:
+          area: 0.0.0.0
+          router_id: 10.0.0.7
+          interfaces:
+          - vrf: red
+            ipv4: 10.1.0.6/30
+            linkindex: 2
+            type: p2p
+            name: pe2 -> ce2
+            ifindex: 2
+            ifname: GigabitEthernet2
+            neighbors:
+            - ifname: eth1
+              node: ce2
+              ipv4: 10.1.0.5/30
+            ospf:
+              area: 0.0.0.0
+              passive: false
+              network_type: point-to-point
+          active: true
+    ldp:
+      router_id: 10.0.0.7
+  pe3:
+    module:
+    - bgp
+    - ospf
+    - mpls
+    - vrf
+    name: pe3
+    interfaces:
+    - vrf: white
+      ipv4: 10.1.0.10/30
+      linkindex: 3
+      type: p2p
+      name: pe3 -> ce3
+      ifindex: 2
+      ifname: GigabitEthernet2
+      neighbors:
+      - ifname: eth1
+        node: ce3
+        ipv4: 10.1.0.9/30
+      libvirt:
+        type: tunnel
+      remote_ifindex: 1
+      remote_id: 12
+    - ipv4: 10.1.0.46/30
+      linkindex: 12
+      type: p2p
+      name: pe3 -> p2
+      ifindex: 3
+      ifname: GigabitEthernet3
+      neighbors:
+      - ifname: GigabitEthernet4
+        node: p2
+        ipv4: 10.1.0.45/30
+      ospf:
+        area: 0.0.0.0
+        passive: false
+        network_type: point-to-point
+      ldp:
+        passive: false
+      libvirt:
+        type: tunnel
+      remote_ifindex: 4
+      remote_id: 2
+    device: csr
+    box: cisco/csr1000v
+    vrf:
+      as: 65000
+    ospf:
+      area: 0.0.0.0
+      router_id: 10.0.0.8
+      af:
+        ipv4: true
+    bgp:
+      advertise_loopback: true
+      community:
+        ibgp:
+        - standard
+        - extended
+        ebgp:
+        - standard
+        ibgp_localas:
+        - standard
+        - extended
+      next_hop_self: true
+      as: 65000
+      router_id: 10.0.0.8
+      neighbors:
+      - name: p1
+        as: 65000
+        type: ibgp
+        ipv4: 10.0.0.1
+        activate:
+          ipv4: true
+        vpnv4: 10.0.0.1
+      - name: p2
+        as: 65000
+        type: ibgp
+        ipv4: 10.0.0.2
+        activate:
+          ipv4: true
+        vpnv4: 10.0.0.2
+      - name: p3
+        as: 65000
+        type: ibgp
+        ipv4: 10.0.0.3
+        activate:
+          ipv4: true
+        vpnv4: 10.0.0.3
+      - name: p4
+        as: 65000
+        type: ibgp
+        ipv4: 10.0.0.4
+        activate:
+          ipv4: true
+        vpnv4: 10.0.0.4
+      - name: p5
+        as: 65000
+        type: ibgp
+        ipv4: 10.0.0.5
+        activate:
+          ipv4: true
+        vpnv4: 10.0.0.5
+      - name: pe1
+        as: 65000
+        type: ibgp
+        ipv4: 10.0.0.6
+        activate:
+          ipv4: true
+        vpnv4: 10.0.0.6
+      - name: pe2
+        as: 65000
+        type: ibgp
+        ipv4: 10.0.0.7
+        activate:
+          ipv4: true
+        vpnv4: 10.0.0.7
+      - name: pe4
+        as: 65000
+        type: ibgp
+        ipv4: 10.0.0.9
+        activate:
+          ipv4: true
+        vpnv4: 10.0.0.9
+      ipv4: true
+    mpls:
+      vpn:
+        ipv4:
+        - ibgp
+    id: 8
+    min_mtu: 1500
+    af:
+      ipv4: true
+      vpnv4: true
+    loopback:
+      ipv4: 10.0.0.8/32
+      ifname: Loopback0
+      ifindex: 0
+      type: loopback
+      neighbors: []
+      virtual_interface: true
+      ospf:
+        area: 0.0.0.0
+    mgmt:
+      ifname: GigabitEthernet1
+      ipv4: 192.168.121.108
+      mac: 08:4f:a9:00:00:08
+    vrfs:
+      white:
+        id: 3
+        rd: '65000:3'
+        import:
+        - '65000:3'
+        export:
+        - '65000:3'
+        af:
+          ipv4: true
+        vrfidx: 100
+        ospf:
+          area: 0.0.0.0
+          router_id: 10.0.0.8
+          interfaces:
+          - vrf: white
+            ipv4: 10.1.0.10/30
+            linkindex: 3
+            type: p2p
+            name: pe3 -> ce3
+            ifindex: 2
+            ifname: GigabitEthernet2
+            neighbors:
+            - ifname: eth1
+              node: ce3
+              ipv4: 10.1.0.9/30
+            ospf:
+              area: 0.0.0.0
+              passive: false
+              network_type: point-to-point
+          active: true
+    ldp:
+      router_id: 10.0.0.8
+  pe4:
+    module:
+    - bgp
+    - ospf
+    - mpls
+    - vrf
+    name: pe4
+    interfaces:
+    - vrf: blue
+      ipv4: 10.1.0.14/30
+      linkindex: 4
+      type: p2p
+      name: pe4 -> ce4
+      ifindex: 2
+      ifname: GigabitEthernet2
+      neighbors:
+      - ifname: eth1
+        node: ce4
+        ipv4: 10.1.0.13/30
+      libvirt:
+        type: tunnel
+      remote_ifindex: 1
+      remote_id: 13
+    - ipv4: 10.1.0.50/30
+      linkindex: 13
+      type: p2p
+      name: pe4 -> p2
+      ifindex: 3
+      ifname: GigabitEthernet3
+      neighbors:
+      - ifname: GigabitEthernet5
+        node: p2
+        ipv4: 10.1.0.49/30
+      ospf:
+        area: 0.0.0.0
+        passive: false
+        network_type: point-to-point
+      ldp:
+        passive: false
+      libvirt:
+        type: tunnel
+      remote_ifindex: 5
+      remote_id: 2
+    device: csr
+    box: cisco/csr1000v
+    vrf:
+      as: 65000
+    ospf:
+      area: 0.0.0.0
+      router_id: 10.0.0.9
+      af:
+        ipv4: true
+    bgp:
+      advertise_loopback: true
+      community:
+        ibgp:
+        - standard
+        - extended
+        ebgp:
+        - standard
+        ibgp_localas:
+        - standard
+        - extended
+      next_hop_self: true
+      as: 65000
+      router_id: 10.0.0.9
+      neighbors:
+      - name: p1
+        as: 65000
+        type: ibgp
+        ipv4: 10.0.0.1
+        activate:
+          ipv4: true
+        vpnv4: 10.0.0.1
+      - name: p2
+        as: 65000
+        type: ibgp
+        ipv4: 10.0.0.2
+        activate:
+          ipv4: true
+        vpnv4: 10.0.0.2
+      - name: p3
+        as: 65000
+        type: ibgp
+        ipv4: 10.0.0.3
+        activate:
+          ipv4: true
+        vpnv4: 10.0.0.3
+      - name: p4
+        as: 65000
+        type: ibgp
+        ipv4: 10.0.0.4
+        activate:
+          ipv4: true
+        vpnv4: 10.0.0.4
+      - name: p5
+        as: 65000
+        type: ibgp
+        ipv4: 10.0.0.5
+        activate:
+          ipv4: true
+        vpnv4: 10.0.0.5
+      - name: pe1
+        as: 65000
+        type: ibgp
+        ipv4: 10.0.0.6
+        activate:
+          ipv4: true
+        vpnv4: 10.0.0.6
+      - name: pe2
+        as: 65000
+        type: ibgp
+        ipv4: 10.0.0.7
+        activate:
+          ipv4: true
+        vpnv4: 10.0.0.7
+      - name: pe3
+        as: 65000
+        type: ibgp
+        ipv4: 10.0.0.8
+        activate:
+          ipv4: true
+        vpnv4: 10.0.0.8
+      ipv4: true
+    mpls:
+      vpn:
+        ipv4:
+        - ibgp
+    id: 9
+    min_mtu: 1500
+    af:
+      ipv4: true
+      vpnv4: true
+    loopback:
+      ipv4: 10.0.0.9/32
+      ifname: Loopback0
+      ifindex: 0
+      type: loopback
+      neighbors: []
+      virtual_interface: true
+      ospf:
+        area: 0.0.0.0
+    mgmt:
+      ifname: GigabitEthernet1
+      ipv4: 192.168.121.109
+      mac: 08:4f:a9:00:00:09
+    vrfs:
+      blue:
+        id: 2
+        rd: '65000:2'
+        import:
+        - '65000:2'
+        export:
+        - '65000:2'
+        af:
+          ipv4: true
+        vrfidx: 100
+        ospf:
+          area: 0.0.0.0
+          router_id: 10.0.0.9
+          interfaces:
+          - vrf: blue
+            ipv4: 10.1.0.14/30
+            linkindex: 4
+            type: p2p
+            name: pe4 -> ce4
+            ifindex: 2
+            ifname: GigabitEthernet2
+            neighbors:
+            - ifname: eth1
+              node: ce4
+              ipv4: 10.1.0.13/30
+            ospf:
+              area: 0.0.0.0
+              passive: false
+              network_type: point-to-point
+          active: true
+    ldp:
+      router_id: 10.0.0.9
+  ce1:
+    device: frr
+    module:
+    - ospf
+    ospf:
+      area: 0.0.0.0
+      process: 2
+      router_id: 10.0.0.10
+      af:
+        ipv4: true
+    name: ce1
+    interfaces:
+    - ipv4: 10.1.0.1/30
+      linkindex: 1
+      type: p2p
+      name: ce1 -> pe1
+      ifindex: 1
+      ifname: eth1
+      neighbors:
+      - ifname: GigabitEthernet2
+        node: pe1
+        vrf: blue
+        ipv4: 10.1.0.2/30
+      ospf:
+        area: 0.0.0.0
+        passive: false
+        network_type: point-to-point
+      libvirt:
+        type: tunnel
+      remote_ifindex: 2
+      remote_id: 6
+    box: generic/ubuntu2004
+    id: 10
+    af:
+      ipv4: true
+    loopback:
+      ipv4: 10.0.0.10/32
+      ifname: lo
+      ifindex: 0
+      type: loopback
+      neighbors: []
+      virtual_interface: true
+      ospf:
+        area: 0.0.0.0
+    mgmt:
+      ifname: eth0
+      ipv4: 192.168.121.110
+      mac: 08:4f:a9:00:00:0a
+  ce2:
+    device: frr
+    module:
+    - ospf
+    ospf:
+      area: 0.0.0.0
+      process: 2
+      router_id: 10.0.0.11
+      af:
+        ipv4: true
+    name: ce2
+    interfaces:
+    - ipv4: 10.1.0.5/30
+      linkindex: 2
+      type: p2p
+      name: ce2 -> pe2
+      ifindex: 1
+      ifname: eth1
+      neighbors:
+      - ifname: GigabitEthernet2
+        node: pe2
+        vrf: red
+        ipv4: 10.1.0.6/30
+      ospf:
+        area: 0.0.0.0
+        passive: false
+        network_type: point-to-point
+      libvirt:
+        type: tunnel
+      remote_ifindex: 2
+      remote_id: 7
+    box: generic/ubuntu2004
+    id: 11
+    af:
+      ipv4: true
+    loopback:
+      ipv4: 10.0.0.11/32
+      ifname: lo
+      ifindex: 0
+      type: loopback
+      neighbors: []
+      virtual_interface: true
+      ospf:
+        area: 0.0.0.0
+    mgmt:
+      ifname: eth0
+      ipv4: 192.168.121.111
+      mac: 08:4f:a9:00:00:0b
+  ce3:
+    device: frr
+    module:
+    - ospf
+    ospf:
+      area: 0.0.0.0
+      process: 2
+      router_id: 10.0.0.12
+      af:
+        ipv4: true
+    name: ce3
+    interfaces:
+    - ipv4: 10.1.0.9/30
+      linkindex: 3
+      type: p2p
+      name: ce3 -> pe3
+      ifindex: 1
+      ifname: eth1
+      neighbors:
+      - ifname: GigabitEthernet2
+        node: pe3
+        vrf: white
+        ipv4: 10.1.0.10/30
+      ospf:
+        area: 0.0.0.0
+        passive: false
+        network_type: point-to-point
+      libvirt:
+        type: tunnel
+      remote_ifindex: 2
+      remote_id: 8
+    box: generic/ubuntu2004
+    id: 12
+    af:
+      ipv4: true
+    loopback:
+      ipv4: 10.0.0.12/32
+      ifname: lo
+      ifindex: 0
+      type: loopback
+      neighbors: []
+      virtual_interface: true
+      ospf:
+        area: 0.0.0.0
+    mgmt:
+      ifname: eth0
+      ipv4: 192.168.121.112
+      mac: 08:4f:a9:00:00:0c
+  ce4:
+    device: frr
+    module:
+    - ospf
+    ospf:
+      area: 0.0.0.0
+      process: 2
+      router_id: 10.0.0.13
+      af:
+        ipv4: true
+    name: ce4
+    interfaces:
+    - ipv4: 10.1.0.13/30
+      linkindex: 4
+      type: p2p
+      name: ce4 -> pe4
+      ifindex: 1
+      ifname: eth1
+      neighbors:
+      - ifname: GigabitEthernet2
+        node: pe4
+        vrf: blue
+        ipv4: 10.1.0.14/30
+      ospf:
+        area: 0.0.0.0
+        passive: false
+        network_type: point-to-point
+      libvirt:
+        type: tunnel
+      remote_ifindex: 2
+      remote_id: 9
+    box: generic/ubuntu2004
+    id: 13
+    af:
+      ipv4: true
+    loopback:
+      ipv4: 10.0.0.13/32
+      ifname: lo
+      ifindex: 0
+      type: loopback
+      neighbors: []
+      virtual_interface: true
+      ospf:
+        area: 0.0.0.0
+    mgmt:
+      ifname: eth0
+      ipv4: 192.168.121.113
+      mac: 08:4f:a9:00:00:0d
 links:
 - interfaces:
-  - node: r3
+  - vrf: blue
+    node: pe1
     ipv4: 10.1.0.2/30
-    ifindex: 1
-    ifname: Ethernet1
-  - node: r1
+    ifindex: 2
+    ifname: GigabitEthernet2
+  - node: ce1
     ipv4: 10.1.0.1/30
     ifindex: 1
-    ifname: Ethernet1
+    ifname: eth1
   linkindex: 1
-  role: external
   node_count: 2
   type: p2p
   prefix:
     ipv4: 10.1.0.0/30
   provider:
-    clab: true
+    libvirt: true
 - interfaces:
-  - node: r3
+  - vrf: red
+    node: pe2
     ipv4: 10.1.0.6/30
     ifindex: 2
-    ifname: Ethernet2
-  - node: r2
+    ifname: GigabitEthernet2
+  - node: ce2
     ipv4: 10.1.0.5/30
     ifindex: 1
-    ifname: Ethernet1
+    ifname: eth1
   linkindex: 2
-  role: external
   node_count: 2
   type: p2p
   prefix:
     ipv4: 10.1.0.4/30
   provider:
-    clab: true
+    libvirt: true
 - interfaces:
-  - node: r3
-    ipv4: 10.1.0.9/30
-    ifindex: 3
-    ifname: Ethernet3
-  - node: rr
+  - vrf: white
+    node: pe3
     ipv4: 10.1.0.10/30
+    ifindex: 2
+    ifname: GigabitEthernet2
+  - node: ce3
+    ipv4: 10.1.0.9/30
     ifindex: 1
-    ifname: swp1
+    ifname: eth1
   linkindex: 3
-  role: external
   node_count: 2
   type: p2p
   prefix:
     ipv4: 10.1.0.8/30
   provider:
-    clab: true
+    libvirt: true
 - interfaces:
-  - node: r1
-    ipv4: 172.16.0.2/24
+  - vrf: blue
+    node: pe4
+    ipv4: 10.1.0.14/30
     ifindex: 2
-    ifname: Ethernet2
-  - node: servera
-    ipv4: 172.16.0.5/24
+    ifname: GigabitEthernet2
+  - node: ce4
+    ipv4: 10.1.0.13/30
     ifindex: 1
     ifname: eth1
   linkindex: 4
   node_count: 2
-  role: stub
-  type: lan
-  bridge: netsim-ceo_4
+  type: p2p
   prefix:
-    ipv4: 172.16.0.0/24
-  gateway:
-    ipv4: 172.16.0.2/24
+    ipv4: 10.1.0.12/30
   provider:
-    clab: true
+    libvirt: true
 - interfaces:
-  - node: r2
-    ipv4: 172.16.1.3/24
+  - node: p1
+    ipv4: 10.1.0.17/30
     ifindex: 2
-    ifname: Ethernet2
-  - node: serverb
-    ipv4: 172.16.1.6/24
-    ifindex: 1
-    ifname: eth1
+    ifname: GigabitEthernet2
+  - node: p2
+    ipv4: 10.1.0.18/30
+    ifindex: 2
+    ifname: GigabitEthernet2
   linkindex: 5
   node_count: 2
-  role: stub
-  type: lan
-  bridge: netsim-ceo_5
+  type: p2p
   prefix:
-    ipv4: 172.16.1.0/24
-  gateway:
-    ipv4: 172.16.1.3/24
+    ipv4: 10.1.0.16/30
   provider:
-    clab: true
+    libvirt: true
+- interfaces:
+  - node: p2
+    ipv4: 10.1.0.21/30
+    ifindex: 3
+    ifname: GigabitEthernet3
+  - node: p3
+    ipv4: 10.1.0.22/30
+    ifindex: 2
+    ifname: GigabitEthernet2
+  linkindex: 6
+  node_count: 2
+  type: p2p
+  prefix:
+    ipv4: 10.1.0.20/30
+  provider:
+    libvirt: true
+- interfaces:
+  - node: p1
+    ipv4: 10.1.0.25/30
+    ifindex: 3
+    ifname: GigabitEthernet3
+  - node: p4
+    ipv4: 10.1.0.26/30
+    ifindex: 2
+    ifname: GigabitEthernet2
+  linkindex: 7
+  node_count: 2
+  type: p2p
+  prefix:
+    ipv4: 10.1.0.24/30
+  provider:
+    libvirt: true
+- interfaces:
+  - node: p4
+    ipv4: 10.1.0.29/30
+    ifindex: 3
+    ifname: GigabitEthernet3
+  - node: p5
+    ipv4: 10.1.0.30/30
+    ifindex: 2
+    ifname: GigabitEthernet2
+  linkindex: 8
+  node_count: 2
+  type: p2p
+  prefix:
+    ipv4: 10.1.0.28/30
+  provider:
+    libvirt: true
+- interfaces:
+  - node: p5
+    ipv4: 10.1.0.34/30
+    ifindex: 3
+    ifname: GigabitEthernet3
+  - node: p3
+    ipv4: 10.1.0.33/30
+    ifindex: 3
+    ifname: GigabitEthernet3
+  linkindex: 9
+  node_count: 2
+  type: p2p
+  prefix:
+    ipv4: 10.1.0.32/30
+  provider:
+    libvirt: true
+- interfaces:
+  - node: pe1
+    ipv4: 10.1.0.38/30
+    ifindex: 3
+    ifname: GigabitEthernet3
+  - node: p1
+    ipv4: 10.1.0.37/30
+    ifindex: 4
+    ifname: GigabitEthernet4
+  linkindex: 10
+  node_count: 2
+  type: p2p
+  prefix:
+    ipv4: 10.1.0.36/30
+  provider:
+    libvirt: true
+- interfaces:
+  - node: pe2
+    ipv4: 10.1.0.42/30
+    ifindex: 3
+    ifname: GigabitEthernet3
+  - node: p1
+    ipv4: 10.1.0.41/30
+    ifindex: 5
+    ifname: GigabitEthernet5
+  linkindex: 11
+  node_count: 2
+  type: p2p
+  prefix:
+    ipv4: 10.1.0.40/30
+  provider:
+    libvirt: true
+- interfaces:
+  - node: pe3
+    ipv4: 10.1.0.46/30
+    ifindex: 3
+    ifname: GigabitEthernet3
+  - node: p2
+    ipv4: 10.1.0.45/30
+    ifindex: 4
+    ifname: GigabitEthernet4
+  linkindex: 12
+  node_count: 2
+  type: p2p
+  prefix:
+    ipv4: 10.1.0.44/30
+  provider:
+    libvirt: true
+- interfaces:
+  - node: pe4
+    ipv4: 10.1.0.50/30
+    ifindex: 3
+    ifname: GigabitEthernet3
+  - node: p2
+    ipv4: 10.1.0.49/30
+    ifindex: 5
+    ifname: GigabitEthernet5
+  linkindex: 13
+  node_count: 2
+  type: p2p
+  prefix:
+    ipv4: 10.1.0.48/30
+  provider:
+    libvirt: true
 input:
-- /home/jaime/netsim-labs/netsim-ceos-flowpec_a/topology.yml
+- /home/jaime/netsim-labs/netsim-csr-mpls1/topology.yml
 - /home/jaime/.netlab.yml
 - package:topology-defaults.yml
-name: netsim-ceos-
+name: netsim-csr-m
 groups:
   as65000:
     members:
-    - rr
-  as65001:
-    members:
-    - r1
-  as65002:
-    members:
-    - r2
-  as65003:
-    members:
-    - r3
+    - p1
+    - p2
+    - p3
+    - p4
+    - p5
+    - pe1
+    - pe2
+    - pe3
+    - pe4
+module:
+- bgp
+- ospf
+- mpls
+- vrf
 ospf:
   area: 0.0.0.0
+vrf:
+  as: 65000
 addressing:
   lan:
     ipv4: 172.16.0.0/16

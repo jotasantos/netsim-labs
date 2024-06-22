@@ -24,6 +24,7 @@ This repository contains _netlab_ topology files for a series of hands-on labs t
 * [Use BGP Route Reflectors](ibgp/3-rr)
 * [Use BGP Session Templates](session/6-templates)
 * [Use BGP Policy Templates](session/7-policy)
+* [Dynamic BGP Peers](session/9-dynamic)
 
 **Simple BGP Routing Policies**
 
@@ -42,6 +43,12 @@ This repository contains _netlab_ topology files for a series of hands-on labs t
 * [Using BGP Local Preference in a Complex Routing Policy](policy/a-locpref-route-map)
 * [Use BGP Policy Templates](session/7-policy)
 
+**Load Balancing**
+
+* [Load Balancing across External BGP Paths](lb/1-ebgp)
+* [EBGP Load Balancing with BGP Link Bandwidth](lb/2-dmz-bw)
+* [IBGP Load Balancing with BGP Link Bandwidth](lb/3-ibgp)
+
 **Advanced Topics**
 
 * [Use BFD to Speed Up BGP Convergence](basic/7-bfd)
@@ -51,7 +58,17 @@ This repository contains _netlab_ topology files for a series of hands-on labs t
 * [Use Multiple AS Numbers on the Same Router](session/3-localas)
 * [Remove Private BGP AS Numbers from the AS Path](session/4-removeprivate)
 * [Advertise Default Route in BGP](basic/c-default-route)
+* [EBGP Sessions over IPv6 LLA Interfaces](basic/d-interface)
+* [BGP Route Server in an Internet Exchange Point](session/5-routeserver)
+* [Passive BGP Sessions](session/8-passive) (coming soon)
 
-See [lab documentation](https://bgplab.github.io/bgplab/) for more details and the complete list of planned labs.
+**Challenge Labs**
+
+* [Merge Networks Using Different BGP AS Numbers](challenge/20-merge-as)
+* [Stop the Propagation of Configuration Errors](challenge/04-block-fat-fingers/)
+* [Minimize the Forwarding Table on BGP Routers](challenge/30-reduce-fib)
+* [BGP Graceful Shutdown](challenge/03-graceful-shutdown)
+
+See [lab documentation](https://bgplabs.net/) for more details and the complete list of planned labs.
 
 [^PC]: Some assembly required: while the Cumulus Linux VMs/containers used for external BGP speakers are easy to download, you'll have to build a Vagrant box or install a Docker container image for your platform.
